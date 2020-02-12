@@ -19,7 +19,8 @@
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
     "react-images": "^1.1.0-beta.3",
-    "react-photo-gallery": "^8.0.0"
+    "react-masonry-component": "^6.2.1",
+    "react-responsive-navbar": "^1.0.11"
   },
   "devDependencies": {
     "prettier": "^1.19.1"

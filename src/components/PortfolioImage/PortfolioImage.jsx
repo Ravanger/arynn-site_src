@@ -1,44 +1,42 @@
-// https://codesandbox.io/s/5vn3lvz2n4
-
-import React, { useState, useCallback } from "react"
-import Carousel, { Modal, ModalGateway } from "react-images"
-import Gallery from "react-photo-gallery"
+import React from "react"
+import Masonry from "react-masonry-component"
 
 import { photos } from "./Photos.json"
 
-const PortfolioImage = () => {
-  const [currentImage, setCurrentImage] = useState(0)
-  const [viewerIsOpen, setViewerIsOpen] = useState(false)
+import "purecss/build/base-min.css"
+import "purecss/build/grids-min.css"
+import "purecss/build/grids-responsive-min.css"
 
-  const openLightbox = useCallback((event, { photo, index }) => {
-    setCurrentImage(index)
-    setViewerIsOpen(true)
-  }, [])
+import styles from "./PortfolioImage.module.css"
 
-  const closeLightbox = () => {
-    setCurrentImage(0)
-    setViewerIsOpen(false)
+export default class PortfolioImages extends React.Component {
+  handleClick(e) {
+    console.log("click: " + e.target.alt)
   }
 
-  return (
-    <div>
-      <Gallery photos={photos} onClick={openLightbox} />
-      <ModalGateway>
-        {viewerIsOpen ? (
-          <Modal onClose={closeLightbox}>
-            <Carousel
-              currentIndex={currentImage}
-              views={photos.map(x => ({
-                ...x,
-                srcset: x.srcSet,
-                caption: x.title,
-              }))}
-            />
-          </Modal>
-        ) : null}
-      </ModalGateway>
-    </div>
-  )
-}
+  render() {
+    const childElements = photos.map(function(element, index) {
+      return (
+        <img
+          src={element.src}
+          alt={element.title}
+          key={index}
+          className={
+            "pure-u-1 pure-u-md-1-2  pure-u-lg-1-3 pure-u-xl-1-4 " +
+            styles.padding
+          }
+        />
+      )
+    })
 
-export default PortfolioImage
+    return (
+      <Masonry
+        className={"pure-g"}
+        elementType={"div"}
+        onClick={this.handleClick}
+      >
+        {childElements}
+      </Masonry>
+    )
+  }
+}
