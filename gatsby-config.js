@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Arynn Fitzsimmons`,
+    title: `ary hélène`,
     description: `One cool designer babe`,
     author: `Boris rossovsky`,
   },

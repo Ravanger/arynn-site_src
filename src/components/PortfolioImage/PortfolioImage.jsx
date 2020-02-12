@@ -4,7 +4,7 @@ import React, { useState, useCallback } from "react"
 import Carousel, { Modal, ModalGateway } from "react-images"
 import Gallery from "react-photo-gallery"
 
-import { photos } from "./Photos"
+import { photos } from "./Photos.json"
 
 const PortfolioImage = () => {
   const [currentImage, setCurrentImage] = useState(0)

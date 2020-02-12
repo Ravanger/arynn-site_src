@@ -3,7 +3,7 @@ import React from "react"
 import PropTypes from "prop-types"
 
 import SiteLogo from "./SiteLogo/SiteLogo"
-import MainMenu from "./MainMenu/MainMenu.js"
+import MainMenu from "./MainMenu/MainMenu"
 
 const Header = ({ siteTitle }) => (
   <header>
@@ -17,7 +17,7 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  siteTitle: ``,
+  siteTitle: "arynn",
 }
 
 export default Header
