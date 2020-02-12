@@ -2,8 +2,10 @@ import React from "react"
 
 import { Link } from "gatsby"
 
+import styles from "./SiteLogo.module.css"
+
 const SiteLogo = ({ siteTitle }) => (
-  <div>
+  <div className={styles.center}>
     <h1>
       <Link to="/">{siteTitle}</Link>
     </h1>
