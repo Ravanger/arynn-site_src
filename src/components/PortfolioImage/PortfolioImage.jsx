@@ -22,7 +22,7 @@ export default class PortfolioImages extends React.Component {
           alt={element.title}
           key={index}
           className={
-            "pure-u-1 pure-u-md-1-2  pure-u-lg-1-3 pure-u-xl-1-4 " +
+            "pure-u-1 pure-u-sm-1-2  pure-u-md-1-3 pure-u-lg-1-4 " +
             styles.padding
           }
         />
