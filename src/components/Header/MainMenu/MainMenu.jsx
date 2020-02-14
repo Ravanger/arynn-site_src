@@ -10,14 +10,14 @@ const MainMenu = () => (
     menuOpenButton={"X"}
     menuCloseButton={"X"}
     changeMenuOn="568px"
-    largeMenuClassName={styles.largeMenu}
-    smallMenuClassName="small-menu-classname"
     menu={
-      <ul className={"pure-u-1-1 " + styles.mainMenu}>
-        <MainMenuItem title="work" to="/" />
-        <MainMenuItem title="about me" to="/" />
-        <MainMenuItem title="patreon" to="/" />
-      </ul>
+      <div className={"pure-g " + styles.center}>
+        <ul className={"pure-u-1-1 " + styles.mainMenu}>
+          <MainMenuItem title="work" to="/" />
+          <MainMenuItem title="about me" to="/" />
+          <MainMenuItem title="patreon" to="/" />
+        </ul>
+      </div>
     }
   />
 )
