@@ -4,7 +4,9 @@ import { Link } from "gatsby"
 
 const MainMenuItem = ({ title, to }) => (
   <li className="pure-u-1 pure-u-sm-1-3">
-    <Link to={to}>{title}</Link>
+    <Link to={to} activeClassName="active">
+      {title}
+    </Link>
   </li>
 )
 
