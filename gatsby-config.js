@@ -2,6 +2,9 @@ module.exports = {
   siteMetadata: {
     title: `ary hélène`,
     description: `One cool designer babe`,
+    facebook: `https://www.facebook.com/artsyarynn`,
+    twitter: `https://twitter.com/artsyarynn`,
+    instagram: `https://www.instagram.com/artsyarynn`,
     author: `Boris rossovsky`,
   },
   plugins: [
