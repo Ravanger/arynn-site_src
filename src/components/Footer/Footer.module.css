@@ -1,0 +1,11 @@
+.footer {
+  text-align: center;
+}
+
+.footer > span {
+  margin-left: 0.5em;
+}
+
+.footer > ul {
+  margin-top: 2em;
+}
