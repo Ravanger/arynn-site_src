@@ -15,11 +15,14 @@ const MainMenuItem = ({
   <li
     className={"pure-u-1 " + hoverClass + (isSubMenu ? "" : " pure-u-sm-1-3")}
   >
-    {/* <Link to={to} activeClassName="active">
-      {title}
-    </Link> */}
     {(() => {
-      if (isExternal) {
+      if (!isExternal) {
+        return (
+          <Link to={to} activeClassName="active">
+            {title}
+          </Link>
+        )
+      } else {
         return (
           <a
             href={to}
@@ -29,12 +32,6 @@ const MainMenuItem = ({
           >
             {title}
           </a>
-        )
-      } else {
-        return (
-          <Link to={to} activeClassName="active">
-            {title}
-          </Link>
         )
       }
     })()}
