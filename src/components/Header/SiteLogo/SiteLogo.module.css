@@ -1,3 +1,17 @@
 .center {
   text-align: center;
 }
+
+.title {
+  padding: 4rem 0;
+  font-family: "Avenir-Heavy", Arial, Helvetica, sans-serif !important;
+  font-style: italic;
+  line-height: normal;
+  letter-spacing: 0.4em;
+  font-size: 1em;
+}
+
+.title > a:hover {
+  color: black;
+  transition: none;
+}

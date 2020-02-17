@@ -13,16 +13,16 @@ const MainMenu = () => (
     menuCloseButton={"X"}
     changeMenuOn={mobileLayoutBreak}
     menu={
-      <div className={"pure-g " + styles.center}>
+      <div className={"pure-g " + styles.center + " " + styles.mb}>
         <ul className={"pure-u-1-1 " + styles.mainMenu}>
           <MainMenuItem title="work" to="/" hoverClass={styles.hoverClass}>
-            <ul class={styles.dropdownContent}>
-              <MainMenuItem title="acrylic paintings" to="/" isSubMenu />
-              <MainMenuItem title="ink illustrations" to="/" isSubMenu />
-              <MainMenuItem title="digital artwork" to="/" isSubMenu />
+            <ul className={styles.dropdownContent}>
+              <MainMenuItem title="acrylic paintings" to="/1/" isSubMenu />
+              <MainMenuItem title="ink illustrations" to="/2/" isSubMenu />
+              <MainMenuItem title="digital artwork" to="/3/" isSubMenu />
             </ul>
           </MainMenuItem>
-          <MainMenuItem title="about me" to="/" />
+          <MainMenuItem title="about me" to="/4/" />
           <MainMenuItem
             title="patreon"
             to="https://www.patreon.com/artsyarynn"

@@ -10,15 +10,17 @@
 .dropdownContent {
   display: none;
   position: absolute;
-  max-width: 10em;
-  text-align: left;
+  max-width: 100%;
   margin: 0;
-  margin-left: 4rem;
   z-index: 1;
 }
 
 .hoverClass:hover .dropdownContent {
   display: block;
+}
+
+.mb {
+  margin-bottom: 4rem;
 }
 
 @media only screen and (max-width: 35.5em) {

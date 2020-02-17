@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
 import "./MainMenuItem.module.css"
+import styles from "./MainMenuItem.module.css"
 
 const MainMenuItem = ({
   children,
@@ -13,10 +14,15 @@ const MainMenuItem = ({
   isExternal,
 }) => (
   <li
-    className={"pure-u-1 " + hoverClass + (isSubMenu ? "" : " pure-u-sm-1-3")}
+    className={
+      styles.font +
+      " pure-u-1 " +
+      hoverClass +
+      (isSubMenu ? "" : " pure-u-sm-1-3")
+    }
   >
     {!isExternal ? (
-      <Link to={to} activeClassName="active">
+      <Link to={to} activeClassName="activeLink">
         {title}
       </Link>
     ) : (

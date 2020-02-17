@@ -1,0 +1,12 @@
+a {
+  color: black;
+}
+
+a:hover {
+  color: #fcb8df;
+  transition: color 0.4s ease 0s;
+}
+
+.activeLink {
+  color: #fcb8df;
+}
