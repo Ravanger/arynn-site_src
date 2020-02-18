@@ -15,14 +15,26 @@ const MainMenu = () => (
     menu={
       <div className={"pure-g " + styles.center + " " + styles.mb}>
         <ul className={"pure-u-1-1 " + styles.mainMenu}>
-          <MainMenuItem title="work" to="/" hoverClass={styles.hoverClass}>
+          <MainMenuItem title="work" to="/work" hoverClass={styles.hoverClass}>
             <ul className={styles.dropdownContent}>
-              <MainMenuItem title="acrylic paintings" to="/1/" isSubMenu />
-              <MainMenuItem title="ink illustrations" to="/2/" isSubMenu />
-              <MainMenuItem title="digital artwork" to="/3/" isSubMenu />
+              <MainMenuItem
+                title="acrylic paintings"
+                to="/work/acrylic"
+                isSubMenu
+              />
+              <MainMenuItem
+                title="ink illustrations"
+                to="/work/ink"
+                isSubMenu
+              />
+              <MainMenuItem
+                title="digital artwork"
+                to="/work/digital"
+                isSubMenu
+              />
             </ul>
           </MainMenuItem>
-          <MainMenuItem title="about me" to="/4/" />
+          <MainMenuItem title="about me" to="/about" />
           <MainMenuItem
             title="patreon"
             to="https://www.patreon.com/artsyarynn"
