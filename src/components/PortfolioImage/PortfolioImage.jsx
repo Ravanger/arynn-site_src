@@ -1,7 +1,7 @@
 import React from "react"
 import Masonry from "react-masonry-component"
 
-import { photos } from "./Photos.json"
+import { photos } from "../../data/Photos.json"
 
 import "purecss/build/base-min.css"
 import "purecss/build/grids-min.css"
