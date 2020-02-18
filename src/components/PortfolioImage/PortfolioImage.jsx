@@ -1,7 +1,7 @@
 import React from "react"
-import Masonry from "react-masonry-component"
+import { graphql, StaticQuery } from "gatsby"
 
-import { photos } from "../../data/Photos.json"
+import Masonry from "react-masonry-component"
 
 import "purecss/build/base-min.css"
 import "purecss/build/grids-min.css"
@@ -15,28 +15,47 @@ export default class PortfolioImages extends React.Component {
   }
 
   render() {
-    const childElements = photos.map(function(element, index) {
-      return (
-        <img
-          src={element.src}
-          alt={element.title}
-          key={index}
-          className={
-            "pure-u-1 pure-u-sm-1-2  pure-u-md-1-3 pure-u-lg-1-4 " +
-            styles.padding
-          }
-        />
-      )
-    })
-
     return (
-      <Masonry
-        className={"pure-g"}
-        elementType={"div"}
-        onClick={this.handleClick}
-      >
-        {childElements}
-      </Masonry>
+      <StaticQuery
+        query={graphql`
+          query photosData {
+            allDataJson {
+              edges {
+                node {
+                  photos {
+                    src
+                    title
+                  }
+                }
+              }
+            }
+          }
+        `}
+        render={data => (
+          <Masonry
+            className={"pure-g"}
+            elementType={"div"}
+            onClick={this.handleClick}
+          >
+            {data.allDataJson.edges[0].node.photos.map(function(
+              element,
+              index
+            ) {
+              return (
+                <img
+                  src={element.src}
+                  alt={element.title}
+                  key={index}
+                  className={
+                    "pure-u-1 pure-u-sm-1-2  pure-u-md-1-3 pure-u-lg-1-4 " +
+                    styles.padding
+                  }
+                />
+              )
+            })}
+          </Masonry>
+        )}
+      />
     )
   }
 }
