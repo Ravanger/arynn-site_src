@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `ary hélène`,
-    description: `One cool designer babe`,
+    description: `artist and designer in toronto`,
     facebook: `https://www.facebook.com/artsyarynn`,
     twitter: `https://twitter.com/artsyarynn`,
     instagram: `https://www.instagram.com/artsyarynn`,
