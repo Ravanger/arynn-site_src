@@ -23,6 +23,7 @@ module.exports = {
         path: `${__dirname}/src/style/fonts`,
       },
     },
+    `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
