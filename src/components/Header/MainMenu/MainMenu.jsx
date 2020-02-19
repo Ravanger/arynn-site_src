@@ -34,7 +34,7 @@ const MainMenu = () => (
               />
             </ul>
           </MainMenuItem>
-          <MainMenuItem title="about me" to="/about" />
+          <MainMenuItem title="about me" to="/aboutme" />
           <MainMenuItem
             title="patreon"
             to="https://www.patreon.com/artsyarynn"

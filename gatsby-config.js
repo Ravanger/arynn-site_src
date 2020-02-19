@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `ary hélène`,
     description: `artist and designer in toronto`,
+    about: `hello! my name is arynn, i have been an artist for as long as i can remember, my late father taught me everything i know about creating artwork and it's always been a huge part of my life. i want to spend the rest of my days making beautiful art for everyone around me and for everyone who just happens to stumble upon me to enjoy.`,
     facebook: `https://www.facebook.com/artsyarynn`,
     twitter: `https://twitter.com/artsyarynn`,
     instagram: `https://www.instagram.com/artsyarynn`,

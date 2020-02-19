@@ -1,0 +1,28 @@
+.wrapper {
+  justify-content: center;
+  text-align: center;
+}
+
+.aboutContainer {
+  width: 21rem;
+}
+
+.name {
+  font-family: "Libre-Baskerville", serif !important;
+  font-size: 1.2em;
+  letter-spacing: normal;
+}
+
+.description {
+  font-family: "Libre-Baskerville-Italic", serif !important;
+  font-size: 0.7em;
+  line-height: normal;
+  letter-spacing: 0.08em;
+}
+
+.aboutblurb {
+  font-family: "Avenir-Light", Arial, Helvetica, sans-serif !important;
+  font-size: 0.8em;
+  line-height: 1.8em;
+  letter-spacing: normal;
+}
