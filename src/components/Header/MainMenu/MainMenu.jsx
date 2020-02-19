@@ -15,7 +15,7 @@ const MainMenu = () => (
     menu={
       <div className={"pure-g " + styles.center + " " + styles.mb}>
         <ul className={"pure-u-1-1 " + styles.mainMenu}>
-          <MainMenuItem title="work" to="/work" hoverClass={styles.hoverClass}>
+          <MainMenuItem title="work" to="/" hoverClass={styles.hoverClass}>
             <ul className={styles.dropdownContent}>
               <MainMenuItem
                 title="acrylic paintings"
