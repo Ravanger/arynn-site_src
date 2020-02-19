@@ -5,9 +5,6 @@ import SEO from "../components/seo"
 
 import PortfolioImages from "../components/PortfolioImage/PortfolioImage"
 
-import "../style/fonts/fonts.css"
-import "../style/colours.css"
-
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
