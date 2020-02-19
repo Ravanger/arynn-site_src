@@ -17,7 +17,12 @@ const PortfolioImages = () => {
 
   const data = useStaticQuery(graphql`
     query photosData {
-      allFile(filter: { absolutePath: { regex: "/images/work/" } }) {
+      allFile(
+        filter: {
+          extension: { regex: "/(jpg)|(png)|(tif)|(tiff)|(webp)|(jpeg)/" }
+          absolutePath: { regex: "/images/work/" }
+        }
+      ) {
         edges {
           node {
             childImageSharp {
