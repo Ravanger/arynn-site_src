@@ -20,14 +20,6 @@ const About = () => {
   `)
   return (
     <div className={"pure-g " + styles.wrapper}>
-      <div className={"pure-u-2 " + styles.aboutContainer}>
-        <h2 className={styles.name}>{data.site.siteMetadata.title}</h2>
-        <p className={styles.description}>
-          {data.site.siteMetadata.description}
-        </p>
-        <p className={styles.aboutblurb}>{data.site.siteMetadata.about}</p>
-        <SocialsMenu />
-      </div>
       {/* TODO: replace with image */}
       <div className={"pure-u-2 " + styles.aboutContainer}>
         <h2 className={styles.name}>{data.site.siteMetadata.title}</h2>
@@ -35,6 +27,14 @@ const About = () => {
           {data.site.siteMetadata.description}
         </p>
         <p className={styles.aboutblurb}>{data.site.siteMetadata.about}</p>
+      </div>
+      <div className={"pure-u-2 " + styles.aboutContainer}>
+        <h2 className={styles.name}>{data.site.siteMetadata.title}</h2>
+        <p className={styles.description}>
+          {data.site.siteMetadata.description}
+        </p>
+        <p className={styles.aboutblurb}>{data.site.siteMetadata.about}</p>
+        <SocialsMenu />
       </div>
     </div>
   )
