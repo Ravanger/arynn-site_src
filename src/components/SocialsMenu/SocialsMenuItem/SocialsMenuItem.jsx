@@ -2,7 +2,7 @@ import React from "react"
 
 import PropTypes from "prop-types"
 
-import styles from "./FooterMenuItem.module.css"
+import styles from "./SocialsMenuItem.module.css"
 
 const FooterMenuItem = ({ children, url }) => (
   <li className={styles.menuItem}>

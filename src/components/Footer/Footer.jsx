@@ -1,13 +1,13 @@
 import React from "react"
 
-import FooterMenu from "./FooterMenu/FooterMenu"
+import SocialsMenu from "../SocialsMenu/SocialsMenu"
 
 import styles from "./Footer.module.css"
 
 const Footer = () => (
   <footer className={styles.footer}>
     <span>ary hélène {new Date().getFullYear()}</span>
-    <FooterMenu />
+    <SocialsMenu />
   </footer>
 )
 
