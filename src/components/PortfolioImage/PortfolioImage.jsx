@@ -1,12 +1,8 @@
 import React from "react"
+
 import { graphql, useStaticQuery } from "gatsby"
 import GatsbyImage from "gatsby-image"
-
 import Masonry from "react-masonry-component"
-
-import "purecss/build/base-min.css"
-import "purecss/build/grids-min.css"
-import "purecss/build/grids-responsive-min.css"
 
 import styles from "./PortfolioImage.module.css"
 

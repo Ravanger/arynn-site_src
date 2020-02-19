@@ -5,6 +5,14 @@ import SEO from "../components/seo"
 
 import PortfolioImages from "../components/PortfolioImage/PortfolioImage"
 
+import "../style/base.css"
+import "purecss/build/base-min.css"
+import "purecss/build/grids-min.css"
+import "purecss/build/grids-responsive-min.css"
+
+import "../style/fonts.css"
+import "../style/colours.css"
+
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
