@@ -22,6 +22,34 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Libre-Baskerville";
+  src: url("./fonts/libre-baskerville-v7-latin-regular.eot");
+  src: url("./fonts/libre-baskerville-v7-latin-regular.woff2") format("woff2"),
+    url("./fonts/libre-baskerville-v7-latin-regular.woff") format("woff"),
+    url("./fonts/libre-baskerville-v7-latin-regular.ttf") format("truetype"),
+    url("./fonts/libre-baskerville-v7-latin-regular.svg#Avenir-Light")
+      format("svg"),
+    url("./fonts/libre-baskerville-v7-latin-regular.eot?#iefix")
+      format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Libre-Baskerville-Italic";
+  src: url("./fonts/libre-baskerville-v7-latin-italic.eot");
+  src: url("./fonts/libre-baskerville-v7-latin-italic.woff2") format("woff2"),
+    url("./fonts/libre-baskerville-v7-latin-italic.woff") format("woff"),
+    url("./fonts/libre-baskerville-v7-latin-italic.ttf") format("truetype"),
+    url("./fonts/libre-baskerville-v7-latin-italic.svg#Avenir-Light")
+      format("svg"),
+    url("./fonts/libre-baskerville-v7-latin-italic.eot?#iefix")
+      format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 footer {
   font-family: Helvetica, sans-serif !important;
 }
