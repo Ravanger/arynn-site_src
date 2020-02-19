@@ -1,5 +1,6 @@
 import React from "react"
-import { graphql, StaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
+import GatsbyImage from "gatsby-image"
 
 import Masonry from "react-masonry-component"
 
@@ -9,53 +10,45 @@ import "purecss/build/grids-responsive-min.css"
 
 import styles from "./PortfolioImage.module.css"
 
-export default class PortfolioImages extends React.Component {
-  handleClick(e) {
-    console.log("click: " + e.target.alt)
+const PortfolioImages = () => {
+  const handleClick = e => {
+    console.log("click: " + e.target.src)
   }
 
-  render() {
-    return (
-      <StaticQuery
-        query={graphql`
-          query photosData {
-            allDataJson {
-              edges {
-                node {
-                  photos {
-                    src
-                    title
-                  }
-                }
+  const data = useStaticQuery(graphql`
+    query photosData {
+      allFile(filter: { absolutePath: { regex: "/images/work/" } }) {
+        edges {
+          node {
+            childImageSharp {
+              fluid(quality: 70, maxWidth: 915) {
+                ...GatsbyImageSharpFluid_tracedSVG
               }
             }
           }
-        `}
-        render={data => (
-          <Masonry
-            className={"pure-g"}
-            elementType={"div"}
-            onClick={this.handleClick}
+        }
+      }
+    }
+  `)
+
+  return (
+    <Masonry className={"pure-g"} elementType={"div"} onClick={handleClick}>
+      {data.allFile.edges.map(function(element, index) {
+        element = element.node.childImageSharp
+        return (
+          <div
+            key={index}
+            className={
+              "pure-u-1 pure-u-sm-1-2  pure-u-md-1-3 pure-u-lg-1-4 " +
+              styles.imgContainer
+            }
           >
-            {data.allDataJson.edges[0].node.photos.map(function(
-              element,
-              index
-            ) {
-              return (
-                <img
-                  src={element.src}
-                  alt={element.title}
-                  key={index}
-                  className={
-                    "pure-u-1 pure-u-sm-1-2  pure-u-md-1-3 pure-u-lg-1-4 " +
-                    styles.padding
-                  }
-                />
-              )
-            })}
-          </Masonry>
-        )}
-      />
-    )
-  }
+            <GatsbyImage fluid={element.fluid} />
+          </div>
+        )
+      })}
+    </Masonry>
+  )
 }
+
+export default PortfolioImages

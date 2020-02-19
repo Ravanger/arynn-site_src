@@ -1,3 +1,7 @@
-.padding {
-  padding: 0 1.45rem;
+.imgContainer {
+  padding: 1.45rem;
+}
+
+.imgContainer > img {
+  width: 100%;
 }
