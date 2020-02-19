@@ -16,7 +16,7 @@ const PortfolioImages = () => {
   }
 
   const data = useStaticQuery(graphql`
-    query photosData {
+    query {
       allFile(
         filter: {
           extension: { regex: "/(jpg)|(png)|(tif)|(tiff)|(webp)|(jpeg)/" }

@@ -7,7 +7,7 @@ import FooterMenuItem from "./FooterMenuItem/FooterMenuItem"
 
 const FooterMenu = () => {
   const data = useStaticQuery(graphql`
-    query SiteSocialsQuery {
+    query {
       site {
         siteMetadata {
           facebook
