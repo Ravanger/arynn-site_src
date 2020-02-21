@@ -26,16 +26,20 @@ const PortfolioImages = () => {
                 ...GatsbyImageSharpFluid_tracedSVG
               }
             }
+            modifiedTime
           }
         }
       }
     }
   `)
 
+  const sortedArray = data.allFile.edges.sort((a, b) => {
+    return new Date(b.node.modifiedTime) - new Date(a.node.modifiedTime)
+  })
+
   return (
     <Masonry className={"pure-g"} elementType={"div"} onClick={handleClick}>
-      {data.allFile.edges.map(function(element, index) {
-        element = element.node.childImageSharp
+      {sortedArray.map((element, index) => {
         return (
           <div
             key={index}
@@ -44,7 +48,7 @@ const PortfolioImages = () => {
               styles.imgContainer
             }
           >
-            <GatsbyImage fluid={element.fluid} />
+            <GatsbyImage fluid={element.node.childImageSharp.fluid} />
           </div>
         )
       })}
