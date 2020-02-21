@@ -2,6 +2,18 @@
   padding: 1.45rem;
 }
 
+.dialog[data-reach-dialog-content] {
+  padding: 4rem 0rem;
+}
+
+.button {
+  text-align: center;
+}
+
+.button > svg {
+  height: 100%;
+}
+
 @media only screen and (max-width: 35.5em) {
   .imgContainer {
     padding: 1.45rem 0;
