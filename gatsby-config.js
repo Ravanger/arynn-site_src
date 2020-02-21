@@ -7,6 +7,21 @@ module.exports = {
     twitter: `https://twitter.com/artsyarynn`,
     instagram: `https://www.instagram.com/artsyarynn`,
     author: `Boris rossovsky`,
+    acrylic: {
+      title: `paintings`,
+      subtitle: `acrylic works`,
+      description: `i have been painting with acrylics for 20 years, my father was a painter and my entire childhood was spent painting with him.`,
+    },
+    ink: {
+      title: `ink illustrations`,
+      subtitle: `mixed media and ink`,
+      description: `all of my ink drawings are done on thick crescent illustration paper and finished mixed media including pencil crayons and sometimes just a little bit of glitter <3`,
+    },
+    digital: {
+      title: `digital artwork`,
+      subtitle: `digital illustrations`,
+      description: `all of my digital artwork is either created on procreate for ipad or with adobe programs such as illustrator and photoshop on my wacom cintique tablet`,
+    },
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

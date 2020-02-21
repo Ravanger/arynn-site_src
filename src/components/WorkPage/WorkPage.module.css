@@ -1,0 +1,36 @@
+.wrapperContainer {
+  justify-content: center;
+  text-align: center;
+}
+
+.centerContainer {
+  max-width: 48em;
+}
+
+.title {
+  font-family: "Libre-Baskerville", serif !important;
+  font-size: 1.25em;
+  line-height: normal;
+  color: black;
+  margin-bottom: 0.7rem;
+}
+
+.subtitle {
+  font-family: "Libre-Baskerville-Italic", serif !important;
+  font-size: 0.8em;
+  line-height: normal;
+  margin-bottom: 2.5rem;
+}
+
+.description {
+  max-width: 28em;
+  font-family: "Avenir-Light", serif !important;
+  font-size: 0.8em;
+  line-height: 2em;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+}
+
+.image {
+  margin-bottom: 2rem;
+}

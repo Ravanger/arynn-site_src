@@ -17,21 +17,9 @@ const MainMenu = () => (
         <ul className={"pure-u-1-1 " + styles.mainMenu}>
           <MainMenuItem title="work" to="/" hoverClass={styles.hoverClass}>
             <ul className={styles.dropdownContent}>
-              <MainMenuItem
-                title="acrylic paintings"
-                to="/work/acrylic"
-                isSubMenu
-              />
-              <MainMenuItem
-                title="ink illustrations"
-                to="/work/ink"
-                isSubMenu
-              />
-              <MainMenuItem
-                title="digital artwork"
-                to="/work/digital"
-                isSubMenu
-              />
+              <MainMenuItem title="acrylic paintings" to="/acrylic" isSubMenu />
+              <MainMenuItem title="ink illustrations" to="/ink" isSubMenu />
+              <MainMenuItem title="digital artwork" to="/digital" isSubMenu />
             </ul>
           </MainMenuItem>
           <MainMenuItem title="about me" to="/aboutme" />
