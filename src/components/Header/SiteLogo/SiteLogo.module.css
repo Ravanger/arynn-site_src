@@ -9,6 +9,7 @@
   line-height: normal;
   letter-spacing: 0.4em;
   font-size: 1em;
+  margin-bottom: 0;
 }
 
 .title > a:hover {

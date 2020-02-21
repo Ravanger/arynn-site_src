@@ -4,7 +4,8 @@
 }
 
 .aboutContainer {
-  width: 21rem;
+  max-width: 24rem;
+  padding: 2em;
 }
 
 .name {
@@ -29,4 +30,6 @@
 
 .avatar {
   border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
 }
