@@ -49,8 +49,8 @@ module.exports = {
         short_name: `arynn`,
         start_url: `/`,
         lang: `en`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#fcb8df`,
+        theme_color: `#fcb8df`,
         display: `standalone`,
         icon: `src/images/icons/favicon.png`, // This path is relative to the root of the site.
       },
