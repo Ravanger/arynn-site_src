@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import GatsbyImage from "gatsby-image"
 import Masonry from "react-masonry-component"
-import { Dialog } from "@reach/dialog"
+import { DialogOverlay, DialogContent } from "@reach/dialog"
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
 
 import styles from "./PortfolioImage.module.css"
@@ -43,7 +43,7 @@ const PortfolioImages = () => {
         edges {
           node {
             childImageSharp {
-              fluid(quality: 70, maxWidth: 915) {
+              fluid(traceSVG: { color: "#fcb8df" }) {
                 ...GatsbyImageSharpFluid_tracedSVG
               }
             }
@@ -78,6 +78,13 @@ const PortfolioImages = () => {
               setSelectedImageIndex(index)
               setSelectedImage(element)
             }}
+            onKeyDown={() => {
+              toggleShowLightBox()
+              setSelectedImageIndex(index)
+              setSelectedImage(element)
+            }}
+            role="button"
+            tabIndex="-1"
           >
             <GatsbyImage fluid={element.node.childImageSharp.fluid} />
           </div>
@@ -85,34 +92,47 @@ const PortfolioImages = () => {
       })}
 
       {showLightbox && (
-        <Dialog
-          aria-label="Image popup"
-          onDismiss={toggleShowLightBox}
-          className={"pure-g " + styles.dialog}
-        >
-          <div
-            className={"pure-u-2-24 " + styles.button}
-            onClick={() => {
-              prevImage()
-              console.log("Prev")
-            }}
+        <DialogOverlay className={styles.blurbg} onDismiss={toggleShowLightBox}>
+          <DialogContent
+            aria-label="Image popup"
+            className={"pure-g " + styles.dialog}
           >
-            {<FiArrowLeft size="1.2em" />}
-          </div>
-          <GatsbyImage
-            className={"pure-u-20-24"}
-            fluid={selectedImage.node.childImageSharp.fluid}
-          />
-          <div
-            className={"pure-u-2-24 " + styles.button}
-            onClick={() => {
-              nextImage()
-              console.log("Next")
-            }}
-          >
-            {<FiArrowRight size="1.2em" />}
-          </div>
-        </Dialog>
+            <div
+              className={"pure-u-2-24 " + styles.button}
+              onClick={() => {
+                prevImage()
+                console.log("Prev")
+              }}
+              onKeyDown={() => {
+                prevImage()
+                console.log("Prev")
+              }}
+              role="button"
+              tabIndex="0"
+            >
+              {<FiArrowLeft size="1.2em" />}
+            </div>
+            <GatsbyImage
+              className={"pure-u-20-24"}
+              fluid={selectedImage.node.childImageSharp.fluid}
+            />
+            <div
+              className={"pure-u-2-24 " + styles.button}
+              onClick={() => {
+                nextImage()
+                console.log("Next")
+              }}
+              onKeyDown={() => {
+                nextImage()
+                console.log("Next")
+              }}
+              role="button"
+              tabIndex="0"
+            >
+              {<FiArrowRight size="1.2em" />}
+            </div>
+          </DialogContent>
+        </DialogOverlay>
       )}
     </Masonry>
   )

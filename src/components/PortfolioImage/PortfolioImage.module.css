@@ -3,7 +3,7 @@
 }
 
 .dialog[data-reach-dialog-content] {
-  padding: 4rem 0rem;
+  padding: 0;
 }
 
 .button {
@@ -12,6 +12,10 @@
 
 .button > svg {
   height: 100%;
+}
+
+.blurbg[data-reach-dialog-overlay] {
+  background: hsla(0, 100%, 100%, 0.9);
 }
 
 @media only screen and (max-width: 35.5em) {
