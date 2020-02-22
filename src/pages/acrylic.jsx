@@ -18,7 +18,7 @@ const AcrylicPaintings = () => {
         edges {
           node {
             childImageSharp {
-              fluid(quality: 70, maxWidth: 915) {
+              fluid {
                 ...GatsbyImageSharpFluid_tracedSVG
               }
             }
