@@ -6,6 +6,7 @@ module.exports = {
     facebook: `https://www.facebook.com/artsyarynn`,
     twitter: `https://twitter.com/artsyarynn`,
     instagram: `https://www.instagram.com/artsyarynn`,
+    email: `arynn@hotmail.ca`,
     author: `Boris rossovsky`,
     allwork: {
       title: `gallery`,

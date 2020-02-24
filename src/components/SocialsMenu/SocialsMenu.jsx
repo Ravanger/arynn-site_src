@@ -1,16 +1,16 @@
 import React from "react"
 
-import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa"
+import { FaEnvelope, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa"
 
 import SocialsMenuItem from "./SocialsMenuItem/SocialsMenuItem"
 
-const SocialsMenu = props => {
+const SocialsMenu = () => {
   const data = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
+          email
           facebook
           twitter
           instagram
@@ -20,7 +20,10 @@ const SocialsMenu = props => {
   `)
 
   return (
-    <ul className={props.className}>
+    <ul>
+      <SocialsMenuItem url={"mailto:" + data.site.siteMetadata.email}>
+        <FaEnvelope size="2em" />
+      </SocialsMenuItem>
       <SocialsMenuItem url={data.site.siteMetadata.facebook}>
         <FaFacebook size="2em" />
       </SocialsMenuItem>
@@ -32,14 +35,6 @@ const SocialsMenu = props => {
       </SocialsMenuItem>
     </ul>
   )
-}
-
-SocialsMenu.defaultProps = {
-  className: "",
-}
-
-SocialsMenu.propTypes = {
-  className: PropTypes.string,
 }
 
 export default SocialsMenu
