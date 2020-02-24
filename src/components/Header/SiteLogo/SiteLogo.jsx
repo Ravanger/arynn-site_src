@@ -5,9 +5,6 @@ import GatsbyImage from "gatsby-image"
 
 import styles from "./SiteLogo.module.css"
 
-//TODO:
-//- Logo
-
 const SiteLogo = () => {
   const data = useStaticQuery(graphql`
     query {
