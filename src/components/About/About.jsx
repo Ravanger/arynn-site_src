@@ -3,8 +3,6 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import GatsbyImage from "gatsby-image"
 
-import SocialsMenu from "../SocialsMenu/SocialsMenu"
-
 import styles from "./About.module.css"
 
 const About = () => {
@@ -41,7 +39,6 @@ const About = () => {
           {data.site.siteMetadata.description}
         </p>
         <p className={styles.aboutblurb}>{data.site.siteMetadata.about}</p>
-        <SocialsMenu />
       </div>
     </div>
   )
