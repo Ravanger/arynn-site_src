@@ -125,8 +125,6 @@ const PortfolioImages = () => {
   })
 
   return (
-    //TODO:
-    //- Move image logic into own component
     <>
       <div className={styles.topWrapper}>
         <h2 className={styles.title}>{data.site.siteMetadata.allwork.title}</h2>
