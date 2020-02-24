@@ -32,6 +32,66 @@ const PortfolioImages = () => {
     setSelectedImageIndex(prevIndex)
   }
 
+  const handleKeyPress = event => {
+    const keyCode = event.charCode
+      ? event.charCode
+      : event.keyCode
+      ? event.keyCode
+      : 0
+
+    switch (keyCode) {
+      case 37: //left
+        prevImage()
+        break
+      case 39: //right
+        nextImage()
+        break
+      default:
+        break
+    }
+  }
+
+  const renderDialog = () => {
+    if (showLightbox)
+      return (
+        <DialogOverlay
+          className={styles.blurbg}
+          onDismiss={toggleShowLightBox}
+          onKeyDown={handleKeyPress}
+        >
+          <DialogContent
+            aria-label="Image popup"
+            className={"pure-g " + styles.dialog}
+          >
+            <button
+              className={"pure-u-2-24 " + styles.button}
+              onClick={() => {
+                prevImage()
+              }}
+            >
+              {<FiArrowLeft size="1.2em" />}
+            </button>
+            <button
+              className={"pure-u-20-24"}
+              onClick={() => {
+                toggleShowLightBox()
+              }}
+            >
+              <GatsbyImage fluid={selectedImage.node.childImageSharp.fluid} />
+            </button>
+            <button
+              className={"pure-u-2-24 " + styles.button}
+              onClick={() => {
+                nextImage()
+              }}
+            >
+              {<FiArrowRight size="1.2em" />}
+            </button>
+          </DialogContent>
+        </DialogOverlay>
+      )
+  }
+
   const data = useStaticQuery(graphql`
     query {
       allFile(
@@ -67,7 +127,7 @@ const PortfolioImages = () => {
     <Masonry className={"pure-g"} elementType={"div"}>
       {sortedArray.map((element, index) => {
         return (
-          <div
+          <button
             key={index}
             className={
               "pure-u-1 pure-u-sm-1-2  pure-u-md-1-3 pure-u-lg-1-4 " +
@@ -78,62 +138,13 @@ const PortfolioImages = () => {
               setSelectedImageIndex(index)
               setSelectedImage(element)
             }}
-            onKeyDown={() => {
-              toggleShowLightBox()
-              setSelectedImageIndex(index)
-              setSelectedImage(element)
-            }}
-            role="button"
-            tabIndex="-1"
           >
             <GatsbyImage fluid={element.node.childImageSharp.fluid} />
-          </div>
+          </button>
         )
       })}
 
-      {showLightbox && (
-        <DialogOverlay className={styles.blurbg} onDismiss={toggleShowLightBox}>
-          <DialogContent
-            aria-label="Image popup"
-            className={"pure-g " + styles.dialog}
-          >
-            <div
-              className={"pure-u-2-24 " + styles.button}
-              onClick={() => {
-                prevImage()
-                console.log("Prev")
-              }}
-              onKeyDown={() => {
-                prevImage()
-                console.log("Prev")
-              }}
-              role="button"
-              tabIndex="0"
-            >
-              {<FiArrowLeft size="1.2em" />}
-            </div>
-            <GatsbyImage
-              className={"pure-u-20-24"}
-              fluid={selectedImage.node.childImageSharp.fluid}
-            />
-            <div
-              className={"pure-u-2-24 " + styles.button}
-              onClick={() => {
-                nextImage()
-                console.log("Next")
-              }}
-              onKeyDown={() => {
-                nextImage()
-                console.log("Next")
-              }}
-              role="button"
-              tabIndex="0"
-            >
-              {<FiArrowRight size="1.2em" />}
-            </div>
-          </DialogContent>
-        </DialogOverlay>
-      )}
+      {renderDialog()}
     </Masonry>
   )
 }

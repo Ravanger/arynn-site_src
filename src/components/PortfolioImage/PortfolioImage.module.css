@@ -4,6 +4,7 @@
 
 .dialog[data-reach-dialog-content] {
   padding: 0;
+  margin: 2rem auto;
 }
 
 .button {
