@@ -1,25 +1,31 @@
 import React from "react"
 
 import { Link, useStaticQuery, graphql } from "gatsby"
+import GatsbyImage from "gatsby-image"
 
 import styles from "./SiteLogo.module.css"
+
+//TODO:
+//- Logo
 
 const SiteLogo = () => {
   const data = useStaticQuery(graphql`
     query {
-      site {
-        siteMetadata {
-          title
+      file(sourceInstanceName: { eq: "logo" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid_tracedSVG
+          }
         }
       }
     }
   `)
 
   return (
-    <div className={styles.center}>
-      <h1 className={styles.title}>
-        <Link to="/">{data.site.siteMetadata.title}</Link>
-      </h1>
+    <div className={styles.logoWrapper}>
+      <Link to="/">
+        <GatsbyImage fluid={data.file.childImageSharp.fluid} />
+      </Link>
     </div>
   )
 }
