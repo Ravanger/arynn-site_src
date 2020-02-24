@@ -6,3 +6,7 @@
   font-family: "Avenir-Light", Arial, Helvetica, sans-serif !important;
   font-size: 0.9em;
 }
+
+.hoverButton {
+  cursor: pointer;
+}

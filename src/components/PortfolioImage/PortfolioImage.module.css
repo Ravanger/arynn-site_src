@@ -7,12 +7,16 @@
   margin: 2rem auto;
 }
 
-.button {
+.dirButton {
   text-align: center;
 }
 
-.button > svg {
+.dirButton > svg {
   height: 100%;
+}
+
+.button:focus {
+  outline: 0;
 }
 
 .blurbg[data-reach-dialog-overlay] {

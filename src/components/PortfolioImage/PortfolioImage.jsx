@@ -66,7 +66,9 @@ const PortfolioImages = () => {
             className={"pure-g " + styles.dialog}
           >
             <button
-              className={"pure-u-2-24 " + styles.button}
+              className={
+                "pure-u-2-24 " + styles.dirButton + " " + styles.button
+              }
               onClick={() => {
                 prevImage()
               }}
@@ -74,7 +76,7 @@ const PortfolioImages = () => {
               {<FiArrowLeft size="1.2em" />}
             </button>
             <button
-              className={"pure-u-20-24"}
+              className={"pure-u-20-24 " + styles.button}
               onClick={() => {
                 toggleShowLightBox()
               }}
@@ -82,7 +84,9 @@ const PortfolioImages = () => {
               <GatsbyImage fluid={selectedImage.node.childImageSharp.fluid} />
             </button>
             <button
-              className={"pure-u-2-24 " + styles.button}
+              className={
+                "pure-u-2-24 " + styles.dirButton + " " + styles.button
+              }
               onClick={() => {
                 nextImage()
               }}
@@ -143,7 +147,9 @@ const PortfolioImages = () => {
               key={index}
               className={
                 "pure-u-1 pure-u-sm-1-2  pure-u-md-1-3 pure-u-lg-1-4 " +
-                styles.imgContainer
+                styles.imgContainer +
+                " " +
+                styles.button
               }
               onClick={() => {
                 toggleShowLightBox()
