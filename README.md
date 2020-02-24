@@ -7,6 +7,4 @@
   Arynn Fitzsimmons
 </h1>
 
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Ravanger/arynn-site_src.git)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/63175771-e928-4622-bfe6-94c37f7ef68c/deploy-status)](https://app.netlify.com/sites/arynn/deploys)
