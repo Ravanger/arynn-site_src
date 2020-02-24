@@ -54,7 +54,7 @@ const PortfolioImages = () => {
   }
 
   const renderDialog = () => {
-    if (showLightbox)
+    if (showLightbox && window.innerWidth >= 768)
       return (
         <DialogOverlay
           className={styles.blurbg}
@@ -127,7 +127,6 @@ const PortfolioImages = () => {
   return (
     //TODO:
     //- Move image logic into own component
-    //- Mobile layout
     <>
       <div className={styles.topWrapper}>
         <h2 className={styles.title}>{data.site.siteMetadata.allwork.title}</h2>
