@@ -6,16 +6,16 @@
 
 .menuContainer {
   justify-content: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3em;
 }
 
 .submenu {
   display: none;
   position: absolute;
-  max-width: 100%;
   margin: 0;
   z-index: 1;
   padding: 2em 0;
+  width: 13em;
 }
 
 .hoverClass:hover > .submenu,
@@ -28,7 +28,7 @@
   .submenu {
     position: static;
     text-align: center;
-    max-width: 100%;
+    width: 100%;
     margin: 0;
   }
 
