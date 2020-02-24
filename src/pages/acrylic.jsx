@@ -11,8 +11,8 @@ const AcrylicPaintings = () => {
     query {
       allFile(
         filter: {
-          extension: { regex: "/(jpg)|(png)|(tif)|(tiff)|(webp)|(jpeg)/" }
-          absolutePath: { regex: "/images/work/paintings/" }
+          sourceInstanceName: { eq: "allwork" }
+          relativeDirectory: { eq: "paintings" }
         }
       ) {
         edges {

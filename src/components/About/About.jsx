@@ -17,7 +17,7 @@ const About = () => {
           about
         }
       }
-      file(sourceInstanceName: { eq: "images" }, name: { eq: "about" }) {
+      file(sourceInstanceName: { eq: "about" }) {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid_tracedSVG

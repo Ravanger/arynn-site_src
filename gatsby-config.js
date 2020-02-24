@@ -34,8 +34,15 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        name: `about`,
+        path: `${__dirname}/src/images/about.jpg`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `allwork`,
+        path: `${__dirname}/src/images/work`,
       },
     },
     `gatsby-transformer-json`,

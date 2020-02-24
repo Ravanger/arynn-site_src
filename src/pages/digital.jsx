@@ -11,8 +11,8 @@ const DigitalArt = () => {
     query {
       allFile(
         filter: {
-          extension: { regex: "/(jpg)|(png)|(tif)|(tiff)|(webp)|(jpeg)/" }
-          absolutePath: { regex: "/images/work/digital/" }
+          sourceInstanceName: { eq: "allwork" }
+          relativeDirectory: { eq: "digital" }
         }
       ) {
         edges {

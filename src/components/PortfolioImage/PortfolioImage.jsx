@@ -96,12 +96,7 @@ const PortfolioImages = () => {
 
   const data = useStaticQuery(graphql`
     query {
-      allFile(
-        filter: {
-          extension: { regex: "/(jpg)|(png)|(tif)|(tiff)|(webp)|(jpeg)/" }
-          absolutePath: { regex: "/images/work/" }
-        }
-      ) {
+      allFile(filter: { sourceInstanceName: { eq: "allwork" } }) {
         edges {
           node {
             childImageSharp {
@@ -133,7 +128,6 @@ const PortfolioImages = () => {
     //TODO:
     //- Move image logic into own component
     //- Mobile layout
-    //- Logo
     <>
       <div className={styles.topWrapper}>
         <h2 className={styles.title}>{data.site.siteMetadata.allwork.title}</h2>

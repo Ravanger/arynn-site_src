@@ -11,8 +11,8 @@ const InkIllustrations = () => {
     query {
       allFile(
         filter: {
-          extension: { regex: "/(jpg)|(png)|(tif)|(tiff)|(webp)|(jpeg)/" }
-          absolutePath: { regex: "/images/work/ink/" }
+          sourceInstanceName: { eq: "allwork" }
+          relativeDirectory: { eq: "ink" }
         }
       ) {
         edges {
