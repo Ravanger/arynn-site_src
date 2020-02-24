@@ -7,6 +7,11 @@ module.exports = {
     twitter: `https://twitter.com/artsyarynn`,
     instagram: `https://www.instagram.com/artsyarynn`,
     author: `Boris rossovsky`,
+    allwork: {
+      title: `gallery`,
+      subtitle: `all works`,
+      description: `all pieces are for sale. contact for inquiries and prices.`,
+    },
     acrylic: {
       title: `paintings`,
       subtitle: `acrylic works`,

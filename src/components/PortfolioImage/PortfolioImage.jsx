@@ -6,6 +6,8 @@ import Masonry from "react-masonry-component"
 import { DialogOverlay, DialogContent } from "@reach/dialog"
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
 
+import SocialsMenu from "../SocialsMenu/SocialsMenu"
+
 import styles from "./PortfolioImage.module.css"
 
 const PortfolioImages = () => {
@@ -111,6 +113,15 @@ const PortfolioImages = () => {
           }
         }
       }
+      site {
+        siteMetadata {
+          allwork {
+            description
+            subtitle
+            title
+          }
+        }
+      }
     }
   `)
 
@@ -120,32 +131,43 @@ const PortfolioImages = () => {
 
   return (
     //TODO:
-    //- title: gallery
-    //- subtitle: all works
-    //- (add everywhere) description: add "all pieces for sale, email for inquiries and prices" here
     //- Move image logic into own component
-    <Masonry className={"pure-g"} elementType={"div"}>
-      {sortedArray.map((element, index) => {
-        return (
-          <button
-            key={index}
-            className={
-              "pure-u-1 pure-u-sm-1-2  pure-u-md-1-3 pure-u-lg-1-4 " +
-              styles.imgContainer
-            }
-            onClick={() => {
-              toggleShowLightBox()
-              setSelectedImageIndex(index)
-              setSelectedImage(element)
-            }}
-          >
-            <GatsbyImage fluid={element.node.childImageSharp.fluid} />
-          </button>
-        )
-      })}
+    //- Mobile layout
+    //- Logo
+    <>
+      <div className={styles.topWrapper}>
+        <h2 className={styles.title}>{data.site.siteMetadata.allwork.title}</h2>
+        <p className={styles.subtitle}>
+          {data.site.siteMetadata.allwork.subtitle}
+        </p>
+        <p className={styles.description}>
+          {data.site.siteMetadata.allwork.description}
+        </p>
+        <SocialsMenu />
+      </div>
+      <Masonry className={"pure-g"} elementType={"div"}>
+        {sortedArray.map((element, index) => {
+          return (
+            <button
+              key={index}
+              className={
+                "pure-u-1 pure-u-sm-1-2  pure-u-md-1-3 pure-u-lg-1-4 " +
+                styles.imgContainer
+              }
+              onClick={() => {
+                toggleShowLightBox()
+                setSelectedImageIndex(index)
+                setSelectedImage(element)
+              }}
+            >
+              <GatsbyImage fluid={element.node.childImageSharp.fluid} />
+            </button>
+          )
+        })}
 
-      {renderDialog()}
-    </Masonry>
+        {renderDialog()}
+      </Masonry>
+    </>
   )
 }
 
