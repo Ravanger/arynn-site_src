@@ -131,7 +131,7 @@ const PortfolioImages = () => {
   return (
     <>
       <div className={styles.topWrapper}>
-        <h2 className={styles.title}>{data.site.siteMetadata.allwork.title}</h2>
+        <h1 className={styles.title}>{data.site.siteMetadata.allwork.title}</h1>
         <p className={styles.subtitle}>
           {data.site.siteMetadata.allwork.subtitle}
         </p>

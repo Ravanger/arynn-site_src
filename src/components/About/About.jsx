@@ -34,7 +34,7 @@ const About = () => {
         />
       </div>
       <div className={"pure-u-1 pure-u-sm-1-2 " + styles.aboutContainer}>
-        <h2 className={styles.name}>{data.site.siteMetadata.title}</h2>
+        <h1 className={styles.name}>{data.site.siteMetadata.title}</h1>
         <p className={styles.description}>
           {data.site.siteMetadata.description}
         </p>

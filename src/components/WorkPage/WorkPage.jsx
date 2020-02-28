@@ -13,7 +13,7 @@ const WorkPage = ({ title, subtitle, description, data }) => {
   return (
     <div className={"pure-g " + styles.wrapperContainer}>
       <div className={"pure-u-1 " + styles.centerContainer}>
-        <h2 className={styles.title}>{title}</h2>
+        <h1 className={styles.title}>{title}</h1>
         <p className={styles.subtitle}>{subtitle}</p>
         <p className={styles.description}>{description}</p>
         {sortedArray.map((element, index) => {
