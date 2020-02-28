@@ -7,7 +7,7 @@ import About from "../components/About/About"
 
 const AboutMe = () => (
   <Layout>
-    <SEO title="About Me" />
+    <SEO title="About Me" description="Arynn Fitzsimmons: About" />
     <About />
   </Layout>
 )

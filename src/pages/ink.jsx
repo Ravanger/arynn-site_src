@@ -40,7 +40,10 @@ const InkIllustrations = () => {
 
   return (
     <Layout>
-      <SEO title="Ink Illustrations" />
+      <SEO
+        title="Ink Illustrations"
+        description="Arynn Fitzsimmons: Ink Illustrations"
+      />
       <WorkPage
         title={data.site.siteMetadata.ink.title}
         subtitle={data.site.siteMetadata.ink.subtitle}
