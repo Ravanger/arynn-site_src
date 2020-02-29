@@ -21,7 +21,7 @@ const SiteLogo = () => {
   return (
     <div className={styles.logoWrapper}>
       <Link to="/">
-        <GatsbyImage fluid={data.file.childImageSharp.fluid} />
+        <GatsbyImage fluid={data.file.childImageSharp.fluid} alt="Home" />
       </Link>
     </div>
   )

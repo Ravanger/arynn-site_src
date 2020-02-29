@@ -81,7 +81,10 @@ const PortfolioImages = () => {
                 toggleShowLightBox()
               }}
             >
-              <GatsbyImage fluid={selectedImage.node.childImageSharp.fluid} />
+              <GatsbyImage
+                fluid={selectedImage.node.childImageSharp.fluid}
+                alt={selectedImage.node.childImageSharp.fluid.originalName}
+              />
             </button>
             <button
               className={
@@ -157,7 +160,10 @@ const PortfolioImages = () => {
                 setSelectedImage(element)
               }}
             >
-              <GatsbyImage fluid={element.node.childImageSharp.fluid} />
+              <GatsbyImage
+                fluid={element.node.childImageSharp.fluid}
+                alt={element.node.childImageSharp.fluid.originalName}
+              />
             </button>
           )
         })}

@@ -22,6 +22,7 @@ const WorkPage = ({ title, subtitle, description, data }) => {
               fluid={element.node.childImageSharp.fluid}
               key={index}
               className={styles.image}
+              alt={title}
             />
           )
         })}

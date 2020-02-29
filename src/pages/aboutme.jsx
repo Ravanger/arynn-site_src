@@ -39,6 +39,7 @@ const AboutMe = () => {
           <GatsbyImage
             fluid={data.file.childImageSharp.fluid}
             className={styles.avatar}
+            alt={data.site.siteMetadata.title}
           />
         </div>
         <div className={"pure-u-1 pure-u-sm-1-2 " + styles.aboutContainer}>
