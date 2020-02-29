@@ -41,8 +41,8 @@ const AcrylicPaintings = () => {
   return (
     <Layout>
       <SEO
-        title="Acrylic Paintings"
-        description="Arynn Fitzsimmons: Acrylic Paintings"
+        title={data.site.siteMetadata.acrylic.title}
+        description={data.site.siteMetadata.acrylic.description}
       />
       <WorkPage
         title={data.site.siteMetadata.acrylic.title}

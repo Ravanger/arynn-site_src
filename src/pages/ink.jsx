@@ -41,8 +41,8 @@ const InkIllustrations = () => {
   return (
     <Layout>
       <SEO
-        title="Ink Illustrations"
-        description="Arynn Fitzsimmons: Ink Illustrations"
+        title={data.site.siteMetadata.ink.title}
+        description={data.site.siteMetadata.ink.description}
       />
       <WorkPage
         title={data.site.siteMetadata.ink.title}

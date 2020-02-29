@@ -7,7 +7,7 @@ import PortfolioImages from "../components/PortfolioImage/PortfolioImage"
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" description="Arynn Fitzsimmons: Home" />
+    <SEO title="home" description="ary hélène - home" />
     <PortfolioImages />
   </Layout>
 )

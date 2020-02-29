@@ -41,8 +41,8 @@ const DigitalArt = () => {
   return (
     <Layout>
       <SEO
-        title="Digital Artwork"
-        description="Arynn Fitzsimmons: Digital Artwork"
+        title={data.site.siteMetadata.digital.title}
+        description={data.site.siteMetadata.digital.description}
       />
       <WorkPage
         title={data.site.siteMetadata.digital.title}
