@@ -20,7 +20,7 @@ const AboutMe = () => {
       }
       file(sourceInstanceName: { eq: "about" }) {
         childImageSharp {
-          fluid {
+          fluid(traceSVG: { color: "#fcb8df" }, maxWidth: 360) {
             ...GatsbyImageSharpFluid_tracedSVG
           }
         }

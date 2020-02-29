@@ -104,7 +104,7 @@ const PortfolioImages = () => {
         edges {
           node {
             childImageSharp {
-              fluid(traceSVG: { color: "#fcb8df" }) {
+              fluid(traceSVG: { color: "#fcb8df" }, maxWidth: 500) {
                 ...GatsbyImageSharpFluid_tracedSVG
               }
             }
