@@ -32,6 +32,9 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-catch-links`,
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
@@ -76,8 +79,6 @@ module.exports = {
         defaultQuality: 50,
       },
     },
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-robots-txt`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
