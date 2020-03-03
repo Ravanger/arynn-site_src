@@ -107,8 +107,14 @@ const PortfolioImages = () => {
         edges {
           node {
             childImageSharp {
-              fluid(traceSVG: { color: "#fcb8df" }, maxWidth: 660) {
+              fluid(
+                traceSVG: { color: "#fcb8df" }
+                maxWidth: 660
+                srcSetBreakpoints: [420, 660]
+                sizes: "(min-width: 421px) 660px ,(max-width: 420px) 420px, 660px"
+              ) {
                 ...GatsbyImageSharpFluid_tracedSVG
+                srcSet
               }
             }
             modifiedTime
@@ -127,6 +133,7 @@ const PortfolioImages = () => {
     }
   `)
 
+  //Sort images by newest
   const sortedArray = data.allFile.edges.sort((a, b) => {
     return new Date(b.node.modifiedTime) - new Date(a.node.modifiedTime)
   })
@@ -163,6 +170,7 @@ const PortfolioImages = () => {
               <GatsbyImage
                 fluid={element.node.childImageSharp.fluid}
                 alt={element.node.childImageSharp.fluid.originalName}
+                // srcSet={ element.node.childImageSharp.fluid.}
               />
             </button>
           )

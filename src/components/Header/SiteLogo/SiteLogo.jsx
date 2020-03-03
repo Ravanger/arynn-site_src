@@ -10,7 +10,11 @@ const SiteLogo = () => {
     query {
       file(sourceInstanceName: { eq: "logo" }) {
         childImageSharp {
-          fluid(traceSVG: { color: "#fcb8df" }, maxWidth: 333) {
+          fluid(
+            traceSVG: { color: "#fcb8df" }
+            maxWidth: 333
+            srcSetBreakpoints: [333]
+          ) {
             ...GatsbyImageSharpFluid_tracedSVG
           }
         }

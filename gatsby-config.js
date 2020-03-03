@@ -77,6 +77,7 @@ module.exports = {
         useMozJpeg: true,
         stripMetadata: true,
         defaultQuality: 50,
+        maxWidth: 660,
       },
     },
     {

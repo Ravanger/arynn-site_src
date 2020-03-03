@@ -18,7 +18,11 @@ const InkIllustrations = () => {
         edges {
           node {
             childImageSharp {
-              fluid(traceSVG: { color: "#fcb8df" }, maxWidth: 600) {
+              fluid(
+                traceSVG: { color: "#fcb8df" }
+                maxWidth: 600
+                srcSetBreakpoints: [420, 600]
+              ) {
                 ...GatsbyImageSharpFluid_tracedSVG
               }
             }
