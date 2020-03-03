@@ -72,6 +72,7 @@ const PortfolioImages = () => {
               onClick={() => {
                 prevImage()
               }}
+              aria-label="Previous"
             >
               {<FiArrowLeft size="1.2em" />}
             </button>
@@ -80,6 +81,7 @@ const PortfolioImages = () => {
               onClick={() => {
                 toggleShowLightBox()
               }}
+              aria-label="Close lightbox"
             >
               <GatsbyImage
                 fluid={selectedImage.node.childImageSharp.fluid}
@@ -93,6 +95,7 @@ const PortfolioImages = () => {
               onClick={() => {
                 nextImage()
               }}
+              aria-label="Next"
             >
               {<FiArrowRight size="1.2em" />}
             </button>
@@ -166,6 +169,7 @@ const PortfolioImages = () => {
                 setSelectedImageIndex(index)
                 setSelectedImage(element)
               }}
+              aria-label="Open image in lightbox"
             >
               <GatsbyImage
                 fluid={element.node.childImageSharp.fluid}

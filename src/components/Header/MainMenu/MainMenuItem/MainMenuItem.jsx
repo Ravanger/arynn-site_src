@@ -23,7 +23,9 @@ const MainMenuItem = ({
     }
   >
     {isEmptyLink ? (
-      <button className={styles.hoverButton}>{title}</button>
+      <button className={styles.hoverButton} aria-label="Open menu">
+        {title}
+      </button>
     ) : isExternal ? (
       <a href={to} target="_blank" rel="noopener noreferrer">
         {title}
