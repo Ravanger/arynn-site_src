@@ -20,13 +20,13 @@ const MainMenu = () => (
             isEmptyLink
           >
             <ul className={styles.submenu}>
-              <MainMenuItem title="acrylic paintings" to="acrylic" isSubMenu />
-              <MainMenuItem title="ink illustrations" to="ink" isSubMenu />
-              <MainMenuItem title="digital artwork" to="digital" isSubMenu />
+              <MainMenuItem title="acrylic paintings" to="/acrylic" isSubMenu />
+              <MainMenuItem title="ink illustrations" to="/ink" isSubMenu />
+              <MainMenuItem title="digital artwork" to="/digital" isSubMenu />
             </ul>
           </MainMenuItem>
           <MainMenuItem title="home" to="/" />
-          <MainMenuItem title="about me" to="aboutme" />
+          <MainMenuItem title="about me" to="/aboutme" />
           <MainMenuItem
             title="patreon"
             to="https://www.patreon.com/artsyarynn"
