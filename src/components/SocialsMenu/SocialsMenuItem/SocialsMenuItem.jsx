@@ -4,9 +4,14 @@ import PropTypes from "prop-types"
 
 import styles from "./SocialsMenuItem.module.css"
 
-const FooterMenuItem = ({ children, url }) => (
+const FooterMenuItem = ({ children, url, arialabel }) => (
   <li className={styles.menuItem}>
-    <a href={url} target="_blank" rel="noopener noreferrer">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={arialabel}
+    >
       {children}
     </a>
   </li>

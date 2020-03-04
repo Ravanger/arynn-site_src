@@ -21,16 +21,25 @@ const SocialsMenu = () => {
 
   return (
     <ul>
-      <SocialsMenuItem url={"mailto:" + data.site.siteMetadata.email}>
+      <SocialsMenuItem
+        url={"mailto:" + data.site.siteMetadata.email}
+        arialabel="Email"
+      >
         <FaEnvelope size="2em" />
       </SocialsMenuItem>
-      <SocialsMenuItem url={data.site.siteMetadata.facebook}>
+      <SocialsMenuItem
+        url={data.site.siteMetadata.facebook}
+        arialabel="Facebook"
+      >
         <FaFacebook size="2em" />
       </SocialsMenuItem>
-      <SocialsMenuItem url={data.site.siteMetadata.twitter}>
+      <SocialsMenuItem url={data.site.siteMetadata.twitter} arialabel="Twitter">
         <FaTwitter size="2em" />
       </SocialsMenuItem>
-      <SocialsMenuItem url={data.site.siteMetadata.instagram}>
+      <SocialsMenuItem
+        url={data.site.siteMetadata.instagram}
+        arialabel="Instagram"
+      >
         <FaInstagram size="2em" />
       </SocialsMenuItem>
     </ul>
