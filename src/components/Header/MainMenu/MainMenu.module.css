@@ -18,6 +18,10 @@
   width: 13em;
 }
 
+.smallmenu {
+  margin-top: 1.45rem;
+}
+
 .hoverClass:hover > .submenu,
 .hoverClass:focus-within > .submenu,
 .submenu:hover {

@@ -10,6 +10,7 @@ const MainMenu = () => (
   <ResponsiveMenu
     menuOpenButton={<FiArrowDown size="1.2em" />}
     menuCloseButton={<FiArrowUp size="1.2em" />}
+    smallMenuClassName={styles.smallmenu}
     changeMenuOn="35.5em"
     menu={
       <div className={"pure-g " + styles.menuContainer}>
