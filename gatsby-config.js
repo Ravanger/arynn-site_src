@@ -35,6 +35,7 @@ module.exports = {
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
@@ -89,7 +90,7 @@ module.exports = {
         lang: `en`,
         background_color: `#fcb8df`,
         theme_color: `#fcb8df`,
-        display: `standalone`,
+        display: `minimal-ui`,
         icon: `src/images/icons/favicon.png`, // This path is relative to the root of the site.
       },
     },

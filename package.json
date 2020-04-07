@@ -6,7 +6,8 @@
   "author": "Boris Rossovsky <contact@borisr.dev>",
   "dependencies": {
     "@reach/dialog": "^0.8.6",
-    "gatsby": "^2.20.12",
+    "babel-plugin-styled-components": "^1.10.7",
+    "gatsby": "^2.20.13",
     "gatsby-image": "^2.3.1",
     "gatsby-plugin-canonical-urls": "^2.2.1",
     "gatsby-plugin-catch-links": "^2.2.1",
@@ -16,6 +17,7 @@
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sharp": "^2.5.4",
     "gatsby-plugin-sitemap": "^2.3.1",
+    "gatsby-plugin-styled-components": "^3.2.1",
     "gatsby-source-filesystem": "^2.2.2",
     "gatsby-transformer-json": "^2.3.1",
     "gatsby-transformer-sharp": "^2.4.4",
@@ -27,7 +29,8 @@
     "react-icons": "^3.9.0",
     "react-images": "^1.1.0",
     "react-masonry-component": "^6.2.1",
-    "react-responsive-navbar": "^1.0.11"
+    "react-responsive-navbar": "^1.0.11",
+    "styled-components": "^5.1.0"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
