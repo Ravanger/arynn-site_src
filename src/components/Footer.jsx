@@ -5,7 +5,7 @@ import SocialsMenu from "./SocialsMenu"
 
 const StyledFooter = styled.footer`
   text-align: center;
-  font-family: Helvetica, Arial, sans - serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 0.8em;
   & > ul {
     margin-top: 2em;
