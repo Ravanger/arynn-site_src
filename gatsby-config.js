@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `ary hélène`,
@@ -63,12 +67,12 @@ module.exports = {
         path: `${__dirname}/src/images/work`,
       },
     },
-    `gatsby-transformer-json`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-strapi",
       options: {
-        name: `data`,
-        path: `${__dirname}/src/data`,
+        apiURL: process.env.API_URL || "http://localhost:1337",
+        contentTypes: ["article", "category"],
+        queryLimit: 1000,
       },
     },
     `gatsby-transformer-sharp`,
