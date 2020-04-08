@@ -1,0 +1,9 @@
+.submenu {
+  display: none;
+}
+
+.hoverClass:hover > .submenu,
+.hoverClass:focus-within > .submenu,
+.submenu:hover {
+  display: block;
+}

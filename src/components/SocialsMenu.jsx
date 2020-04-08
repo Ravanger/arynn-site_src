@@ -3,7 +3,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { FaEnvelope, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa"
 
-import SocialsMenuItem from "./SocialsMenuItem/SocialsMenuItem"
+import SocialsMenuItem from "./SocialsMenu_Item"
 
 const SocialsMenu = () => {
   const data = useStaticQuery(graphql`

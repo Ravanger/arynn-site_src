@@ -1,5 +1,3 @@
-import "./src/style/base.css"
-import "purecss/build/base-min.css"
 import "purecss/build/grids-min.css"
 import "purecss/build/grids-responsive-min.css"
 

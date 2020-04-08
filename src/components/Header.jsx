@@ -1,7 +1,7 @@
 import React from "react"
 
-import SiteLogo from "./SiteLogo/SiteLogo"
-import MainMenu from "./MainMenu/MainMenu"
+import SiteLogo from "./SiteLogo"
+import MainMenu from "./MainMenu"
 
 const Header = () => (
   <header>

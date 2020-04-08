@@ -1,9 +1,20 @@
 import React from "react"
+
+import styled from "styled-components"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
-import "./MainMenuItem.module.css"
-import styles from "./MainMenuItem.module.css"
+const LiMenuItem = styled.li`
+  & > a,
+  & > button {
+    font-family: "Avenir-Light", Arial, Helvetica, sans-serif !important;
+    font-size: 0.9em;
+  }
+`
+
+const ButtonMenuItem = styled.button`
+  cursor: pointer;
+`
 
 const MainMenuItem = ({
   children,
@@ -14,18 +25,11 @@ const MainMenuItem = ({
   isExternal,
   isEmptyLink,
 }) => (
-  <li
-    className={
-      styles.font +
-      " pure-u-1 " +
-      hoverClass +
-      (isSubMenu ? "" : " pure-u-sm-1-4")
-    }
+  <LiMenuItem
+    className={"pure-u-1 " + hoverClass + (isSubMenu ? "" : " pure-u-sm-1-4")}
   >
     {isEmptyLink ? (
-      <button className={styles.hoverButton} aria-label="Open menu">
-        {title}
-      </button>
+      <ButtonMenuItem aria-label="Open menu">{title}</ButtonMenuItem>
     ) : isExternal ? (
       <a href={to} target="_blank" rel="noopener noreferrer">
         {title}
@@ -36,7 +40,7 @@ const MainMenuItem = ({
       </Link>
     )}
     {children}
-  </li>
+  </LiMenuItem>
 )
 
 MainMenuItem.defaultProps = {

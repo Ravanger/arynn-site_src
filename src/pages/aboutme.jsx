@@ -1,12 +1,48 @@
 import React from "react"
 
+import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../components/Layout"
+import SEO from "../components/SEO"
 import GatsbyImage from "gatsby-image"
 
-import styles from "../style/About.module.css"
+const DivWrapper = styled.div`
+  justify-content: center;
+  text-align: center;
+  padding-top: 1rem;
+`
+
+const DivAbout = styled.div`
+  max-width: 24rem;
+  padding: 2em;
+`
+
+const GatsbyImageAvatar = styled(GatsbyImage)`
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+`
+
+const H1Name = styled.h1`
+  font-family: "Libre-Baskerville", serif !important;
+  font-size: 1.2em;
+  letter-spacing: normal;
+`
+
+const PDescription = styled.p`
+  font-family: "Libre-Baskerville-Italic", serif !important;
+  font-size: 0.7em;
+  line-height: normal;
+  letter-spacing: 0.08em;
+`
+
+const PAboutBlurb = styled.p`
+  font-family: "Avenir-Light", Arial, Helvetica, sans-serif !important;
+  font-size: 0.8em;
+  line-height: 1.8em;
+  letter-spacing: normal;
+`
 
 const AboutMe = () => {
   const data = useStaticQuery(graphql`
@@ -38,22 +74,19 @@ const AboutMe = () => {
         title={data.site.siteMetadata.title}
         description={data.site.siteMetadata.about}
       />
-      <div className={"pure-g " + styles.wrapper}>
-        <div className={"pure-u-1 pure-u-sm-1-2 " + styles.aboutContainer}>
-          <GatsbyImage
+      <DivWrapper className="pure-g">
+        <DivAbout className="pure-u-1 pure-u-sm-1-2">
+          <GatsbyImageAvatar
             fluid={data.file.childImageSharp.fluid}
-            className={styles.avatar}
             alt={data.site.siteMetadata.title}
           />
-        </div>
-        <div className={"pure-u-1 pure-u-sm-1-2 " + styles.aboutContainer}>
-          <h1 className={styles.name}>{data.site.siteMetadata.title}</h1>
-          <p className={styles.description}>
-            {data.site.siteMetadata.description}
-          </p>
-          <p className={styles.aboutblurb}>{data.site.siteMetadata.about}</p>
-        </div>
-      </div>
+        </DivAbout>
+        <DivAbout className="pure-u-1 pure-u-sm-1-2">
+          <H1Name>{data.site.siteMetadata.title}</H1Name>
+          <PDescription>{data.site.siteMetadata.description}</PDescription>
+          <PAboutBlurb>{data.site.siteMetadata.about}</PAboutBlurb>
+        </DivAbout>
+      </DivWrapper>
     </Layout>
   )
 }

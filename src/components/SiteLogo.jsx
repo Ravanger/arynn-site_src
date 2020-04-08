@@ -1,9 +1,15 @@
 import React from "react"
 
+import styled from "styled-components"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import GatsbyImage from "gatsby-image"
 
-import styles from "./SiteLogo.module.css"
+const DivLogoWrapper = styled.div`
+  text-align: center;
+  max-width: 18em;
+  margin: 0 auto;
+  margin-bottom: 1.45rem;
+`
 
 const SiteLogo = () => {
   const data = useStaticQuery(graphql`
@@ -23,11 +29,11 @@ const SiteLogo = () => {
   `)
 
   return (
-    <div className={styles.logoWrapper}>
+    <DivLogoWrapper>
       <Link to="/">
         <GatsbyImage fluid={data.file.childImageSharp.fluid} alt="Home" />
       </Link>
-    </div>
+    </DivLogoWrapper>
   )
 }
 

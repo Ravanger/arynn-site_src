@@ -1,11 +1,17 @@
 import React from "react"
 
+import styled from "styled-components"
 import PropTypes from "prop-types"
 
-import styles from "./SocialsMenuItem.module.css"
+const LiSocialsMenuItem = styled.li`
+  display: inline-block;
+  & + li {
+    margin-left: 1em;
+  }
+`
 
 const FooterMenuItem = ({ children, url, arialabel }) => (
-  <li className={styles.menuItem}>
+  <LiSocialsMenuItem>
     <a
       href={url}
       target="_blank"
@@ -14,7 +20,7 @@ const FooterMenuItem = ({ children, url, arialabel }) => (
     >
       {children}
     </a>
-  </li>
+  </LiSocialsMenuItem>
 )
 
 FooterMenuItem.propTypes = {

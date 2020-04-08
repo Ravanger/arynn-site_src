@@ -2,9 +2,9 @@ import React from "react"
 
 import { graphql, useStaticQuery } from "gatsby"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import WorkPage from "../components/WorkPage/WorkPage"
+import Layout from "../components/Layout"
+import SEO from "../components/SEO"
+import WorkPage from "../components/WorkPage"
 
 const AcrylicPaintings = () => {
   const data = useStaticQuery(graphql`
