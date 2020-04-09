@@ -16,6 +16,14 @@ const ButtonMenuItem = styled.button`
   cursor: pointer;
 `
 
+const ATitle = styled.a`
+  text-transform: lowercase;
+`
+
+const LinkTitle = styled(Link)`
+  text-transform: lowercase;
+`
+
 const MainMenuItem = ({
   children,
   title,
@@ -31,13 +39,13 @@ const MainMenuItem = ({
     {isEmptyLink ? (
       <ButtonMenuItem aria-label="Open menu">{title}</ButtonMenuItem>
     ) : isExternal ? (
-      <a href={to} target="_blank" rel="noopener noreferrer">
+      <ATitle href={to} target="_blank" rel="noopener noreferrer">
         {title}
-      </a>
+      </ATitle>
     ) : (
-      <Link to={to} activeClassName="activeLink">
+      <LinkTitle to={to} activeClassName="activeLink">
         {title}
-      </Link>
+      </LinkTitle>
     )}
     {children}
   </LiMenuItem>
