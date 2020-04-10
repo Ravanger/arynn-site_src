@@ -33,6 +33,8 @@ const UlSubMenu = styled.ul`
   @media (min-width: 35.5em) {
     width: 13em;
     position: absolute;
+    background-color: white;
+    border-radius: 25%;
   }
 `
 
