@@ -14,14 +14,16 @@ const DivLogoWrapper = styled.div`
 const SiteLogo = () => {
   const data = useStaticQuery(graphql`
     query {
-      file(sourceInstanceName: { eq: "logo" }) {
-        childImageSharp {
-          fluid(
-            traceSVG: { color: "#fcb8df" }
-            maxWidth: 333
-            srcSetBreakpoints: [333]
-          ) {
-            ...GatsbyImageSharpFluid_tracedSVG
+      strapiSiteMetadata {
+        site_logo {
+          childImageSharp {
+            fluid(
+              traceSVG: { color: "#fcb8df" }
+              maxWidth: 333
+              srcSetBreakpoints: [333]
+            ) {
+              ...GatsbyImageSharpFluid_tracedSVG
+            }
           }
         }
       }
@@ -31,7 +33,10 @@ const SiteLogo = () => {
   return (
     <DivLogoWrapper>
       <Link to="/">
-        <GatsbyImage fluid={data.file.childImageSharp.fluid} alt="Home" />
+        <GatsbyImage
+          fluid={data.strapiSiteMetadata.site_logo.childImageSharp.fluid}
+          alt="Home"
+        />
       </Link>
     </DivLogoWrapper>
   )

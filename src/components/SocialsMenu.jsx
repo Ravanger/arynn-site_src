@@ -8,13 +8,11 @@ import SocialsMenuItem from "./SocialsMenu_Item"
 const SocialsMenu = () => {
   const data = useStaticQuery(graphql`
     query {
-      site {
-        siteMetadata {
-          email
-          facebook
-          twitter
-          instagram
-        }
+      strapiSiteMetadata {
+        facebook
+        email
+        instagram
+        twitter
       }
     }
   `)
@@ -22,22 +20,25 @@ const SocialsMenu = () => {
   return (
     <ul>
       <SocialsMenuItem
-        url={"mailto:" + data.site.siteMetadata.email}
+        url={"mailto:" + data.strapiSiteMetadata.email}
         arialabel="Email"
       >
         <FaEnvelope size="2em" />
       </SocialsMenuItem>
       <SocialsMenuItem
-        url={data.site.siteMetadata.facebook}
+        url={data.strapiSiteMetadata.facebook}
         arialabel="Facebook"
       >
         <FaFacebook size="2em" />
       </SocialsMenuItem>
-      <SocialsMenuItem url={data.site.siteMetadata.twitter} arialabel="Twitter">
+      <SocialsMenuItem
+        url={data.strapiSiteMetadata.twitter}
+        arialabel="Twitter"
+      >
         <FaTwitter size="2em" />
       </SocialsMenuItem>
       <SocialsMenuItem
-        url={data.site.siteMetadata.instagram}
+        url={data.strapiSiteMetadata.instagram}
         arialabel="Instagram"
       >
         <FaInstagram size="2em" />

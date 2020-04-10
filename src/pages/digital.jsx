@@ -9,35 +9,33 @@ import WorkPage from "../components/WorkPage"
 const DigitalArt = () => {
   const data = useStaticQuery(graphql`
     query {
-      allFile(
-        filter: {
-          sourceInstanceName: { eq: "allwork" }
-          relativeDirectory: { eq: "digital" }
-        }
+      allStrapiArtPieces(
+        filter: { art_category: { category_title: { glob: "digital*" } } }
       ) {
         edges {
           node {
-            childImageSharp {
-              fluid(
-                traceSVG: { color: "#fcb8df" }
-                maxWidth: 600
-                srcSetBreakpoints: [420, 600]
-              ) {
-                ...GatsbyImageSharpFluid_tracedSVG
+            art_title
+            art_price
+            art_date
+            strapiId
+            art_image {
+              childImageSharp {
+                fluid(
+                  traceSVG: { color: "#fcb8df" }
+                  srcSetBreakpoints: [420, 680]
+                  sizes: "(min-width: 421px) 680px ,(max-width: 420px) 420px, 680px"
+                ) {
+                  ...GatsbyImageSharpFluid_tracedSVG
+                }
               }
             }
-            modifiedTime
           }
         }
       }
-      site {
-        siteMetadata {
-          digital {
-            description
-            subtitle
-            title
-          }
-        }
+      strapiArtCategories(category_title: { glob: "digital*" }) {
+        category_description
+        category_subtitle
+        category_title
       }
     }
   `)
@@ -45,14 +43,14 @@ const DigitalArt = () => {
   return (
     <Layout>
       <SEO
-        title={data.site.siteMetadata.digital.title}
-        description={data.site.siteMetadata.digital.description}
+        title={data.strapiArtCategories.category_title}
+        description={data.strapiArtCategories.category_description}
       />
       <WorkPage
-        title={data.site.siteMetadata.digital.title}
-        subtitle={data.site.siteMetadata.digital.subtitle}
-        description={data.site.siteMetadata.digital.description}
-        data={data}
+        title={data.strapiArtCategories.category_title}
+        subtitle={data.strapiArtCategories.category_subtitle}
+        description={data.strapiArtCategories.category_description}
+        data={data.allStrapiArtPieces.edges}
       />
     </Layout>
   )

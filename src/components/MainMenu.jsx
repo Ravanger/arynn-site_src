@@ -1,5 +1,6 @@
 import React from "react"
 
+import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 import ResponsiveMenu from "react-responsive-navbar"
 import { FiArrowDown, FiArrowUp } from "react-icons/fi"
@@ -35,36 +36,59 @@ const UlSubMenu = styled.ul`
   }
 `
 
-const MainMenu = () => (
-  <ResponsiveMenu
-    menuOpenButton={<FiArrowDown size="1.2em" />}
-    menuCloseButton={<FiArrowUp size="1.2em" />}
-    changeMenuOn="35.5em"
-    menu={
-      <DivContainer className="pure-g">
-        <UlMainMenu className="pure-u-1-1">
-          <MainMenuItem
-            title={"work ▾"}
-            hoverClass={styles.hoverClass}
-            isEmptyLink
-          >
-            <UlSubMenu className={styles.submenu}>
-              <MainMenuItem title="acrylic paintings" to="/acrylic" isSubMenu />
-              <MainMenuItem title="ink illustrations" to="/ink" isSubMenu />
-              <MainMenuItem title="digital artwork" to="/digital" isSubMenu />
-            </UlSubMenu>
-          </MainMenuItem>
-          <MainMenuItem title="home" to="/" />
-          <MainMenuItem title="about me" to="/aboutme" />
-          <MainMenuItem
-            title="patreon"
-            to="https://www.patreon.com/artsyarynn"
-            isExternal
-          />
-        </UlMainMenu>
-      </DivContainer>
+const MainMenu = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      allStrapiArtCategories {
+        edges {
+          node {
+            category_title
+            category_url
+            strapiId
+          }
+        }
+      }
     }
-  />
-)
+  `)
+
+  return (
+    <ResponsiveMenu
+      menuOpenButton={<FiArrowDown size="1.2em" />}
+      menuCloseButton={<FiArrowUp size="1.2em" />}
+      changeMenuOn="35.5em"
+      menu={
+        <DivContainer className="pure-g">
+          <UlMainMenu className="pure-u-1-1">
+            <MainMenuItem
+              title={"work ▾"}
+              hoverClass={styles.hoverClass}
+              isEmptyLink
+            >
+              <UlSubMenu className={styles.submenu}>
+                {data.allStrapiArtCategories.edges.map(category => {
+                  return (
+                    <MainMenuItem
+                      key={category.node.strapiId}
+                      title={category.node.category_title}
+                      to={category.node.category_url}
+                      isSubMenu
+                    />
+                  )
+                })}
+              </UlSubMenu>
+            </MainMenuItem>
+            <MainMenuItem title="home" to="/" />
+            <MainMenuItem title="about me" to="/aboutme" />
+            <MainMenuItem
+              title="patreon"
+              to="https://www.patreon.com/artsyarynn"
+              isExternal
+            />
+          </UlMainMenu>
+        </DivContainer>
+      }
+    />
+  )
+}
 
 export default MainMenu

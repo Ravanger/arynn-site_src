@@ -47,21 +47,19 @@ const PAboutBlurb = styled.p`
 const AboutMe = () => {
   const data = useStaticQuery(graphql`
     query {
-      site {
-        siteMetadata {
-          title
-          description
-          about
-        }
-      }
-      file(sourceInstanceName: { eq: "about" }) {
-        childImageSharp {
-          fluid(
-            traceSVG: { color: "#fcb8df" }
-            maxWidth: 360
-            srcSetBreakpoints: [360]
-          ) {
-            ...GatsbyImageSharpFluid_tracedSVG
+      strapiSiteMetadata {
+        site_title
+        site_about
+        site_description
+        avatar {
+          childImageSharp {
+            fluid(
+              traceSVG: { color: "#fcb8df" }
+              maxWidth: 360
+              srcSetBreakpoints: [360]
+            ) {
+              ...GatsbyImageSharpFluid_tracedSVG
+            }
           }
         }
       }
@@ -71,20 +69,24 @@ const AboutMe = () => {
   return (
     <Layout>
       <SEO
-        title={data.site.siteMetadata.title}
-        description={data.site.siteMetadata.about}
+        title={data.strapiSiteMetadata.site_title}
+        description={data.strapiSiteMetadata.site_description}
       />
       <DivWrapper className="pure-g">
         <DivAbout className="pure-u-1 pure-u-sm-1-2">
-          <GatsbyImageAvatar
-            fluid={data.file.childImageSharp.fluid}
-            alt={data.site.siteMetadata.title}
-          />
+          {data.strapiSiteMetadata.avatar ? (
+            <GatsbyImageAvatar
+              fluid={data.strapiSiteMetadata.avatar.childImageSharp.fluid}
+              alt={data.strapiSiteMetadata.site_title}
+            />
+          ) : null}
         </DivAbout>
         <DivAbout className="pure-u-1 pure-u-sm-1-2">
-          <H1Name>{data.site.siteMetadata.title}</H1Name>
-          <PDescription>{data.site.siteMetadata.description}</PDescription>
-          <PAboutBlurb>{data.site.siteMetadata.about}</PAboutBlurb>
+          <H1Name>{data.strapiSiteMetadata.site_title}</H1Name>
+          <PDescription>
+            {data.strapiSiteMetadata.site_description}
+          </PDescription>
+          <PAboutBlurb>{data.strapiSiteMetadata.site_about}</PAboutBlurb>
         </DivAbout>
       </DivWrapper>
     </Layout>

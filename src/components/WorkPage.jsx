@@ -44,28 +44,32 @@ const StyledGatsbyImage = styled(GatsbyImage)`
 `
 
 const WorkPage = ({ title, subtitle, description, data }) => {
-  const sortedArray = data.allFile.edges.sort((a, b) => {
-    return new Date(b.node.modifiedTime) - new Date(a.node.modifiedTime)
-  })
+  try {
+    const sortedArray = data.sort((a, b) => {
+      return new Date(b.node.art_date) - new Date(a.node.art_date)
+    })
 
-  return (
-    <DivWrapper className="pure-g">
-      <DivWidthContainer className="pure-u-1">
-        <H1Title>{title}</H1Title>
-        <H2Subtitle>{subtitle}</H2Subtitle>
-        <PDescription>{description}</PDescription>
-        {sortedArray.map((element, index) => {
-          return (
-            <StyledGatsbyImage
-              fluid={element.node.childImageSharp.fluid}
-              key={index}
-              alt={title}
-            />
-          )
-        })}
-      </DivWidthContainer>
-    </DivWrapper>
-  )
+    return (
+      <DivWrapper className="pure-g">
+        <DivWidthContainer className="pure-u-1">
+          <H1Title>{title}</H1Title>
+          <H2Subtitle>{subtitle}</H2Subtitle>
+          <PDescription>{description}</PDescription>
+          {sortedArray.map(element => {
+            return (
+              <StyledGatsbyImage
+                fluid={element.node.art_image.childImageSharp.fluid}
+                key={element.node.strapiId}
+                alt={element.node.art_title}
+              />
+            )
+          })}
+        </DivWidthContainer>
+      </DivWrapper>
+    )
+  } catch (error) {
+    return null
+  }
 }
 
 WorkPage.defaultProps = {
@@ -79,7 +83,7 @@ WorkPage.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
 }
 
 export default WorkPage

@@ -89,32 +89,30 @@ const ButtonImage = styled.button`
 const PortfolioImages = () => {
   const data = useStaticQuery(graphql`
     query {
-      allFile(filter: { sourceInstanceName: { eq: "allwork" } }) {
+      allStrapiArtPieces {
         edges {
           node {
-            childImageSharp {
-              fluid(
-                traceSVG: { color: "#fcb8df" }
-                maxWidth: 660
-                srcSetBreakpoints: [420, 660]
-                sizes: "(min-width: 421px) 660px ,(max-width: 420px) 420px, 660px"
-              ) {
-                ...GatsbyImageSharpFluid_tracedSVG
-                srcSet
+            art_title
+            art_price
+            art_date
+            art_image {
+              childImageSharp {
+                fluid(
+                  traceSVG: { color: "#fcb8df" }
+                  srcSetBreakpoints: [420, 680]
+                  sizes: "(min-width: 421px) 680px ,(max-width: 420px) 420px, 680px"
+                ) {
+                  ...GatsbyImageSharpFluid_tracedSVG
+                }
               }
             }
-            modifiedTime
           }
         }
       }
-      site {
-        siteMetadata {
-          allwork {
-            description
-            subtitle
-            title
-          }
-        }
+      strapiSiteMetadata {
+        gallery_description
+        gallery_subtitle
+        gallery_title
       }
     }
   `)
@@ -124,8 +122,8 @@ const PortfolioImages = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
 
   //Sort images by newest
-  const sortedArray = data.allFile.edges.sort((a, b) => {
-    return new Date(b.node.modifiedTime) - new Date(a.node.modifiedTime)
+  const sortedArray = data.allStrapiArtPieces.edges.sort((a, b) => {
+    return new Date(b.node.art_date) - new Date(a.node.art_date)
   })
 
   const toggleShowLightBox = () => {
@@ -167,7 +165,7 @@ const PortfolioImages = () => {
   }
 
   const renderDialog = () => {
-    if (showLightbox)
+    if (showLightbox && selectedImage.node && selectedImage.node.art_image)
       return (
         <DialogOverlayBlur
           onDismiss={toggleShowLightBox}
@@ -195,8 +193,8 @@ const PortfolioImages = () => {
               aria-label="Close lightbox"
             >
               <GatsbyImage
-                fluid={selectedImage.node.childImageSharp.fluid}
-                alt={selectedImage.node.childImageSharp.fluid.originalName}
+                fluid={selectedImage.node.art_image.childImageSharp.fluid}
+                alt={selectedImage.node.art_title}
               />
             </ButtonImage>
             <ButtonDirButton
@@ -216,34 +214,36 @@ const PortfolioImages = () => {
   return (
     <>
       <DivWrapper>
-        <H1Title>{data.site.siteMetadata.allwork.title}</H1Title>
-        <H2Subtitle>{data.site.siteMetadata.allwork.subtitle}</H2Subtitle>
+        <H1Title>{data.strapiSiteMetadata.gallery_title}</H1Title>
+        <H2Subtitle>{data.strapiSiteMetadata.gallery_subtitle}</H2Subtitle>
         <PDescription>
-          {data.site.siteMetadata.allwork.description}
+          {data.strapiSiteMetadata.gallery_description}
         </PDescription>
         <SocialsMenu />
       </DivWrapper>
       <Masonry className={"pure-g"} elementType={"div"}>
         {sortedArray.map((element, index) => {
-          return (
-            <ButtonImgContainer
-              key={index}
-              className="pure-u-1 pure-u-sm-1-2  pure-u-md-1-3 pure-u-lg-1-4"
-              onClick={() => {
-                if (window.innerWidth >= 768) {
-                  toggleShowLightBox()
-                  setSelectedImageIndex(index)
-                  setSelectedImage(element)
-                }
-              }}
-              aria-label="Open image in lightbox"
-            >
-              <GatsbyImage
-                fluid={element.node.childImageSharp.fluid}
-                alt={element.node.childImageSharp.fluid.originalName}
-              />
-            </ButtonImgContainer>
-          )
+          if (element.node && element.node.art_image) {
+            return (
+              <ButtonImgContainer
+                key={index}
+                className="pure-u-1 pure-u-sm-1-2  pure-u-md-1-3 pure-u-lg-1-4"
+                onClick={() => {
+                  if (window.innerWidth >= 768) {
+                    toggleShowLightBox()
+                    setSelectedImageIndex(index)
+                    setSelectedImage(element)
+                  }
+                }}
+                aria-label="Open image in lightbox"
+              >
+                <GatsbyImage
+                  fluid={element.node.art_image.childImageSharp.fluid}
+                  alt={element.node.art_title}
+                />
+              </ButtonImgContainer>
+            )
+          } else return null
         })}
 
         {renderDialog()}

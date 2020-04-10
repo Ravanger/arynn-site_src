@@ -9,35 +9,33 @@ import WorkPage from "../components/WorkPage"
 const AcrylicPaintings = () => {
   const data = useStaticQuery(graphql`
     query {
-      allFile(
-        filter: {
-          sourceInstanceName: { eq: "allwork" }
-          relativeDirectory: { eq: "paintings" }
-        }
+      allStrapiArtPieces(
+        filter: { art_category: { category_title: { glob: "acrylic*" } } }
       ) {
         edges {
           node {
-            childImageSharp {
-              fluid(
-                traceSVG: { color: "#fcb8df" }
-                maxWidth: 600
-                srcSetBreakpoints: [420, 600]
-              ) {
-                ...GatsbyImageSharpFluid_tracedSVG
+            art_title
+            art_price
+            art_date
+            strapiId
+            art_image {
+              childImageSharp {
+                fluid(
+                  traceSVG: { color: "#fcb8df" }
+                  srcSetBreakpoints: [420, 680]
+                  sizes: "(min-width: 421px) 680px ,(max-width: 420px) 420px, 680px"
+                ) {
+                  ...GatsbyImageSharpFluid_tracedSVG
+                }
               }
             }
-            modifiedTime
           }
         }
       }
-      site {
-        siteMetadata {
-          acrylic {
-            description
-            subtitle
-            title
-          }
-        }
+      strapiArtCategories(category_title: { glob: "acrylic*" }) {
+        category_description
+        category_subtitle
+        category_title
       }
     }
   `)
@@ -45,14 +43,14 @@ const AcrylicPaintings = () => {
   return (
     <Layout>
       <SEO
-        title={data.site.siteMetadata.acrylic.title}
-        description={data.site.siteMetadata.acrylic.description}
+        title={data.strapiArtCategories.category_title}
+        description={data.strapiArtCategories.category_description}
       />
       <WorkPage
-        title={data.site.siteMetadata.acrylic.title}
-        subtitle={data.site.siteMetadata.acrylic.subtitle}
-        description={data.site.siteMetadata.acrylic.description}
-        data={data}
+        title={data.strapiArtCategories.category_title}
+        subtitle={data.strapiArtCategories.category_subtitle}
+        description={data.strapiArtCategories.category_description}
+        data={data.allStrapiArtPieces.edges}
       />
     </Layout>
   )
