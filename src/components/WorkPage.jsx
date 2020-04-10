@@ -56,18 +56,24 @@ const WorkPage = ({ title, subtitle, description, data }) => {
           <H2Subtitle>{subtitle}</H2Subtitle>
           <PDescription>{description}</PDescription>
           {sortedArray.map(element => {
-            return (
-              <StyledGatsbyImage
-                fluid={element.node.art_image.childImageSharp.fluid}
-                key={element.node.strapiId}
-                alt={element.node.art_title}
-              />
-            )
+            if (element.node && element.node.art_image) {
+              return (
+                <StyledGatsbyImage
+                  fluid={element.node.art_image.childImageSharp.fluid}
+                  key={element.node.strapiId}
+                  alt={element.node.art_title}
+                />
+              )
+            } else {
+              // console.log(element)
+              return null
+            }
           })}
         </DivWidthContainer>
       </DivWrapper>
     )
   } catch (error) {
+    // console.log(error)
     return null
   }
 }
