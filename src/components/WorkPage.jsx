@@ -14,7 +14,7 @@ const DivWidthContainer = styled.div`
 `
 
 const H1Title = styled.h1`
-  font-family: "Libre-Baskerville", serif !important;
+  font-family: "Libre Baskerville", serif !important;
   font-size: 1.25em;
   line-height: normal;
   color: black;
@@ -23,7 +23,8 @@ const H1Title = styled.h1`
 `
 
 const H2Subtitle = styled.h2`
-  font-family: "Libre-Baskerville-Italic", serif !important;
+  font-family: "Libre Baskerville", serif !important;
+  font-style: italic;
   font-size: 0.8em;
   font-weight: 400;
   line-height: normal;
@@ -32,7 +33,7 @@ const H2Subtitle = styled.h2`
 
 const PDescription = styled.p`
   max-width: 28em;
-  font-family: "Avenir-Light", serif !important;
+  font-family: "Raleway", serif !important;
   font-size: 0.8em;
   line-height: 2em;
   margin: 0 auto;

@@ -7,7 +7,7 @@ import { Link } from "gatsby"
 const LiMenuItem = styled.li`
   & > a,
   & > button {
-    font-family: "Avenir-Light", Arial, Helvetica, sans-serif !important;
+    font-family: "Raleway", Arial, Helvetica, sans-serif !important;
     font-size: 0.9em;
   }
 `

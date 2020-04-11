@@ -25,20 +25,21 @@ const GatsbyImageAvatar = styled(GatsbyImage)`
 `
 
 const H1Name = styled.h1`
-  font-family: "Libre-Baskerville", serif !important;
+  font-family: "Libre Baskerville", serif !important;
   font-size: 1.2em;
   letter-spacing: normal;
 `
 
 const PDescription = styled.p`
-  font-family: "Libre-Baskerville-Italic", serif !important;
+  font-family: "Libre Baskerville", serif !important;
+  font-style: italic;
   font-size: 0.7em;
   line-height: normal;
   letter-spacing: 0.08em;
 `
 
 const PAboutBlurb = styled.p`
-  font-family: "Avenir-Light", Arial, Helvetica, sans-serif !important;
+  font-family: "Raleway", Arial, Helvetica, sans-serif !important;
   font-size: 0.8em;
   line-height: 1.8em;
   letter-spacing: normal;
