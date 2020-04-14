@@ -61,6 +61,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `infobubble`,
+        path: `${__dirname}/src/images/icons/favicon.png`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `arynn-fitzsimmons`,

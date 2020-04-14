@@ -54,12 +54,14 @@ const ButtonImgContainer = styled.button`
 
 const DialogOverlayBlur = styled(DialogOverlay)`
   &[data-reach-dialog-overlay] {
+    z-index: 99;
     background: hsla(0, 100%, 100%, 0.95);
   }
 `
 
 const StyledDialogContent = styled(DialogContent)`
   &[data-reach-dialog-content] {
+    z-index: 99;
     padding: 0;
     margin: 2rem auto;
   }
@@ -87,6 +89,69 @@ const ButtonImage = styled.button`
   }
 `
 
+const DivHoverInfoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: calc(100% - 2.9rem);
+  height: calc(100% - 2.9rem);
+  background-color: white;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+
+  &:hover,
+  &:focus,
+  &:focus-within,
+  &:active {
+    opacity: 0.95;
+  }
+`
+
+const GatsbyImageBubbleInfo = styled(GatsbyImage)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+`
+
+const DivHoverInfoMeta = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  z-index: 2;
+  margin-bottom: 3rem;
+  font-size: 1.2em;
+  width: 75%;
+`
+
+const H1InfoMetaTitle = styled.h1`
+  font-family: "Libre Baskerville", serif !important;
+  font-size: 1.1em;
+  line-height: normal;
+  color: black;
+  margin: 0;
+  margin-top: 2rem;
+`
+
+const H2InfoMetaSubtitle = styled.h2`
+  font-family: "Libre Baskerville", serif !important;
+  font-style: italic;
+  font-size: 0.8em;
+  font-weight: 400;
+  line-height: normal;
+`
+
+const PInfoMetaDescription = styled.p`
+  max-width: 28em;
+  font-family: "Raleway", serif !important;
+  font-size: 0.8em;
+  line-height: 2em;
+  margin: 0;
+`
+
 const PortfolioImages = () => {
   const data = useStaticQuery(graphql`
     query {
@@ -96,6 +161,9 @@ const PortfolioImages = () => {
             art_title
             art_price
             art_date
+            art_category {
+              category_title
+            }
             art_image {
               childImageSharp {
                 fluid(
@@ -114,6 +182,13 @@ const PortfolioImages = () => {
         gallery_description
         gallery_subtitle
         gallery_title
+      }
+      file(sourceInstanceName: { eq: "infobubble" }) {
+        childImageSharp {
+          fluid(traceSVG: { color: "#fcb8df" }, srcSetBreakpoints: [680]) {
+            ...GatsbyImageSharpFluid_tracedSVG
+          }
+        }
       }
     }
   `)
@@ -238,6 +313,24 @@ const PortfolioImages = () => {
                 }}
                 aria-label="Open image in lightbox"
               >
+                <DivHoverInfoContainer>
+                  <DivHoverInfoMeta>
+                    <H1InfoMetaTitle>{element.node.art_title}</H1InfoMetaTitle>
+                    <H2InfoMetaSubtitle>
+                      ${element.node.art_price}
+                    </H2InfoMetaSubtitle>
+                    <PInfoMetaDescription>
+                      {element.node.art_category.category_title}
+                    </PInfoMetaDescription>
+                  </DivHoverInfoMeta>
+                  <GatsbyImageBubbleInfo
+                    fluid={data.file.childImageSharp.fluid}
+                    alt="Info"
+                    imgStyle={{
+                      objectFit: "contain",
+                    }}
+                  />
+                </DivHoverInfoContainer>
                 <GatsbyImage
                   fluid={element.node.art_image.childImageSharp.fluid}
                   alt={element.node.art_title}
