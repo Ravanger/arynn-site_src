@@ -152,6 +152,19 @@ const PInfoMetaDescription = styled.p`
   margin: 0;
 `
 
+const DivPopupInfoContainer = styled.div`
+  text-align: center;
+  margin-bottom: 1.5rem;
+`
+
+const H1PopupTitle = styled.h1`
+  font-family: "Libre Baskerville", serif !important;
+  font-size: 1.1em;
+  line-height: normal;
+  color: black;
+  margin: 0;
+`
+
 const PortfolioImages = () => {
   const data = useStaticQuery(graphql`
     query {
@@ -248,10 +261,18 @@ const PortfolioImages = () => {
           onKeyDown={handleKeyPress}
           className="blurbg"
         >
-          <StyledDialogContent
-            aria-label="Image popup"
-            className="pure-g popupdialog"
-          >
+          <StyledDialogContent aria-label="Image popup" className="pure-g">
+            <DivPopupInfoContainer className="pure-u-1">
+              <div className="pure-u-1-2">
+                <H1PopupTitle>{selectedImage.node.art_title}</H1PopupTitle>
+                <H2InfoMetaSubtitle>
+                  ${selectedImage.node.art_price}
+                </H2InfoMetaSubtitle>
+                <PInfoMetaDescription>
+                  {selectedImage.node.art_category.category_title}
+                </PInfoMetaDescription>
+              </div>
+            </DivPopupInfoContainer>
             <ButtonDirButton
               className="pure-u-2-24"
               onClick={() => {
