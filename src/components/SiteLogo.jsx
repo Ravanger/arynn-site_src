@@ -9,6 +9,9 @@ const DivLogoWrapper = styled.div`
   max-width: 18em;
   margin: 0 auto;
   margin-bottom: 1.45rem;
+  @media (min-width: 35.5em) {
+    margin-bottom: 4.75rem;
+  }
 `
 
 const SiteLogo = () => {

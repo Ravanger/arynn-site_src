@@ -1,96 +1,81 @@
 import React from "react"
 
-import { graphql, useStaticQuery } from "gatsby"
-import styled from "styled-components"
-import ResponsiveMenu from "react-responsive-navbar"
 import { FiArrowDown, FiArrowUp } from "react-icons/fi"
-
-import MainMenuItem from "./MainMenu_Item"
-
-import styles from "./MainMenu.module.css"
+import PropTypes from "prop-types"
+import styled from "styled-components"
 
 const DivContainer = styled.div`
   justify-content: center;
+  text-align: center;
   margin-bottom: 0em;
   @media (min-width: 35.5em) {
-    margin-bottom: 3em;
+    margin-bottom: 2em;
+  }
+`
+
+const NavMainMenuWrapper = styled.nav`
+  margin: 0;
+  max-width: 48em;
+  @media (min-width: 35.5em) {
+    position: relative;
+    margin: 1rem 0;
+  }
+`
+
+const LabelBurgerMenu = styled.label`
+  display: block;
+  font-size: 1.2em;
+  @media (min-width: 35.5em) {
+    display: none;
   }
 `
 
 const UlMainMenu = styled.ul`
-  margin-left: 0;
-  max-width: 48em;
-`
-
-const UlSubMenu = styled.ul`
-  position: static;
-  font-size: 0.9em;
-  margin: 0;
-  z-index: 1;
-  padding: 2em 0;
-  margin-bottom: -0.725rem;
+  position: relative;
   width: 100%;
+  display: none;
   @media (min-width: 35.5em) {
-    width: 13em;
+    text-align: center;
     position: absolute;
-    background-color: white;
-    border-radius: 25%;
+    bottom: 0;
+    display: flex;
+  }
+`
+const FiArrowDownStyled = styled(FiArrowDown)``
+
+const FiArrowUpStyled = styled(FiArrowUp)``
+
+const CheckboxController = styled.input`
+  &:checked ~ ${UlMainMenu} {
+    @media (max-width: 35.5em) {
+      display: flex;
+    }
+  }
+
+  &:checked ~ ${LabelBurgerMenu} > ${FiArrowDownStyled} {
+    display: none;
+  }
+
+  &:not(:checked) ~ ${LabelBurgerMenu} > ${FiArrowUpStyled} {
+    display: none;
   }
 `
 
-const MainMenu = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      allStrapiArtCategories {
-        edges {
-          node {
-            category_title
-            category_url
-            strapiId
-          }
-        }
-      }
-    }
-  `)
+const MainMenu = ({ children }) => (
+  <DivContainer className="pure-g">
+    <NavMainMenuWrapper className="pure-u-1-1">
+      <CheckboxController type="checkbox" id="toggle" hidden />
+      <LabelBurgerMenu htmlFor="toggle">
+        <FiArrowDownStyled />
+        <FiArrowUpStyled />
+      </LabelBurgerMenu>
+      <UlMainMenu className="pure-g">{children}</UlMainMenu>
+    </NavMainMenuWrapper>
+  </DivContainer>
+)
 
-  return (
-    <ResponsiveMenu
-      menuOpenButton={<FiArrowDown size="1.2em" />}
-      menuCloseButton={<FiArrowUp size="1.2em" />}
-      changeMenuOn="35.5em"
-      menu={
-        <DivContainer className="pure-g">
-          <UlMainMenu className="pure-u-1-1">
-            <MainMenuItem
-              title={"work ▾"}
-              hoverClass={styles.hoverClass}
-              isEmptyLink
-            >
-              <UlSubMenu className={styles.submenu}>
-                {data.allStrapiArtCategories.edges.map(category => {
-                  return (
-                    <MainMenuItem
-                      key={category.node.strapiId}
-                      title={category.node.category_title}
-                      to={category.node.category_url}
-                      isSubMenu
-                    />
-                  )
-                })}
-              </UlSubMenu>
-            </MainMenuItem>
-            <MainMenuItem title="home" to="/" />
-            <MainMenuItem title="about me" to="/aboutme" />
-            <MainMenuItem
-              title="patreon"
-              to="https://www.patreon.com/artsyarynn"
-              isExternal
-            />
-          </UlMainMenu>
-        </DivContainer>
-      }
-    />
-  )
+MainMenu.propTypes = {
+  children: PropTypes.node.isRequired,
 }
 
 export default MainMenu
