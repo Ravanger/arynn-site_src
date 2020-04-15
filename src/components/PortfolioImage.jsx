@@ -122,7 +122,7 @@ const DivHoverInfoMeta = styled.div`
   flex-direction: column;
   position: absolute;
   z-index: 2;
-  margin-bottom: 3rem;
+  padding-bottom: 3rem;
   font-size: 1.2em;
   width: 75%;
 `
@@ -145,7 +145,6 @@ const H2InfoMetaSubtitle = styled.h2`
 `
 
 const PInfoMetaDescription = styled.p`
-  max-width: 28em;
   font-family: "Raleway", serif !important;
   font-size: 0.8em;
   line-height: 2em;
