@@ -6,11 +6,6 @@ module.exports = {
   siteMetadata: {
     siteUrl: `https://arynn.ca`,
     author: `Boris rossovsky`,
-    allwork: {
-      title: `gallery`,
-      subtitle: `all works`,
-      description: `all pieces are for sale. contact for inquiries and prices.`,
-    },
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
