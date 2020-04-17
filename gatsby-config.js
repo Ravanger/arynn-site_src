@@ -70,8 +70,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `arynn-fitzsimmons`,
-        short_name: `arynn`,
+        name: `Arynn Fitzsimmons`,
+        short_name: `Arynn`,
         start_url: `/`,
         lang: `en`,
         background_color: `#fcb8df`,
