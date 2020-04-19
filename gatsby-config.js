@@ -12,6 +12,7 @@ module.exports = {
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
+    `gatsby-plugin-netlify`,
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-canonical-urls`,
