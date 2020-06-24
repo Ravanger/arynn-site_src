@@ -8,6 +8,7 @@ module.exports = {
     author: `Boris rossovsky`,
   },
   plugins: [
+    `gatsby-plugin-preact`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
