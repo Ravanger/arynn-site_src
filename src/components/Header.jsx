@@ -1,7 +1,7 @@
 import React from "react"
 
 import { graphql, useStaticQuery } from "gatsby"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 
 import SiteLogo from "./SiteLogo"
 import MainMenu from "./MainMenu"
@@ -50,7 +50,7 @@ const Header = () => {
           isEmptyLink
         >
           <UlSubMenu className={styles.submenu}>
-            {data.allStrapiArtCategories.edges.map(category => {
+            {data.allStrapiArtCategories.edges.map((category) => {
               return (
                 <MainMenuItem
                   key={category.node.strapiId}

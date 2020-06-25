@@ -1,6 +1,6 @@
 import React from "react"
 
-import styled from "styled-components"
+import styled from "@emotion/styled"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import GatsbyImage from "gatsby-image"
 
@@ -25,7 +25,7 @@ const SiteLogo = () => {
               maxWidth: 333
               srcSetBreakpoints: [333]
             ) {
-              ...GatsbyImageSharpFluid_tracedSVG
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }

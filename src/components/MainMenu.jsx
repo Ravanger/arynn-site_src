@@ -2,7 +2,7 @@ import React from "react"
 
 import { FiArrowDown, FiArrowUp } from "react-icons/fi"
 import PropTypes from "prop-types"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 
 const DivContainer = styled.div`
   justify-content: center;

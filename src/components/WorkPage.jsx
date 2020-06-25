@@ -1,6 +1,6 @@
 import React from "react"
 
-import styled from "styled-components"
+import styled from "@emotion/styled"
 import PropTypes from "prop-types"
 import GatsbyImage from "gatsby-image"
 
@@ -56,7 +56,7 @@ const WorkPage = ({ title, subtitle, description, data }) => {
           <H1Title>{title}</H1Title>
           <H2Subtitle>{subtitle}</H2Subtitle>
           <PDescription>{description}</PDescription>
-          {sortedArray.map(element => {
+          {sortedArray.map((element) => {
             if (element.node && element.node.art_image) {
               return (
                 <StyledGatsbyImage

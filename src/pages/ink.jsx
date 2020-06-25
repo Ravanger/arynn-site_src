@@ -25,7 +25,7 @@ const InkIllustrations = () => {
                   srcSetBreakpoints: [420, 680]
                   sizes: "(min-width: 421px) 680px ,(max-width: 420px) 420px, 680px"
                 ) {
-                  ...GatsbyImageSharpFluid_tracedSVG
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }

@@ -1,6 +1,6 @@
 import React from "react"
 
-import styled from "styled-components"
+import styled from "@emotion/styled"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/Layout"
@@ -59,7 +59,7 @@ const AboutMe = () => {
               maxWidth: 360
               srcSetBreakpoints: [360]
             ) {
-              ...GatsbyImageSharpFluid_tracedSVG
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }

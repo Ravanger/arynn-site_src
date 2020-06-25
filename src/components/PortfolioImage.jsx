@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import styled from "styled-components"
+import styled from "@emotion/styled"
 import { graphql, useStaticQuery } from "gatsby"
 import GatsbyImage from "gatsby-image"
 import Masonry from "react-masonry-component"
@@ -183,7 +183,7 @@ const PortfolioImages = () => {
                   srcSetBreakpoints: [420, 680]
                   sizes: "(min-width: 421px) 680px ,(max-width: 420px) 420px, 680px"
                 ) {
-                  ...GatsbyImageSharpFluid_tracedSVG
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
@@ -198,7 +198,7 @@ const PortfolioImages = () => {
       file(sourceInstanceName: { eq: "infobubble" }) {
         childImageSharp {
           fluid(traceSVG: { color: "#fcb8df" }, srcSetBreakpoints: [680]) {
-            ...GatsbyImageSharpFluid_tracedSVG
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
@@ -233,7 +233,7 @@ const PortfolioImages = () => {
     setSelectedImageIndex(prevIndex)
   }
 
-  const handleKeyPress = event => {
+  const handleKeyPress = (event) => {
     const keyCode = event.charCode
       ? event.charCode
       : event.keyCode
