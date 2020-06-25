@@ -33,7 +33,6 @@
     "react-icons": "^3.10.0",
     "react-images": "^1.1.7",
     "react-masonry-component": "^6.2.1",
-    "react-responsive-navbar": "^1.0.11",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
@@ -47,7 +46,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop -H 0.0.0.0 -p 8000",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve -H 0.0.0.0 -p 9000",
     "clean": "gatsby clean",
