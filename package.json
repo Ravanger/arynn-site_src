@@ -1,60 +1,15 @@
 {
-  "name": "arynn-fitzsimmons",
-  "private": true,
-  "description": "Arynn Fitzsimmons personal website",
+  "name": "arynn-next",
   "version": "0.1.0",
-  "author": "Boris Rossovsky <contact@borisr.dev>",
-  "dependencies": {
-    "@emotion/core": "^10.0.28",
-    "@emotion/styled": "^10.0.27",
-    "@reach/dialog": "^0.10.4",
-    "gatsby": "^2.23.10",
-    "gatsby-image": "^2.4.8",
-    "gatsby-plugin-canonical-urls": "^2.3.5",
-    "gatsby-plugin-catch-links": "^2.3.6",
-    "gatsby-plugin-emotion": "^4.3.6",
-    "gatsby-plugin-manifest": "^2.4.13",
-    "gatsby-plugin-netlify": "^2.3.6",
-    "gatsby-plugin-offline": "^3.2.12",
-    "gatsby-plugin-preact": "^4.0.5",
-    "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
-    "gatsby-plugin-react-helmet": "^3.3.5",
-    "gatsby-plugin-robots-txt": "^1.5.1",
-    "gatsby-plugin-sharp": "^2.6.13",
-    "gatsby-plugin-sitemap": "^2.4.6",
-    "gatsby-source-filesystem": "^2.3.13",
-    "gatsby-source-strapi": "0.0.12",
-    "gatsby-transformer-sharp": "^2.5.6",
-    "preact": "^10.4.4",
-    "preact-render-to-string": "^5.1.9",
-    "prop-types": "^15.7.2",
-    "purecss": "^2.0.3",
-    "react-dom": "^16.13.1",
-    "react-helmet": "^6.1.0",
-    "react-icons": "^3.10.0",
-    "react-masonry-component": "^6.2.1"
-  },
-  "devDependencies": {
-    "prettier": "^2.0.5"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
+  "private": true,
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop -H 0.0.0.0 -p 8000",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve -H 0.0.0.0 -p 9000",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Ravanger/arynn-site_src"
-  },
-  "bugs": {
-    "url": "https://github.com/Ravanger/arynn-site_src/issues"
+  "dependencies": {
+    "next": "10.0.5",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
   }
 }
