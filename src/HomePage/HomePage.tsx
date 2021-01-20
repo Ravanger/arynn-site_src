@@ -2,9 +2,9 @@ import Menu from "./Menu"
 import { MenuItemType } from "./HomePage.types"
 
 const menuItems: MenuItemType[] = [
-  { text: "Art", side: "right", url: "/art" },
-  { text: "Shop", side: "center", url: "/shop" },
-  { text: "Connect", side: "left", url: "/connect" },
+  { text: "Art", tailSide: "RIGHT", url: "/art" },
+  { text: "Shop", tailSide: "CENTER", url: "/shop" },
+  { text: "Connect", tailSide: "LEFT", url: "/connect" },
 ]
 
 const HomePage = () => {

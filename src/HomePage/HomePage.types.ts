@@ -1,5 +1,5 @@
 export interface MenuItemType {
   text: string
-  side: string
+  tailSide: "RIGHT" | "LEFT" | "CENTER"
   url: string
 }

@@ -1,12 +1,18 @@
 import Button from "./Button"
 import { MenuPropsType } from "./Menu.types"
+import { MenuFullscreen } from "./Menu.styles"
 
 const Menu = (props: MenuPropsType) => {
   const menu = props.menuItems.map((item) => (
-    <Button text={item.text} side={item.side} url={item.url} key={item.text} />
+    <Button
+      text={item.text}
+      tailSide={item.tailSide}
+      url={item.url}
+      key={item.text}
+    />
   ))
 
-  return <nav>{menu}</nav>
+  return <MenuFullscreen>{menu}</MenuFullscreen>
 }
 
 export default Menu
