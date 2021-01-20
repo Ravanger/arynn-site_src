@@ -1,5 +1,12 @@
+import Nav from "src/common/Nav"
+
 const ArtPage = () => {
-  return <h1>Art</h1>
+  return (
+    <>
+      <Nav />
+      <h1>Art</h1>
+    </>
+  )
 }
 
 export default ArtPage

@@ -1,5 +1,12 @@
+import Nav from "src/common/Nav"
+
 const ShopPage = () => {
-  return <h1>Shop</h1>
+  return (
+    <>
+      <Nav />
+      <h1>Shop</h1>
+    </>
+  )
 }
 
 export default ShopPage
