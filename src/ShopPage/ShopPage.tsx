@@ -1,4 +1,4 @@
-import Nav from "src/common/Nav"
+import Nav from "src/common/MainNav"
 
 const ShopPage = () => {
   return (
