@@ -3,12 +3,13 @@ import styled, { css } from "styled-components"
 export const ButtonBubble = styled.a`
   background-color: white;
   color: #e27996;
-  font-size: 2rem;
+  font-size: 2.5rem;
   display: flex;
   padding: 2rem;
-  margin: 0 2rem;
-  width: 12rem;
-  height: 6rem;
+  margin: 0 4rem;
+  width: 16rem;
+  min-width: 16rem;
+  height: 8rem;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -18,9 +19,9 @@ export const ButtonBubble = styled.a`
   ${(props: { isCenterButton: boolean }) =>
     props.isCenterButton
       ? css`
-          top: 4rem;
+          top: 8rem;
         `
       : css`
-          top: 12rem;
+          top: 16rem;
         `}
 `

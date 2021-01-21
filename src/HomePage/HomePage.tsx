@@ -1,4 +1,5 @@
 import Menu from "./Menu"
+import HeroImage from "./HeroImage"
 import { MenuItemType } from "./HomePage.types"
 
 const menuItems: MenuItemType[] = [
@@ -8,7 +9,12 @@ const menuItems: MenuItemType[] = [
 ]
 
 const HomePage = () => {
-  return <Menu menuItems={menuItems} />
+  return (
+    <>
+      <Menu menuItems={menuItems} />
+      <HeroImage />
+    </>
+  )
 }
 
 export default HomePage
