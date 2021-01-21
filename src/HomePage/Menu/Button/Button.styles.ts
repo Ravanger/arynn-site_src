@@ -1,15 +1,18 @@
 import styled, { css } from "styled-components"
 
 export const ButtonBubble = styled.a`
-  border: thin solid black;
+  background-color: white;
+  color: #e27996;
+  font-size: 2rem;
   display: flex;
   padding: 2rem;
   margin: 0 2rem;
-  width: 10rem;
+  width: 12rem;
   height: 6rem;
   justify-content: center;
   align-items: center;
-  border-radius: 1rem;
+  text-align: center;
+  border-radius: 1.5rem;
   position: relative;
 
   ${(props: { isCenterButton: boolean }) =>
