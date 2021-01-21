@@ -85,4 +85,7 @@ export const reset = css`
   a {
     text-decoration: none;
   }
+  body {
+    background-color: #6cbebb;
+  }
 `
