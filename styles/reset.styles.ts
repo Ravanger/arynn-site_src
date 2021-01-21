@@ -1,10 +1,10 @@
-import { createGlobalStyle, css } from "styled-components"
+import { css } from "styled-components"
 
-const reset = css`
+export const reset = css`
   /* http://meyerweb.com/eric/tools/css/reset/ 
-    v2.0 | 20110126
-    License: none (public domain)
-  */
+  v2.0 | 20110126
+  License: none (public domain)
+*/
 
   html,
   body,
@@ -60,6 +60,7 @@ const reset = css`
     font: inherit;
     vertical-align: baseline;
     box-sizing: border-box;
+    font-family: "Noto Serif", Georgia, "Times New Roman", Times, serif;
   }
   /* HTML5 display-role reset for older browsers */
   article,
@@ -85,9 +86,3 @@ const reset = css`
     text-decoration: none;
   }
 `
-
-const GlobalStyle = createGlobalStyle`
-  ${reset}
-`
-
-export default GlobalStyle
