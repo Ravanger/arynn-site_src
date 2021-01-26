@@ -4,7 +4,7 @@ import { DivImage } from "./HeroImage.styles"
 const HeroImage = () => (
   <DivImage>
     <Image
-      src="/images/new_self_portrait.png"
+      src="/images/new_self_portrait.svg"
       alt="Arynn self portrait"
       quality={60}
       layout="fixed"
