@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 
 export const ButtonBubble = styled.a`
   background-color: white;
@@ -15,13 +15,9 @@ export const ButtonBubble = styled.a`
   text-align: center;
   border-radius: 1.5rem;
   position: relative;
-
-  ${(props: { isCenterButton: boolean }) =>
-    props.isCenterButton
-      ? css`
-          top: 8rem;
-        `
-      : css`
-          top: 16rem;
-        `}
+  top: var(--topMainButtonMargin, 16rem);
 `
+
+export const CENTER_BUTTON_VARIABLES = {
+  ["--topMainButtonMargin" as any]: "8rem",
+}
