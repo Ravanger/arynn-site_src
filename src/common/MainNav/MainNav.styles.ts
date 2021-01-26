@@ -7,8 +7,9 @@ export const NavMain = styled.nav`
   justify-content: center;
   padding: 2rem;
   max-width: 60rem;
-  border: thin solid black;
+  background-color: white;
   margin: 0 auto;
   margin-top: 4rem;
   border-radius: 4rem;
+  align-items: baseline;
 `

@@ -1,6 +1,7 @@
+import { Fragment } from "react"
 import { NavMain } from "./MainNav.styles"
 import { NavItemsType } from "./MainNav.types"
-import MainNavItem from "./MainNavItem"
+import SiteLink from "src/common/SiteLink"
 
 const navItems: NavItemsType[] = [
   {
@@ -28,22 +29,22 @@ const navItems: NavItemsType[] = [
 
 const MainNav = () => {
   const mainMenu = navItems.map((item) => (
-    <>
-      <MainNavItem text={item.text} url={item.url} key={item.text} />
+    <Fragment key={item.text + item.url}>
+      <SiteLink text={item.text} url={item.url} primary />
       {item.filters &&
         item.filters.map((filter) => (
-          <MainNavItem text={filter.text} key={filter.text} />
+          <SiteLink text={filter.text} key={filter.text} />
         ))}
       {item.sublinks &&
         item.sublinks.map((sublink) => (
-          <MainNavItem
+          <SiteLink
             text={sublink.text}
             url={sublink.url}
-            key={sublink.text}
+            key={sublink.text + sublink.url}
             external
           />
         ))}
-    </>
+    </Fragment>
   ))
 
   return <NavMain>{mainMenu}</NavMain>
