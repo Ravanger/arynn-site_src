@@ -6,7 +6,6 @@ export const ButtonBubble = styled.a`
   font-size: 2.5rem;
   display: flex;
   padding: 2rem;
-  margin: 0 4rem;
   width: 16rem;
   min-width: 16rem;
   height: 8rem;
@@ -15,9 +14,13 @@ export const ButtonBubble = styled.a`
   text-align: center;
   border-radius: 1.5rem;
   position: relative;
-  top: var(--topMainButtonMargin, 16rem);
+  top: var(--topDistance, 16rem);
+
+  + a {
+    margin-left: 8rem;
+  }
 `
 
 export const CENTER_BUTTON_VARIABLES = {
-  ["--topMainButtonMargin" as any]: "8rem",
+  ["--topDistance" as any]: "8rem",
 }

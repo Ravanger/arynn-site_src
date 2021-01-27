@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
-export const MenuFullscreen = styled.nav`
+export const DivWrapper = styled.div`
   display: flex;
-  flex-wrap: nowrap;
+  width: 100%;
   justify-content: center;
 `
