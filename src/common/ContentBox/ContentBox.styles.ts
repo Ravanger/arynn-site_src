@@ -6,4 +6,5 @@ export const DivContentBox = styled.div`
   height: 20rem;
   border-radius: 4rem;
   background-color: white;
+  padding: 4em;
 `
