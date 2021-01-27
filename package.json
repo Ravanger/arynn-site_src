@@ -11,7 +11,7 @@
   },
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start"
   },
@@ -26,6 +26,7 @@
     "@types/react": "^17.0.0",
     "@types/styled-components": "^5.1.7",
     "babel-plugin-styled-components": "^1.12.0",
+    "cross-env": "^7.0.3",
     "typescript": "^4.1.3"
   },
   "bugs": "https://github.com/Ravanger/arynn-site_src/issues"
