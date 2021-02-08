@@ -1,5 +1,12 @@
+import HeaderBar from "src/common/ContentBox/HeaderBar"
+
 const ArtPage = () => {
-  return <>Art</>
+  return (
+    <>
+      <HeaderBar>Art</HeaderBar>
+      Art content
+    </>
+  )
 }
 
 export default ArtPage
