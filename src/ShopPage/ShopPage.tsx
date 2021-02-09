@@ -22,9 +22,7 @@ const ShopPage = () => {
                 <li>
                   <button
                     onClick={() => {
-                      currentFilter === "All"
-                        ? setShopFilter("")
-                        : setShopFilter(currentFilter)
+                      setShopFilter(currentFilter)
                     }}
                     style={{
                       ...(currentFilter === shopFilter &&
