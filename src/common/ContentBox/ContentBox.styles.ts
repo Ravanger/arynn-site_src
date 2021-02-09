@@ -10,4 +10,5 @@ export const DivContentBox = styled.div`
   border-radius: 4rem;
   background-color: white;
   padding: 4em;
+  overflow: hidden;
 `
