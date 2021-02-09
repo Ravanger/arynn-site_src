@@ -2,6 +2,8 @@ import { Fragment } from "react"
 import { NavMain } from "./MainNav.styles"
 import { NavItemsType } from "./MainNav.types"
 import SiteLink from "src/common/SiteLink"
+import { useAtom } from "jotai"
+import { artFilterAtom } from "atoms/store"
 
 const navItems: NavItemsType[] = [
   {
@@ -28,12 +30,29 @@ const navItems: NavItemsType[] = [
 ]
 
 const MainNav = () => {
+  const [artFilter, setArtFilter] = useAtom(artFilterAtom)
+
   const mainMenu = navItems.map((item) => (
     <Fragment key={item.text + item.url}>
-      <SiteLink text={item.text} url={item.url} primary />
+      <SiteLink
+        text={item.text}
+        url={item.url}
+        primary
+        onClick={() => {
+          setArtFilter("")
+        }}
+      />
       {item.filters &&
         item.filters.map((filter) => (
-          <SiteLink text={filter.text} key={filter.text} />
+          <SiteLink
+            text={filter.text}
+            key={filter.text}
+            url={item.url + "#"}
+            active={artFilter === filter.text}
+            onClick={() => {
+              setArtFilter(filter.text)
+            }}
+          />
         ))}
       {item.sublinks &&
         item.sublinks.map((sublink) => (

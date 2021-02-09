@@ -4,4 +4,5 @@ export interface MainNavItemProps {
   external?: boolean
   primary?: boolean
   active?: boolean
+  onClick?: () => void
 }

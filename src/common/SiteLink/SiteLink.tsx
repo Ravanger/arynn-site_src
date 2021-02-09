@@ -15,9 +15,13 @@ const SiteLink = (props: MainNavItemProps) => {
     <Link href={props.url ?? ""} passHref>
       <AMenuLink
         {...(props.external && { target: "_blank" })}
+        {...(props.onClick && {
+          onClick: props.onClick,
+        })}
         style={{
           ...(props.primary && PRIMARY_LINK_VARIABLES),
-          ...(router.pathname === props.url && CURRENT_LINK_MAIN_VARIABLES),
+          ...((router.pathname === props.url || props.active) &&
+            CURRENT_LINK_MAIN_VARIABLES),
         }}
       >
         {props.text}

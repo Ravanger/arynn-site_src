@@ -1,9 +1,12 @@
 import styled from "styled-components"
 
 export const DivContentBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
   max-width: 60rem;
   width: 100%;
-  height: 20rem;
   border-radius: 4rem;
   background-color: white;
   padding: 4em;
