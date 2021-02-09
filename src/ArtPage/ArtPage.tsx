@@ -1,6 +1,6 @@
 import { artFilterAtom } from "atoms/store"
 import { useAtom } from "jotai"
-import HeaderBar from "src/common/ContentBox/HeaderBar"
+import HeaderBar from "src/common/HeaderBar"
 import Spacer from "src/common/Spacer"
 
 const ArtPage = () => {

@@ -20,6 +20,7 @@ export const reset = css`
   h6,
   p,
   a,
+  button,
   em,
   img,
   strike,
@@ -52,7 +53,9 @@ export const reset = css`
   summary,
   time,
   audio,
-  video {
+  video,
+  input,
+  textarea {
     margin: 0;
     padding: 0;
     border: 0;

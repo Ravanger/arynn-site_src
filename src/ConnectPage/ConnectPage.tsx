@@ -1,4 +1,4 @@
-import HeaderBar from "src/common/ContentBox/HeaderBar"
+import HeaderBar from "src/common/HeaderBar"
 import Spacer from "src/common/Spacer"
 import AboutBlurb from "./AboutBlurb"
 import ContactForm from "./ContactForm"

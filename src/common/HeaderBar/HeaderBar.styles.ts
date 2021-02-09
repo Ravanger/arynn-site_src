@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { SpanShopHeader } from "src/ShopPage/ShopPage.styles"
 
 export const HeaderContentBox = styled.header`
   display: flex;
@@ -21,5 +22,11 @@ export const HeaderContentBox = styled.header`
     flex: 1 1 auto;
     border-bottom: solid 0.1em #1b8e8a;
     height: 0.1em;
+  }
+
+  ${SpanShopHeader} & {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.5rem;
   }
 `

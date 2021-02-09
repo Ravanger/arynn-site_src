@@ -10,10 +10,7 @@ export const FormContact = styled.form`
   textarea,
   button {
     font-size: 1rem;
-    font-family: "Noto Serif";
     font-weight: bold;
-    padding: 0;
-    border: 0;
     background: none;
     flex-grow: 1;
     border: solid 0.15rem #1b8e8a;
@@ -24,7 +21,6 @@ export const FormContact = styled.form`
   }
 
   > button {
-    flex-grow: 0;
     width: 15rem;
     align-self: flex-end;
     border: 0;
