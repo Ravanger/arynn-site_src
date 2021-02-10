@@ -20,8 +20,3 @@ export const CURRENT_LINK_MAIN_VARIABLES = {
 export const CURRENT_LINK_SECONDARY_VARIABLES = {
   ["--siteLinkSelected" as any]: "#e27996",
 }
-
-/* TODO: ${NavMainreplacewithrealclass} & {
-    color: var(--siteLinkSelected, #1b8e8a);
-    font-weight: var(--siteLinkFontWeight, normal);
-  } */

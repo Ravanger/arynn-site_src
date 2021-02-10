@@ -3,7 +3,6 @@ import styled from "styled-components"
 export const DivShopItems = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
   grid-gap: 2rem;
 
   @media (min-width: 42rem) {

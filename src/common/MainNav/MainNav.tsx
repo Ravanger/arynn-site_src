@@ -42,6 +42,7 @@ const MainNav = () => {
           setArtFilter("")
         }}
       />
+      {/* TODO: Change to buttons */}
       {item.filters &&
         item.filters.map((filter) => (
           <SiteLink
