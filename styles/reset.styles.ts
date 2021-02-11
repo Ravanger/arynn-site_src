@@ -59,6 +59,7 @@ export const reset = css`
     margin: 0;
     padding: 0;
     border: 0;
+    background: 0;
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
@@ -90,5 +91,6 @@ export const reset = css`
   }
   body {
     background-color: #6cbebb;
+    overflow-x: hidden;
   }
 `

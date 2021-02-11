@@ -1,10 +1,12 @@
 import styled from "styled-components"
 
-export const AMenuLink = styled.a`
+export const SpanLink = styled.span`
   font-size: var(--siteLinkFontSize, 1em);
   font-weight: var(--siteLinkFontWeight, normal);
-  color: var(--siteLinkSelected, #e27996);
+  color: var(--siteLinkSelectedColor, #e27996);
+  font-style: var(--siteLinkSelectedFontStyle, normal);
   padding: 0 0.25em;
+  cursor: pointer;
   white-space: nowrap;
 `
 
@@ -13,10 +15,10 @@ export const PRIMARY_LINK_VARIABLES = {
   ["--siteLinkFontWeight" as any]: "bold",
 }
 
-export const CURRENT_LINK_MAIN_VARIABLES = {
-  ["--siteLinkSelected" as any]: "#1b8e8a",
+export const CURRENT_LINK_VARIABLES = {
+  ["--siteLinkSelectedColor" as any]: "#1b8e8a",
 }
 
-export const CURRENT_LINK_SECONDARY_VARIABLES = {
-  ["--siteLinkSelected" as any]: "#e27996",
+export const CURRENT_FILTER_VARIABLES = {
+  ["--siteLinkSelectedFontStyle" as any]: "italic",
 }

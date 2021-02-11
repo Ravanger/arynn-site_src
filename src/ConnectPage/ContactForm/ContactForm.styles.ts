@@ -11,7 +11,6 @@ export const FormContact = styled.form`
   button {
     font-size: 1rem;
     font-weight: bold;
-    background: none;
     flex-grow: 1;
     border: solid 0.15rem #1b8e8a;
     color: #1b8e8a;

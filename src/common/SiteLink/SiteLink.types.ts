@@ -5,4 +5,5 @@ export interface MainNavItemProps {
   primary?: boolean
   active?: boolean
   onClick?: () => void
+  filter?: boolean
 }

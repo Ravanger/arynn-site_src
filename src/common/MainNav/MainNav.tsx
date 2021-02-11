@@ -4,6 +4,7 @@ import { NavItemsType } from "./MainNav.types"
 import SiteLink from "src/common/SiteLink"
 import { useAtom } from "jotai"
 import { artFilterAtom } from "atoms/store"
+import { useRouter } from "next/router"
 
 const navItems: NavItemsType[] = [
   {
@@ -31,28 +32,30 @@ const navItems: NavItemsType[] = [
 
 const MainNav = () => {
   const [artFilter, setArtFilter] = useAtom(artFilterAtom)
+  const router = useRouter()
 
   const mainMenu = navItems.map((item) => (
     <Fragment key={item.text + item.url}>
       <SiteLink
         text={item.text}
         url={item.url}
+        active={router.pathname === item.url}
         primary
         onClick={() => {
           setArtFilter("")
         }}
       />
-      {/* TODO: Change to buttons */}
       {item.filters &&
         item.filters.map((filter) => (
           <SiteLink
             text={filter.text}
             key={filter.text}
-            url={item.url + "#"}
+            url={item.url}
             active={artFilter === filter.text}
             onClick={() => {
               setArtFilter(filter.text)
             }}
+            filter
           />
         ))}
       {item.sublinks &&

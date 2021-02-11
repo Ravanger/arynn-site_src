@@ -13,15 +13,16 @@ export const SpanShopHeader = styled.span`
       }
 
       > button {
-        background: none;
         border: 0;
         cursor: pointer;
-        color: var(--activeLink, #1b8e8a);
+        color: var(--activeLinkColor, #1b8e8a);
+        font-style: var(--activeLinkFontStyle, normal);
       }
     }
   }
 `
 
 export const ACTIVE_LINK_VARIABLES = {
-  ["--activeLink" as any]: "#e27996",
+  ["--activeLinkColor" as any]: "#e27996",
+  ["--activeLinkFontStyle" as any]: "italic",
 }
