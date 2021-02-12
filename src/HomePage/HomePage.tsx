@@ -4,9 +4,9 @@ import { MenuItemType } from "./HomePage.types"
 import { DivWrapper } from "./HomePage.styles"
 
 const menuItems: MenuItemType[] = [
-  { text: "Art", tailSide: "RIGHT", url: "/art" },
-  { text: "Shop", tailSide: "CENTER", url: "/shop" },
-  { text: "Connect", tailSide: "LEFT", url: "/connect" },
+  { text: "Art", url: "/art" },
+  { text: "Shop", url: "/shop" },
+  { text: "Connect", url: "/connect" },
 ]
 
 const HomePage = () => {

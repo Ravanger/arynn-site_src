@@ -14,13 +14,13 @@ export const ButtonBubble = styled.a`
   text-align: center;
   border-radius: 1.5rem;
   position: relative;
-  top: var(--topDistance, 16rem);
+  top: 16rem;
 
   + a {
     margin-left: 8rem;
   }
-`
 
-export const CENTER_BUTTON_VARIABLES = {
-  ["--topDistance" as any]: "8rem",
-}
+  :nth-child(2) {
+    top: 8rem;
+  }
+`
