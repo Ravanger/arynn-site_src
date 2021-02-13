@@ -27,7 +27,10 @@ const SiteLink = (props: MainNavItemProps) => {
         <button onClick={props.onClick}>{SubLink(true)}</button>
       ) : (
         <a
-          {...(props.external && { target: "_blank" })}
+          {...(props.external && {
+            target: "_blank",
+            rel: "noopener noreferrer",
+          })}
           {...(props.onClick && {
             onClick: props.onClick,
           })}
