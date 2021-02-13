@@ -1,7 +1,13 @@
+import SEO from "src/common/SEO"
 import HomePage from "src/HomePage"
 
 export const Home = () => {
-  return <HomePage />
+  return (
+    <>
+      <SEO title="Arynn" description="Arynn's home page" url="" />
+      <HomePage />
+    </>
+  )
 }
 
 export default Home
