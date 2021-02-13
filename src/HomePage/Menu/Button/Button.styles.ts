@@ -16,6 +16,10 @@ export const ButtonBubble = styled.a`
   position: relative;
   top: 16rem;
 
+  :hover {
+    color: #1b8e8a;
+  }
+
   + a {
     margin-left: 8rem;
   }

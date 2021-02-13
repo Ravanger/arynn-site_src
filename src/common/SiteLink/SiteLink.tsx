@@ -4,7 +4,6 @@ import { MainNavItemProps } from "./SiteLink.types"
 import {
   PRIMARY_LINK_VARIABLES,
   CURRENT_LINK_VARIABLES,
-  CURRENT_FILTER_VARIABLES,
   SpanLink,
 } from "./SiteLink.styles"
 
@@ -14,7 +13,6 @@ const SiteLink = (props: MainNavItemProps) => {
       style={{
         ...(props.primary && PRIMARY_LINK_VARIABLES),
         ...(props.active && CURRENT_LINK_VARIABLES),
-        ...(props.active && isFilter && CURRENT_FILTER_VARIABLES),
       }}
     >
       {props.text}

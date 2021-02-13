@@ -8,6 +8,10 @@ export const SpanLink = styled.span`
   padding: 0 0.25em;
   cursor: pointer;
   white-space: nowrap;
+
+  :hover {
+    color: #1b8e8a;
+  }
 `
 
 export const PRIMARY_LINK_VARIABLES = {
@@ -17,8 +21,5 @@ export const PRIMARY_LINK_VARIABLES = {
 
 export const CURRENT_LINK_VARIABLES = {
   ["--siteLinkSelectedColor" as any]: "#1b8e8a",
-}
-
-export const CURRENT_FILTER_VARIABLES = {
   ["--siteLinkSelectedFontStyle" as any]: "italic",
 }

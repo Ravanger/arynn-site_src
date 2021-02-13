@@ -17,6 +17,10 @@ export const SpanShopHeader = styled.span`
         cursor: pointer;
         color: var(--activeLinkColor, #1b8e8a);
         font-style: var(--activeLinkFontStyle, normal);
+
+        :hover {
+          color: #e27996;
+        }
       }
     }
   }
