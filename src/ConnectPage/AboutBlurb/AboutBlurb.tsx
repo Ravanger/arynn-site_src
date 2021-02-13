@@ -12,6 +12,7 @@ const AboutBlurb = () => {
   return (
     <DivAbout>
       <div></div>
+      <Spacer size="2rem" />
       <Spacer size="2rem" axis="HORIZONTAL" />
       <main>
         <h2>My name is Arynn</h2>

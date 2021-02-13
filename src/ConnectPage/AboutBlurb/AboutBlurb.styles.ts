@@ -2,14 +2,19 @@ import styled from "styled-components"
 
 export const DivAbout = styled.div`
   display: flex;
-  flex-direction: row;
   flex-wrap: nowrap;
+  flex-direction: column;
   width: 100%;
+
+  @media (min-width: 48rem) {
+    flex-direction: row;
+  }
 
   > div {
     background-color: #1b8e8a;
     border-radius: 2rem;
     width: 100%;
+    min-height: 20rem;
     min-width: 20rem;
   }
 
@@ -19,6 +24,10 @@ export const DivAbout = styled.div`
     > h2 {
       color: #e27996;
       font-size: 1.6rem;
+      text-align: center;
+      @media (min-width: 48rem) {
+        text-align: inherit;
+      }
     }
 
     > p {
