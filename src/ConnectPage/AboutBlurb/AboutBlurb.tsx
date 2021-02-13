@@ -1,5 +1,12 @@
 import Spacer from "src/common/Spacer"
 import { DivAbout } from "./AboutBlurb.styles"
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+  FaEnvelope,
+  FaPatreon,
+} from "react-icons/fa"
 
 const AboutBlurb = () => {
   return (
@@ -18,13 +25,53 @@ const AboutBlurb = () => {
         <Spacer size="2rem" />
         <h2>@artsyarynn across all platforms!</h2>
         <Spacer size="2rem" />
-        <div>
-          <div>FB</div>
-          <div>IG</div>
-          <div>TW</div>
-          <div>EM</div>
-          <div>PT</div>
-        </div>
+        <ul>
+          <a
+            href="http://www.facebook.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <li>
+              <FaFacebookF />
+            </li>
+          </a>
+          <a
+            href="http://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <li>
+              <FaInstagram />
+            </li>
+          </a>
+          <a
+            href="http://www.twitter.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <li>
+              <FaTwitter />
+            </li>
+          </a>
+          <a
+            href="http://www.hotmail.ca/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <li>
+              <FaEnvelope />
+            </li>
+          </a>
+          <a
+            href="http://www.patreon.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <li>
+              <FaPatreon />
+            </li>
+          </a>
+        </ul>
       </main>
     </DivAbout>
   )

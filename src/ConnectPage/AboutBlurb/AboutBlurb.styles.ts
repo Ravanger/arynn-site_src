@@ -28,10 +28,19 @@ export const DivAbout = styled.div`
       text-justify: inter-character;
     }
 
-    > div {
+    > ul {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+
+      li {
+        padding: 0.5em;
+        text-align: center;
+        background-color: #1b8e8a;
+        border-radius: 1rem;
+        font-size: 1.5rem;
+        color: white;
+      }
     }
   }
 `

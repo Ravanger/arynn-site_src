@@ -88,6 +88,9 @@ export const reset = css`
   }
   a {
     text-decoration: none;
+    :visited {
+      color: inherit;
+    }
   }
   body {
     background-color: #6cbebb;
