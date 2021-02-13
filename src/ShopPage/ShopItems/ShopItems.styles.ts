@@ -5,7 +5,7 @@ export const DivShopItems = styled.div`
   display: grid;
   grid-gap: 2rem;
 
-  @media (min-width: 42rem) {
+  @media (min-width: 48rem) {
     grid-template-columns: repeat(2, 1fr);
   }
 
