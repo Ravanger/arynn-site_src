@@ -6,7 +6,7 @@ import HeaderBar from "src/common/HeaderBar"
 import Spacer from "src/common/Spacer"
 import ShopItems from "./ShopItems"
 
-const FILTERS = ["All", "Prints", "Stickers", "Custom", "Artwork", "Originals"]
+const FILTERS = ["", "Prints", "Stickers", "Custom", "Artwork", "Originals"]
 
 const ShopPage = (props: ShopPageType) => {
   const [shopFilter, setShopFilter] = useAtom(shopFilterAtom)
@@ -16,22 +16,18 @@ const ShopPage = (props: ShopPageType) => {
       <SpanShopHeader>
         <HeaderBar>
           <ul>
-            {FILTERS.map((filter) => {
-              let currentFilter = filter
-              if (currentFilter === "All") currentFilter = ""
-
+            {FILTERS.map((filter, index) => {
               return (
-                <li key={filter}>
+                <li key={filter + index}>
                   <button
                     onClick={() => {
-                      setShopFilter(currentFilter)
+                      setShopFilter(filter)
                     }}
                     style={{
-                      ...(currentFilter === shopFilter &&
-                        ACTIVE_LINK_VARIABLES),
+                      ...(filter === shopFilter && ACTIVE_LINK_VARIABLES),
                     }}
                   >
-                    {filter}
+                    {filter || "All"}
                   </button>
                 </li>
               )
