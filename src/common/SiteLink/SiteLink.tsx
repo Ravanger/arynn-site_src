@@ -8,7 +8,7 @@ import {
 } from "./SiteLink.styles"
 
 const SiteLink = (props: MainNavItemProps) => {
-  const SubLink = (isFilter = false) => (
+  const SubLink = (
     <SpanLink
       style={{
         ...(props.primary && PRIMARY_LINK_VARIABLES),
@@ -22,7 +22,7 @@ const SiteLink = (props: MainNavItemProps) => {
   return (
     <Link href={props.url ?? ""} passHref>
       {props.filter ? (
-        <button onClick={props.onClick}>{SubLink(true)}</button>
+        <button onClick={props.onClick}>{SubLink}</button>
       ) : (
         <a
           {...(props.external && {
@@ -33,7 +33,7 @@ const SiteLink = (props: MainNavItemProps) => {
             onClick: props.onClick,
           })}
         >
-          {SubLink(false)}
+          {SubLink}
         </a>
       )}
     </Link>
