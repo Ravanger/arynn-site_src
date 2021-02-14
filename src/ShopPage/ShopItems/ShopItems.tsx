@@ -21,8 +21,4 @@ const ShopItems = (props: ShopItemProps) => {
   )
 }
 
-ShopItems.defaultProps = {
-  shopFilter: "",
-}
-
 export default ShopItems

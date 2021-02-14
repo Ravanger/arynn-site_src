@@ -1,4 +1,4 @@
-export interface ShopItem {
+export interface ShopItemType {
   title: string
   image: string
   price: string
@@ -6,5 +6,5 @@ export interface ShopItem {
 }
 
 export interface ShopPageType {
-  shopItems: ShopItem[]
+  shopItems: ShopItemType[]
 }

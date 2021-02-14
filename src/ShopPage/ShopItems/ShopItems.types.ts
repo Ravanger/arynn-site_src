@@ -1,4 +1,6 @@
+import { ShopItemType } from "../ShopPage.types"
+
 export interface ShopItemProps {
   shopFilter: string
-  shopItems: { title: string; image: string; price: string; type: string }[]
+  shopItems: ShopItemType[]
 }
