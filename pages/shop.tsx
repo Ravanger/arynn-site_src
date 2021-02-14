@@ -1,10 +1,10 @@
 import ShopPage from "src/ShopPage"
 import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import SEO from "src/common/SEO"
-import { InferGetStaticPropsType } from "next"
+import { GetStaticProps, InferGetStaticPropsType } from "next"
 import { ShopItemType } from "src/ShopPage/ShopPage.types"
 
-export const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <SEO title="Shop" description="Arynn's Shop" url="/shop" />
@@ -13,7 +13,7 @@ export const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   )
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const shopItems: ShopItemType[] = [
     {
       title: "Custom portrait",
