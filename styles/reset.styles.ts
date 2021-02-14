@@ -94,4 +94,7 @@ export const reset = css`
     background-color: #6cbebb;
     overflow-x: hidden;
   }
+  img {
+    border-radius: 2rem;
+  }
 `

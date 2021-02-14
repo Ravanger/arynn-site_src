@@ -5,10 +5,6 @@ export const DivArtWrapper = styled.div`
   display: grid;
   grid-gap: 1.5rem;
 
-  img {
-    border-radius: 2rem;
-  }
-
   @media (min-width: 48rem) {
     grid-template-columns: repeat(2, 1fr);
   }
