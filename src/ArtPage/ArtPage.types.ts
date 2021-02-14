@@ -1,4 +1,5 @@
 export interface ArtItemType {
+  id: string
   title: string
   image: string
   type: string

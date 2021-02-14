@@ -39,7 +39,7 @@ const MainNav = () => {
       <SiteLink
         text={item.text}
         url={item.url}
-        active={router.pathname === item.url}
+        active={router.pathname.includes(item.url)}
         primary
         onClick={() => {
           setArtFilter("")
