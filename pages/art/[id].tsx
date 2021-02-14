@@ -4,10 +4,18 @@ import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import HeaderBar from "src/common/HeaderBar"
 import Image from "next/image"
 import Spacer from "src/common/Spacer"
+import { useAtom } from "jotai"
+import { artFilterAtom } from "atoms/store"
+import { useEffect } from "react"
 
 const ArtPiecePage = (
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) => {
+  const [, setArtFilter] = useAtom(artFilterAtom)
+  useEffect(() => {
+    setArtFilter(props.item.type)
+  }, [])
+
   return (
     <>
       <HeaderBar>{props.item.type}</HeaderBar>
