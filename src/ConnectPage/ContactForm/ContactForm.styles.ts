@@ -15,23 +15,32 @@ export const FormContact = styled.form`
     border: solid 0.15rem #1b8e8a;
     color: #1b8e8a;
     border-radius: 0.5rem;
-    margin: 0.5em;
+    margin: 0.5em 0;
     padding: 1em;
   }
 
   > button {
-    width: 15rem;
+    width: 100%;
     align-self: flex-end;
     border: 0;
     background-color: #e27996;
     color: white;
     font-size: 1.2rem;
     cursor: pointer;
+    @media (min-width: 60rem) {
+      width: 15rem;
+    }
   }
 `
 
 export const DivRow = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
+  @media (min-width: 42rem) {
+    flex-direction: row;
+    > input + input {
+      margin-left: 0.5em;
+    }
+  }
 `

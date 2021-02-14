@@ -10,4 +10,5 @@ export const NavMain = styled.nav`
   background-color: white;
   border-radius: 4rem;
   align-items: baseline;
+  overflow: hidden;
 `

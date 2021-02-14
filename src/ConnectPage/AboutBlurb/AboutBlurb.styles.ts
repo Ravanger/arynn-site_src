@@ -14,8 +14,8 @@ export const DivAbout = styled.div`
     background-color: #1b8e8a;
     border-radius: 2rem;
     width: 100%;
-    min-height: 20rem;
-    min-width: 20rem;
+    min-height: 10rem;
+    min-width: 10rem;
   }
 
   > main {
