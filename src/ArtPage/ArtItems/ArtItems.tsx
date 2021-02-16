@@ -11,7 +11,7 @@ const ArtItems = (props: ArtItemsType) => {
   return (
     <DivArtWrapper>
       {currentArtItems.map((artItem, index) => (
-        <Link href={"/art/" + artItem.id}>
+        <Link href={"/art/" + artItem.id} key={artItem.id}>
           <a>
             <div key={artItem.title + index}>
               <Image
