@@ -1,3 +1,3 @@
 export interface HeaderBarProps {
-  children: React.ReactNode
+  children?: React.ReactNode
 }

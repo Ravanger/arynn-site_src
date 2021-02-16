@@ -12,6 +12,7 @@ const ShopItems = (props: ShopItemProps) => {
       {currentShopItems.map((shopItem, index) => (
         <ShopItemCard
           key={shopItem.title + index}
+          id={shopItem.id}
           title={shopItem.title}
           price={shopItem.price}
           image={shopItem.image}

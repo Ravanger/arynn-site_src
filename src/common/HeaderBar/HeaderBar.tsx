@@ -1,11 +1,13 @@
-import { HeaderContentBox } from "./HeaderBar.styles"
+import { HeaderContentBox, HrHeader } from "./HeaderBar.styles"
 import { HeaderBarProps } from "./HeaderBar.types"
 
 const HeaderBar = (props: HeaderBarProps) => {
-  return (
+  return props.children ? (
     <HeaderContentBox>
       <span>{props.children}</span>
     </HeaderContentBox>
+  ) : (
+    <HrHeader />
   )
 }
 

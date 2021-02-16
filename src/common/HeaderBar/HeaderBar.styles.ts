@@ -30,3 +30,8 @@ export const HeaderContentBox = styled.header`
     font-size: 1.5rem;
   }
 `
+
+export const HrHeader = styled.hr`
+  border: solid 0.1em #1b8e8a;
+  width: 100%;
+`
