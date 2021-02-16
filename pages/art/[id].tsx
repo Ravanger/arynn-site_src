@@ -7,6 +7,7 @@ import Spacer from "src/common/Spacer"
 import { useAtom } from "jotai"
 import { artFilterAtom } from "atoms/store"
 import { useEffect } from "react"
+import SEO from "src/common/SEO"
 
 const ArtPiecePage = (
   props: InferGetStaticPropsType<typeof getStaticProps>
@@ -18,6 +19,11 @@ const ArtPiecePage = (
 
   return (
     <>
+      <SEO
+        title={"Art: " + props.item.title}
+        description={`Arynn's art - ${props.item.title}: ${props.item.description}`}
+        url={"/art/" + props.item.id}
+      />
       <HeaderBar>{props.item.type}</HeaderBar>
       <Spacer size="2rem" />
       <div style={{ width: "100%" }}>
