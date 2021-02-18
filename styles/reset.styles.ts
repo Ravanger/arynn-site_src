@@ -96,5 +96,6 @@ export const reset = css`
   }
   img {
     border-radius: 2rem;
+    background-color: #6cbebb;
   }
 `
