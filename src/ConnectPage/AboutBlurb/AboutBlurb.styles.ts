@@ -19,8 +19,6 @@ export const DivAbout = styled.div`
   }
 
   > main {
-    color: #1b8e8a;
-
     > h2 {
       color: #e27996;
       font-size: 1.6rem;

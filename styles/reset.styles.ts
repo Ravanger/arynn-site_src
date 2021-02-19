@@ -64,7 +64,6 @@ export const reset = css`
     font: inherit;
     vertical-align: baseline;
     box-sizing: border-box;
-    font-family: "Noto Serif", Georgia, "Times New Roman", Times, serif;
   }
   /* HTML5 display-role reset for older browsers */
   article,
@@ -89,13 +88,5 @@ export const reset = css`
   a {
     text-decoration: none;
     color: inherit;
-  }
-  body {
-    background-color: #6cbebb;
-    overflow-x: hidden;
-  }
-  img {
-    border-radius: 2rem;
-    background-color: #6cbebb;
   }
 `

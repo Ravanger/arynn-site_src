@@ -4,10 +4,10 @@ import { SpanShopHeader } from "src/ShopPage/ShopPage.styles"
 export const HeaderContentBox = styled.header`
   display: flex;
   flex-wrap: nowrap;
+  text-align: center;
   justify-content: center;
   width: 100%;
   align-items: center;
-  color: #1b8e8a;
   font-size: 2.5rem;
   font-style: italic;
 
