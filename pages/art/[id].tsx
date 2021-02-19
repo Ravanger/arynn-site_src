@@ -4,6 +4,8 @@ import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import SEO from "src/common/SEO"
 import ArtPiecePage from "src/ArtPage/ArtPiecePage"
 
+// TODO: Add Pagination arrows
+
 const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     !props.errors && (

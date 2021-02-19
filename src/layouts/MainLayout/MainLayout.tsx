@@ -4,6 +4,8 @@ import ContentBox from "src/common/ContentBox"
 import { LayoutProps } from "../Layout.types"
 import { DivWrapper } from "./MainLayout.styles"
 
+// TODO: Add image to footer
+
 const MainLayout = (props: LayoutProps) => {
   return (
     <DivWrapper>
@@ -11,6 +13,7 @@ const MainLayout = (props: LayoutProps) => {
       <MainNav />
       <Spacer size="2rem" />
       <ContentBox>{props.children}</ContentBox>
+      <Spacer size="2rem" />
     </DivWrapper>
   )
 }
