@@ -4,7 +4,6 @@ export const FormContact = styled.form`
   display: grid;
   width: 100%;
   grid-gap: 1rem;
-  grid-template-columns: 1fr;
   grid-template-areas:
     "name"
     "email"
