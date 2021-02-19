@@ -1,46 +1,43 @@
 import styled from "styled-components"
 
 export const FormContact = styled.form`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  display: grid;
   width: 100%;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "name"
+    "email"
+    "colours"
+    "vision"
+    "send";
 
-  input,
-  textarea,
-  button {
-    font-size: 1rem;
-    font-weight: bold;
-    flex-grow: 1;
-    border: solid 0.15rem #1b8e8a;
-    color: #1b8e8a;
-    border-radius: 0.5rem;
-    margin: 0.5em 0;
-    padding: 1em;
+  @media (min-width: 48rem) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "name name email email"
+      "colours colours colours colours"
+      "vision vision vision vision"
+      ". . . send";
+  }
+
+  #contact_name {
+    grid-area: name;
+  }
+
+  #contact_email {
+    grid-area: email;
+  }
+
+  #contact_colors {
+    grid-area: colours;
+  }
+
+  #contact_message {
+    grid-area: vision;
   }
 
   > button {
-    width: 100%;
-    align-self: flex-end;
-    border: 0;
-    background-color: #e27996;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    @media (min-width: 60rem) {
-      width: 15rem;
-    }
-  }
-`
-
-export const DivRow = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  @media (min-width: 42rem) {
-    flex-direction: row;
-    > input + input {
-      margin-left: 0.5em;
-    }
+    grid-area: send;
   }
 `
