@@ -1,40 +1,44 @@
 import styled from "styled-components"
 
-export const FormShopPiece = styled.form`
+export const MainShopPiece = styled.main`
   width: 100%;
-  display: grid;
-  align-items: center;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1rem;
-  grid-template-areas:
-    "description description"
-    "quantity price"
-    "continue continue";
 
-  @media (min-width: 48rem) {
-    grid-template-columns: repeat(3, 1fr);
+  > form {
+    width: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
     grid-template-areas:
-      "description description description"
-      ". . price"
-      "quantity . continue";
-  }
+      "description description"
+      "quantity price"
+      "continue continue";
 
-  > p {
-    grid-area: description;
-  }
+    @media (min-width: 48rem) {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas:
+        "description description description"
+        ". . price"
+        "quantity . continue";
+    }
 
-  > select {
-    grid-area: quantity;
-  }
+    > p {
+      grid-area: description;
+    }
 
-  > span {
-    grid-area: price;
-    text-align: right;
-    font-size: 2rem;
-    font-weight: bold;
-  }
+    > select {
+      grid-area: quantity;
+    }
 
-  > button {
-    grid-area: continue;
+    > span {
+      grid-area: price;
+      text-align: right;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    > button {
+      grid-area: continue;
+    }
   }
 `

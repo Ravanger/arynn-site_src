@@ -1,46 +1,21 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next"
 import { ART_ITEMS_MOCK_DATA } from "util/sampleData"
 import { getLayout } from "src/layouts/MainLayout/MainLayout"
-import HeaderBar from "src/common/HeaderBar"
-import Image from "next/image"
-import Spacer from "src/common/Spacer"
-import { useAtom } from "jotai"
-import { artFilterAtom } from "atoms/store"
-import { useEffect } from "react"
 import SEO from "src/common/SEO"
+import ArtPiecePage from "src/ArtPage/ArtPiecePage"
 
-const ArtPiecePage = (
-  props: InferGetStaticPropsType<typeof getStaticProps>
-) => {
-  const [, setArtFilter] = useAtom(artFilterAtom)
-  useEffect(() => {
-    setArtFilter(props.item.type)
-  }, [])
-
+const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <>
-      <SEO
-        title={"Art: " + props.item.title}
-        description={`Arynn's art - ${props.item.title}: ${props.item.description}`}
-        url={"/art/" + props.item.id}
-      />
-      <HeaderBar>{props.item.type}</HeaderBar>
-      <Spacer size="2rem" />
-      <div style={{ width: "100%" }}>
-        <Image
-          src={props.item.image}
-          alt={props.item.title}
-          layout="responsive"
-          width={800}
-          height={600}
-          objectFit="cover"
+    !props.errors && (
+      <>
+        <SEO
+          title={"Art: " + props.item.title}
+          description={`Arynn's art - ${props.item.title}: ${props.item.description}`}
+          url={"/art/" + props.item.id}
         />
-      </div>
-      <Spacer size="2rem" />
-      <HeaderBar>{props.item.title}</HeaderBar>
-      <Spacer size="2rem" />
-      <p>{props.item.description}</p>
-    </>
+        <ArtPiecePage item={props.item} />
+      </>
+    )
   )
 }
 
@@ -75,6 +50,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-ArtPiecePage.getLayout = getLayout
+ArtPiece.getLayout = getLayout
 
-export default ArtPiecePage
+export default ArtPiece

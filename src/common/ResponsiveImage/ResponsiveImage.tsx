@@ -7,8 +7,8 @@ const ResponsiveImage = (props: BigImageTypes) => {
       src={props.src}
       alt={props.alt}
       layout="responsive"
-      width={800}
-      height={800}
+      width={props.width || 800}
+      height={props.height || 800}
       objectFit="cover"
     />
   )
