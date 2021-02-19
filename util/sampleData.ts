@@ -126,7 +126,7 @@ export const SHOP_ITEMS_MOCK_DATA: ShopItemType[] = [
     price: "300",
     type: "Originals",
     description:
-      "Woooahhh brrroooo this is a lorem ipsum description and whatnot",
+      "Woooahhh brrroooo this is a lorem ipsum description and whatnot Woooahhh brrroooo this is a lorem ipsum description and whatnot Woooahhh brrroooo this is a lorem ipsum description and whatnot Woooahhh brrroooo this is a lorem ipsum description and whatnot Woooahhh brrroooo this is a lorem ipsum description and whatnot",
   },
   {
     id: "4",
