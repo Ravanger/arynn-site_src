@@ -25,14 +25,6 @@ export const DivAbout = styled.div`
 
   > main {
     grid-area: blurb;
-    > h2 {
-      color: #e27996;
-      font-size: 1.6rem;
-      text-align: center;
-      @media (min-width: 48rem) {
-        text-align: inherit;
-      }
-    }
 
     > p {
       line-height: 1.5em;
@@ -42,21 +34,33 @@ export const DivAbout = styled.div`
     }
   }
 
-  > ul {
+  > section {
     grid-area: socials;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: flex-end;
+    align-self: flex-end;
 
-    li {
-      padding: 0.5em;
-      text-align: center;
-      background-color: #1b8e8a;
-      border-radius: 1rem;
-      font-size: 1.5rem;
-      color: white;
+    > ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+
+      li {
+        padding: 0.5em;
+        text-align: center;
+        background-color: #1b8e8a;
+        border-radius: 1rem;
+        font-size: 1.5rem;
+        color: white;
+      }
+    }
+  }
+
+  h2 {
+    color: #e27996;
+    font-size: 1.6rem;
+    text-align: center;
+    @media (min-width: 48rem) {
+      text-align: inherit;
     }
   }
 `
