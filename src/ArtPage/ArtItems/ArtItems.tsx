@@ -11,7 +11,7 @@ const ArtItems = (props: ArtItemsType) => {
   return (
     <DivArtWrapper>
       {currentArtItems.map((artItem, index) => (
-        <Link href={"/art/" + artItem.id} key={artItem.id}>
+        <Link href={"/art/" + artItem.id} key={artItem.id} scroll={false}>
           <a>
             <div key={artItem.title + index}>
               <ResponsiveImage src={artItem.image} alt={artItem.title} />

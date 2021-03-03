@@ -9,7 +9,7 @@ import {
 
 const PrevNextButton = (props: PrevNextButtonProps) => {
   return (
-    <Link href={props.url} passHref>
+    <Link href={props.url} scroll={false} passHref>
       <APrevNextButton
         style={{
           ...(props.type === "PREV"

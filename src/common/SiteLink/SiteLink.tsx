@@ -20,7 +20,7 @@ const SiteLink = (props: MainNavItemProps) => {
   )
 
   return (
-    <Link href={props.url ?? ""} passHref>
+    <Link href={props.url ?? ""} passHref scroll={false}>
       {props.filter ? (
         <button onClick={props.onClick}>{SubLink}</button>
       ) : (
