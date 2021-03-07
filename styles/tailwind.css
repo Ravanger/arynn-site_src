@@ -1,6 +1,9 @@
-import { css } from "styled-components"
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-export const fonts = css`
+@layer base {
+  /*  🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫 Fonts 🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫 */
   /* noto-serif-regular - latin */
   @font-face {
     font-family: "Noto Serif";
@@ -47,4 +50,35 @@ export const fonts = css`
       /* Chrome 26+, Opera 23+, Firefox 39+ */
         url("/fonts/noto-serif-v9-latin-700italic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
   }
-`
+  /* 🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩 Fonts 🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩 */
+
+  /* 🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫 Custom 🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫  */
+  body {
+    background-color: theme(colors.blue.light);
+    overflow-x: hidden;
+  }
+
+  img {
+    border-radius: 2rem;
+    background-color: theme(colors.blue.light);
+  }
+
+  body,
+  html,
+  input,
+  textarea,
+  select {
+    font-family: "Noto Serif", serif;
+    color: theme(colors.blue.DEFAULT);
+  }
+
+  input,
+  textarea,
+  select {
+    font-weight: bold;
+    border: solid 0.15rem theme(colors.blue.DEFAULT);
+    border-radius: 0.5rem;
+    padding: 1em;
+  }
+  /* 🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩 Custom 🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩 */
+}
