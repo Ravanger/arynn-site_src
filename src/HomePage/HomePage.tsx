@@ -1,7 +1,6 @@
 import Menu from "./Menu"
 import HeroImage from "./HeroImage"
 import { MenuItemType } from "./HomePage.types"
-import { DivWrapper } from "./HomePage.styles"
 
 const menuItems: MenuItemType[] = [
   { text: "Art", url: "/art" },
@@ -11,10 +10,10 @@ const menuItems: MenuItemType[] = [
 
 const HomePage = () => {
   return (
-    <DivWrapper>
+    <div className="flex w-full justify-center">
       <Menu menuItems={menuItems} />
       <HeroImage />
-    </DivWrapper>
+    </div>
   )
 }
 

@@ -1,5 +1,4 @@
 import ShopItemCard from "./ShopItemCard"
-import { DivShopItems } from "./ShopItems.styles"
 import { ShopItemProps } from "./ShopItems.types"
 
 const ShopItems = (props: ShopItemProps) => {
@@ -8,7 +7,7 @@ const ShopItems = (props: ShopItemProps) => {
     : props.shopItems
 
   return (
-    <DivShopItems>
+    <div className="w-full grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {currentShopItems.map((shopItem, index) => (
         <ShopItemCard
           key={shopItem.title + index}
@@ -18,7 +17,7 @@ const ShopItems = (props: ShopItemProps) => {
           image={shopItem.image}
         />
       ))}
-    </DivShopItems>
+    </div>
   )
 }
 

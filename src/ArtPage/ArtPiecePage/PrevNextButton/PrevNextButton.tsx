@@ -1,24 +1,17 @@
 import Link from "next/link"
 import { PrevNextButtonProps } from "./PrevNextButton.types"
 import { BsFillTriangleFill } from "react-icons/bs"
-import {
-  APrevNextButton,
-  PREV_BUTTON_VARIABLES,
-  NEXT_BUTTON_VARIABLES,
-} from "./PrevNextButton.styles"
 
 const PrevNextButton = (props: PrevNextButtonProps) => {
   return (
     <Link href={props.url} scroll={false} passHref>
-      <APrevNextButton
-        style={{
-          ...(props.type === "PREV"
-            ? PREV_BUTTON_VARIABLES
-            : NEXT_BUTTON_VARIABLES),
-        }}
+      <a
+        className={`text-pink hover:text-blue transform ${
+          props.type === "PREV" ? "-rotate-90" : "rotate-90"
+        } `}
       >
         <BsFillTriangleFill size="2rem" />
-      </APrevNextButton>
+      </a>
     </Link>
   )
 }

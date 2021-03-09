@@ -1,5 +1,4 @@
 import { Fragment } from "react"
-import { NavMain } from "./MainNav.styles"
 import { NavItemsType } from "./MainNav.types"
 import SiteLink from "src/common/SiteLink"
 import { useAtom } from "jotai"
@@ -70,7 +69,11 @@ const MainNav = () => {
     </Fragment>
   ))
 
-  return <NavMain>{mainMenu}</NavMain>
+  return (
+    <nav className="flex flex-nowrap justify-center p-8 max-w-5xl bg-white rounded-xl2 items-baseline overflow-hidden w-full">
+      {mainMenu}
+    </nav>
+  )
 }
 
 export default MainNav

@@ -10,6 +10,7 @@ const ResponsiveImage = (props: BigImageTypes) => {
       width={props.width || 800}
       height={props.height || 800}
       objectFit="cover"
+      className={props.className}
     />
   )
 }

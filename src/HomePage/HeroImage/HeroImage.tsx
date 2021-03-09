@@ -1,8 +1,7 @@
 import Image from "next/image"
-import { DivImage } from "./HeroImage.styles"
 
 const HeroImage = () => (
-  <DivImage>
+  <div className="absolute bottom-0 max-h-6/10 overflow-hidden">
     <Image
       src="/images/new_self_portrait.svg"
       alt="Arynn self portrait"
@@ -11,7 +10,7 @@ const HeroImage = () => (
       height={600}
       width={480}
     />
-  </DivImage>
+  </div>
 )
 
 export default HeroImage

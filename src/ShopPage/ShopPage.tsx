@@ -1,6 +1,5 @@
 import { useAtom } from "jotai"
 import { shopFilterAtom } from "atoms/store"
-import { SpanShopHeader, ACTIVE_LINK_VARIABLES } from "./ShopPage.styles"
 import { ShopPageType } from "./ShopPage.types"
 import HeaderBar from "src/common/HeaderBar"
 import Spacer from "src/common/Spacer"
@@ -20,28 +19,26 @@ const ShopPage = (props: ShopPageType) => {
 
   return (
     <>
-      <SpanShopHeader>
-        <HeaderBar>
-          <ul>
-            {SHOP_FILTERS.map((filter, index) => {
-              return (
-                <li key={filter + index}>
-                  <button
-                    onClick={() => {
-                      setShopFilter(filter)
-                    }}
-                    style={{
-                      ...(filter === shopFilter && ACTIVE_LINK_VARIABLES),
-                    }}
-                  >
-                    {filter || "All"}
-                  </button>
-                </li>
-              )
-            })}
-          </ul>
-        </HeaderBar>
-      </SpanShopHeader>
+      <HeaderBar isMenu>
+        <ul className="flex flex-row flex-nowrap space-x-3">
+          {SHOP_FILTERS.map((filter, index) => {
+            return (
+              <li key={filter + index} className="">
+                <button
+                  onClick={() => {
+                    setShopFilter(filter)
+                  }}
+                  className={`font-bold border-0 cursor-pointer hover:text-pink ${
+                    filter === shopFilter && "text-pink italic"
+                  }`}
+                >
+                  {filter || "All"}
+                </button>
+              </li>
+            )
+          })}
+        </ul>
+      </HeaderBar>
       <Spacer size="2rem" />
       <ShopItems shopFilter={shopFilter} shopItems={props.shopItems} />
     </>

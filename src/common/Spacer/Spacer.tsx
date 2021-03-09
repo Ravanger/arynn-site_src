@@ -1,5 +1,4 @@
 import { SpacerProps } from "./Spacer.types"
-import { SpanSpacer } from "./Spacer.styles"
 
 const defaultProps: SpacerProps = {
   size: "1rem",
@@ -11,14 +10,11 @@ const Spacer = (props: SpacerProps) => {
   const height = props.axis === "HORIZONTAL" ? null : props.size
 
   return (
-    <SpanSpacer
+    <span
+      className="block w-1 h-1 min-h-1 min-w-1"
       style={{
-        ...(width && {
-          ["--spacerWidth" as any]: width,
-        }),
-        ...(height && {
-          ["--spacerHeight" as any]: height,
-        }),
+        ...(width && { width: width }),
+        ...(height && { height: height }),
       }}
     />
   )

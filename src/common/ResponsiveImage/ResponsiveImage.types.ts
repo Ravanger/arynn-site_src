@@ -3,4 +3,5 @@ export interface BigImageTypes {
   alt: string
   width?: number
   height?: number
+  className?: string
 }

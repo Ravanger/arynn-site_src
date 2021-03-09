@@ -5,7 +5,6 @@ import PDescriptionText from "src/common/DescriptionText"
 import HeaderBar from "src/common/HeaderBar"
 import ResponsiveImage from "src/common/ResponsiveImage"
 import Spacer from "src/common/Spacer"
-import { MainArtPiecePage } from "./ArtPiecePage.styles"
 import { ArtPiecePageProps } from "./ArtPiecePage.types"
 import PrevNextButton from "./PrevNextButton"
 
@@ -20,16 +19,18 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
   return (
     <>
       <HeaderBar>{props.item.type}</HeaderBar>
-      <MainArtPiecePage>
+      <main className="w-full">
         <Spacer size="2rem" />
-        <div>
+        <div className="flex flex-row flex-nowrap items-center justify-between">
           <PrevNextButton type="PREV" url={`/art/${props.prevItemId}`} />
           <Spacer axis="HORIZONTAL" size="1rem" />
-          <ResponsiveImage
-            alt={props.item.title}
-            src={props.item.image}
-            height={600}
-          />
+          <div className="w-full">
+            <ResponsiveImage
+              alt={props.item.title}
+              src={props.item.image}
+              height={600}
+            />
+          </div>
           <Spacer axis="HORIZONTAL" size="1rem" />
           <PrevNextButton type="NEXT" url={`/art/${props.nextItemId}`} />
         </div>
@@ -37,7 +38,7 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
         <HeaderBar>{props.item.title}</HeaderBar>
         <Spacer size="2rem" />
         <PDescriptionText>{props.item.description}</PDescriptionText>
-      </MainArtPiecePage>
+      </main>
     </>
   )
 }

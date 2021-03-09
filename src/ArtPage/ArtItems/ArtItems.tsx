@@ -1,6 +1,5 @@
 import Link from "next/link"
 import ResponsiveImage from "src/common/ResponsiveImage"
-import { DivArtWrapper } from "./ArtItems.styles"
 import { ArtItemsType } from "./ArtItems.types"
 
 const ArtItems = (props: ArtItemsType) => {
@@ -9,7 +8,7 @@ const ArtItems = (props: ArtItemsType) => {
     : props.artItems
 
   return (
-    <DivArtWrapper>
+    <div className="grid gap-6 w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       {currentArtItems.map((artItem, index) => (
         <Link href={"/art/" + artItem.id} key={artItem.id} scroll={false}>
           <a>
@@ -19,7 +18,7 @@ const ArtItems = (props: ArtItemsType) => {
           </a>
         </Link>
       ))}
-    </DivArtWrapper>
+    </div>
   )
 }
 
