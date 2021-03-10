@@ -1,5 +1,5 @@
 import Menu from "./Menu"
-import HeroImage from "./HeroImage"
+import MainImage from "src/common/MainImage"
 import { MenuItemType } from "./HomePage.types"
 
 const menuItems: MenuItemType[] = [
@@ -12,7 +12,9 @@ const HomePage = () => {
   return (
     <div className="flex w-full justify-center">
       <Menu menuItems={menuItems} />
-      <HeroImage />
+      <div className="absolute bottom-0 max-h-6/10 overflow-hidden">
+        <MainImage />
+      </div>
     </div>
   )
 }

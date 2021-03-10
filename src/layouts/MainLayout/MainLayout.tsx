@@ -2,6 +2,7 @@ import MainNav from "src/common/MainNav"
 import Spacer from "src/common/Spacer"
 import ContentBox from "src/common/ContentBox"
 import { LayoutProps } from "../Layout.types"
+import MainImage from "src/common/MainImage"
 
 // TODO: Add image to footer
 
@@ -13,6 +14,7 @@ const MainLayout = (props: LayoutProps) => {
       <Spacer size="2rem" />
       <ContentBox>{props.children}</ContentBox>
       <Spacer size="2rem" />
+      <MainImage />
     </div>
   )
 }

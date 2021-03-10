@@ -10,7 +10,7 @@ const HeaderBar = (props: HeaderBarProps) => {
       }`}
     >
       {styledHr}
-      <span className="p-4 flex-initial">{props.children}</span>
+      <span className="px-4 flex-initial">{props.children}</span>
       {styledHr}
     </header>
   ) : (
