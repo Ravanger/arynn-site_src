@@ -4,7 +4,7 @@ import { BsFillTriangleFill } from "react-icons/bs"
 
 const PrevNextButton = (props: PrevNextButtonProps) => {
   return (
-    <Link href={props.url} scroll={false} passHref>
+    <Link href={props.href} scroll={false} passHref>
       <a
         className={`text-pink hover:text-blue transform ${
           props.type === "PREV" ? "-rotate-90" : "rotate-90"

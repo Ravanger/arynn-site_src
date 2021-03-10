@@ -10,7 +10,14 @@ const ArtItems = (props: ArtItemsType) => {
   return (
     <div className="grid gap-6 w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       {currentArtItems.map((artItem, index) => (
-        <Link href={"/art/" + artItem.id} key={artItem.id} scroll={false}>
+        <Link
+          href={{
+            pathname: `/art/${artItem.id}`,
+            ...(!props.artFilter && { query: { display: "all" } }),
+          }}
+          key={artItem.id}
+          scroll={false}
+        >
           <a>
             <div key={artItem.title + index}>
               <ResponsiveImage src={artItem.image} alt={artItem.title} />

@@ -4,4 +4,5 @@ export interface ArtPiecePageProps {
   item: ArtItemType
   prevItemId: string
   nextItemId: string
+  displayAll: boolean
 }

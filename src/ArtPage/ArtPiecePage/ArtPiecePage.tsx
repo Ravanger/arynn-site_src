@@ -8,8 +8,6 @@ import Spacer from "src/common/Spacer"
 import { ArtPiecePageProps } from "./ArtPiecePage.types"
 import PrevNextButton from "./PrevNextButton"
 
-// TODO: Take art type into consideration when clicking prev/next buttons
-
 const ArtPiecePage = (props: ArtPiecePageProps) => {
   const [, setArtFilter] = useAtom(artFilterAtom)
   useEffect(() => {
@@ -22,7 +20,13 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
       <main className="w-full">
         <Spacer size="2rem" />
         <div className="flex flex-row flex-nowrap items-center justify-between">
-          <PrevNextButton type="PREV" url={`/art/${props.prevItemId}`} />
+          <PrevNextButton
+            type="PREV"
+            href={{
+              pathname: `/art/${props.prevItemId}`,
+              ...(props.displayAll && { query: { display: "all" } }),
+            }}
+          />
           <Spacer axis="HORIZONTAL" size="1rem" />
           <div className="w-full">
             <ResponsiveImage
@@ -32,7 +36,13 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
             />
           </div>
           <Spacer axis="HORIZONTAL" size="1rem" />
-          <PrevNextButton type="NEXT" url={`/art/${props.nextItemId}`} />
+          <PrevNextButton
+            type="NEXT"
+            href={{
+              pathname: `/art/${props.nextItemId}`,
+              ...(props.displayAll && { query: { display: "all" } }),
+            }}
+          />
         </div>
         <Spacer size="2rem" />
         <HeaderBar>{props.item.title}</HeaderBar>
