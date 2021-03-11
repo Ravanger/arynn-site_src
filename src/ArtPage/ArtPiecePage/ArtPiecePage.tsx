@@ -5,6 +5,7 @@ import PDescriptionText from "src/common/DescriptionText"
 import HeaderBar from "src/common/HeaderBar"
 import ResponsiveImage from "src/common/ResponsiveImage"
 import Spacer from "src/common/Spacer"
+import { SplitAndCapitalizeFirstWord } from "util/text"
 import { ArtPiecePageProps } from "./ArtPiecePage.types"
 import PrevNextButton from "./PrevNextButton"
 
@@ -16,7 +17,7 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
 
   return (
     <>
-      <HeaderBar>{props.item.type}</HeaderBar>
+      <HeaderBar>{SplitAndCapitalizeFirstWord(props.item.type, "_")}</HeaderBar>
       <main className="w-full">
         <Spacer size="2rem" />
         <div className="flex flex-row flex-nowrap items-center justify-between">

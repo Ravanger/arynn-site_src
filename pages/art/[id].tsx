@@ -1,11 +1,11 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next"
-import { ART_ITEMS_MOCK_DATA } from "util/sampleData"
 import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import SEO from "src/common/SEO"
 import ArtPiecePage from "src/ArtPage/ArtPiecePage"
 import { ArtItemType } from "src/ArtPage/ArtPage.types"
 import { readCache, writeCache } from "util/cache"
 import { useRouter } from "next/router"
+import { getArtItems } from "util/dataFetching"
 
 const getArtItemIndexById = (
   id: string | string[],
@@ -74,19 +74,21 @@ const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const getArtItems = async () => {
-    return ART_ITEMS_MOCK_DATA
+  try {
+    const artItems = await getArtItems()
+    if (!artItems) throw new Error("Error fetching art items")
+
+    await writeCache(artItems, ".artcache")
+
+    const paths = artItems.map((item) => ({
+      params: { id: item.id },
+    }))
+
+    return { paths, fallback: false }
+  } catch (err) {
+    console.error("Error in ArtPiece.getStaticPaths: ", err)
+    return Promise.reject()
   }
-
-  const artItems = await getArtItems()
-
-  await writeCache(artItems, ".artcache")
-
-  const paths = artItems.map((item) => ({
-    params: { id: item.id },
-  }))
-
-  return { paths, fallback: false }
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -99,7 +101,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
         itemsArray,
         id,
       },
-      revalidate: 600,
     }
   } catch (err) {
     return { props: { errors: err.message } }

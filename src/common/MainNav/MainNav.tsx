@@ -10,10 +10,10 @@ const navItems: NavItemsType[] = [
     text: "Art",
     url: "/art",
     filters: [
-      { text: "Paintings" },
-      { text: "Comics" },
-      { text: "Digital Art" },
-      { text: "Design" },
+      { text: "Paintings", type: "paintings" },
+      { text: "Comics", type: "comics" },
+      { text: "Digital Art", type: "digital_art" },
+      { text: "Design", type: "design" },
     ],
   },
   {
@@ -50,9 +50,9 @@ const MainNav = () => {
             text={filter.text}
             key={filter.text}
             url={item.url}
-            active={artFilter === filter.text}
+            active={artFilter === filter.type}
             onClick={() => {
-              setArtFilter(filter.text)
+              setArtFilter(filter.type)
             }}
             filter
           />
