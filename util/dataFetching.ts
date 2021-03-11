@@ -1,5 +1,6 @@
 import { ArtItemType } from "src/ArtPage/ArtPage.types"
-import { StrapiFetchArtDataType } from "./dataTypes"
+import { ShopItemType } from "src/ShopPage/ShopPage.types"
+import { StrapiFetchArtDataType, StrapiFetchShopDataType } from "./dataTypes"
 
 export const getDataFromUrl = async (url: RequestInfo) => {
   try {
@@ -29,4 +30,21 @@ export const getArtItems = async () => {
   }))
 
   return artItems
+}
+
+export const getShopItems = async () => {
+  const shopItemsUrl = process.env.BACKEND_URL + "/shop-items"
+  const rawData: StrapiFetchShopDataType[] = await getDataFromUrl(shopItemsUrl)
+  if (!rawData) throw new Error("Error fetching data")
+
+  const shopItems: ShopItemType[] = rawData.map((item) => ({
+    id: item.id.toString(),
+    title: item.title,
+    description: item.description,
+    image: process.env.BACKEND_URL + item.images[0].url, // TODO: Fix images array
+    type: item.type,
+    price: item.price.toString(),
+  }))
+
+  return shopItems
 }

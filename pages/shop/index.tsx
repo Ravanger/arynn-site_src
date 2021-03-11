@@ -2,7 +2,7 @@ import ShopPage from "src/ShopPage"
 import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import SEO from "src/common/SEO"
 import { GetStaticProps, InferGetStaticPropsType } from "next"
-import { SHOP_ITEMS_MOCK_DATA } from "util/sampleData"
+import { getShopItems } from "util/dataFetching"
 
 const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -14,9 +14,14 @@ const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: { shopItems: SHOP_ITEMS_MOCK_DATA },
-    revalidate: 600,
+  try {
+    const shopItems = await getShopItems()
+
+    return {
+      props: { shopItems },
+    }
+  } catch (err) {
+    return { props: { errors: err.message } }
   }
 }
 

@@ -26,3 +26,34 @@ export interface StrapiFetchArtDataType {
     updated_at: Date
   }
 }
+
+export interface StrapiFetchShopDataType {
+  id: number
+  title: string
+  description: string
+  price: number
+  type: string
+  created_at: Date
+  updated_at: Date
+  images: [
+    {
+      id: number
+      name: string
+      alternativeText: string
+      caption: string
+      width: number
+      height: number
+      formats: {}
+      hash: string
+      ext: string
+      mime: string
+      size: number
+      url: string
+      previewUrl: string | null
+      provider: string
+      provider_metadata: string | {} | null
+      created_at: Date
+      updated_at: Date
+    }
+  ]
+}
