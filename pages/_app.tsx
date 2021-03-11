@@ -3,6 +3,8 @@ import { PageWithLayoutType } from "src/layouts"
 import { Provider } from "jotai"
 import "../styles/tailwind.css"
 
+// TODO: 404 page
+
 interface AppLayoutProps extends AppProps {
   Component: PageWithLayoutType
 }
