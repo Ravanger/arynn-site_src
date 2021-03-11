@@ -3,7 +3,16 @@ export interface StrapiFetchArtDataType {
   title: string
   description: string
   type: string
-  shop_item: {}
+  shop_item?: {
+    id: number
+    title: string
+    description: string
+    price: number
+    type: string
+    created_at: Date
+    updated_at: Date
+    images: []
+  }
   created_at: Date
   updated_at: Date
   image: {

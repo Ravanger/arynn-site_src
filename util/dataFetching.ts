@@ -27,6 +27,9 @@ export const getArtItems = async () => {
     description: item.description,
     image: process.env.BACKEND_URL + item.image.url,
     type: item.type,
+    ...(item.shop_item && {
+      shopItemUrl: `/shop/${item.shop_item.id.toString()}`,
+    }),
   }))
 
   return artItems

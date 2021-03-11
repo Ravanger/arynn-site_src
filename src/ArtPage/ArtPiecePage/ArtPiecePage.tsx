@@ -1,6 +1,7 @@
 import PDescriptionText from "src/common/DescriptionText"
 import HeaderBar from "src/common/HeaderBar"
 import ResponsiveImage from "src/common/ResponsiveImage"
+import SiteLink from "src/common/SiteLink"
 import Spacer from "src/common/Spacer"
 import { SplitAndCapitalizeFirstWord } from "util/text"
 import { ArtPiecePageProps } from "./ArtPiecePage.types"
@@ -42,6 +43,15 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
         <Spacer size="2rem" />
         <PDescriptionText>{props.item.description}</PDescriptionText>
       </main>
+
+      {props.item.shopItemUrl && (
+        <>
+          <Spacer size="2rem" />
+          <div className="text-center text-5xl">
+            <SiteLink text="Buy" url={props.item.shopItemUrl} />
+          </div>
+        </>
+      )}
     </>
   )
 }
