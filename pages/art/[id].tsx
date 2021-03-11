@@ -76,8 +76,6 @@ const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const artItems = await getArtItems()
-    if (!artItems) throw new Error("Error fetching art items")
-
     await writeCache(artItems, ".artcache")
 
     const paths = artItems.map((item) => ({
@@ -87,7 +85,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     return { paths, fallback: false }
   } catch (err) {
     console.error("Error in ArtPiece.getStaticPaths: ", err)
-    return Promise.reject()
+    return { paths: [], fallback: false }
   }
 }
 
