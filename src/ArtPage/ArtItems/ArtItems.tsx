@@ -24,7 +24,12 @@ const ArtItems = (props: ArtItemsType) => {
         >
           <a>
             <div key={artItem.title + index}>
-              <ResponsiveImage src={artItem.image} alt={artItem.title} />
+              <ResponsiveImage
+                src={artItem.image}
+                alt={artItem.title}
+                width={500}
+                height={500}
+              />
             </div>
           </a>
         </Link>

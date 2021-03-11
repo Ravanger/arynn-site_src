@@ -4,6 +4,9 @@ import { Provider } from "jotai"
 import "../styles/tailwind.css"
 
 // TODO: 404 page
+// TODO: Meta info
+// TODO: Accessibility
+// TODO: Store and cart
 
 interface AppLayoutProps extends AppProps {
   Component: PageWithLayoutType

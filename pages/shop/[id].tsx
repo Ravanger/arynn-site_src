@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const item = id && shopItems.find((item) => item.id === id)
 
     return id && item
-      ? { props: { item }, revalidate: 600 }
+      ? { props: { item } }
       : { props: { errors: "No item found" } }
   } catch (err) {
     return { props: { errors: err.message } }
