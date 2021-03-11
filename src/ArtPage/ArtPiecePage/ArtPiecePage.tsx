@@ -1,6 +1,3 @@
-import { artFilterAtom } from "atoms/store"
-import { useAtom } from "jotai"
-import { useEffect } from "react"
 import PDescriptionText from "src/common/DescriptionText"
 import HeaderBar from "src/common/HeaderBar"
 import ResponsiveImage from "src/common/ResponsiveImage"
@@ -10,11 +7,6 @@ import { ArtPiecePageProps } from "./ArtPiecePage.types"
 import PrevNextButton from "./PrevNextButton"
 
 const ArtPiecePage = (props: ArtPiecePageProps) => {
-  const [, setArtFilter] = useAtom(artFilterAtom)
-  useEffect(() => {
-    setArtFilter(props.item.type)
-  }, [props.item.type])
-
   return (
     <>
       <HeaderBar>{SplitAndCapitalizeFirstWord(props.item.type, "_")}</HeaderBar>
