@@ -21,7 +21,7 @@ const AboutBlurb = () => {
 
   return (
     <div className="grid w-full items-stretch justify-items-stretch gap-8 grid-cols-1 md:grid-rows-2 md:grid-cols-2/3 md:children:first:row-span-2">
-      <ResponsiveImage src="http://placekitten.com/800/800" alt="Arynn" />
+      <ResponsiveImage src="/images/new_self_portrait.svg" alt="Arynn" />
       <main>
         {headerText("My name is Arynn")}
         <Spacer size="1rem" />
