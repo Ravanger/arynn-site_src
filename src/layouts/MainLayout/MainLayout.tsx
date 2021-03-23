@@ -4,14 +4,12 @@ import ContentBox from "src/common/ContentBox"
 import { LayoutProps } from "../Layout.types"
 import MainImage from "src/common/MainImage"
 
-// TODO: Add image to footer
-
 const MainLayout = (props: LayoutProps) => {
   return (
     <div className="w-full flex flex-col items-center">
-      <Spacer size="2rem" />
+      <Spacer size="3rem" />
       <MainNav />
-      <Spacer size="2rem" />
+      <Spacer size="3rem" />
       <ContentBox>{props.children}</ContentBox>
       <Spacer size="2rem" />
       <MainImage />

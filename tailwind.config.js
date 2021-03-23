@@ -20,7 +20,8 @@ module.exports = {
         "3/1": "3fr 1fr",
       },
       borderRadius: {
-        xl2: "4rem",
+        xl2: "2rem",
+        xl4: "4rem",
       },
       borderWidth: {
         1: "0.1rem",
