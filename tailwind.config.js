@@ -40,6 +40,7 @@ module.exports = {
         64: "16rem",
       },
       maxHeight: {
+        "1/3": "33.333333%",
         "6/10": "60%",
       },
       inset: {

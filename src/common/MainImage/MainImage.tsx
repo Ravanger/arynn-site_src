@@ -7,7 +7,7 @@ const MainImage = () => (
     src={src}
     alt="Arynn self portrait"
     quality={60}
-    layout="fixed"
+    layout="intrinsic"
     height={600}
     width={480}
   />
