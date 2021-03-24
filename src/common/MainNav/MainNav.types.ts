@@ -5,5 +5,5 @@ export interface NavItemsType {
     text: string
     type: "paintings" | "comics" | "digital_art" | "design"
   }[]
-  sublinks?: { text: string; url: string }[]
+  sublinks?: { text: string; url: string; external?: boolean }[]
 }

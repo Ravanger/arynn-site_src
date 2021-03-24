@@ -2,42 +2,52 @@ import { Fragment, useRef, useState } from "react"
 import { NavItemsType } from "./MainNav.types"
 import SiteLink from "src/common/SiteLink"
 import { useAtom } from "jotai"
-import { artFilterAtom } from "atoms/store"
+import { artFilterAtom, shopCartAtom } from "atoms/store"
 import { useRouter } from "next/router"
 import { IoMenu, IoTriangle } from "react-icons/io5"
 import Spacer from "src/common/Spacer"
 import { useClickOutside } from "util/handlers"
 
-const navItems: NavItemsType[] = [
-  {
-    text: "Art",
-    url: "/art",
-    filters: [
-      { text: "Paintings", type: "paintings" },
-      { text: "Comics", type: "comics" },
-      { text: "Digital Art", type: "digital_art" },
-      { text: "Design", type: "design" },
-    ],
-  },
-  {
-    text: "Connect",
-    url: "/connect",
-    sublinks: [
-      { text: "Instagram", url: "https://www.instagram.com/artsyarynn" },
-      { text: "Patreon", url: "https://www.pateron.com" },
-      { text: "Twitter", url: "https://www.twitter.com" },
-      { text: "Email", url: "https://www.hotmail.ca" },
-    ],
-  },
-  { text: "Shop", url: "/shop" },
-]
-
 const MainNav = () => {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false)
   const [artFilter, setArtFilter] = useAtom(artFilterAtom)
+  const [cartItems] = useAtom(shopCartAtom)
+
   const router = useRouter()
   const mainMenuRef = useRef(null)
   useClickOutside(mainMenuRef, () => setIsMainMenuOpen(false))
+
+  const navItems: NavItemsType[] = [
+    {
+      text: "Art",
+      url: "/art",
+      filters: [
+        { text: "Paintings", type: "paintings" },
+        { text: "Comics", type: "comics" },
+        { text: "Digital Art", type: "digital_art" },
+        { text: "Design", type: "design" },
+      ],
+    },
+    {
+      text: "Connect",
+      url: "/connect",
+      sublinks: [
+        {
+          text: "Instagram",
+          url: "https://www.instagram.com/artsyarynn",
+          external: true,
+        },
+        { text: "Patreon", url: "https://www.pateron.com", external: true },
+        { text: "Twitter", url: "https://www.twitter.com", external: true },
+        { text: "Email", url: "https://www.hotmail.ca", external: true },
+      ],
+    },
+    {
+      text: "Shop",
+      url: "/shop",
+      sublinks: [{ text: `Cart (${cartItems.count})`, url: "/shop/cart" }],
+    },
+  ]
 
   const mainMenu = navItems.map((item) => (
     <Fragment key={item.text + item.url}>
@@ -73,14 +83,14 @@ const MainNav = () => {
             onClick={() => {
               setIsMainMenuOpen(false)
             }}
-            external
+            external={sublink.external}
           />
         ))}
     </Fragment>
   ))
 
   return (
-    <div className="sticky z-50 top-0 text-center lg:relative">
+    <div className="sticky z-50 top-0 text-center max-w-5xl lg:relative lg:w-full">
       <IoTriangle
         className="text-white inline-block transform translate-y-1"
         size="1.5rem"
