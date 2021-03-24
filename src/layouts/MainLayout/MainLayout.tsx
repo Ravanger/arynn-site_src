@@ -7,9 +7,9 @@ import MainImage from "src/common/MainImage"
 const MainLayout = (props: LayoutProps) => {
   return (
     <div className="w-full flex flex-col items-center">
-      <Spacer size="3rem" />
+      <Spacer size="2rem" />
       <MainNav />
-      <Spacer size="3rem" />
+      <Spacer size="2rem" />
       <ContentBox>{props.children}</ContentBox>
       <Spacer size="2rem" />
       <MainImage />
