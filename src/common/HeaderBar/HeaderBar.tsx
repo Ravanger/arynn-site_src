@@ -1,20 +1,26 @@
 import { HeaderBarProps } from "./HeaderBar.types"
 
-const styledHr = <hr className="flex-grow flex-shrink-0 border-1 border-blue" />
+const styledHr = (className?: string) => (
+  <hr
+    className={
+      className || "flex-grow flex-shrink border-15 border-blue border-solid"
+    }
+  />
+)
 
 const HeaderBar = (props: HeaderBarProps) => {
   return props.children ? (
     <header
       className={`flex flex-nowrap text-center justify-center w-full items-center ${
         props.isMenu ? "text-2xl" : "text-4xl italic"
-      }`}
+      } ${props.className}`}
     >
-      {styledHr}
+      {styledHr(props.hrClassName)}
       <span className="px-4 flex-initial">{props.children}</span>
-      {styledHr}
+      {styledHr(props.hrClassName)}
     </header>
   ) : (
-    styledHr
+    styledHr(props.hrClassName)
   )
 }
 

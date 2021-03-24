@@ -81,7 +81,7 @@ const MainNav = () => {
 
   return (
     <div
-      className="bg-white w-auto text-center sticky z-10 max-w-5xl overflow-hidden top-0 rounded-xl2 px-16 py-4 lg:rounded-xl4 lg:static lg:w-full lg:p-8"
+      className="bg-white w-auto text-center sticky z-50 max-w-5xl overflow-hidden top-0 rounded-xl2 px-16 py-4 lg:rounded-xl4 lg:static lg:w-full lg:p-8"
       ref={mainMenuRef}
     >
       <button
