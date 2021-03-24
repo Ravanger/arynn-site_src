@@ -4,7 +4,7 @@ import SiteLink from "src/common/SiteLink"
 import { useAtom } from "jotai"
 import { artFilterAtom } from "atoms/store"
 import { useRouter } from "next/router"
-import { IoMenu } from "react-icons/io5"
+import { IoMenu, IoTriangle } from "react-icons/io5"
 import Spacer from "src/common/Spacer"
 import { useClickOutside } from "util/handlers"
 
@@ -80,26 +80,32 @@ const MainNav = () => {
   ))
 
   return (
-    <div
-      className="bg-white w-auto text-center sticky z-50 max-w-5xl overflow-hidden top-0 rounded-xl2 px-16 py-4 lg:rounded-xl4 lg:static lg:w-full lg:p-8"
-      ref={mainMenuRef}
-    >
-      <button
-        className="cursor-pointer text-center text-blue hover:text-pink w-auto inline-block align-middle lg:hidden"
-        onClick={() => {
-          setIsMainMenuOpen(!isMainMenuOpen)
-        }}
+    <div className="sticky z-50 top-0 text-center lg:relative">
+      <IoTriangle
+        className="text-white inline-block transform translate-y-1"
+        size="1.5rem"
+      />
+      <div
+        className="bg-white w-auto text-center max-w-5xl overflow-hidden rounded-xl2 px-16 py-4 lg:rounded-xl4 lg:static lg:w-full lg:p-8"
+        ref={mainMenuRef}
       >
-        <IoMenu size="2rem" className="" />
-      </button>
-      <Spacer id="mainMenuSpacer" className="hidden" />
-      <nav
-        className={`${
-          isMainMenuOpen ? "flex" : "hidden"
-        } flex-col space-y-4 lg:space-y-0 lg:flex lg:flex-row lg:flex-nowrap lg:justify-center lg:items-baseline`}
-      >
-        {mainMenu}
-      </nav>
+        <button
+          className="cursor-pointer text-center text-blue hover:text-pink w-auto inline-block align-middle lg:hidden"
+          onClick={() => {
+            setIsMainMenuOpen(!isMainMenuOpen)
+          }}
+        >
+          <IoMenu size="2rem" className="" />
+        </button>
+        <Spacer id="mainMenuSpacer" className="hidden" />
+        <nav
+          className={`${
+            isMainMenuOpen ? "flex" : "hidden"
+          } flex-col space-y-4 lg:space-y-0 lg:flex lg:flex-row lg:flex-nowrap lg:justify-center lg:items-baseline`}
+        >
+          {mainMenu}
+        </nav>
+      </div>
     </div>
   )
 }

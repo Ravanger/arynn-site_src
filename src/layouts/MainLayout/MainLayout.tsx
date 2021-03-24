@@ -3,6 +3,7 @@ import Spacer from "src/common/Spacer"
 import ContentBox from "src/common/ContentBox"
 import { LayoutProps } from "../Layout.types"
 import MainImage from "src/common/MainImage"
+import { IoTriangle } from "react-icons/io5"
 
 const MainLayout = (props: LayoutProps) => {
   return (
@@ -11,6 +12,10 @@ const MainLayout = (props: LayoutProps) => {
       <MainNav />
       <Spacer size="2rem" />
       <ContentBox>{props.children}</ContentBox>
+      <IoTriangle
+        className="text-white inline-block transform -translate-y-2 rotate-180"
+        size="4rem"
+      />
       <Spacer size="2rem" />
       <MainImage />
     </div>
