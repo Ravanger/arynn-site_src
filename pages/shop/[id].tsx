@@ -4,9 +4,13 @@ import SEO from "src/common/SEO"
 import ShopPiecePage from "src/ShopPage/ShopPiecePage"
 import { getShopItems } from "util/dataFetching"
 import { readCache, writeCache } from "util/cache"
+import { shopCartAtom } from "atoms/store"
+import { useAtom } from "jotai"
 
 const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   if (props.errors) return <></>
+
+  const [, shopCartDispatch] = useAtom(shopCartAtom)
 
   return (
     <>
@@ -15,7 +19,12 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         description={`Arynn's Shop - ${props.item.title}: ${props.item.description}`}
         url={"/shop/" + props.item.id}
       />
-      <ShopPiecePage item={props.item} quantity={3} />
+      <ShopPiecePage
+        item={props.item}
+        addToCartFunc={() => {
+          shopCartDispatch({ type: "ADD", payload: props.item })
+        }}
+      />
     </>
   )
 }
