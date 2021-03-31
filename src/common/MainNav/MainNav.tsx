@@ -45,7 +45,7 @@ const MainNav = () => {
     {
       text: "Shop",
       url: "/shop",
-      sublinks: [{ text: `Cart (${cartItems.count})`, url: "/shop/cart" }],
+      sublinks: [{ text: `Cart (${cartItems.length})`, url: "/shop/cart" }],
     },
   ]
 
@@ -83,6 +83,7 @@ const MainNav = () => {
             onClick={() => {
               setIsMainMenuOpen(false)
             }}
+            active={router.pathname === sublink.url}
             external={sublink.external}
           />
         ))}
