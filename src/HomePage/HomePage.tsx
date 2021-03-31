@@ -10,9 +10,9 @@ const menuItems: MenuItemType[] = [
 
 const HomePage = () => {
   return (
-    <div className="flex w-screen h-screen flex-col items-center">
+    <div className="flex w-screen h-screen flex-col items-center max-w-6xl mx-auto">
       <Menu menuItems={menuItems} />
-      <div className="max-h-1/3 overflow-hidden lg:absolute lg:max-h-6/10 lg:h-full lg:bottom-0">
+      <div className="max-h-1/3 overflow-hidden absolute bottom-0 lg:max-h-6/10 lg:h-full">
         <MainImage />
       </div>
     </div>
