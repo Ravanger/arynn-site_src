@@ -6,6 +6,8 @@ import CartItem from "./CartItem"
 
 const CartPage = () => {
   const [cartItems, dispatchCartAction] = useAtom(shopCartAtom)
+  let totalPrice = 0
+  cartItems.forEach((item) => (totalPrice += parseFloat(item.price)))
 
   return (
     <div className="space-y-4">
@@ -22,6 +24,7 @@ const CartPage = () => {
           <Spacer />
         </>
       ))}
+      <span>Total: ${totalPrice.toFixed(2)}</span>
       <button
         onClick={() => {
           dispatchCartAction({ type: "CLEAR" })
@@ -29,6 +32,7 @@ const CartPage = () => {
       >
         Clear cart
       </button>
+      <button>Checkout</button>
     </div>
   )
 }
