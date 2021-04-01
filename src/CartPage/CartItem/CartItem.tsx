@@ -19,7 +19,7 @@ const CartItem = (props: CartItemType) => (
     </div>
     <div className="relative">
       <button onClick={props.removeCartItem} className="absolute right-0 top-0">
-        <IoClose />
+        <IoClose className="hover:text-pink" />
       </button>
       <Spacer />
       <HeaderBar>{props.item.title}</HeaderBar>
