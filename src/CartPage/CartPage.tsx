@@ -1,6 +1,7 @@
 import { shopCartAtom } from "atoms/store"
 import { useAtom } from "jotai"
 import HeaderBar from "src/common/HeaderBar"
+import Spacer from "src/common/Spacer"
 import CartItem from "./CartItem"
 
 const CartPage = () => {
@@ -16,7 +17,9 @@ const CartPage = () => {
               dispatchCartAction({ type: "REMOVE", payload: cartItem })
             }}
           />
+          <Spacer />
           <HeaderBar />
+          <Spacer />
         </>
       ))}
       <button
