@@ -4,7 +4,7 @@ import { ShopPageType } from "./ShopPage.types"
 import HeaderBar from "src/common/HeaderBar"
 import Spacer from "src/common/Spacer"
 import ShopItems from "./ShopItems"
-import React, { useRef, useState } from "react"
+import { Fragment, useRef, useState } from "react"
 import { IoMenu, IoTriangle } from "react-icons/io5"
 import { useClickOutside } from "util/handlers"
 
@@ -49,11 +49,12 @@ const ShopPage = (props: ShopPageType) => {
             >
               {SHOP_FILTERS.map((filter, index) => {
                 return (
-                  <React.Fragment key={filter + index}>
-                    <li className="">
+                  <Fragment key={filter + index}>
+                    <li>
                       <button
                         onClick={() => {
                           setShopFilter(filter)
+                          setIsShopMenuOpen(false)
                         }}
                         className={`font-bold border-0 cursor-pointer text-lg text-white hover:text-blue-light lg:hover:text-pink lg:text-2xl ${
                           filter === shopFilter
@@ -65,7 +66,7 @@ const ShopPage = (props: ShopPageType) => {
                       </button>
                     </li>
                     <HeaderBar hrClassName="border-white w-24 mx-auto border-15 lg:hidden" />
-                  </React.Fragment>
+                  </Fragment>
                 )
               })}
             </ul>
