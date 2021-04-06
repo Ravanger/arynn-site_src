@@ -1,6 +1,5 @@
+import { Product } from "use-shopping-cart"
+
 export interface ShopItemCardProps {
-  id: string
-  title: string
-  image: string
-  price: string
+  item: Product
 }

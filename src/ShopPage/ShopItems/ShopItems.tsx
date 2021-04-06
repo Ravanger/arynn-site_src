@@ -17,12 +17,7 @@ const ShopItems = (props: ShopItemProps) => {
       {currentShopItems.map((shopItem, index) => (
         <Fragment key={shopItem.title + index}>
           <HeaderBar hrClassName="border-15 md:hidden" />
-          <ShopItemCard
-            id={shopItem.id}
-            title={shopItem.title}
-            price={shopItem.price}
-            image={shopItem.image}
-          />
+          <ShopItemCard item={shopItem} />
         </Fragment>
       ))}
     </div>

@@ -1,12 +1,5 @@
-export interface ShopItemType {
-  id: string
-  title: string
-  image: string
-  price: string
-  type: string
-  description: string
-}
+import { Product } from "use-shopping-cart"
 
 export interface ShopPageType {
-  shopItems: ShopItemType[]
+  shopItems: Product[]
 }

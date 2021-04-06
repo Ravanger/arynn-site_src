@@ -1,6 +1,6 @@
-import { ShopItemType } from "../ShopPage.types"
+import { Product } from "use-shopping-cart"
 
 export interface ShopItemProps {
   shopFilter: string
-  shopItems: ShopItemType[]
+  shopItems: Product[]
 }

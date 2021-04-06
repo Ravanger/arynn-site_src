@@ -1,7 +1,7 @@
 import { MouseEventHandler } from "react"
-import { ShopItemType } from "../ShopPage.types"
+import { Product } from "use-shopping-cart"
 
 export interface ShopPiecePageTypes {
-  item: ShopItemType
+  item: Product
   addToCartFunc: MouseEventHandler<HTMLButtonElement>
 }

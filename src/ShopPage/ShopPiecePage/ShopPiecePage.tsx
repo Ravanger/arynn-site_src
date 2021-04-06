@@ -4,16 +4,20 @@ import Spacer from "src/common/Spacer"
 import { ShopPiecePageTypes } from "./ShopPiecePage.types"
 import PDescriptionText from "src/common/DescriptionText"
 import Button from "src/common/Button"
+import { formatCurrencyString } from "use-shopping-cart"
+import { CURRENCY } from "util/stripe"
+
+// TODO: Images carousel
 
 const ShopPiecePage = (props: ShopPiecePageTypes) => {
   return (
     <>
-      <HeaderBar>{props.item.title}</HeaderBar>
+      <HeaderBar>{props.item.name}</HeaderBar>
       <main className="w-full">
         <Spacer size="2rem" />
         <ResponsiveImage
-          src={props.item.image}
-          alt={props.item.title}
+          src={props.item.image!}
+          alt={props.item.name}
           height={600}
         />
         <Spacer size="2rem" />
@@ -24,7 +28,10 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
             {props.item.description}
           </PDescriptionText>
           <span className="text-3xl font-bold col-span-3 md:col-start-3 md:col-span-1 md:text-right">
-            ${props.item.price}
+            {formatCurrencyString({
+              value: props.item.price,
+              currency: CURRENCY,
+            })}
           </span>
           <Button
             className="col-span-3 md:col-span-1 md:col-start-3"

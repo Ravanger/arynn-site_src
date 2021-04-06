@@ -1,6 +1,7 @@
 import { ArtItemType } from "src/ArtPage/ArtPage.types"
-import { ShopItemType } from "src/ShopPage/ShopPage.types"
-import { StrapiFetchArtDataType, StrapiFetchShopDataType } from "./dataTypes"
+import { Product } from "use-shopping-cart"
+import { StrapiFetchArtDataType, StrapiFetchShopDataType } from "./data.types"
+import { CURRENCY } from "./stripe"
 
 export const getDataFromUrl = async (url: RequestInfo) => {
   try {
@@ -40,13 +41,15 @@ export const getShopItems = async () => {
   const rawData: StrapiFetchShopDataType[] = await getDataFromUrl(shopItemsUrl)
   if (!rawData) throw new Error("Error fetching data")
 
-  const shopItems: ShopItemType[] = rawData.map((item) => ({
-    id: item.id.toString(),
-    title: item.title,
+  const shopItems: Product[] = rawData.map((item) => ({
+    sku: item.id.toString(),
+    name: item.title,
+    currency: CURRENCY,
     description: item.description,
-    image: process.env.BACKEND_URL + item.images[0].url, // TODO: Fix images array
+    image: process.env.BACKEND_URL + item.images[0].url,
+    price: item.price,
     type: item.type,
-    price: item.price.toString(),
+    images: item.images,
   }))
 
   return shopItems

@@ -2,16 +2,17 @@ import { Fragment, useRef, useState } from "react"
 import { NavItemsType } from "./MainNav.types"
 import SiteLink from "src/common/SiteLink"
 import { useAtom } from "jotai"
-import { artFilterAtom, shopCartAtom } from "atoms/store"
+import { artFilterAtom } from "atoms/store"
 import { useRouter } from "next/router"
 import { IoMenu, IoTriangle } from "react-icons/io5"
 import Spacer from "src/common/Spacer"
 import { useClickOutside } from "util/handlers"
+import { useShoppingCart } from "use-shopping-cart"
 
 const MainNav = () => {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false)
   const [artFilter, setArtFilter] = useAtom(artFilterAtom)
-  const [cartItems] = useAtom(shopCartAtom)
+  const { cartCount } = useShoppingCart()
 
   const router = useRouter()
   const mainMenuRef = useRef(null)
@@ -45,7 +46,7 @@ const MainNav = () => {
     {
       text: "Shop",
       url: "/shop",
-      sublinks: [{ text: `Cart (${cartItems.length})`, url: "/shop/cart" }],
+      sublinks: [{ text: `Cart (${cartCount})`, url: "/shop/cart" }],
     },
   ]
 

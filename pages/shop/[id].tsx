@@ -4,26 +4,27 @@ import SEO from "src/common/SEO"
 import ShopPiecePage from "src/ShopPage/ShopPiecePage"
 import { getShopItems } from "util/dataFetching"
 import { readCache, writeCache } from "util/cache"
-import { shopCartAtom } from "atoms/store"
-import { useAtom } from "jotai"
+import { Product, useShoppingCart } from "use-shopping-cart"
+import { itemIdExistsInCart } from "util/stripe"
 
 const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   if (props.errors) return <></>
 
-  const [, shopCartDispatch] = useAtom(shopCartAtom)
+  const { addItem, cartDetails } = useShoppingCart()
+  const shopItem: Product = props.item
 
   return (
     <>
       <SEO
-        title={"Shop: " + props.item.title}
-        description={`Arynn's Shop - ${props.item.title}: ${props.item.description}`}
-        url={"/shop/" + props.item.id}
+        title={"Shop: " + shopItem.title}
+        description={`Arynn's Shop - ${shopItem.title}: ${shopItem.description}`}
+        url={"/shop/" + shopItem.sku}
       />
       <ShopPiecePage
-        item={props.item}
-        addToCartFunc={() => {
-          shopCartDispatch({ type: "ADD", payload: props.item })
-        }}
+        item={shopItem}
+        addToCartFunc={() =>
+          !itemIdExistsInCart(cartDetails, shopItem.sku) && addItem(shopItem, 1)
+        }
       />
     </>
   )
@@ -35,7 +36,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     await writeCache(shopItems, ".shopCache")
 
     const paths = shopItems.map((item) => ({
-      params: { id: item.id },
+      params: { id: item.sku },
     }))
 
     return { paths, fallback: false }
@@ -47,10 +48,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const shopItems = await readCache(".shopCache")
+    const shopItems: Product[] = await readCache(".shopCache")
 
     const id = params?.id
-    const item = id && shopItems.find((item) => item.id === id)
+    const item = id && shopItems.find((item) => item.sku === id)
 
     return id && item
       ? { props: { item } }
