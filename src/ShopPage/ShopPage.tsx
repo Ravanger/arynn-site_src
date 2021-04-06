@@ -6,7 +6,7 @@ import Spacer from "src/common/Spacer"
 import ShopItems from "./ShopItems"
 import { Fragment, useRef, useState } from "react"
 import { IoMenu, IoTriangle } from "react-icons/io5"
-import { useClickOutside } from "util/handlers"
+import { useClickOutside } from "util/clickHandlers"
 
 const SHOP_FILTERS = ["", "Prints", "Stickers", "Custom", "Originals"]
 

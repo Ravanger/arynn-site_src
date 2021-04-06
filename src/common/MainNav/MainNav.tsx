@@ -6,7 +6,7 @@ import { artFilterAtom } from "atoms/store"
 import { useRouter } from "next/router"
 import { IoMenu, IoTriangle } from "react-icons/io5"
 import Spacer from "src/common/Spacer"
-import { useClickOutside } from "util/handlers"
+import { useClickOutside } from "util/clickHandlers"
 import { useShoppingCart } from "use-shopping-cart"
 
 const MainNav = () => {
