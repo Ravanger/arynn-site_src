@@ -41,16 +41,24 @@ export const getShopItems = async () => {
   const rawData: StrapiFetchShopDataType[] = await getDataFromUrl(shopItemsUrl)
   if (!rawData) throw new Error("Error fetching data")
 
-  const shopItems: Product[] = rawData.map((item) => ({
-    sku: item.id.toString(),
-    name: item.title,
-    currency: CURRENCY,
-    description: item.description,
-    image: process.env.BACKEND_URL + item.images[0].url,
-    price: item.price,
-    type: item.type,
-    images: item.images,
-  }))
+  const shopItems: Product[] = rawData.map((item) => {
+    const stripeProduct = {
+      sku: item.id.toString(),
+      name: item.title,
+      currency: CURRENCY,
+      description: item.description,
+      image: process.env.BACKEND_URL + item.images[0].url,
+      price: item.price,
+      product_data: {
+        metadata: {
+          type: item.type,
+        },
+      },
+      images: item.images,
+    }
+
+    return stripeProduct
+  })
 
   return shopItems
 }

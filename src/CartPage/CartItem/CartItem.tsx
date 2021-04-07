@@ -26,7 +26,12 @@ const CartItem = (props: CartItemType) => (
       <Spacer />
       <HeaderBar>{props.item.name}</HeaderBar>
       <Spacer />
-      <h3>{SplitAndCapitalizeFirstWord(props.item.type, "_")}</h3>
+      <h3>
+        {SplitAndCapitalizeFirstWord(
+          props.item.product_data?.metadata.type || "",
+          "_"
+        )}
+      </h3>
       <Spacer />
       <p className="text-justify">{props.item.description}</p>
       <Spacer size="2rem" />
