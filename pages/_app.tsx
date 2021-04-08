@@ -9,6 +9,7 @@ import { CURRENCY, getStripe } from "util/stripe"
 // TODO: Meta info
 // TODO: Accessibility
 // Dumb components, move all data to "pages"
+// Custom product store page
 
 interface AppLayoutProps extends AppProps {
   Component: PageWithLayoutType
