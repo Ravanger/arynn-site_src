@@ -26,7 +26,7 @@ export const getArtItems = async () => {
     id: item.id.toString(),
     title: item.title,
     description: item.description,
-    image: process.env.BACKEND_URL + item.image.url,
+    image: item.image.url,
     type: item.type,
     ...(item.shop_item && {
       shopItemUrl: `/shop/${item.shop_item.id.toString()}`,
@@ -47,7 +47,7 @@ export const getShopItems = async () => {
       name: item.title,
       currency: CURRENCY,
       description: item.description,
-      image: process.env.BACKEND_URL + item.images[0].url,
+      image: item.images[0].url,
       price: item.price,
       product_data: {
         metadata: {
@@ -61,4 +61,24 @@ export const getShopItems = async () => {
   })
 
   return shopItems
+}
+
+export const fetchJSON = async (url: string, data?: any) => {
+  const response = await fetch(url, {
+    method: "POST",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+    body: data && JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .catch((error) => {
+      console.error(error)
+      return
+    })
+
+  return response
 }
