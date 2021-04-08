@@ -42,17 +42,17 @@ const getPrevandNextArtItemId = (
 const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter()
   const displayAll = router.query.display === "all"
+  const itemsArray: ArtItemType[] = props.itemsArray
 
   if (props.errors) return <></>
 
   const item: ArtItemType =
-    props.id &&
-    props.itemsArray[getArtItemIndexById(props.id, props.itemsArray)]
+    props.id && itemsArray[getArtItemIndexById(props.id, itemsArray)]
   if (!item || !item.title) throw new Error("Item not found")
 
   const { prevItemId, nextItemId } = getPrevandNextArtItemId(
     item,
-    props.itemsArray,
+    itemsArray,
     displayAll
   )
 
@@ -91,7 +91,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
-    const itemsArray = await readCache(".artcache")
+    let itemsArray: ArtItemType[] = await readCache(".artcache")
+    if (itemsArray.length <= 0) {
+      itemsArray = await getArtItems()
+      await writeCache(itemsArray, ".artcache")
+    }
+
     const id = context.params?.id
 
     return {

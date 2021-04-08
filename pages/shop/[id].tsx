@@ -48,7 +48,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const shopItems: Product[] = await readCache(".shopCache")
+    let shopItems: Product[] = await readCache(".shopCache")
+    if (shopItems.length <= 0) {
+      shopItems = await getShopItems()
+      await writeCache(shopItems, ".shopCache")
+    }
 
     const id = params?.id
     const item = id && shopItems.find((item) => item.sku === id)
