@@ -54,6 +54,7 @@ module.exports = {
   variants: {
     extend: {
       backgroundColor: ["active"],
+      textColor: ["active"],
       gridRow: ["children-first"],
       inset: ["even"],
     },
