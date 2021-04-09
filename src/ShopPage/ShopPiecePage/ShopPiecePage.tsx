@@ -7,8 +7,6 @@ import Button from "src/common/Button"
 import { formatCurrencyString } from "use-shopping-cart"
 import { CURRENCY } from "util/stripe"
 
-// TODO: Images carousel
-
 const ShopPiecePage = (props: ShopPiecePageTypes) => {
   return (
     <>

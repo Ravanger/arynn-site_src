@@ -5,12 +5,6 @@ import "../styles/tailwind.css"
 import { CartProvider } from "use-shopping-cart"
 import { CURRENCY, getStripe } from "util/stripe"
 
-// TODO: 404 page
-// TODO: Meta info
-// TODO: Accessibility
-// Dumb components, move all data to "pages"
-// Custom product store page
-
 interface AppLayoutProps extends AppProps {
   Component: PageWithLayoutType
 }

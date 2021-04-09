@@ -37,8 +37,6 @@ const getPrevandNextArtItemId = (
   return { prevItemId, nextItemId }
 }
 
-// TODO: Errors
-
 const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter()
   const displayAll = router.query.display === "all"
