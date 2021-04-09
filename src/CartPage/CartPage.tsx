@@ -6,6 +6,7 @@ import { CURRENCY } from "util/stripe"
 import { Fragment, MouseEventHandler } from "react"
 import Stripe from "stripe"
 import { fetchJSON } from "util/dataFetching"
+import Button from "src/common/Button"
 
 interface ErrorResponseType {
   statusCode: number
@@ -42,24 +43,35 @@ const CartPage = () => {
   }
 
   return (
-    <div className="space-y-4">
-      {cartItems.map((cartItem) => (
-        <Fragment key={cartItem.sku}>
-          <CartItem
-            item={cartItem}
-            removeCartItem={() => removeItem(cartItem.sku)}
-          />
+    <>
+      <div>
+        <HeaderBar>Your Cart</HeaderBar>
+        <Spacer size="2rem" />
+        {cartItems.map((cartItem) => (
+          <Fragment key={cartItem.sku}>
+            <CartItem
+              item={cartItem}
+              removeCartItem={() => removeItem(cartItem.sku)}
+            />
+            <Spacer size="2rem" />
+          </Fragment>
+        ))}
+      </div>
+      <div className="w-full md:flex md:flex-row md:justify-end">
+        <div className="md:w-1/3">
+          <div className="flex flex-row items-center gap-4 justify-center">
+            <HeaderBar hrClassName="hidden flex-grow flex-shrink border-1 border-blue border-solid md:block" />
+            <span className="text-3xl">
+              {formatCurrencyString({ value: totalPrice, currency: CURRENCY })}
+            </span>
+          </div>
           <Spacer />
-          <HeaderBar />
-          <Spacer />
-        </Fragment>
-      ))}
-      <span>
-        Total: {formatCurrencyString({ value: totalPrice, currency: CURRENCY })}
-      </span>
-      <button onClick={clearCart}>Clear cart</button>
-      <button onClick={handleCheckout}>Checkout</button>
-    </div>
+          <Button onClick={handleCheckout} className="md:col-start-4">
+            Checkout
+          </Button>
+        </div>
+      </div>
+    </>
   )
 }
 
