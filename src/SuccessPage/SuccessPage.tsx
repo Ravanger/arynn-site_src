@@ -1,7 +1,10 @@
 import Link from "next/link"
 import Spacer from "src/common/Spacer"
+import { useShoppingCart } from "use-shopping-cart"
 
 const SuccessPage = () => {
+  useShoppingCart().clearCart()
+
   return (
     <>
       <h2>Thank you for your order!</h2>
