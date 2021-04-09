@@ -7,8 +7,9 @@ import {
 } from "react-icons/fa"
 import Spacer from "src/common/Spacer"
 import ResponsiveImage from "src/common/ResponsiveImage"
+import { AboutBlurbType } from "./AboutBlurb.types"
 
-const AboutBlurb = () => {
+const AboutBlurb = (props: AboutBlurbType) => {
   const styledLi = (child: React.ReactNode) => (
     <li className="p-4 text-center bg-blue hover:bg-pink active:bg-blue-light rounded-2xl text-2xl text-white">
       {child}
@@ -37,41 +38,51 @@ const AboutBlurb = () => {
         {headerText("@artsyarynn across all platforms!")}
         <Spacer size="2rem" />
         <ul className="flex flex-row flex-nowrap justify-between">
-          <a
-            href="http://www.facebook.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {styledLi(<FaFacebookF />)}
-          </a>
-          <a
-            href="http://www.instagram.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {styledLi(<FaInstagram />)}
-          </a>
-          <a
-            href="http://www.twitter.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {styledLi(<FaTwitter />)}
-          </a>
-          <a
-            href="http://www.hotmail.ca/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {styledLi(<FaEnvelope />)}
-          </a>
-          <a
-            href="http://www.patreon.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {styledLi(<FaPatreon />)}
-          </a>
+          {props.socialLinks.facebook && (
+            <a
+              href={props.socialLinks.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {styledLi(<FaFacebookF />)}
+            </a>
+          )}
+          {props.socialLinks.instagram && (
+            <a
+              href={props.socialLinks.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {styledLi(<FaInstagram />)}
+            </a>
+          )}
+          {props.socialLinks.twitter && (
+            <a
+              href={props.socialLinks.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {styledLi(<FaTwitter />)}
+            </a>
+          )}
+          {props.socialLinks.email && (
+            <a
+              href={`mailto:${props.socialLinks.email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {styledLi(<FaEnvelope />)}
+            </a>
+          )}
+          {props.socialLinks.patreon && (
+            <a
+              href={props.socialLinks.patreon}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {styledLi(<FaPatreon />)}
+            </a>
+          )}
         </ul>
       </div>
     </div>

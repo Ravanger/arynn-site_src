@@ -8,6 +8,7 @@ import { IoMenu, IoTriangle } from "react-icons/io5"
 import Spacer from "src/common/Spacer"
 import { useClickOutside } from "util/clickHandlers"
 import { useShoppingCart } from "use-shopping-cart"
+import { socialLinks } from "src/common/socials"
 
 const MainNav = () => {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false)
@@ -35,12 +36,26 @@ const MainNav = () => {
       sublinks: [
         {
           text: "Instagram",
-          url: "https://www.instagram.com/artsyarynn",
+          url: socialLinks.instagram || "https://www.instagram.com/artsyarynn",
           external: true,
         },
-        { text: "Patreon", url: "https://www.pateron.com", external: true },
-        { text: "Twitter", url: "https://www.twitter.com", external: true },
-        { text: "Email", url: "https://www.hotmail.ca", external: true },
+        {
+          text: "Patreon",
+          url: socialLinks.patreon || "https://www.pateron.com",
+          external: true,
+        },
+        {
+          text: "Twitter",
+          url: socialLinks.twitter || "https://www.twitter.com",
+          external: true,
+        },
+        {
+          text: "Email",
+          url: socialLinks.email
+            ? `mailto:${socialLinks.email}`
+            : "https://www.hotmail.ca",
+          external: true,
+        },
       ],
     },
     {
