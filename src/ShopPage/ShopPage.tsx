@@ -24,7 +24,7 @@ const ShopPage = (props: ShopPageType) => {
           size="1.5rem"
         />
         <div
-          className={`bg-pink px-6 py-4 mx-auto ${
+          className={`bg-pink px-6 py-4 mx-auto shadow-md ${
             isShopMenuOpen ? "w-48 rounded-t-xl2" : "w-min rounded-xl2"
           } lg:w-full lg:bg-white`}
           ref={shopMenuRef}

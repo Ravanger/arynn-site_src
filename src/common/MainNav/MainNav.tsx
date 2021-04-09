@@ -98,7 +98,7 @@ const MainNav = () => {
         size="1.5rem"
       />
       <div
-        className="bg-white w-auto text-center max-w-5xl overflow-hidden rounded-xl2 px-16 py-4 lg:rounded-xl4 lg:static lg:w-full lg:p-8"
+        className="bg-white w-auto text-center max-w-5xl overflow-hidden rounded-xl2 px-16 py-4 shadow-md lg:rounded-xl4 lg:static lg:w-full lg:p-8"
         ref={mainMenuRef}
       >
         <button
