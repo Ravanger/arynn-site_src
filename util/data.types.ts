@@ -66,3 +66,13 @@ export interface StrapiFetchShopDataType {
     }
   ]
 }
+
+export interface ErrorResponseType {
+  statusCode: number
+  message: string
+}
+
+export interface MenuItemType {
+  text: string
+  url: string
+}

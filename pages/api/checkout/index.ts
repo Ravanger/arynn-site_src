@@ -4,6 +4,7 @@ import Stripe from "stripe"
 import { getShopItems } from "util/dataFetching"
 import { CartDetails, Product } from "use-shopping-cart"
 import { readFile } from "util/cache"
+import { ErrorResponseType } from "util/data.types"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2020-08-27",
@@ -38,7 +39,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json(checkoutSession)
     } catch (error) {
       console.error(error)
-      res.status(500).json({ statusCode: 500, message: error.message })
+      res
+        .status(500)
+        .json({ statusCode: 500, message: error.message } as ErrorResponseType)
     }
   } else {
     res.setHeader("Allow", "POST")

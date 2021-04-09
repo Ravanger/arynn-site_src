@@ -1,9 +1,9 @@
 import Link from "next/link"
 import Spacer from "src/common/Spacer"
-import { useShoppingCart } from "use-shopping-cart"
+import { SuccessPageType } from "./SuccessPage.types"
 
-const SuccessPage = () => {
-  useShoppingCart().clearCart()
+const SuccessPage = (props: SuccessPageType) => {
+  props.clearCart()
 
   return (
     <>

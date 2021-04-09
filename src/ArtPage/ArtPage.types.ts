@@ -9,4 +9,5 @@ export interface ArtItemType {
 
 export interface ArtPageType {
   artItems: ArtItemType[]
+  artFilter: string
 }

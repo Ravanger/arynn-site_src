@@ -1,4 +1,4 @@
-import { MenuItemType } from "src/HomePage/HomePage.types"
+import { MenuItemType } from "util/data.types"
 
 export interface MenuPropsType {
   menuItems: MenuItemType[]

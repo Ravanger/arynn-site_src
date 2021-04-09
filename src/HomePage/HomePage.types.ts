@@ -1,4 +1,5 @@
-export interface MenuItemType {
-  text: string
-  url: string
+import { MenuItemType } from "util/data.types"
+
+export interface HomePageType {
+  menuItems: MenuItemType[]
 }

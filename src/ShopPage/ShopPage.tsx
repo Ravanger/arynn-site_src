@@ -1,21 +1,11 @@
-import { useAtom } from "jotai"
-import { shopFilterAtom } from "atoms/store"
 import { ShopPageType } from "./ShopPage.types"
 import HeaderBar from "src/common/HeaderBar"
 import Spacer from "src/common/Spacer"
 import ShopItems from "./ShopItems"
-import { Fragment, useRef, useState } from "react"
+import { Fragment } from "react"
 import { IoMenu, IoTriangle } from "react-icons/io5"
-import { useClickOutside } from "util/clickHandlers"
-
-const SHOP_FILTERS = ["", "Prints", "Stickers", "Custom", "Originals"]
 
 const ShopPage = (props: ShopPageType) => {
-  const [shopFilter, setShopFilter] = useAtom(shopFilterAtom)
-  const [isShopMenuOpen, setIsShopMenuOpen] = useState(false)
-  const shopMenuRef = useRef(null)
-  useClickOutside(shopMenuRef, () => setIsShopMenuOpen(false))
-
   return (
     <>
       <div>
@@ -25,9 +15,9 @@ const ShopPage = (props: ShopPageType) => {
         />
         <div
           className={`bg-pink px-6 py-4 mx-auto shadow-md ${
-            isShopMenuOpen ? "w-48 rounded-t-xl2" : "w-min rounded-xl2"
+            props.isShopMenuOpen ? "w-48 rounded-t-xl2" : "w-min rounded-xl2"
           } lg:w-full lg:bg-white lg:shadow-none`}
-          ref={shopMenuRef}
+          ref={props.shopMenuRef}
         >
           <HeaderBar
             isMenu
@@ -37,27 +27,27 @@ const ShopPage = (props: ShopPageType) => {
             <button
               className="cursor-pointer text-center text-white hover:text-blue-light w-auto align-middle lg:hidden"
               onClick={() => {
-                setIsShopMenuOpen(!isShopMenuOpen)
+                props.setIsShopMenuOpen(!props.isShopMenuOpen)
               }}
             >
               <IoMenu size="2rem" className="" />
             </button>
             <ul
               className={`${
-                isShopMenuOpen ? "flex" : "hidden"
+                props.isShopMenuOpen ? "flex" : "hidden"
               } absolute z-10 flex-col flex-nowrap right-0 left-0 mx-auto bg-pink w-48 rounded-b-xl2 space-y-2 py-4 lg:flex lg:flex-row lg:static lg:space-x-3 lg:space-y-0 lg:w-full lg:py-0 lg:bg-white`}
             >
-              {SHOP_FILTERS.map((filter, index) => {
+              {props.shopFiltersList.map((filter, index) => {
                 return (
                   <Fragment key={filter + index}>
                     <li>
                       <button
                         onClick={() => {
-                          setShopFilter(filter)
-                          setIsShopMenuOpen(false)
+                          props.setShopFilter(filter)
+                          props.setIsShopMenuOpen(false)
                         }}
                         className={`font-bold border-0 cursor-pointer text-lg text-white hover:text-blue-light lg:hover:text-pink lg:text-2xl ${
-                          filter === shopFilter
+                          filter === props.shopFilter
                             ? "italic lg:text-pink"
                             : "lg:text-blue"
                         }`}
@@ -74,7 +64,7 @@ const ShopPage = (props: ShopPageType) => {
         </div>
       </div>
       <Spacer size="2rem" />
-      <ShopItems shopFilter={shopFilter} shopItems={props.shopItems} />
+      <ShopItems shopFilter={props.shopFilter} shopItems={props.shopItems} />
     </>
   )
 }

@@ -1,6 +1,7 @@
 import SEO from "src/common/SEO"
 import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import SuccessPage from "src/SuccessPage"
+import { useShoppingCart } from "use-shopping-cart"
 
 const Success = () => {
   return (
@@ -10,7 +11,7 @@ const Success = () => {
         description="Thank you for your order"
         url="/success"
       />
-      <SuccessPage />
+      <SuccessPage clearCart={() => useShoppingCart().clearCart()} />
     </>
   )
 }
