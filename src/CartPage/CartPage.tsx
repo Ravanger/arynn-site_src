@@ -60,7 +60,7 @@ const CartPage = () => {
       <div className="w-full md:flex md:flex-row md:justify-end">
         <div className="md:w-1/3">
           <div className="flex flex-row items-center gap-4 justify-center">
-            <HeaderBar hrClassName="hidden flex-grow flex-shrink border-1 border-blue border-solid md:block" />
+            <HeaderBar hrClassName="flex-grow flex-shrink border-1 border-blue border-solid" />
             <span className="text-3xl">
               {formatCurrencyString({ value: totalPrice, currency: CURRENCY })}
             </span>

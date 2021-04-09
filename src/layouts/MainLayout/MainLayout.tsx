@@ -7,8 +7,7 @@ import { IoTriangle } from "react-icons/io5"
 
 const MainLayout = (props: LayoutProps) => {
   return (
-    <div className="w-full flex flex-col items-center">
-      <Spacer size="2rem" />
+    <div className="w-full flex flex-col items-center p-8 pb-0">
       <MainNav />
       <Spacer size="2rem" />
       <ContentBox>{props.children}</ContentBox>

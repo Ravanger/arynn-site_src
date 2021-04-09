@@ -7,7 +7,7 @@ import { CURRENCY } from "util/stripe"
 import { formatCurrencyString } from "use-shopping-cart"
 
 const CartItem = (props: CartItemType) => (
-  <div className="border-15 border-blue rounded-xl p-8 relative grid gap-8 md:gap-16 md:grid-cols-3 md:items-center">
+  <div className="border-15 border-blue rounded-xl p-10 relative grid gap-8 md:gap-16 md:grid-cols-3 md:items-center">
     <button onClick={props.removeCartItem} className="absolute right-4 top-4">
       <FaWindowClose
         size="1.2rem"
@@ -25,9 +25,9 @@ const CartItem = (props: CartItemType) => (
       />
     </div>
     <div className="italic md:text-left">
-      <h3 className="text-2xl">{props.item.name}</h3>
+      <h3 className="text-2xl font-bold">{props.item.name}</h3>
+      <Spacer />
       <p className="md:text-justify text-sm">{props.item.description}</p>
-      <Spacer size="2rem" />
     </div>
     <div className="flex flex-row items-center gap-4 justify-center">
       <HeaderBar hrClassName="hidden flex-grow flex-shrink border-1 border-blue border-solid md:block" />
