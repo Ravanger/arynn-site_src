@@ -5,7 +5,7 @@ import { formatCurrencyString, useShoppingCart } from "use-shopping-cart"
 import { CURRENCY } from "util/stripe"
 import { Fragment, MouseEventHandler } from "react"
 import Stripe from "stripe"
-import { fetchJSON } from "util/dataFetching"
+import { fetchData } from "util/dataFetching"
 import Button from "src/common/Button"
 
 interface ErrorResponseType {
@@ -31,7 +31,7 @@ const CartPage = () => {
     if (cartCount <= 0) return
 
     const response: Stripe.Checkout.Session &
-      ErrorResponseType = await fetchJSON("/api/checkout", cartDetails)
+      ErrorResponseType = await fetchData("/api/checkout", cartDetails)
 
     if (response.statusCode === 500) {
       console.error(response.message)

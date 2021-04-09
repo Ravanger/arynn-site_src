@@ -3,7 +3,7 @@ import { validateCartItems } from "use-shopping-cart/src/serverUtil"
 import Stripe from "stripe"
 import { getShopItems } from "util/dataFetching"
 import { CartDetails, Product } from "use-shopping-cart"
-import { readCache } from "util/cache"
+import { readFile } from "util/cache"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2020-08-27",
@@ -12,7 +12,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
-      let shopItems: Product[] = await readCache(".shopCache")
+      let shopItems: Product[] = await readFile(".shopCache")
       if (shopItems.length <= 0) shopItems = await getShopItems()
 
       const cartItems: CartDetails = req.body

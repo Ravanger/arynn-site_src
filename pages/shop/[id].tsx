@@ -3,7 +3,7 @@ import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import SEO from "src/common/SEO"
 import ShopPiecePage from "src/ShopPage/ShopPiecePage"
 import { getShopItems } from "util/dataFetching"
-import { readCache, writeCache } from "util/cache"
+import { readFile, writeFile } from "util/cache"
 import { Product, useShoppingCart } from "use-shopping-cart"
 import { itemIdExistsInCart } from "util/stripe"
 
@@ -33,7 +33,7 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const shopItems = await getShopItems()
-    await writeCache(shopItems, ".shopCache")
+    await writeFile(shopItems, ".shopCache")
 
     const paths = shopItems.map((item) => ({
       params: { id: item.sku },
@@ -48,10 +48,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    let shopItems: Product[] = await readCache(".shopCache")
+    let shopItems: Product[] = await readFile(".shopCache")
     if (shopItems.length <= 0) {
       shopItems = await getShopItems()
-      await writeCache(shopItems, ".shopCache")
+      await writeFile(shopItems, ".shopCache")
     }
 
     const id = params?.id

@@ -3,39 +3,9 @@ import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import SEO from "src/common/SEO"
 import ArtPiecePage from "src/ArtPage/ArtPiecePage"
 import { ArtItemType } from "src/ArtPage/ArtPage.types"
-import { readCache, writeCache } from "util/cache"
+import { readFile, writeFile } from "util/cache"
 import { useRouter } from "next/router"
 import { getArtItems } from "util/dataFetching"
-
-const getArtItemIndexById = (
-  id: string | string[],
-  itemsArray: ArtItemType[]
-) => {
-  return itemsArray.findIndex((item) => item.id === id)
-}
-
-const getPrevandNextArtItemId = (
-  artItem: ArtItemType,
-  itemsArray: ArtItemType[],
-  displayAll: boolean
-) => {
-  let prevItemId = "-1"
-  let nextItemId = "-1"
-
-  const filteredArray = displayAll
-    ? itemsArray
-    : itemsArray.filter((item) => item.type === artItem.type)
-
-  const arrLength = filteredArray.length
-  const itemIndex = filteredArray.findIndex((item) => item.id === artItem.id)
-
-  if (itemIndex !== -1) {
-    prevItemId = filteredArray[(itemIndex + arrLength - 1) % arrLength].id
-    nextItemId = filteredArray[(itemIndex + 1) % arrLength].id
-  }
-
-  return { prevItemId, nextItemId }
-}
 
 const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter()
@@ -43,6 +13,36 @@ const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const itemsArray: ArtItemType[] = props.itemsArray
 
   if (props.errors) return <></>
+
+  const getArtItemIndexById = (
+    id: string | string[],
+    itemsArray: ArtItemType[]
+  ) => {
+    return itemsArray.findIndex((item) => item.id === id)
+  }
+
+  const getPrevandNextArtItemId = (
+    artItem: ArtItemType,
+    itemsArray: ArtItemType[],
+    displayAll: boolean
+  ) => {
+    let prevItemId = "-1"
+    let nextItemId = "-1"
+
+    const filteredArray = displayAll
+      ? itemsArray
+      : itemsArray.filter((item) => item.type === artItem.type)
+
+    const arrLength = filteredArray.length
+    const itemIndex = filteredArray.findIndex((item) => item.id === artItem.id)
+
+    if (itemIndex !== -1) {
+      prevItemId = filteredArray[(itemIndex + arrLength - 1) % arrLength].id
+      nextItemId = filteredArray[(itemIndex + 1) % arrLength].id
+    }
+
+    return { prevItemId, nextItemId }
+  }
 
   const item: ArtItemType =
     props.id && itemsArray[getArtItemIndexById(props.id, itemsArray)]
@@ -74,7 +74,7 @@ const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const artItems = await getArtItems()
-    await writeCache(artItems, ".artcache")
+    await writeFile(artItems, ".artcache")
 
     const paths = artItems.map((item) => ({
       params: { id: item.id },
@@ -89,10 +89,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
-    let itemsArray: ArtItemType[] = await readCache(".artcache")
+    let itemsArray: ArtItemType[] = await readFile(".artcache")
     if (itemsArray.length <= 0) {
       itemsArray = await getArtItems()
-      await writeCache(itemsArray, ".artcache")
+      await writeFile(itemsArray, ".artcache")
     }
 
     const id = context.params?.id

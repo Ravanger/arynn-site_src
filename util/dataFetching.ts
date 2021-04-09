@@ -3,23 +3,33 @@ import { Product } from "use-shopping-cart"
 import { StrapiFetchArtDataType, StrapiFetchShopDataType } from "./data.types"
 import { CURRENCY } from "./stripe"
 
-export const getDataFromUrl = async (url: RequestInfo) => {
-  try {
-    const res = await fetch(url)
-    if (!res.ok) {
-      throw new Error(res.statusText)
-    }
-    const rawData = await res.json()
-    return rawData
-  } catch (error) {
-    console.error("Error fetching data: ", error)
-    return null
-  }
+export const fetchData = async (url: string, data?: any, method?: string) => {
+  const response = await fetch(url, {
+    method: method || "POST",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+    body: data && JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .catch((error) => {
+      console.error(error)
+      return
+    })
+
+  return response
 }
 
 export const getArtItems = async () => {
   const artItemsUrl = process.env.BACKEND_URL + "/art-items"
-  const rawData: StrapiFetchArtDataType[] = await getDataFromUrl(artItemsUrl)
+  const rawData: StrapiFetchArtDataType[] = await fetchData(
+    artItemsUrl,
+    null,
+    "GET"
+  )
   if (!rawData) throw new Error("Error fetching data")
 
   const artItems: ArtItemType[] = rawData.map((item) => ({
@@ -38,7 +48,11 @@ export const getArtItems = async () => {
 
 export const getShopItems = async () => {
   const shopItemsUrl = process.env.BACKEND_URL + "/shop-items"
-  const rawData: StrapiFetchShopDataType[] = await getDataFromUrl(shopItemsUrl)
+  const rawData: StrapiFetchShopDataType[] = await fetchData(
+    shopItemsUrl,
+    null,
+    "GET"
+  )
   if (!rawData) throw new Error("Error fetching data")
 
   const shopItems: Product[] = rawData.map((item) => {
@@ -61,24 +75,4 @@ export const getShopItems = async () => {
   })
 
   return shopItems
-}
-
-export const fetchJSON = async (url: string, data?: any) => {
-  const response = await fetch(url, {
-    method: "POST",
-    mode: "cors",
-    cache: "no-cache",
-    credentials: "same-origin",
-    headers: { "Content-Type": "application/json" },
-    redirect: "follow",
-    referrerPolicy: "no-referrer",
-    body: data && JSON.stringify(data),
-  })
-    .then((res) => res.json())
-    .catch((error) => {
-      console.error(error)
-      return
-    })
-
-  return response
 }
