@@ -4,4 +4,5 @@ import { Product } from "use-shopping-cart"
 export interface ShopPiecePageTypes {
   item: Product
   addToCartFunc: MouseEventHandler<HTMLButtonElement>
+  isInCart: boolean
 }

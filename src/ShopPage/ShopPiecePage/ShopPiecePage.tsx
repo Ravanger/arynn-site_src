@@ -32,10 +32,12 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
             })}
           </span>
           <Button
-            className="col-span-3 md:col-span-1 md:col-start-3 animate-scaleExpandIn hover:animate-scaleExpandOut"
+            className={`col-span-3 md:col-span-1 md:col-start-3 animate-scaleExpandIn hover:animate-scaleExpandOut ${
+              props.isInCart ? "opacity-50 text-xs" : ""
+            }`}
             onClick={props.addToCartFunc}
           >
-            Add to Cart
+            {props.isInCart ? "Already in Cart" : "Add to Cart"}
           </Button>
         </div>
       </main>

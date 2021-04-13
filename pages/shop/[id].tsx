@@ -6,13 +6,18 @@ import { getShopItems } from "util/dataFetching"
 import { readFile, writeFile } from "util/cache"
 import { Product, useShoppingCart } from "use-shopping-cart"
 import { itemIdExistsInCart } from "util/stripe"
+import { useEffect, useState } from "react"
 
 const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   if (props.errors) return <></>
 
   const { addItem, cartDetails } = useShoppingCart()
   const shopItem: Product = props.item
-  console.log(shopItem.name)
+
+  const [itemIsInCart, setItemIsInCart] = useState(false)
+  useEffect(() => {
+    setItemIsInCart(itemIdExistsInCart(cartDetails, shopItem.sku))
+  }, [cartDetails, shopItem])
 
   return (
     <>
@@ -23,9 +28,8 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       />
       <ShopPiecePage
         item={shopItem}
-        addToCartFunc={() =>
-          !itemIdExistsInCart(cartDetails, shopItem.sku) && addItem(shopItem, 1)
-        }
+        addToCartFunc={() => !itemIsInCart && addItem(shopItem, 1)}
+        isInCart={itemIsInCart}
       />
     </>
   )
