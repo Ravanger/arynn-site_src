@@ -4,7 +4,7 @@ const ContactForm = () => {
   return (
     <form
       method="POST"
-      className="grid w-full gap-4 grid-cols-1 md:grid-cols-4"
+      className="grid w-full gap-4 grid-cols-1 text-xs md:grid-cols-4"
     >
       <input
         type="text"

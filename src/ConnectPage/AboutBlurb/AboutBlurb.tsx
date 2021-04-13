@@ -11,31 +11,36 @@ import { AboutBlurbType } from "./AboutBlurb.types"
 
 const AboutBlurb = (props: AboutBlurbType) => {
   const styledLi = (child: React.ReactNode) => (
-    <li className="p-4 text-center bg-blue hover:bg-pink active:bg-blue-light rounded-2xl text-2xl text-white">
+    <li className="text-center bg-blue hover:bg-pink active:bg-blue-light text-white rounded-xl p-3 text-sm md:text-2xl md:p-4 md:rounded-2xl">
       {child}
     </li>
   )
 
   const headerText = (text: string) => (
-    <h2 className="text-pink text-2xl text-center md:text-left">{text}</h2>
+    <h2 className="text-pink text-center text- md:text-left md:text-2xl">
+      {text}
+    </h2>
   )
 
   return (
     <div className="grid w-full items-stretch justify-items-stretch gap-8 grid-cols-1 md:grid-rows-2 md:grid-cols-2/3 md:children:first:row-span-2">
       <ResponsiveImage src="/images/new_self_portrait.svg" alt="Arynn" />
       <main>
-        {headerText("My name is Arynn")}
+        <h2 className="text-pink text-center text-2xl md:text-left">
+          My name is Arynn
+        </h2>
         <Spacer size="1rem" />
-        <p className="text-lg text-justify">
+        <p className="text-center text-sm md:text-lg md:text-left">
           This is a blurb about me, I don’t know what to write right now because
           I am very tired and writing about yourself is very difficult. Words.
           Hi Boris. I bet you’re reading this because I wont update this. Can
           you make me a cup of tea? I love you. Keep being you.
         </p>
-        <Spacer size="1rem" />
       </main>
       <div className="self-end">
-        {headerText("@artsyarynn across all platforms!")}
+        <h2 className="text-pink text-center text-xs md:text-left md:text-2xl">
+          @artsyarynn across all platforms!
+        </h2>
         <Spacer size="2rem" />
         <ul className="flex flex-row flex-nowrap justify-between">
           {props.socialLinks.facebook && (
