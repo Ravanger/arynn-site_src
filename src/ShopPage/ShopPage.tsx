@@ -15,10 +15,8 @@ const ShopPage = (props: ShopPageType) => {
         />
         <div
           className={`bg-pink px-6 py-4 mx-auto shadow-md ${
-            props.isShopMenuOpen
-              ? "max-w-48 rounded-t-xl2"
-              : "w-min rounded-xl2"
-          } lg:w-full lg:bg-white lg:shadow-none`}
+            props.isShopMenuOpen ? "rounded-t-xl2 w-48" : "rounded-xl2 w-36"
+          } lg:w-full lg:bg-white lg:shadow-none lg:p-0`}
           ref={props.shopMenuRef}
         >
           <HeaderBar
@@ -27,7 +25,7 @@ const ShopPage = (props: ShopPageType) => {
             hrClassName="hidden lg:block lg:flex-grow lg:flex-shrink lg:border-15 lg:border-blue lg:border-solid"
           >
             <button
-              className="cursor-pointer text-center text-white hover:text-blue-light w-auto align-middle lg:hidden animate-scaleExpandIn hover:animate-scaleExpandOut"
+              className="animate-scaleExpandIn hover:animate-scaleExpandOut cursor-pointer text-center text-white hover:text-blue-light w-auto align-middle lg:hidden"
               onClick={() => {
                 props.setIsShopMenuOpen(!props.isShopMenuOpen)
               }}
@@ -53,7 +51,7 @@ const ShopPage = (props: ShopPageType) => {
                             props.setShopFilter(filter)
                             props.setIsShopMenuOpen(false)
                           }}
-                          className={`font-bold border-0 cursor-pointer text-lg text-white hover:text-blue-light transform animate-scaleExpandIn hover:animate-scaleExpandOut lg:hover:text-pink lg:text-2xl ${
+                          className={`font-bold border-0 cursor-pointer text-lg text-white hover:text-blue-light transform animate-scaleExpandIn hover:animate-scaleExpandOut lg:hover:text-pink lg:text-2xl lg:leading-10 ${
                             filter === props.shopFilter
                               ? "italic lg:text-pink"
                               : "lg:text-blue"

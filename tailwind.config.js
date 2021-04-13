@@ -47,10 +47,14 @@ module.exports = {
         "6/10": "60%",
       },
       maxWidth: {
+        24: "6rem",
         48: "12rem",
       },
       inset: {
         "15p": "15%",
+      },
+      padding: {
+        0.5: "0.2rem",
       },
       keyframes: {
         growDown: {
@@ -59,11 +63,11 @@ module.exports = {
         },
         scaleExpandOut: {
           from: { transform: "scale(1)" },
-          to: { transform: "scale(1.2)" },
+          to: { transform: "scale(1.1)" },
         },
         scaleExpandIn: {
           to: { transform: "scale(1)" },
-          from: { transform: "scale(1.2)" },
+          from: { transform: "scale(1.1)" },
         },
       },
       animation: {

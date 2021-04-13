@@ -16,7 +16,7 @@ const HeaderBar = (props: HeaderBarProps) => {
       } ${props.className ? props.className : ""}`}
     >
       {styledHr(props.hrClassName)}
-      <span className="px-4 flex-initial">{props.children}</span>
+      <span className="flex-initial px-12">{props.children}</span>
       {styledHr(props.hrClassName)}
     </header>
   ) : (
