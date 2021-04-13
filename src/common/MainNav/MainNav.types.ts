@@ -1,9 +1,8 @@
-export interface NavItemsType {
-  text: string
-  url: string
-  filters?: {
-    text: string
-    type: "paintings" | "comics" | "digital_art" | "design"
-  }[]
-  sublinks?: { text: string; url: string; external?: boolean }[]
+import { Dispatch, LegacyRef } from "react"
+
+export interface MainNavPropsType {
+  mainMenuRef: LegacyRef<HTMLDivElement>
+  setIsMainMenuOpen: Dispatch<React.SetStateAction<boolean>>
+  isMainMenuOpen: boolean
+  mainMenu: JSX.Element[]
 }
