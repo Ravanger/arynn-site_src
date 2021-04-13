@@ -1,4 +1,3 @@
-import { Fragment } from "react"
 import Spacer from "src/common/Spacer"
 import ShopItemCard from "./ShopItemCard"
 import { ShopItemProps } from "./ShopItems.types"

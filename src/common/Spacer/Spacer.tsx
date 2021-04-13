@@ -11,7 +11,9 @@ const Spacer = (props: SpacerProps) => {
 
   return (
     <span
-      className={`block w-1 h-1 min-h-1 min-w-1 ${props.className}`}
+      className={`block w-1 h-1 min-h-1 min-w-1 ${
+        props.className ? props.className : ""
+      }`}
       id={props.id}
       style={{
         ...(width && { width: width }),
