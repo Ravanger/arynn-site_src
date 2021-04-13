@@ -12,12 +12,13 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   const { addItem, cartDetails } = useShoppingCart()
   const shopItem: Product = props.item
+  console.log(shopItem.name)
 
   return (
     <>
       <SEO
-        title={"Shop: " + shopItem.title}
-        description={`Arynn's Shop - ${shopItem.title}: ${shopItem.description}`}
+        title={"Shop: " + shopItem.name}
+        description={`Arynn's Shop - ${shopItem.name}: ${shopItem.description}`}
         url={"/shop/" + shopItem.sku}
       />
       <ShopPiecePage
