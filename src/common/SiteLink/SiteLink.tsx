@@ -5,7 +5,7 @@ import { MainNavItemProps } from "./SiteLink.types"
 const SiteLink = (props: MainNavItemProps) => {
   const SubLink = (
     <span
-      className={`px-1 cursor-pointer whitespace-nowrap text-pink hover:text-blue ${
+      className={`animate-scaleExpandIn hover:animate-scaleExpandOut px-1 cursor-pointer whitespace-nowrap text-pink hover:text-blue ${
         props.primary && "text-2xl font-bold"
       } ${props.active && "text-blue italic"}`}
     >
@@ -16,7 +16,12 @@ const SiteLink = (props: MainNavItemProps) => {
   return (
     <Link href={props.url ?? ""} passHref scroll={false}>
       {props.filter ? (
-        <button onClick={props.onClick}>{SubLink}</button>
+        <button
+          className="animate-scaleExpandIn hover:animate-scaleExpandOut"
+          onClick={props.onClick}
+        >
+          {SubLink}
+        </button>
       ) : (
         <a
           {...(props.external && {
@@ -26,6 +31,7 @@ const SiteLink = (props: MainNavItemProps) => {
           {...(props.onClick && {
             onClick: props.onClick,
           })}
+          className="animate-scaleExpandIn hover:animate-scaleExpandOut"
         >
           {SubLink}
         </a>

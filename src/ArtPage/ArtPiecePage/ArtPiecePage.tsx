@@ -47,7 +47,7 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
       {props.item.shopItemUrl && (
         <>
           <Spacer size="2rem" />
-          <div className="text-center text-5xl">
+          <div className="inline-block text-center text-5xl animate-scaleExpandIn hover:animate-scaleExpandOut">
             <SiteLink text="Buy" url={props.item.shopItemUrl} />
           </div>
         </>

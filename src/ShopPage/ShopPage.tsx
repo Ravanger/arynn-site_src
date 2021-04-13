@@ -27,7 +27,7 @@ const ShopPage = (props: ShopPageType) => {
             hrClassName="hidden lg:block lg:flex-grow lg:flex-shrink lg:border-15 lg:border-blue lg:border-solid"
           >
             <button
-              className="cursor-pointer text-center text-white hover:text-blue-light w-auto align-middle lg:hidden"
+              className="cursor-pointer text-center text-white hover:text-blue-light w-auto align-middle lg:hidden animate-scaleExpandIn hover:animate-scaleExpandOut"
               onClick={() => {
                 props.setIsShopMenuOpen(!props.isShopMenuOpen)
               }}
@@ -53,7 +53,7 @@ const ShopPage = (props: ShopPageType) => {
                             props.setShopFilter(filter)
                             props.setIsShopMenuOpen(false)
                           }}
-                          className={`font-bold border-0 cursor-pointer text-lg text-white hover:text-blue-light lg:hover:text-pink lg:text-2xl ${
+                          className={`font-bold border-0 cursor-pointer text-lg text-white hover:text-blue-light transform animate-scaleExpandIn hover:animate-scaleExpandOut lg:hover:text-pink lg:text-2xl ${
                             filter === props.shopFilter
                               ? "italic lg:text-pink"
                               : "lg:text-blue"

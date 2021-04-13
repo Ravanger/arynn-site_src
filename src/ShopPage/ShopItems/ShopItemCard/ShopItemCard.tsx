@@ -12,7 +12,9 @@ const ShopItemCard = (props: ShopItemCardProps) => {
         <div className="group text-center text-xl font-bold">
           <ResponsiveImage src={props.item.image!} alt={props.item.name} />
           <Spacer size="1rem" />
-          <h2 className="group-hover:text-pink">{props.item.name}</h2>
+          <h2 className="group-hover:text-pink animate-scaleExpandIn group-hover:animate-scaleExpandOut">
+            {props.item.name}
+          </h2>
           <Spacer size="1rem" />
           <h3 className="text-pink">
             {formatCurrencyString({

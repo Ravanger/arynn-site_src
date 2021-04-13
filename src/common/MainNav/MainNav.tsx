@@ -14,7 +14,7 @@ const MainNav = (props: MainNavPropsType) => {
         ref={props.mainMenuRef}
       >
         <button
-          className="cursor-pointer text-center text-blue hover:text-pink w-auto inline-block align-middle lg:hidden"
+          className="cursor-pointer text-center text-blue hover:text-pink w-auto inline-block align-middle animate-scaleExpandIn hover:animate-scaleExpandOut lg:hidden"
           onClick={() => props.setIsMainMenuOpen(!props.isMainMenuOpen)}
         >
           <IoMenu size="2rem" className="" />

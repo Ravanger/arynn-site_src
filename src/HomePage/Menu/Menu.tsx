@@ -11,7 +11,7 @@ const Menu = (props: MenuPropsType) => {
       <React.Fragment key={item.text}>
         <Spacer size="0.5rem" />
         <div
-          className={`text-center lg:relative z-10 ${
+          className={`animate-scaleExpandIn hover:animate-scaleExpandOut text-center lg:relative z-10 ${
             isButtonTop ? "lg:top-15p" : "lg:top-1/3"
           }`}
         >

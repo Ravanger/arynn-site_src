@@ -34,7 +34,10 @@ const ContactForm = () => {
         className="focus:border-pink md:col-span-4"
         rows={8}
       />
-      <Button type="submit" className="md:col-start-4">
+      <Button
+        type="submit"
+        className="animate-scaleExpandIn hover:animate-scaleExpandOut md:col-start-4"
+      >
         Send!
       </Button>
     </form>

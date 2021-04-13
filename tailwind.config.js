@@ -57,9 +57,19 @@ module.exports = {
           "0%": { maxHeight: 0, opacity: 0 },
           "100%": { maxHeight: "100vh", opacity: 1 },
         },
+        scaleExpandOut: {
+          from: { transform: "scale(1)" },
+          to: { transform: "scale(1.2)" },
+        },
+        scaleExpandIn: {
+          to: { transform: "scale(1)" },
+          from: { transform: "scale(1.2)" },
+        },
       },
       animation: {
         growDown: "growDown 300ms ease-in-out forwards",
+        scaleExpandIn: "scaleExpandIn 60ms ease-in-out forwards",
+        scaleExpandOut: "scaleExpandOut 60ms ease-in-out forwards",
       },
     },
   },
@@ -69,6 +79,7 @@ module.exports = {
       textColor: ["active"],
       gridRow: ["children-first"],
       inset: ["even"],
+      animation: ["hover", "group-hover"],
     },
   },
   plugins: [require("tailwindcss-children")],

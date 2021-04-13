@@ -35,7 +35,10 @@ const CartPage = (props: CartPageType) => {
             </span>
           </div>
           <Spacer />
-          <Button onClick={props.handleCheckout} className="md:col-start-4">
+          <Button
+            onClick={props.handleCheckout}
+            className="animate-scaleExpandIn hover:animate-scaleExpandOut md:col-start-4"
+          >
             Checkout
           </Button>
         </div>

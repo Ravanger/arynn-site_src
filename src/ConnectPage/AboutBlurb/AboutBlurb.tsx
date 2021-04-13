@@ -48,6 +48,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               href={props.socialLinks.facebook}
               target="_blank"
               rel="noopener noreferrer"
+              className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
               {styledLi(<FaFacebookF />)}
             </a>
@@ -57,6 +58,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               href={props.socialLinks.instagram}
               target="_blank"
               rel="noopener noreferrer"
+              className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
               {styledLi(<FaInstagram />)}
             </a>
@@ -66,6 +68,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               href={props.socialLinks.twitter}
               target="_blank"
               rel="noopener noreferrer"
+              className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
               {styledLi(<FaTwitter />)}
             </a>
@@ -75,6 +78,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               href={`mailto:${props.socialLinks.email}`}
               target="_blank"
               rel="noopener noreferrer"
+              className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
               {styledLi(<FaEnvelope />)}
             </a>
@@ -84,6 +88,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               href={props.socialLinks.patreon}
               target="_blank"
               rel="noopener noreferrer"
+              className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
               {styledLi(<FaPatreon />)}
             </a>
