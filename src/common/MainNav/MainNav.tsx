@@ -10,7 +10,7 @@ const MainNav = (props: MainNavPropsType) => {
         size="1.5rem"
       />
       <div
-        className="bg-white w-auto text-center max-w-5xl overflow-hidden rounded-xl2 px-16 py-4 shadow-md lg:rounded-xl4 lg:static lg:w-full lg:p-8"
+        className="bg-white w-auto text-center max-w-5xl overflow-hidden rounded-xl2 px-16 py-4 shadow-md lg:animate-none lg:rounded-xl4 lg:static lg:w-full lg:p-8"
         ref={props.mainMenuRef}
       >
         <button
@@ -22,8 +22,8 @@ const MainNav = (props: MainNavPropsType) => {
         <Spacer id="mainMenuSpacer" className="hidden" />
         <nav
           className={`${
-            props.isMainMenuOpen ? "flex" : "hidden"
-          } flex-col space-y-4 lg:space-y-0 lg:flex lg:flex-row lg:flex-nowrap lg:justify-center lg:items-baseline`}
+            props.isMainMenuOpen ? "flex animate-growDown" : "hidden"
+          } origin-top flex-col space-y-4 lg:space-y-0 lg:flex lg:flex-row lg:flex-nowrap lg:justify-center lg:items-baseline`}
         >
           {props.mainMenu}
         </nav>

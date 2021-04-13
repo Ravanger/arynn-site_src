@@ -13,7 +13,7 @@ const HeaderBar = (props: HeaderBarProps) => {
     <header
       className={`flex flex-nowrap text-center justify-center w-full items-center ${
         props.isMenu ? "text-2xl" : "text-4xl italic"
-      } ${props.className}`}
+      } ${props.className ? props.className : ""}`}
     >
       {styledHr(props.hrClassName)}
       <span className="px-4 flex-initial">{props.children}</span>

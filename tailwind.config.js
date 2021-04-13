@@ -46,8 +46,20 @@ module.exports = {
         "1/3": "33.333333%",
         "6/10": "60%",
       },
+      maxWidth: {
+        48: "12rem",
+      },
       inset: {
         "15p": "15%",
+      },
+      keyframes: {
+        growDown: {
+          "0%": { maxHeight: 0, opacity: 0 },
+          "100%": { maxHeight: "100vh", opacity: 1 },
+        },
+      },
+      animation: {
+        growDown: "growDown 300ms ease-in-out forwards",
       },
     },
   },
