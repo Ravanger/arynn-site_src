@@ -1,3 +1,26 @@
+export interface StrapiImageType {
+  id: number
+  name: string
+  alternativeText: string
+  caption: string
+  width: number
+  height: number
+  formats?: { thumbnail: [Object] }
+  hash: string
+  ext: string
+  mime: string
+  size: number
+  url: string
+  previewUrl?: string
+  provider: string
+  provider_metadata?: {
+    public_id: string
+    resource_type: string
+  }
+  created_at: Date
+  updated_at: Date
+}
+
 export interface StrapiFetchArtDataType {
   id: number
   title: string
@@ -15,25 +38,7 @@ export interface StrapiFetchArtDataType {
   }
   created_at: Date
   updated_at: Date
-  image: {
-    id: number
-    name: string
-    alternativeText: string
-    caption: string
-    width: number
-    height: number
-    formats: {}
-    hash: string
-    ext: string
-    mime: string
-    size: number
-    url: string
-    previewUrl: string | null
-    provider: string
-    provider_metadata: string | {} | null
-    created_at: Date
-    updated_at: Date
-  }
+  image: StrapiImageType
 }
 
 export interface StrapiFetchShopDataType {
@@ -44,27 +49,7 @@ export interface StrapiFetchShopDataType {
   type: string
   created_at: Date
   updated_at: Date
-  images: [
-    {
-      id: number
-      name: string
-      alternativeText: string
-      caption: string
-      width: number
-      height: number
-      formats: {}
-      hash: string
-      ext: string
-      mime: string
-      size: number
-      url: string
-      previewUrl: string | null
-      provider: string
-      provider_metadata: string | {} | null
-      created_at: Date
-      updated_at: Date
-    }
-  ]
+  images: StrapiImageType[]
 }
 
 export interface ErrorResponseType {

@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@stripe/stripe-js": "^1.13.2",
+    "embla-carousel": "^4.4.0",
     "fs": "^0.0.1-security",
     "jotai": "^0.15.0",
     "next": "^10.0.5",

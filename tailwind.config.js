@@ -56,6 +56,10 @@ module.exports = {
       padding: {
         0.5: "0.2rem",
       },
+      flex: {
+        "nochange-3/4": "0 0 75%",
+        "nochange-full": "0 0 100%",
+      },
       keyframes: {
         growDown: {
           "0%": { maxHeight: 0, opacity: 0 },

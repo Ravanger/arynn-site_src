@@ -6,18 +6,27 @@ import PDescriptionText from "src/common/DescriptionText"
 import Button from "src/common/Button"
 import { formatCurrencyString } from "use-shopping-cart"
 import { CURRENCY } from "util/stripe"
+import { StrapiImageType } from "util/data.types"
+import Carousel from "src/common/Carousel"
 
 const ShopPiecePage = (props: ShopPiecePageTypes) => {
+  const shopPieceImages = props.item.images as StrapiImageType[]
+  const isMultipleImages = shopPieceImages && shopPieceImages.length > 1
+
   return (
     <>
       <HeaderBar>{props.item.name}</HeaderBar>
       <main className="w-full">
         <Spacer size="2rem" />
-        <ResponsiveImage
-          src={props.item.image!}
-          alt={props.item.name}
-          height={600}
-        />
+        {isMultipleImages ? (
+          <Carousel images={shopPieceImages} />
+        ) : (
+          <ResponsiveImage
+            src={props.item.image!}
+            alt={props.item.name}
+            height={600}
+          />
+        )}
         <Spacer size="2rem" />
         <HeaderBar />
         <Spacer size="2rem" />
