@@ -26,7 +26,7 @@ const CartPage = (props: CartPageType) => {
       <div className="w-full md:flex md:flex-row md:justify-end">
         <div className="md:w-1/3">
           <div className="flex flex-row items-center gap-4 justify-center">
-            <HeaderBar hrClassName="flex-grow flex-shrink border-1 border-blue border-solid" />
+            <HeaderBar />
             <span className="text-3xl">
               {formatCurrencyString({
                 value: props.totalPrice,
@@ -37,7 +37,7 @@ const CartPage = (props: CartPageType) => {
           <Spacer />
           <Button
             onClick={props.handleCheckout}
-            className="animate-scaleExpandIn hover:animate-scaleExpandOut md:col-start-4"
+            className="animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none md:col-start-4"
           >
             Checkout
           </Button>

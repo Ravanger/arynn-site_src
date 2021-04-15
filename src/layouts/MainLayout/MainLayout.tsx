@@ -1,4 +1,4 @@
-import MainNav from "src/common/MainNav"
+import Menu from "src/common/Menu"
 import Spacer from "src/common/Spacer"
 import ContentBox from "src/common/ContentBox"
 import { LayoutProps, NavItemsType } from "../Layout.types"
@@ -95,6 +95,7 @@ const MainLayout = (props: LayoutProps) => {
             active={artFilter === filter.type}
             onClick={() => {
               setArtFilter(filter.type)
+              setIsMainMenuOpen(false)
             }}
             filter
           />
@@ -120,12 +121,13 @@ const MainLayout = (props: LayoutProps) => {
 
   return (
     <div className="w-full flex flex-col items-center p-8 pb-0">
-      <MainNav
-        isMainMenuOpen={isMainMenuOpen}
-        setIsMainMenuOpen={setIsMainMenuOpen}
-        mainMenu={mainMenu}
-        mainMenuRef={mainMenuRef}
-      />
+      <Menu
+        isMenuOpen={isMainMenuOpen}
+        setMenuOpen={setIsMainMenuOpen}
+        menuRef={mainMenuRef}
+      >
+        {mainMenu}
+      </Menu>
       <Spacer size="2rem" />
       <ContentBox>{props.children}</ContentBox>
       <IoTriangle

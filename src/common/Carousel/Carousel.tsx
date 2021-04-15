@@ -3,6 +3,7 @@ import { BsFillTriangleFill } from "react-icons/bs"
 import React, { MouseEventHandler, useCallback } from "react"
 import { useEmblaCarousel } from "embla-carousel/react"
 import Image from "next/image"
+import Spacer from "src/common/Spacer"
 
 const PrevNextButton = ({
   onClick,
@@ -11,9 +12,12 @@ const PrevNextButton = ({
   onClick: MouseEventHandler<HTMLButtonElement>
   dir: "PREV" | "NEXT"
 }) => (
-  <button onClick={onClick}>
+  <button
+    onClick={onClick}
+    className="text-pink hover:text-blue focus:outline-none"
+  >
     <BsFillTriangleFill
-      className={`absolute text-pink hover:text-blue transform ${
+      className={`absolute transform ${
         dir === "PREV" ? "left-12 -rotate-90" : "right-12 rotate-90"
       } md:text-3xl sm:static`}
     />
@@ -46,6 +50,7 @@ const Carousel = (props: CarouselPropsType) => {
   return (
     <div className="embla flex">
       <PrevNextButton onClick={scrollPrev} dir="PREV" />
+      <Spacer axis="HORIZONTAL" size="1rem" />
       <div className="embla__viewport w-full overflow-hidden" ref={emblaRef}>
         <div className="embla__container flex select-none">
           {props.images.map((image) => (
@@ -62,6 +67,7 @@ const Carousel = (props: CarouselPropsType) => {
           ))}
         </div>
       </div>
+      <Spacer axis="HORIZONTAL" size="1rem" />
       <PrevNextButton onClick={scrollNext} dir="NEXT" />
     </div>
   )

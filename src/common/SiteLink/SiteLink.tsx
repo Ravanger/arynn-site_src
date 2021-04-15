@@ -17,7 +17,7 @@ const SiteLink = (props: MainNavItemProps) => {
     <Link href={props.url ?? ""} passHref scroll={false}>
       {props.filter ? (
         <button
-          className="animate-scaleExpandIn hover:animate-scaleExpandOut"
+          className="animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none"
           onClick={props.onClick}
         >
           {SubLink}

@@ -13,7 +13,7 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
       <HeaderBar>{SplitAndCapitalizeFirstWord(props.item.type, "_")}</HeaderBar>
       <main className="w-full">
         <Spacer size="2rem" />
-        <div className="flex flex-row flex-nowrap items-center justify-between">
+        <div className="flex flex-row flex-nowrap items-stretch justify-between">
           <PrevNextButton
             type="PREV"
             href={{

@@ -37,6 +37,7 @@ module.exports = {
       },
       minHeight: {
         1: "1px",
+        16: "4rem",
       },
       minWidth: {
         1: "1px",
@@ -48,6 +49,7 @@ module.exports = {
       },
       maxWidth: {
         24: "6rem",
+        32: "8rem",
         48: "12rem",
       },
       inset: {

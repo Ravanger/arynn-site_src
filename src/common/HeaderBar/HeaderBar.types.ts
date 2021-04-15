@@ -3,5 +3,6 @@ export interface HeaderBarProps {
   isMenu?: boolean
   className?: string
   hrClassName?: string
+  contentClassName?: string
   noHr?: boolean
 }
