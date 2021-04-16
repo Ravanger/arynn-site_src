@@ -6,6 +6,7 @@ import { CURRENCY } from "util/stripe"
 import { Fragment } from "react"
 import Button from "src/common/Button"
 import { CartPageType } from "./CartPage.types"
+import Spinner from "src/common/Spinner"
 
 const CartPage = (props: CartPageType) => {
   return (
@@ -37,9 +38,10 @@ const CartPage = (props: CartPageType) => {
               <Spacer />
               <Button
                 onClick={props.handleStripeCheckout}
-                className="animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none md:col-start-4"
+                className="flex justify-center animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none md:col-start-4"
+                disabled={props.loading}
               >
-                Checkout
+                {props.loading ? <Spinner /> : <span>Checkout</span>}
               </Button>
               <Spacer />
             </div>

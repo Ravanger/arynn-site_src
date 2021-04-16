@@ -6,4 +6,5 @@ export interface CartPageType {
   totalPrice: number
   handleStripeCheckout: () => Promise<void>
   removeItem: (sku: string) => void
+  loading: boolean
 }
