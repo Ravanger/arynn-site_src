@@ -2,7 +2,6 @@ import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import SEO from "src/common/SEO"
 import CartPage from "src/CartPage"
 import { Product, useShoppingCart } from "use-shopping-cart"
-import { MouseEventHandler } from "react"
 import Stripe from "stripe"
 import { ErrorResponseType } from "util/data.types"
 import { fetchData } from "util/dataFetching"
@@ -16,14 +15,7 @@ const Cart = () => {
     cartCount,
   } = useShoppingCart()
 
-  const cartItems: Product[] = Object.entries(cartDetails).map(
-    (item) => item[1]
-  )
-
-  const handleCheckout: MouseEventHandler<HTMLButtonElement> = async (
-    event
-  ) => {
-    event.preventDefault()
+  const handleStripeCheckout = async () => {
     if (cartCount <= 0) return
 
     const response: Stripe.Checkout.Session &
@@ -38,6 +30,10 @@ const Cart = () => {
     if (error) console.error(error)
   }
 
+  const cartItems: Product[] = Object.entries(cartDetails).map(
+    (item) => item[1]
+  )
+
   return (
     <>
       <SEO title="Cart" description="Arynn's Shop - Cart" url="/shop/cart" />
@@ -45,7 +41,7 @@ const Cart = () => {
         cartItems={cartItems}
         cartCount={cartCount}
         totalPrice={totalPrice}
-        handleCheckout={handleCheckout}
+        handleStripeCheckout={handleStripeCheckout}
         removeItem={removeItem}
       />
     </>

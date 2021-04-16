@@ -1,9 +1,9 @@
 import type { AppProps } from "next/app"
 import { PageWithLayoutType } from "src/layouts"
-import { Provider } from "jotai"
-import "../styles/tailwind.css"
+import { Provider as JotaiProvider } from "jotai"
 import { CartProvider } from "use-shopping-cart"
 import { CURRENCY, getStripe } from "util/stripe"
+import "../styles/tailwind.css"
 
 interface AppLayoutProps extends AppProps {
   Component: PageWithLayoutType
@@ -13,7 +13,7 @@ const MyApp = ({ Component, pageProps }: AppLayoutProps) => {
   const getLayout = Component.getLayout || ((page) => page)
 
   return (
-    <Provider>
+    <JotaiProvider>
       <CartProvider
         mode="checkout-session"
         stripe={getStripe()}
@@ -21,7 +21,7 @@ const MyApp = ({ Component, pageProps }: AppLayoutProps) => {
       >
         {getLayout(<Component {...pageProps} />)}
       </CartProvider>
-    </Provider>
+    </JotaiProvider>
   )
 }
 
