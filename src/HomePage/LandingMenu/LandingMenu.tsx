@@ -1,6 +1,6 @@
 import React from "react"
 import Spacer from "src/common/Spacer"
-import { MenuPropsType } from "./Menu.types"
+import { LandingMenuPropsType } from "./LandingMenu.types"
 import { IoTriangle } from "react-icons/io5"
 import Link from "next/link"
 import { MenuItemType } from "util/data.types"
@@ -13,7 +13,7 @@ const MenuButton = (props: MenuItemType) => (
   </Link>
 )
 
-const Menu = (props: MenuPropsType) => {
+const LandingMenu = (props: LandingMenuPropsType) => {
   const menu = props.menuItems.map((item) => {
     const isButtonShop = item.text === "Shop"
     return (
@@ -42,4 +42,4 @@ const Menu = (props: MenuPropsType) => {
   )
 }
 
-export default Menu
+export default LandingMenu

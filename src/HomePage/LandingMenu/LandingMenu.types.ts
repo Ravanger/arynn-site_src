@@ -1,5 +1,5 @@
 import { MenuItemType } from "util/data.types"
 
-export interface MenuPropsType {
+export interface LandingMenuPropsType {
   menuItems: MenuItemType[]
 }

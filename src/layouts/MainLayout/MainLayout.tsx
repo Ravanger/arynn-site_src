@@ -138,7 +138,7 @@ const MainLayout = (props: LayoutProps) => {
           className="text-white inline-block transform -translate-y-2 rotate-180"
           size="4rem"
         />
-        <div className="relative -bottom-8">
+        <div className="relative -bottom-10">
           <MainImage />
         </div>
       </div>

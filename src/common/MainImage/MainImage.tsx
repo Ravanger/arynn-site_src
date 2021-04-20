@@ -10,7 +10,7 @@ const MainImage = () => (
     layout="intrinsic"
     height={600}
     width={480}
-    className="rounded-b-none"
+    className="rounded-b-none -bottom-4"
   />
 )
 
