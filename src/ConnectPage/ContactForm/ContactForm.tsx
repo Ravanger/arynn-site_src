@@ -10,7 +10,7 @@ const ContactForm = () => {
 
   return (
     <form
-      className="grid w-full gap-4 grid-cols-1 text-xs md:grid-cols-4"
+      className="grid w-full gap-4 grid-cols-1 text-xs px-4 md:grid-cols-4 sm:-0"
       id="contact_form"
       onSubmit={async (event) => {
         if (isSending) return

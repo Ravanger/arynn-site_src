@@ -120,7 +120,7 @@ const MainLayout = (props: LayoutProps) => {
   ))
 
   return (
-    <div className="w-full flex flex-col items-center p-8 pb-0">
+    <div className="w-full flex flex-col items-center pb-0 sm:p-8">
       <Menu
         isMenuOpen={isMainMenuOpen}
         setMenuOpen={setIsMainMenuOpen}

@@ -17,9 +17,9 @@ const PrevNextButton = ({
     className="text-pink hover:text-blue focus:outline-none"
   >
     <BsFillTriangleFill
-      className={`absolute transform ${
-        dir === "PREV" ? "left-12 -rotate-90" : "right-12 rotate-90"
-      } md:text-3xl sm:static`}
+      className={`text-3xl transform ${
+        dir === "PREV" ? "-rotate-90" : "rotate-90"
+      }`}
     />
   </button>
 )
@@ -48,7 +48,7 @@ const Carousel = (props: CarouselPropsType) => {
   }, [emblaApi])
 
   return (
-    <div className="embla flex">
+    <div className="embla flex px-2 sm:p-0">
       <PrevNextButton onClick={scrollPrev} dir="PREV" />
       <Spacer axis="HORIZONTAL" size="1rem" />
       <div className="embla__viewport w-full overflow-hidden" ref={emblaRef}>

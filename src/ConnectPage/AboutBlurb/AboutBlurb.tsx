@@ -11,7 +11,7 @@ import { AboutBlurbType } from "./AboutBlurb.types"
 
 const AboutBlurb = (props: AboutBlurbType) => {
   const styledLi = (child: React.ReactNode) => (
-    <li className="text-center bg-blue hover:bg-pink active:bg-blue-light text-white rounded-xl p-3 text-sm md:text-2xl md:p-4 md:rounded-2xl">
+    <li className="text-center bg-blue hover:bg-pink active:bg-blue-light text-white rounded-xl p-3 text-lg md:text-2xl md:p-4 md:rounded-2xl">
       {child}
     </li>
   )
@@ -42,7 +42,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
           @artsyarynn across all platforms!
         </h2>
         <Spacer size="2rem" />
-        <ul className="flex flex-row flex-nowrap justify-between">
+        <ul className="flex flex-row flex-nowrap justify-around">
           {props.socialLinks.facebook && (
             <a
               href={props.socialLinks.facebook}

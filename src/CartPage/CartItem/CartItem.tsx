@@ -7,7 +7,7 @@ import { CURRENCY } from "util/stripe"
 import { formatCurrencyString } from "use-shopping-cart"
 
 const CartItem = (props: CartItemType) => (
-  <div className="border-15 border-blue rounded-xl p-10 relative grid gap-8 md:gap-16 md:grid-cols-3 md:items-center">
+  <div className="rounded-xl p-10 relative grid gap-8 md:gap-16 md:grid-cols-3 md:items-center sm:border-15 sm:border-blue">
     <button
       onClick={props.removeCartItem}
       className="absolute right-4 top-4 animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none"
