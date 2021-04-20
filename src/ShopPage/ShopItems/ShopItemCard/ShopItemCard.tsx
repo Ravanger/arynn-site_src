@@ -7,7 +7,7 @@ import { ShopItemCardProps } from "./ShopItemCard.types"
 
 const ShopItemCard = (props: ShopItemCardProps) => {
   return (
-    <Link href={"/shop/" + props.item.sku} scroll={false}>
+    <Link href={"/shop/" + props.item.sku}>
       <a>
         <div className="group text-center text-xl font-bold">
           <ResponsiveImage src={props.item.image!} alt={props.item.name} />

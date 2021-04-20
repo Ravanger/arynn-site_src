@@ -19,18 +19,15 @@ const ArtItems = (props: ArtItemsType) => {
             pathname: `/art/${artItem.id}`,
             ...(!props.artFilter && { query: { display: "all" } }),
           }}
-          key={artItem.id}
-          scroll={false}
+          key={artItem.title + index}
         >
           <a>
-            <div key={artItem.title + index}>
-              <ResponsiveImage
-                src={artItem.image}
-                alt={artItem.title}
-                width={500}
-                height={500}
-              />
-            </div>
+            <ResponsiveImage
+              src={artItem.image}
+              alt={artItem.title}
+              width={500}
+              height={500}
+            />
           </a>
         </Link>
       ))}

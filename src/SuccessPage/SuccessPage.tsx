@@ -9,7 +9,7 @@ const SuccessPage = (props: SuccessPageType) => {
     <>
       <h2>Thank you for your order!</h2>
       <Spacer size="2rem" />
-      <Link href="/shop" scroll={false}>
+      <Link href="/shop">
         <a className="text-pink hover:text-blue">Back to shop</a>
       </Link>
     </>
