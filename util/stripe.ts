@@ -1,4 +1,5 @@
-import { Stripe, loadStripe } from "@stripe/stripe-js"
+import { Stripe } from "@stripe/stripe-js"
+import { loadStripe } from "@stripe/stripe-js/pure"
 import { CartDetails } from "use-shopping-cart"
 
 export const CURRENCY = "CAD"
