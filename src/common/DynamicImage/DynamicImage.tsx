@@ -3,15 +3,13 @@ import { DynamicImageTypes } from "./DynamicImage.types"
 
 const DynamicImage = (props: DynamicImageTypes) => {
   return (
-    <div className="relative w-full children:relative">
+    <div className="dynamicimage relative w-full">
       <Image
         src={props.src}
         alt={props.alt}
         layout="fill"
         objectFit="cover"
-        className={`w-full relative h-auto ${
-          props.className ? props.className : ""
-        }`}
+        className={`${props.className ? props.className : ""}`}
       />
     </div>
   )

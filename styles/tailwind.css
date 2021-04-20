@@ -80,5 +80,15 @@
     border-radius: 0.5rem;
     padding: 1em;
   }
+
+  .dynamicimage > div {
+    position: relative !important;
+  }
+
+  .dynamicimage img {
+    width: 100% !important;
+    position: relative !important;
+    height: auto !important;
+  }
   /* 🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩 Custom 🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩 */
 }
