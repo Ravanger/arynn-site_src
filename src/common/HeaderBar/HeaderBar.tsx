@@ -15,8 +15,8 @@ const HeaderBar = (props: HeaderBarProps) => {
     >
       {styledHr(props.hrClassName)}
       <span
-        className={`flex-initial px-4 sm:px-12 ${
-          props.isMenu ? "text-2xl" : "italic text-2xl sm:text-4xl"
+        className={`flex-initial px-4 sm:px-12 text-2xl ${
+          props.isMenu ? "" : "italic sm:text-3xl"
         } ${props.contentClassName ? props.contentClassName : ""}`}
       >
         {props.children}
