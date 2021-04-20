@@ -120,23 +120,29 @@ const MainLayout = (props: LayoutProps) => {
   ))
 
   return (
-    <div className="w-full flex flex-col items-center pb-0 sm:p-8">
-      <Menu
-        isMenuOpen={isMainMenuOpen}
-        setMenuOpen={setIsMainMenuOpen}
-        menuRef={mainMenuRef}
-      >
-        {mainMenu}
-      </Menu>
+    <>
+      <div className="sticky top-0 z-50 flex flex-col items-center">
+        <Spacer />
+        <Menu
+          isMenuOpen={isMainMenuOpen}
+          setMenuOpen={setIsMainMenuOpen}
+          menuRef={mainMenuRef}
+        >
+          {mainMenu}
+        </Menu>
+      </div>
       <Spacer size="2rem" />
-      <ContentBox>{props.children}</ContentBox>
-      <IoTriangle
-        className="text-white inline-block transform -translate-y-2 rotate-180"
-        size="4rem"
-      />
-      <Spacer size="2rem" />
-      <MainImage />
-    </div>
+      <div className="overflow-hidden w-full flex flex-col items-center pb-0 sm:p-8">
+        <ContentBox>{props.children}</ContentBox>
+        <IoTriangle
+          className="text-white inline-block transform -translate-y-2 rotate-180"
+          size="4rem"
+        />
+        <div className="relative -bottom-8">
+          <MainImage />
+        </div>
+      </div>
+    </>
   )
 }
 

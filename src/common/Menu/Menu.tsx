@@ -6,9 +6,9 @@ const Menu = (props: MenuPropsType) => {
     <div
       className={`animate-scaleExpandIn hover:animate-scaleExpandOut ${
         props.shopMenu ? "lg:animate-none lg:hover:animate-none" : ""
-      } sticky ${
+      } ${
         props.zindex ? props.zindex : "z-50"
-      } top-0 text-center lg:max-w-5xl lg:relative lg:w-full`}
+      } text-center lg:max-w-5xl lg:relative lg:w-full`}
     >
       <IoTriangle
         className={`${
