@@ -4,9 +4,9 @@ import { HomePageType } from "./HomePage.types"
 
 const HomePage = (props: HomePageType) => {
   return (
-    <div className="flex w-screen h-screen flex-col items-center max-w-6xl mx-auto">
+    <div className="flex w-full h-screen flex-col items-center justify-between max-w-6xl mx-auto text-center">
       <Menu menuItems={props.menuItems} />
-      <div className="max-h-1/3 overflow-hidden absolute bottom-0 lg:max-h-6/10 lg:h-full">
+      <div className="overflow-hidden w-2/3 text-center sm:w-full lg:absolute lg:bottom-0">
         <MainImage />
       </div>
     </div>
