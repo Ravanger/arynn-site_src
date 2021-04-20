@@ -16,7 +16,7 @@ const ShopItems = (props: ShopItemProps) => {
   return currentShopItems ? (
     <div className="w-full grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {currentShopItems.map((shopItem, index) => (
-        <div key={shopItem.title + index}>
+        <div key={shopItem.name + index}>
           <Spacer size="2rem" className="md:hidden" />
           <ShopItemCard item={shopItem} />
         </div>
