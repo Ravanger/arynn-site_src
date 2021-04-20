@@ -120,7 +120,7 @@ const MainLayout = (props: LayoutProps) => {
   ))
 
   return (
-    <>
+    <div className="flex flex-col justify-between min-h-screen">
       <div className="sticky top-0 z-50 flex flex-col items-center">
         <Spacer />
         <Menu
@@ -142,7 +142,7 @@ const MainLayout = (props: LayoutProps) => {
           <MainImage />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
