@@ -8,6 +8,7 @@ import { formatCurrencyString } from "use-shopping-cart"
 import { CURRENCY } from "util/stripe"
 import { StrapiImageType } from "util/data.types"
 import Carousel from "src/common/Carousel"
+import DynamicImage from "src/common/DynamicImage"
 
 const ShopPiecePage = (props: ShopPiecePageTypes) => {
   const shopPieceImages = props.item.images as StrapiImageType[]
@@ -21,11 +22,7 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
         {isMultipleImages ? (
           <Carousel images={shopPieceImages} />
         ) : (
-          <ResponsiveImage
-            src={props.item.image!}
-            alt={props.item.name}
-            height={600}
-          />
+          <DynamicImage src={props.item.image!} alt={props.item.name} />
         )}
         <Spacer size="2rem" />
         <HeaderBar />

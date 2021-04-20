@@ -1,6 +1,7 @@
 module.exports = {
   purge: ["./pages/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   darkMode: false, // or 'media' or 'class'
+  important: true,
   theme: {
     colors: {
       white: "#FFF",
@@ -90,6 +91,7 @@ module.exports = {
       gridRow: ["children-first"],
       inset: ["even"],
       animation: ["hover", "group-hover"],
+      position: ["children"],
     },
   },
   plugins: [require("tailwindcss-children")],

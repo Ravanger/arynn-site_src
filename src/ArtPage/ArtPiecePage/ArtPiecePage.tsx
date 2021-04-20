@@ -1,11 +1,11 @@
 import PDescriptionText from "src/common/DescriptionText"
 import HeaderBar from "src/common/HeaderBar"
-import ResponsiveImage from "src/common/ResponsiveImage"
 import SiteLink from "src/common/SiteLink"
 import Spacer from "src/common/Spacer"
 import { SplitAndCapitalizeFirstWord } from "util/text"
 import { ArtPiecePageProps } from "./ArtPiecePage.types"
 import PrevNextButton from "./PrevNextButton"
+import DynamicImage from "src/common/DynamicImage"
 
 const ArtPiecePage = (props: ArtPiecePageProps) => {
   return (
@@ -22,13 +22,7 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
             }}
           />
           <Spacer axis="HORIZONTAL" size="1rem" />
-          <div className="w-full">
-            <ResponsiveImage
-              alt={props.item.title}
-              src={props.item.image}
-              height={600}
-            />
-          </div>
+          <DynamicImage src={props.item.image} alt={props.item.title} />
           <Spacer axis="HORIZONTAL" size="1rem" />
           <PrevNextButton
             type="NEXT"
