@@ -34,7 +34,9 @@ const SiteLink = (props: MainNavItemProps) => {
           className="animate-scaleExpandIn hover:animate-scaleExpandOut"
         >
           {SubLink}
-          <span className="sr-only">Opens in new window</span>
+          {props.external && (
+            <span className="sr-only">Opens in new window</span>
+          )}
         </a>
       )}
     </Link>
