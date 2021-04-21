@@ -34,7 +34,7 @@ const ContactForm = () => {
           })
       }}
     >
-      <label htmlFor="contact_name" hidden>
+      <label htmlFor="contact_name" className="sr-only">
         Name
       </label>
       <input
@@ -45,7 +45,7 @@ const ContactForm = () => {
         className="focus:border-pink md:col-span-2"
         required
       />
-      <label htmlFor="contact_email" hidden>
+      <label htmlFor="contact_email" className="sr-only">
         Email
       </label>
       <input
@@ -56,7 +56,7 @@ const ContactForm = () => {
         className="focus:border-pink md:col-span-2"
         required
       />
-      <label htmlFor="contact_colors" hidden>
+      <label htmlFor="contact_colors" className="sr-only">
         Favourite colours
       </label>
       <input
@@ -66,7 +66,7 @@ const ContactForm = () => {
         id="contact_colors"
         className="focus:border-pink md:col-span-4"
       />
-      <label htmlFor="contact_message" hidden>
+      <label htmlFor="contact_message" className="sr-only">
         Describe your vision!
       </label>
       <textarea
