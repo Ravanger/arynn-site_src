@@ -34,6 +34,9 @@ const ContactForm = () => {
           })
       }}
     >
+      <label htmlFor="contact_name" hidden>
+        Name
+      </label>
       <input
         type="text"
         placeholder="Name"
@@ -42,6 +45,9 @@ const ContactForm = () => {
         className="focus:border-pink md:col-span-2"
         required
       />
+      <label htmlFor="contact_email" hidden>
+        Email
+      </label>
       <input
         type="email"
         placeholder="Email"
@@ -50,13 +56,19 @@ const ContactForm = () => {
         className="focus:border-pink md:col-span-2"
         required
       />
+      <label htmlFor="contact_colors" hidden>
+        Favourite colours
+      </label>
       <input
         type="text"
-        placeholder="Favourite colors"
+        placeholder="Favourite colours"
         name="contact_colors"
         id="contact_colors"
         className="focus:border-pink md:col-span-4"
       />
+      <label htmlFor="contact_message" hidden>
+        Describe your vision!
+      </label>
       <textarea
         placeholder="Describe your vision!"
         name="contact_message"
