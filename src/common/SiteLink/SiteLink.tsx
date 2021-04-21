@@ -6,8 +6,8 @@ const SiteLink = (props: MainNavItemProps) => {
   const SubLink = (
     <span
       className={`animate-scaleExpandIn hover:animate-scaleExpandOut px-1 cursor-pointer whitespace-nowrap text-pink hover:text-blue ${
-        props.primary && "text-2xl font-bold"
-      } ${props.active && "text-blue italic"}`}
+        props.primary ? "text-2xl font-bold" : ""
+      } ${props.active ? "text-blue italic" : ""}`}
     >
       {props.text}
     </span>
