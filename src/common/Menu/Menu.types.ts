@@ -7,4 +7,5 @@ export interface MenuPropsType {
   children: React.ReactNode
   zindex?: string
   shopMenu?: boolean
+  role?: string
 }

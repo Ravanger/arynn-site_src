@@ -15,6 +15,7 @@ const ShopPage = (props: ShopPageType) => {
           menuRef={props.shopMenuRef}
           zindex="z-40"
           shopMenu
+          role="menu"
         >
           <HeaderBar
             isMenu

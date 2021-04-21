@@ -34,6 +34,7 @@ const Menu = (props: MenuPropsType) => {
           className={`${
             props.isMenuOpen ? "flex animate-growDown w-64 pb-8" : "hidden"
           } origin-top flex-col space-y-4 lg:space-y-0 lg:flex lg:flex-row lg:flex-nowrap lg:justify-center lg:items-baseline`}
+          role={props.role}
         >
           {props.children}
         </nav>

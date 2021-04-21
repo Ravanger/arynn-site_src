@@ -127,6 +127,7 @@ const MainLayout = (props: LayoutProps) => {
           isMenuOpen={isMainMenuOpen}
           setMenuOpen={setIsMainMenuOpen}
           menuRef={mainMenuRef}
+          role="navigation"
         >
           {mainMenu}
         </Menu>
