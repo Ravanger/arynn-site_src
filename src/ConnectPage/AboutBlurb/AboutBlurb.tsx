@@ -10,16 +10,10 @@ import ResponsiveImage from "src/common/ResponsiveImage"
 import { AboutBlurbType } from "./AboutBlurb.types"
 
 const AboutBlurb = (props: AboutBlurbType) => {
-  const styledLi = (child: React.ReactNode) => (
-    <li className="text-center bg-blue hover:bg-pink active:bg-blue-light text-white rounded-xl p-3 text-lg md:text-2xl md:p-4 md:rounded-2xl">
+  const styledContactButton = (child: React.ReactNode) => (
+    <div className="text-center bg-blue hover:bg-pink active:bg-blue-light text-white rounded-xl p-3 text-lg md:text-2xl md:p-4 md:rounded-2xl">
       {child}
-    </li>
-  )
-
-  const headerText = (text: string) => (
-    <h2 className="text-pink text-center text- md:text-left md:text-2xl">
-      {text}
-    </h2>
+    </div>
   )
 
   return (
@@ -42,7 +36,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
           @artsyarynn across all platforms!
         </h2>
         <Spacer size="2rem" />
-        <ul className="flex flex-row flex-nowrap justify-around">
+        <div className="flex flex-row flex-nowrap justify-around">
           {props.socialLinks.facebook && (
             <a
               href={props.socialLinks.facebook}
@@ -50,7 +44,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               rel="noopener noreferrer"
               className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
-              {styledLi(<FaFacebookF />)}
+              {styledContactButton(<FaFacebookF />)}
             </a>
           )}
           {props.socialLinks.instagram && (
@@ -60,7 +54,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               rel="noopener noreferrer"
               className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
-              {styledLi(<FaInstagram />)}
+              {styledContactButton(<FaInstagram />)}
             </a>
           )}
           {props.socialLinks.twitter && (
@@ -70,7 +64,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               rel="noopener noreferrer"
               className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
-              {styledLi(<FaTwitter />)}
+              {styledContactButton(<FaTwitter />)}
             </a>
           )}
           {props.socialLinks.email && (
@@ -80,7 +74,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               rel="noopener noreferrer"
               className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
-              {styledLi(<FaEnvelope />)}
+              {styledContactButton(<FaEnvelope />)}
             </a>
           )}
           {props.socialLinks.patreon && (
@@ -90,10 +84,10 @@ const AboutBlurb = (props: AboutBlurbType) => {
               rel="noopener noreferrer"
               className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
-              {styledLi(<FaPatreon />)}
+              {styledContactButton(<FaPatreon />)}
             </a>
           )}
-        </ul>
+        </div>
       </div>
     </div>
   )
