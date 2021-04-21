@@ -45,6 +45,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
               {styledContactButton(<FaFacebookF />)}
+              <span className="sr-only">Opens in new window</span>
             </a>
           )}
           {props.socialLinks.instagram && (
@@ -55,6 +56,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
               {styledContactButton(<FaInstagram />)}
+              <span className="sr-only">Opens in new window</span>
             </a>
           )}
           {props.socialLinks.twitter && (
@@ -65,6 +67,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
               {styledContactButton(<FaTwitter />)}
+              <span className="sr-only">Opens in new window</span>
             </a>
           )}
           {props.socialLinks.email && (
@@ -75,6 +78,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
               {styledContactButton(<FaEnvelope />)}
+              <span className="sr-only">Opens in new window</span>
             </a>
           )}
           {props.socialLinks.patreon && (
@@ -85,6 +89,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
               className="animate-scaleExpandIn hover:animate-scaleExpandOut"
             >
               {styledContactButton(<FaPatreon />)}
+              <span className="sr-only">Opens in new window</span>
             </a>
           )}
         </div>
