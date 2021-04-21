@@ -21,6 +21,9 @@ const PrevNextButton = ({
         dir === "PREV" ? "-rotate-90" : "rotate-90"
       }`}
     />
+    <span className="sr-only">
+      {dir === "PREV" ? "Previous image" : "Next image"}
+    </span>
   </button>
 )
 

@@ -12,6 +12,9 @@ const PrevNextButton = (props: PrevNextButtonProps) => {
             props.type === "PREV" ? "-rotate-90" : "rotate-90"
           }`}
         />
+        <span className="sr-only">
+          {props.type === "PREV" ? "Previous image" : "Next image"}
+        </span>
       </a>
     </Link>
   )
