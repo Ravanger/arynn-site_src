@@ -2,7 +2,6 @@ import { ShopPageType } from "./ShopPage.types"
 import HeaderBar from "src/common/HeaderBar"
 import Spacer from "src/common/Spacer"
 import ShopItems from "./ShopItems"
-import { Fragment } from "react"
 import Menu from "src/common/Menu"
 
 const ShopPage = (props: ShopPageType) => {
@@ -50,6 +49,7 @@ const ShopPage = (props: ShopPageType) => {
       </div>
       <Spacer size="2rem" />
       <ShopItems shopFilter={props.shopFilter} shopItems={props.shopItems} />
+      <Spacer size="2rem" />
     </>
   )
 }
