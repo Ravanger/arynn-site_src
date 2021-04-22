@@ -18,7 +18,7 @@ const AboutBlurb = (props: AboutBlurbType) => {
 
   return (
     <div className="grid w-full items-stretch justify-items-stretch gap-8 grid-cols-1 md:grid-rows-2 md:grid-cols-2/3 md:children:first:row-span-2">
-      <ResponsiveImage src="/images/new_self_portrait.svg" alt="Arynn" />
+      <ResponsiveImage src="/images/about_image.jpg" alt="Arynn" />
       <main>
         <h2 className="text-pink text-center text-2xl md:text-left">
           My name is Arynn
