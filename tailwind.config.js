@@ -101,7 +101,7 @@ module.exports = {
       textColor: ["active"],
       gridRow: ["children-first"],
       inset: ["even"],
-      animation: ["hover", "group-hover"],
+      animation: ["hover", "group-hover", "motion-safe"],
     },
   },
   plugins: [require("tailwindcss-children")],
