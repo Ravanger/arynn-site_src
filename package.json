@@ -20,7 +20,7 @@
     "emailjs-com": "^2.6.4",
     "embla-carousel": "^4.4.0",
     "fs": "^0.0.1-security",
-    "jotai": "^0.15.0",
+    "jotai": "0.16.2",
     "next": "^10.0.5",
     "next-seo": "^4.19.0",
     "react": "17.0.1",
