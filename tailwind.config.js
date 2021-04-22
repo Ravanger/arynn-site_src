@@ -62,6 +62,12 @@ module.exports = {
         "nochange-3/4": "0 0 75%",
         "nochange-full": "0 0 100%",
       },
+      zIndex: {
+        "-90": "-90",
+      },
+      backgroundImage: (theme) => ({
+        clouds: "url('/images/clouds.png')",
+      }),
       keyframes: {
         growDown: {
           "0%": { maxHeight: 0, opacity: 0 },
@@ -75,11 +81,17 @@ module.exports = {
           to: { transform: "scale(1)" },
           from: { transform: "scale(1.1)" },
         },
+        floating: {
+          "0%": { transform: "translate(0, 0)" },
+          "50%": { transform: "translate(0, -0.3rem)" },
+          "100%": { transform: "translate(0, 0)" },
+        },
       },
       animation: {
         growDown: "growDown 300ms ease-in-out forwards",
         scaleExpandIn: "scaleExpandIn 60ms ease-in-out forwards",
         scaleExpandOut: "scaleExpandOut 60ms ease-in-out forwards",
+        floating: "floating 3s ease-in-out infinite",
       },
     },
   },

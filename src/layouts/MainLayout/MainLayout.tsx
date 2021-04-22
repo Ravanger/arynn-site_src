@@ -12,6 +12,7 @@ import { useShoppingCart } from "use-shopping-cart"
 import { socialLinks } from "src/common/socials"
 import React, { Fragment, useRef, useState } from "react"
 import SiteLink from "src/common/SiteLink"
+import BackgroundClouds from "../BackgroundClouds"
 
 const MainLayout = (props: LayoutProps) => {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false)
@@ -120,7 +121,8 @@ const MainLayout = (props: LayoutProps) => {
   ))
 
   return (
-    <div className="flex flex-col justify-between min-h-screen">
+    <div className="relative flex flex-col justify-between min-h-screen">
+      <BackgroundClouds />
       <div className="sticky top-0 z-50 flex flex-col items-center lg:static">
         <Spacer />
         <Menu
