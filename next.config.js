@@ -6,4 +6,7 @@ module.exports = {
   images: {
     domains: ["localhost", "res.cloudinary.com"],
   },
+  future: {
+    webpack5: true,
+  },
 }
