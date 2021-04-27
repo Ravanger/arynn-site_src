@@ -49,7 +49,10 @@ const ShopPage = (props: ShopPageType) => {
       </div>
       <Spacer size="2rem" />
       <ShopItems shopFilter={props.shopFilter} shopItems={props.shopItems} />
-      <Spacer size="2rem" />
+      <Spacer size="3rem" />
+      <p className="text-pink text-sm">
+        Can't find what you're looking for? Send me an email!
+      </p>
     </>
   )
 }
