@@ -57,20 +57,20 @@ const ContactForm = () => {
         required
       />
       <label htmlFor="contact_colors" className="sr-only">
-        Favourite colours
+        Subject
       </label>
       <input
         type="text"
-        placeholder="Favourite colours"
-        name="contact_colors"
-        id="contact_colors"
+        placeholder="Subject"
+        name="contact_subject"
+        id="contact_subject"
         className="focus:border-pink md:col-span-4"
       />
       <label htmlFor="contact_message" className="sr-only">
         Describe your vision!
       </label>
       <textarea
-        placeholder="Describe your vision!"
+        placeholder="Hey Arynn..."
         name="contact_message"
         id="contact_message"
         className="focus:border-pink md:col-span-4"
