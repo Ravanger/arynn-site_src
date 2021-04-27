@@ -3,16 +3,19 @@ import HeaderBar from "src/common/HeaderBar"
 import Spacer from "src/common/Spacer"
 import ShopItems from "./ShopItems"
 import Menu from "src/common/Menu"
+import ShopBanner from "./ShopBanner"
 
 const ShopPage = (props: ShopPageType) => {
   return (
     <>
+      <ShopBanner />
+      <Spacer />
       <div className="w-full flex flex-col items-center">
         <Menu
           isMenuOpen={props.isShopMenuOpen}
           setMenuOpen={props.setIsShopMenuOpen}
           menuRef={props.shopMenuRef}
-          zindex="z-40"
+          zindex="z-30"
           shopMenu
           role="menu"
         >
