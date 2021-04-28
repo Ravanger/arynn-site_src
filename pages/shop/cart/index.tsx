@@ -8,7 +8,7 @@ import { fetchData } from "util/dataFetching"
 import { useState } from "react"
 
 const Cart = () => {
-  const [loading, setLoading] = useState(false)
+  const [stripeLoading, setStripeLoading] = useState(false)
 
   const {
     removeItem,
@@ -19,21 +19,21 @@ const Cart = () => {
   } = useShoppingCart()
 
   const handleStripeCheckout = async () => {
-    if (cartCount <= 0 || loading) return
-    setLoading(true)
+    if (cartCount <= 0 || stripeLoading) return
+    setStripeLoading(true)
 
     const response: Stripe.Checkout.Session &
       ErrorResponseType = await fetchData("/api/checkout", cartDetails)
 
     if (response.statusCode === 500) {
       console.error(response.message)
-      setLoading(false)
+      setStripeLoading(false)
       return
     }
 
     const error = await redirectToCheckout({ sessionId: response.id })
     if (error) console.error(error)
-    setLoading(false)
+    setStripeLoading(false)
   }
 
   const cartItems: Product[] = Object.entries(cartDetails).map(
@@ -49,7 +49,7 @@ const Cart = () => {
         totalPrice={totalPrice}
         handleStripeCheckout={handleStripeCheckout}
         removeItem={removeItem}
-        loading={loading}
+        stripeLoading={stripeLoading}
       />
     </>
   )

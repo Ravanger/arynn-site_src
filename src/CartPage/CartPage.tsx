@@ -39,9 +39,9 @@ const CartPage = (props: CartPageType) => {
               <Button
                 onClick={props.handleStripeCheckout}
                 className="flex justify-center animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none md:col-start-4"
-                disabled={props.loading}
+                disabled={props.stripeLoading}
               >
-                {props.loading ? <Spinner /> : <span>Checkout</span>}
+                {props.stripeLoading ? <Spinner /> : <span>Checkout</span>}
               </Button>
               <Spacer />
             </div>
