@@ -10,8 +10,9 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
 const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-  if (props.errors) return <></>
+  if (props.errors || !props.item) return <></>
   const shopItem: Product = props.item
+
   const router = useRouter()
   const isCustomType =
     shopItem.product_data.metadata.type.toUpperCase() === "CUSTOM"

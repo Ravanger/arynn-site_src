@@ -11,14 +11,15 @@ import { readFile, writeFile } from "util/cache"
 import { Product } from "use-shopping-cart"
 
 const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-  if (props.errors) return <></>
+  if (props.errors || !props.shopItems) return <></>
+
+  const shopItems: Product[] = props.shopItems
+  if (shopItems.length <= 0) return <></>
 
   const [shopFilter, setShopFilter] = useAtom(shopFilterAtom)
   const [isShopMenuOpen, setIsShopMenuOpen] = useState(false)
   const shopMenuRef = useRef(null)
   useClickOutside(shopMenuRef, () => setIsShopMenuOpen(false))
-
-  const shopItems: Product[] = props.shopItems
 
   const SHOP_FILTERS = ["", "Prints", "Stickers", "Custom", "Originals"]
 
