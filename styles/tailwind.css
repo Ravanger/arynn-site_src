@@ -55,10 +55,7 @@
   /* 🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫 Custom 🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫🡫  */
   body {
     background-color: theme(colors.blue.light);
-    background-image: linear-gradient(
-      theme(colors.blue.light),
-      theme(colors.blue.DEFAULT)
-    );
+    background-image: linear-gradient(theme(colors.blue.light), #5fafad);
     overflow-x: hidden;
   }
 
