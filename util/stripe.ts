@@ -1,6 +1,6 @@
 import { Stripe } from "@stripe/stripe-js"
 import { loadStripe } from "@stripe/stripe-js/pure"
-import { CartDetails } from "use-shopping-cart"
+import { CartDetails, Product } from "use-shopping-cart"
 
 export const CURRENCY = "CAD"
 
@@ -21,4 +21,8 @@ export const itemIdExistsInCart = (
 ): boolean => {
   const objKeysArray = Object.keys(searchArray)
   return objKeysArray.indexOf(id) !== -1
+}
+
+export const getProductBySku = (sku: string, products: Product[]) => {
+  return products.find((product) => product.sku === sku)
 }
