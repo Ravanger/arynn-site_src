@@ -47,8 +47,11 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    const shopItems = await getShopItems()
-    await writeFile(shopItems, ".shopCache")
+    let shopItems: Product[] = await readFile(".shopCache")
+    if (shopItems.length <= 0) {
+      shopItems = await getShopItems()
+      await writeFile(shopItems, ".shopCache")
+    }
 
     const paths = shopItems.map((item) => ({
       params: { id: item.sku },

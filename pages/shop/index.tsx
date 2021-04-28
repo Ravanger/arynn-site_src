@@ -7,12 +7,18 @@ import { useAtom } from "jotai"
 import { shopFilterAtom } from "atoms/store"
 import { useClickOutside } from "util/clickHandlers"
 import { useRef, useState } from "react"
+import { readFile, writeFile } from "util/cache"
+import { Product } from "use-shopping-cart"
 
 const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+  if (props.errors) return <></>
+
   const [shopFilter, setShopFilter] = useAtom(shopFilterAtom)
   const [isShopMenuOpen, setIsShopMenuOpen] = useState(false)
   const shopMenuRef = useRef(null)
   useClickOutside(shopMenuRef, () => setIsShopMenuOpen(false))
+
+  const shopItems: Product[] = props.shopItems
 
   const SHOP_FILTERS = ["", "Prints", "Stickers", "Custom", "Originals"]
 
@@ -20,7 +26,7 @@ const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     <>
       <SEO title="Shop" description="Arynn's Shop" url="/shop" />
       <ShopPage
-        shopItems={props.shopItems}
+        shopItems={shopItems}
         shopFilter={shopFilter}
         isShopMenuOpen={isShopMenuOpen}
         shopMenuRef={shopMenuRef}
@@ -34,7 +40,11 @@ const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const shopItems = await getShopItems()
+    let shopItems: Product[] = await readFile(".shopCache")
+    if (shopItems.length <= 0) {
+      shopItems = await getShopItems()
+      await writeFile(shopItems, ".shopCache")
+    }
 
     return {
       props: { shopItems },

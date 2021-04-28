@@ -73,8 +73,11 @@ const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    const artItems = await getArtItems()
-    await writeFile(artItems, ".artcache")
+    let artItems: ArtItemType[] = await readFile(".artcache")
+    if (artItems.length <= 0) {
+      artItems = await getArtItems()
+      await writeFile(artItems, ".artcache")
+    }
 
     const paths = artItems.map((item) => ({
       params: { id: item.id },
