@@ -1,4 +1,3 @@
-import ResponsiveImage from "src/common/ResponsiveImage"
 import HeaderBar from "src/common/HeaderBar"
 import Spacer from "src/common/Spacer"
 import { ShopPiecePageTypes } from "./ShopPiecePage.types"
@@ -17,8 +16,8 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
   return (
     <>
       <HeaderBar>{props.item.name}</HeaderBar>
+      <Spacer size="2rem" />
       <main className="w-full">
-        <Spacer size="2rem" />
         {isMultipleImages ? (
           <Carousel images={shopPieceImages} />
         ) : (
