@@ -7,19 +7,29 @@ import { readFile, writeFile } from "util/cache"
 import { Product, useShoppingCart } from "use-shopping-cart"
 import { itemIdExistsInCart } from "util/stripe"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/router"
 
 const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   if (props.errors) return <></>
+  const shopItem: Product = props.item
+  const router = useRouter()
+  const isCustomType =
+    shopItem.product_data.metadata.type.toUpperCase() === "CUSTOM"
+
+  useEffect(() => {
+    if (isCustomType) router.replace("/shop/custom")
+  }, [])
 
   const { addItem, cartDetails } = useShoppingCart()
-  const shopItem: Product = props.item
-
   const [itemIsInCart, setItemIsInCart] = useState(false)
+
   useEffect(() => {
     setItemIsInCart(itemIdExistsInCart(cartDetails, shopItem.sku))
   }, [cartDetails, shopItem])
 
-  return (
+  return isCustomType ? (
+    <></>
+  ) : (
     <>
       <SEO
         title={"Shop: " + shopItem.name}

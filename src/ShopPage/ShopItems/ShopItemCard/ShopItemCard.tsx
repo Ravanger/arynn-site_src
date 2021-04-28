@@ -6,8 +6,11 @@ import { CURRENCY } from "util/stripe"
 import { ShopItemCardProps } from "./ShopItemCard.types"
 
 const ShopItemCard = (props: ShopItemCardProps) => {
+  const isCustomType =
+    props.item.product_data.metadata.type.toUpperCase() === "CUSTOM"
+
   return (
-    <Link href={"/shop/" + props.item.sku}>
+    <Link href={`/shop/${isCustomType ? "custom" : props.item.sku}`}>
       <a>
         <div className="group text-center text-xl font-bold">
           <ResponsiveImage src={props.item.image!} alt={props.item.name} />

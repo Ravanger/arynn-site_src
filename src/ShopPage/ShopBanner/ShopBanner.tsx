@@ -1,11 +1,10 @@
-import Image from "next/image"
 import Link from "next/link"
 import DynamicImage from "src/common/DynamicImage"
 import HeaderBar from "src/common/HeaderBar"
 import Spacer from "src/common/Spacer"
 
 const ShopBanner = () => (
-  <Link href="#">
+  <Link href="/shop/custom">
     <a>
       <div className="animate-scaleExpandIn hover:animate-scaleExpandOut flex flex-col border-1/2 border-pink hover:border-blue shadow-md rounded-xl overflow-hidden lg:flex-row z-40 relative">
         <div className="px-8 py-16">
