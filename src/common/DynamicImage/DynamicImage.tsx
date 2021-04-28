@@ -7,6 +7,7 @@ const DynamicImage = (props: DynamicImageTypes) => {
       <Image
         src={props.src}
         alt={props.alt}
+        quality={props.quality || 60}
         layout="fill"
         objectFit="cover"
         className={`${props.className ? props.className : ""}`}
