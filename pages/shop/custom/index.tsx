@@ -17,6 +17,7 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [selectedPieceSku, setSelectedPieceSku] = useState(
     customShopPieces[0].sku
   )
+  const [wantedQuantity, setWantedQuantity] = useState(1)
   const { addItem, incrementItem, cartDetails } = useShoppingCart()
 
   const selectedPiece = getProductBySku(
@@ -37,10 +38,12 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         setSelectedPieceSku={setSelectedPieceSku}
         addToCartFunc={() =>
           itemIdExistsInCart(cartDetails, selectedPieceSku)
-            ? incrementItem(selectedPieceSku)
-            : addItem(selectedPiece)
+            ? incrementItem(selectedPieceSku, wantedQuantity)
+            : addItem(selectedPiece, wantedQuantity)
         }
         quantityInCart={cartDetails[selectedPieceSku]?.quantity}
+        setWantedQuantity={setWantedQuantity}
+        wantedQuantity={wantedQuantity}
       />
     </>
   ) : (

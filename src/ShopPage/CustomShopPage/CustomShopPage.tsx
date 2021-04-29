@@ -21,6 +21,12 @@ const CustomShopPage = (props: CustomShopPropsType) => {
     </option>
   ))
 
+  const quantityOptions = [...Array(23)].map((item, i) => (
+    <option value={i + 1} key={i + 1}>
+      {i + 1}
+    </option>
+  ))
+
   return (
     <>
       <HeaderBar>{props.selectedPiece.name}</HeaderBar>
@@ -49,14 +55,24 @@ const CustomShopPage = (props: CustomShopPropsType) => {
         })}
       </span>
       <Spacer size="2rem" />
-      <Button
-        className={`animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none`}
-        onClick={props.addToCartFunc}
-      >
-        {props.quantityInCart
-          ? `${props.quantityInCart} in cart`
-          : "Add to Cart"}
-      </Button>
+      <div className="flex flex-row">
+        <select
+          onChange={(event) => {
+            props.setWantedQuantity(~~event.target.value)
+          }}
+          value={props.wantedQuantity}
+        >
+          {quantityOptions}
+        </select>
+        <Button
+          className={`animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none`}
+          onClick={props.addToCartFunc}
+        >
+          {props.quantityInCart
+            ? `${props.quantityInCart} in cart`
+            : "Add to Cart"}
+        </Button>
+      </div>
     </>
   )
 }

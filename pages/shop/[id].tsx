@@ -22,11 +22,7 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   }, [])
 
   const { addItem, incrementItem, cartDetails } = useShoppingCart()
-  const [itemIsInCart, setItemIsInCart] = useState(false)
-
-  useEffect(() => {
-    setItemIsInCart(itemIdExistsInCart(cartDetails, shopItem.sku))
-  }, [cartDetails, shopItem])
+  const [wantedQuantity, setWantedQuantity] = useState(1)
 
   return isCustomType ? (
     <></>
@@ -41,10 +37,12 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         item={shopItem}
         addToCartFunc={() =>
           itemIdExistsInCart(cartDetails, shopItem.sku)
-            ? incrementItem(shopItem.sku)
-            : addItem(shopItem)
+            ? incrementItem(shopItem.sku, wantedQuantity)
+            : addItem(shopItem, wantedQuantity)
         }
         quantityInCart={cartDetails[shopItem.sku]?.quantity}
+        setWantedQuantity={setWantedQuantity}
+        wantedQuantity={wantedQuantity}
       />
     </>
   )

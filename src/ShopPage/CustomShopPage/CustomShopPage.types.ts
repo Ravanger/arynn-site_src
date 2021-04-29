@@ -7,4 +7,6 @@ export interface CustomShopPropsType {
   setSelectedPieceSku: Dispatch<SetStateAction<string>>
   addToCartFunc: () => void
   quantityInCart: number
+  setWantedQuantity: Dispatch<SetStateAction<number>>
+  wantedQuantity: number
 }
