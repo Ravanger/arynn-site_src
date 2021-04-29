@@ -123,8 +123,8 @@ const MainLayout = (props: LayoutProps) => {
   return (
     <div className="relative flex flex-col justify-between min-h-screen">
       <BackgroundClouds />
+      <Spacer size="2rem" />
       <div className="sticky top-0 z-50 flex flex-col items-center lg:static">
-        <Spacer />
         <Menu
           isMenuOpen={isMainMenuOpen}
           setMenuOpen={setIsMainMenuOpen}
