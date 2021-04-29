@@ -20,6 +20,7 @@ const CartPage = (props: CartPageType) => {
               <CartItem
                 item={cartItem}
                 removeCartItem={() => props.removeItem(cartItem.sku)}
+                quantityInCart={props.cartDetails[cartItem.sku].quantity}
               />
               <Spacer size="2rem" />
             </Fragment>
@@ -41,7 +42,11 @@ const CartPage = (props: CartPageType) => {
                 className="flex justify-center animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none md:col-start-4"
                 disabled={props.stripeLoading}
               >
-                {props.stripeLoading ? <Spinner /> : <span>Checkout</span>}
+                {props.stripeLoading ? (
+                  <Spinner />
+                ) : (
+                  <span>Checkout {props.cartCount} items</span>
+                )}
               </Button>
               <Spacer />
             </div>

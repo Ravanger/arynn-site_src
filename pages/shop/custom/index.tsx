@@ -5,7 +5,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next"
 import { getShopItems } from "util/dataFetching"
 import { Product, useShoppingCart } from "use-shopping-cart"
 import { readFile, writeFile } from "util/cache"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { getProductBySku, itemIdExistsInCart } from "util/stripe"
 
 const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -14,24 +14,15 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const customShopPieces: Product[] = props.customShopPieces
   if (customShopPieces.length <= 0) return <></>
 
-  const [itemIsInCart, setItemIsInCart] = useState(false)
   const [selectedPieceSku, setSelectedPieceSku] = useState(
     customShopPieces[0].sku
   )
-  const { addItem, cartDetails } = useShoppingCart()
+  const { addItem, incrementItem, cartDetails } = useShoppingCart()
 
   const selectedPiece = getProductBySku(
     selectedPieceSku,
     props.customShopPieces
   )
-
-  useEffect(() => {
-    customShopPieces.forEach((item) => {
-      if (itemIdExistsInCart(cartDetails, item.sku)) {
-        return setItemIsInCart(true)
-      }
-    })
-  }, [cartDetails, customShopPieces])
 
   return selectedPiece ? (
     <>
@@ -45,9 +36,11 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         selectedPiece={selectedPiece}
         setSelectedPieceSku={setSelectedPieceSku}
         addToCartFunc={() =>
-          selectedPiece && !itemIsInCart && addItem(selectedPiece, 1)
+          itemIdExistsInCart(cartDetails, selectedPieceSku)
+            ? incrementItem(selectedPieceSku)
+            : addItem(selectedPiece)
         }
-        isInCart={itemIsInCart}
+        quantityInCart={cartDetails[selectedPieceSku]?.quantity}
       />
     </>
   ) : (

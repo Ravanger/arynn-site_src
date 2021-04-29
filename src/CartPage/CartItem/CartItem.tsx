@@ -39,6 +39,7 @@ const CartItem = (props: CartItemType) => (
       <span className="text-3xl">
         {formatCurrencyString({ value: props.item.price, currency: CURRENCY })}
       </span>
+      <span>{`(${props.quantityInCart} in cart)`}</span>
     </div>
   </div>
 )

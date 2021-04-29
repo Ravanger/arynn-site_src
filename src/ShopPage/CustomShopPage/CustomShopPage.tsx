@@ -50,12 +50,12 @@ const CustomShopPage = (props: CustomShopPropsType) => {
       </span>
       <Spacer size="2rem" />
       <Button
-        className={`animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none ${
-          props.isInCart ? "opacity-50 text-xs" : ""
-        }`}
+        className={`animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none`}
         onClick={props.addToCartFunc}
       >
-        {props.isInCart ? "Already in Cart" : "Add to Cart"}
+        {props.quantityInCart
+          ? `${props.quantityInCart} in cart`
+          : "Add to Cart"}
       </Button>
     </>
   )

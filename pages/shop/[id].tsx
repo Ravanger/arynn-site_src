@@ -21,7 +21,7 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     if (isCustomType) router.replace("/shop/custom")
   }, [])
 
-  const { addItem, cartDetails } = useShoppingCart()
+  const { addItem, incrementItem, cartDetails } = useShoppingCart()
   const [itemIsInCart, setItemIsInCart] = useState(false)
 
   useEffect(() => {
@@ -39,8 +39,12 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       />
       <ShopPiecePage
         item={shopItem}
-        addToCartFunc={() => !itemIsInCart && addItem(shopItem, 1)}
-        isInCart={itemIsInCart}
+        addToCartFunc={() =>
+          itemIdExistsInCart(cartDetails, shopItem.sku)
+            ? incrementItem(shopItem.sku)
+            : addItem(shopItem)
+        }
+        quantityInCart={cartDetails[shopItem.sku]?.quantity}
       />
     </>
   )

@@ -45,6 +45,7 @@ const Cart = () => {
       <SEO title="Cart" description="Arynn's Shop - Cart" url="/shop/cart" />
       <CartPage
         cartItems={cartItems}
+        cartDetails={cartDetails}
         cartCount={cartCount}
         totalPrice={totalPrice}
         handleStripeCheckout={handleStripeCheckout}
