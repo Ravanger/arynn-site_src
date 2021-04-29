@@ -16,7 +16,9 @@ const CustomShopPage = (props: CustomShopPropsType) => {
   })
 
   const selectOptions = props.customShopPieces.map((item) => (
-    <option value={item.sku}>{item.name}</option>
+    <option value={item.sku} key={item.sku}>
+      {item.name}
+    </option>
   ))
 
   return (
