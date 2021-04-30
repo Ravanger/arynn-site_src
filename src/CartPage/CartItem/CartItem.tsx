@@ -68,7 +68,7 @@ const CartItem = (props: CartItemType) => {
           <HeaderBar hrClassName="hidden flex-grow flex-shrink bg-blue h-0.5 border-none lg:block" />
           <span className="text-3xl">
             {formatCurrencyString({
-              value: props.item.price,
+              value: props.item.price * props.quantityInCart,
               currency: CURRENCY,
             })}
           </span>

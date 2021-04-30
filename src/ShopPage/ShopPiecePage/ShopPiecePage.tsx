@@ -55,7 +55,9 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
               {quantityOptions}
             </select>
             <Button
-              className={`animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none`}
+              className={`animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none ${
+                props.quantityInCart ? "opacity-50" : ""
+              }`}
               onClick={props.addToCartFunc}
             >
               {props.quantityInCart
