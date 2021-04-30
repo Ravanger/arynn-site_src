@@ -30,6 +30,10 @@ const CartItem = (props: CartItemType) => (
             objectFit="cover"
           />
         </div>
+      </a>
+    </Link>
+    <Link href={`/shop/${props.item.sku}`}>
+      <a className="group">
         <div className="italic md:text-left">
           <h3 className="font-bold group-hover:text-pink sm:text-2xl">
             {props.item.name}
@@ -41,7 +45,7 @@ const CartItem = (props: CartItemType) => (
         </div>
       </a>
     </Link>
-    <div className="flex flex-row items-center gap-4 justify-center">
+    <div className="flex flex-row items-center gap-4 justify-center md:col-start-3">
       <HeaderBar hrClassName="hidden flex-grow flex-shrink bg-blue h-0.5 border-none lg:block" />
       <span className="text-3xl">
         {formatCurrencyString({ value: props.item.price, currency: CURRENCY })}
