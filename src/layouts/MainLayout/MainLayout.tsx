@@ -138,7 +138,7 @@ const MainLayout = (props: LayoutProps) => {
       <div className="overflow-hidden w-full flex flex-col items-center pb-0 sm:p-8">
         <ContentBox>{props.children}</ContentBox>
         <IoTriangle
-          className="text-white inline-block transform -translate-y-2 rotate-180"
+          className="text-white inline-block transform -translate-y-2 rotate-180 z-20"
           size="4rem"
         />
         <div className="relative -bottom-10">
