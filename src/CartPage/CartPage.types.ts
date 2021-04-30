@@ -7,5 +7,6 @@ export interface CartPageType {
   totalPrice: number
   handleStripeCheckout: () => Promise<void>
   removeItem: (sku: string) => void
+  setWantedQuantity: (sku: string, quantity: number) => void
   stripeLoading: boolean
 }

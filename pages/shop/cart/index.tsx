@@ -13,6 +13,7 @@ const Cart = () => {
   const {
     removeItem,
     redirectToCheckout,
+    setItemQuantity,
     cartDetails,
     totalPrice,
     cartCount,
@@ -50,6 +51,7 @@ const Cart = () => {
         totalPrice={totalPrice}
         handleStripeCheckout={handleStripeCheckout}
         removeItem={removeItem}
+        setWantedQuantity={setItemQuantity}
         stripeLoading={stripeLoading}
       />
     </>

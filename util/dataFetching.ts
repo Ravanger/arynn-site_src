@@ -66,6 +66,7 @@ export const getShopItems = async () => {
       product_data: {
         metadata: {
           type: item.type,
+          maxQuantity: 23,
         },
       },
       images: item.images,

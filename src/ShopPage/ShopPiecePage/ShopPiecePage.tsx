@@ -13,7 +13,10 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
   const shopPieceImages = props.item.images as StrapiImageType[]
   const isMultipleImages = shopPieceImages && shopPieceImages.length > 1
 
-  const quantityOptions = [...Array(23)].map((item, i) => (
+  const maxSelectedQuantity: number =
+    props.item.product_data.metadata.maxQuantity || 23
+
+  const quantityOptions = [...Array(maxSelectedQuantity)].map((item, i) => (
     <option value={i + 1} key={i + 1}>
       {i + 1}
     </option>

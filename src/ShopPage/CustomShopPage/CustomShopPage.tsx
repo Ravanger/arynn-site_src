@@ -21,7 +21,10 @@ const CustomShopPage = (props: CustomShopPropsType) => {
     </option>
   ))
 
-  const quantityOptions = [...Array(23)].map((item, i) => (
+  const maxSelectedQuantity: number =
+    props.selectedPiece.product_data.metadata.maxQuantity || 23
+
+  const quantityOptions = [...Array(maxSelectedQuantity)].map((item, i) => (
     <option value={i + 1} key={i + 1}>
       {i + 1}
     </option>

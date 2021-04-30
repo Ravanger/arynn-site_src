@@ -20,6 +20,7 @@ const CartPage = (props: CartPageType) => {
               <CartItem
                 item={cartItem}
                 removeCartItem={() => props.removeItem(cartItem.sku)}
+                setWantedQuantity={props.setWantedQuantity}
                 quantityInCart={props.cartDetails[cartItem.sku].quantity}
               />
               <Spacer size="2rem" />
