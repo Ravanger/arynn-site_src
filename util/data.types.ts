@@ -47,6 +47,7 @@ export interface StrapiFetchShopDataType {
   description: string
   price: number
   type: string
+  maxquantity?: number
   created_at: Date
   updated_at: Date
   images: StrapiImageType[]
