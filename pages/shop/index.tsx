@@ -21,7 +21,14 @@ const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const shopMenuRef = useRef(null)
   useClickOutside(shopMenuRef, () => setIsShopMenuOpen(false))
 
-  const SHOP_FILTERS = ["", "Prints", "Stickers", "Custom", "Originals"]
+  const SHOP_FILTERS = [
+    "",
+    "Prints",
+    "Stickers",
+    "Goods",
+    "Custom",
+    "Originals",
+  ]
 
   return (
     <>
