@@ -30,7 +30,11 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
         {isMultipleImages ? (
           <Carousel images={shopPieceImages} />
         ) : (
-          <DynamicImage src={props.item.image!} alt={props.item.name} />
+          <DynamicImage
+            src={props.item.image!}
+            alt={props.item.name}
+            quality={90}
+          />
         )}
         <Spacer size="2rem" />
         <HeaderBar />
