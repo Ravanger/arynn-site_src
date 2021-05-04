@@ -30,7 +30,7 @@ const CartPage = (props: CartPageType) => {
             <div className="md:w-1/3">
               <div className="flex flex-row items-center gap-4 justify-center">
                 <HeaderBar />
-                <span className="text-3xl">
+                <span className="text-3xl pl-2">
                   {formatCurrencyString({
                     value: props.totalPrice,
                     currency: CURRENCY,

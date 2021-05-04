@@ -64,7 +64,7 @@ const CartItem = (props: CartItemType) => {
         </select>
         <div className="flex flex-row w-full items-center gap-4 justify-center">
           <HeaderBar hrClassName="hidden flex-grow flex-shrink bg-blue h-0.5 border-none lg:block" />
-          <span className="text-3xl">
+          <span className="text-3xl pl-2">
             {formatCurrencyString({
               value: props.item.price * props.quantityInCart,
               currency: CURRENCY,
