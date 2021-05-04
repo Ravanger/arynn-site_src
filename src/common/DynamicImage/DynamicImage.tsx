@@ -9,7 +9,7 @@ const DynamicImage = (props: DynamicImageTypes) => {
         alt={props.alt}
         quality={props.quality || 60}
         layout="fill"
-        objectFit="cover"
+        objectFit="contain"
         className={`${props.className ? props.className : ""}`}
       />
     </div>
