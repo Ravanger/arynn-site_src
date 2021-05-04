@@ -49,9 +49,7 @@ const CartItem = (props: CartItemType) => {
               {props.item.name}
             </h3>
             <Spacer />
-            <p className="text-xs sm:text-sm md:text-justify">
-              {props.item.description}
-            </p>
+            <p className="text-xs sm:text-sm">{props.item.description}</p>
           </div>
         </a>
       </Link>
