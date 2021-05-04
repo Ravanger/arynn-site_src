@@ -67,6 +67,7 @@ const CustomShopPage = (props: CustomShopPropsType) => {
         >
           {quantityOptions}
         </select>
+        <Spacer axis="HORIZONTAL" />
         <Button
           className={`${
             props.quantityInCart ? "opacity-50" : ""

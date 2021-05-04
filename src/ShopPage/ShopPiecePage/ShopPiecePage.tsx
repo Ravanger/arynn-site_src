@@ -43,7 +43,7 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
           <PDescriptionText className="col-span-3">
             {props.item.description}
           </PDescriptionText>
-          <div className="flex flex-row items-center col-span-3 md:col-start-3 md:col-span-1 md:text-right">
+          <div className="flex flex-row items-center col-span-3 md:col-start-2 md:col-span-2 md:text-right">
             <HeaderBar />
             <span className="text-3xl font-bold pl-2">
               {formatCurrencyString({
@@ -52,7 +52,7 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
               })}
             </span>
           </div>
-          <div className="flex flex-row w-full col-span-3 md:col-span-1 md:col-start-3">
+          <div className="flex flex-row w-full col-span-3 md:col-span-2 md:col-start-2">
             <select
               onChange={(event) => {
                 props.setWantedQuantity(~~event.target.value)
@@ -61,6 +61,7 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
             >
               {quantityOptions}
             </select>
+            <Spacer axis="HORIZONTAL" />
             <Button
               className={`animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none ${
                 props.quantityInCart ? "opacity-50" : ""
