@@ -46,7 +46,7 @@ const CartPage = (props: CartPageType) => {
                 {props.stripeLoading ? (
                   <Spinner />
                 ) : (
-                  <span>Checkout {props.cartCount} items</span>
+                  <span>Checkout {props.cartCount} item(s)</span>
                 )}
               </Button>
               <Spacer />
