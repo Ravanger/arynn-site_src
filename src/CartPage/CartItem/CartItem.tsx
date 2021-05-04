@@ -53,7 +53,7 @@ const CartItem = (props: CartItemType) => {
           </div>
         </a>
       </Link>
-      <div className="flex flex-col items-center gap-4 md:col-start-3">
+      <div className="flex flex-col items-end gap-4 md:col-start-3">
         <select
           value={props.quantityInCart}
           onChange={(event) => {
