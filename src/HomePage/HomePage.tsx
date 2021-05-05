@@ -9,7 +9,7 @@ const HomePage = (props: HomePageType) => {
       <BackgroundClouds />
       <LandingMenu menuItems={props.menuItems} />
       <div className="overflow-hidden w-2/3 text-center sm:w-full lg:absolute lg:bottom-0">
-        <div className="relative -bottom-2">
+        <div className="relative -bottom-2 max-h-6/10-screen">
           <MainImage />
         </div>
       </div>

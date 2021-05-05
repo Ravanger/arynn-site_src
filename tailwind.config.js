@@ -47,6 +47,7 @@ module.exports = {
       maxHeight: {
         "1/3": "33.333333%",
         "6/10": "60%",
+        "6/10-screen": "60vh",
       },
       maxWidth: {
         24: "6rem",
