@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import Link from "next/link"
 import ResponsiveImage from "src/common/ResponsiveImage"
 import { ArtItemsType } from "./ArtItems.types"
@@ -21,14 +22,19 @@ const ArtItems = (props: ArtItemsType) => {
           }}
           key={artItem.title + index}
         >
-          <a>
+          <motion.a
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.05 }}
+            className="cursor-pointer"
+          >
             <ResponsiveImage
               src={artItem.image}
               alt={artItem.title}
               width={500}
               height={500}
             />
-          </a>
+          </motion.a>
         </Link>
       ))}
     </div>

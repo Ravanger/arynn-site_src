@@ -4,7 +4,7 @@ import SEO from "src/common/SEO"
 import { GetStaticProps, InferGetStaticPropsType } from "next"
 import { getShopItems } from "util/dataFetching"
 import { useAtom } from "jotai"
-import { shopFilterAtom } from "atoms/store"
+import { screenWidthAtom, shopFilterAtom } from "atoms/store"
 import { useClickOutside } from "util/clickHandlers"
 import { useRef, useState } from "react"
 import { readFile, writeFile } from "util/cache"
@@ -15,6 +15,8 @@ const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   const shopItems: Product[] = props.shopItems
   if (shopItems.length <= 0) return <></>
+
+  const [screenWidth] = useAtom(screenWidthAtom)
 
   const [shopFilter, setShopFilter] = useAtom(shopFilterAtom)
   const [isShopMenuOpen, setIsShopMenuOpen] = useState(false)
@@ -41,6 +43,7 @@ const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         setShopFilter={setShopFilter}
         setIsShopMenuOpen={setIsShopMenuOpen}
         shopFiltersList={SHOP_FILTERS}
+        isMobile={screenWidth < 1024}
       />
     </>
   )

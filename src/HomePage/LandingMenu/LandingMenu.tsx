@@ -4,6 +4,7 @@ import { LandingMenuPropsType } from "./LandingMenu.types"
 import { IoTriangle } from "react-icons/io5"
 import Link from "next/link"
 import { MenuItemType } from "util/data.types"
+import { motion } from "framer-motion"
 
 const MenuButton = (props: MenuItemType) => (
   <Link href={props.url} passHref>
@@ -19,17 +20,20 @@ const LandingMenu = (props: LandingMenuPropsType) => {
     return (
       <React.Fragment key={item.text}>
         <Spacer size="1rem" />
-        <div
-          className={`animate-scaleExpandIn hover:animate-scaleExpandOut text-center lg:relative z-10 ${
+        <motion.div
+          className={`text-center lg:relative z-10 ${
             isButtonShop ? "lg:top-15p" : "lg:top-1/3"
           }`}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.05 }}
         >
           <MenuButton text={item.text} url={item.url} />
           <IoTriangle
             className="text-white inline-block transform -translate-y-1 rotate-180"
             size="2rem"
           />
-        </div>
+        </motion.div>
         <Spacer size="1rem" />
       </React.Fragment>
     )

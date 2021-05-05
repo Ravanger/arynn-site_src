@@ -5,19 +5,33 @@ import { LayoutProps, NavItemsType } from "../Layout.types"
 import MainImage from "src/common/MainImage"
 import { IoTriangle } from "react-icons/io5"
 import { useAtom } from "jotai"
-import { artFilterAtom } from "atoms/store"
+import { screenWidthAtom, artFilterAtom } from "atoms/store"
 import { useRouter } from "next/router"
 import { useClickOutside } from "util/clickHandlers"
 import { useShoppingCart } from "use-shopping-cart"
 import { socialLinks } from "src/common/socials"
-import React, { Fragment, useRef, useState } from "react"
+import React, { Fragment, useEffect, useRef, useState } from "react"
 import SiteLink from "src/common/SiteLink"
 import BackgroundClouds from "../BackgroundClouds"
+import { debounce } from "util/dataFetching"
 
 const MainLayout = (props: LayoutProps) => {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false)
   const [artFilter, setArtFilter] = useAtom(artFilterAtom)
+  const [screenWidth, setScreenWidth] = useAtom(screenWidthAtom)
   const { cartCount } = useShoppingCart()
+
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      setScreenWidth(window.innerWidth)
+    })
+
+    setScreenWidth(window.innerWidth)
+    window.addEventListener("resize", handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [screenWidth])
 
   const router = useRouter()
   const mainMenuRef = useRef(null)
@@ -121,7 +135,7 @@ const MainLayout = (props: LayoutProps) => {
   ))
 
   return (
-    <div className="relative flex flex-col justify-between min-h-screen">
+    <div className="relative flex flex-col justify-between min-h-screen overflow-hidden">
       <BackgroundClouds />
       <Spacer size="2rem" />
       <div className="sticky top-0 z-50 flex flex-col items-center sm:p-8 lg:static">
@@ -130,6 +144,7 @@ const MainLayout = (props: LayoutProps) => {
           setMenuOpen={setIsMainMenuOpen}
           menuRef={mainMenuRef}
           role="navigation"
+          isMobile={screenWidth < 1024}
         >
           {mainMenu}
         </Menu>

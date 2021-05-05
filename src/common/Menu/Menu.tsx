@@ -1,14 +1,14 @@
+import { motion } from "framer-motion"
 import { IoMenu, IoTriangle } from "react-icons/io5"
 import { MenuPropsType } from "./Menu.types"
 
 const Menu = (props: MenuPropsType) => {
   return (
-    <div
-      className={`animate-scaleExpandIn hover:animate-scaleExpandOut ${
-        props.shopMenu ? "lg:animate-none lg:hover:animate-none" : ""
-      } ${
+    <motion.div
+      className={`${
         props.zindex ? props.zindex : "z-50"
       } text-center lg:max-w-5xl lg:relative lg:w-full`}
+      whileHover={{ scale: props.shopMenu ? 1 : 1.1 }}
     >
       <IoTriangle
         className={`${
@@ -19,7 +19,7 @@ const Menu = (props: MenuPropsType) => {
       <div
         className={`${
           props.shopMenu ? "bg-pink lg:bg-white" : "bg-white shadow-md"
-        } text-center rounded-xl2 lg:rounded-xl4 lg:static lg:w-full lg:p-8`}
+        } h-auto text-center rounded-xl2 lg:rounded-xl4 lg:static lg:w-full lg:p-8`}
         ref={props.menuRef}
       >
         <button
@@ -30,18 +30,24 @@ const Menu = (props: MenuPropsType) => {
         >
           <IoMenu size="2rem" className="w-full" />
         </button>
-        <nav
+        <motion.nav
           className={`${
-            props.isMenuOpen
-              ? "flex motion-safe:animate-growDown w-64 pb-8"
-              : "hidden"
-          } origin-top flex-col space-y-4 lg:space-y-0 lg:flex lg:flex-row lg:flex-nowrap lg:justify-center lg:items-baseline`}
+            props.isMenuOpen ? "flex-col w-64 pb-8" : "hidden"
+          } origin-top flex-col space-y-4 lg:space-y-0 lg:flex-row lg:flex-nowrap lg:justify-center lg:items-baseline`}
           role={props.role}
+          variants={{
+            open: { scaleY: 1, height: "auto", display: "flex" },
+            closed: { scaleY: 0, height: 0, display: "hidden" },
+          }}
+          animate={
+            props.isMobile ? (props.isMenuOpen ? "open" : "closed") : "open"
+          }
+          transition={{ type: "tween", duration: 0.1 }}
         >
           {props.children}
-        </nav>
+        </motion.nav>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

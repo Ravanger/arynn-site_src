@@ -8,6 +8,7 @@ import {
 import Spacer from "src/common/Spacer"
 import ResponsiveImage from "src/common/ResponsiveImage"
 import { AboutBlurbType } from "./AboutBlurb.types"
+import { motion } from "framer-motion"
 
 const AboutBlurb = (props: AboutBlurbType) => {
   const styledContactButton = (child: React.ReactNode) => (
@@ -38,59 +39,69 @@ const AboutBlurb = (props: AboutBlurbType) => {
         <Spacer size="2rem" />
         <div className="flex flex-row flex-nowrap justify-around">
           {props.socialLinks.facebook && (
-            <a
+            <motion.a
               href={props.socialLinks.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="animate-scaleExpandIn hover:animate-scaleExpandOut"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.05 }}
             >
               {styledContactButton(<FaFacebookF />)}
               <span className="sr-only">Opens in new window</span>
-            </a>
+            </motion.a>
           )}
           {props.socialLinks.instagram && (
-            <a
+            <motion.a
               href={props.socialLinks.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="animate-scaleExpandIn hover:animate-scaleExpandOut"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.05 }}
             >
               {styledContactButton(<FaInstagram />)}
               <span className="sr-only">Opens in new window</span>
-            </a>
+            </motion.a>
           )}
           {props.socialLinks.twitter && (
-            <a
+            <motion.a
               href={props.socialLinks.twitter}
               target="_blank"
               rel="noopener noreferrer"
-              className="animate-scaleExpandIn hover:animate-scaleExpandOut"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.05 }}
             >
               {styledContactButton(<FaTwitter />)}
               <span className="sr-only">Opens in new window</span>
-            </a>
+            </motion.a>
           )}
           {props.socialLinks.email && (
-            <a
+            <motion.a
               href={`mailto:${props.socialLinks.email}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="animate-scaleExpandIn hover:animate-scaleExpandOut"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.05 }}
             >
               {styledContactButton(<FaEnvelope />)}
               <span className="sr-only">Opens in new window</span>
-            </a>
+            </motion.a>
           )}
           {props.socialLinks.patreon && (
-            <a
+            <motion.a
               href={props.socialLinks.patreon}
               target="_blank"
               rel="noopener noreferrer"
-              className="animate-scaleExpandIn hover:animate-scaleExpandOut"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.05 }}
             >
               {styledContactButton(<FaPatreon />)}
               <span className="sr-only">Opens in new window</span>
-            </a>
+            </motion.a>
           )}
         </div>
       </div>

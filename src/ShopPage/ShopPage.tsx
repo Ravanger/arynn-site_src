@@ -4,6 +4,7 @@ import Spacer from "src/common/Spacer"
 import ShopItems from "./ShopItems"
 import Menu from "src/common/Menu"
 import ShopBanner from "./ShopBanner"
+import { motion } from "framer-motion"
 
 const ShopPage = (props: ShopPageType) => {
   return (
@@ -18,6 +19,7 @@ const ShopPage = (props: ShopPageType) => {
           zindex="z-30"
           shopMenu
           role="menu"
+          isMobile={props.isMobile}
         >
           <HeaderBar
             isMenu
@@ -28,19 +30,22 @@ const ShopPage = (props: ShopPageType) => {
             {props.shopFiltersList.map((filter, index) => {
               return (
                 <div key={filter + index} className="lg:inline-block">
-                  <button
+                  <motion.button
                     onClick={() => {
                       props.setShopFilter(filter)
                       props.setIsShopMenuOpen(false)
                     }}
-                    className={`font-bold border-0 text-lg text-white transform animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none lg:hover:text-pink lg:text-2xl lg:leading-10 ${
+                    className={`font-bold border-0 text-lg text-white focus:outline-none lg:hover:text-pink lg:text-2xl lg:leading-10 ${
                       filter === props.shopFilter
                         ? "italic lg:text-pink"
                         : "lg:text-blue"
                     }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.05 }}
                   >
                     {filter || "All"}
-                  </button>
+                  </motion.button>
                   <Spacer className="lg:hidden" />
                   <HeaderBar hrClassName="w-24 mx-auto bg-white border-none h-0.5 lg:hidden" />
                   <Spacer className="lg:hidden" />

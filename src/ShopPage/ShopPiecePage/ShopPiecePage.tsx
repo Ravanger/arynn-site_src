@@ -63,7 +63,7 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
             </select>
             <Spacer axis="HORIZONTAL" />
             <Button
-              className={`animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none ${
+              className={`focus:outline-none ${
                 props.quantityInCart ? "opacity-50" : ""
               }`}
               onClick={props.addToCartFunc}

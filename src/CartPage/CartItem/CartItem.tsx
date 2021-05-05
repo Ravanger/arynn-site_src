@@ -6,6 +6,7 @@ import Spacer from "src/common/Spacer"
 import { CURRENCY } from "util/stripe"
 import { formatCurrencyString } from "use-shopping-cart"
 import Link from "next/link"
+import { motion } from "framer-motion"
 
 const CartItem = (props: CartItemType) => {
   const maxSelectedQuantity: number =
@@ -19,15 +20,18 @@ const CartItem = (props: CartItemType) => {
 
   return (
     <div className="rounded-xl p-10 relative grid gap-8 md:gap-16 md:grid-cols-3 md:items-center sm:border-15 sm:border-blue">
-      <button
+      <motion.button
         onClick={props.removeCartItem}
-        className="absolute right-4 top-4 animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none"
+        className="absolute right-4 top-4 focus:outline-none"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ duration: 0.05 }}
       >
         <FaWindowClose
           size="1.2rem"
           className="text-pink hover:text-blue active:text-blue-light"
         />
-      </button>
+      </motion.button>
       <Link href={`/shop/${props.item.sku}`}>
         <a className="group">
           <div className="w-full self-center">

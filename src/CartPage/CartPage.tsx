@@ -40,7 +40,7 @@ const CartPage = (props: CartPageType) => {
               <Spacer />
               <Button
                 onClick={props.handleStripeCheckout}
-                className="flex justify-center animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none md:col-start-4"
+                className="flex justify-center focus:outline-none md:col-start-4"
                 disabled={props.stripeLoading}
               >
                 {props.stripeLoading ? (

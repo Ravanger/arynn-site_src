@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import Link from "next/link"
 
 import { MainNavItemProps } from "./SiteLink.types"
@@ -5,7 +6,7 @@ import { MainNavItemProps } from "./SiteLink.types"
 const SiteLink = (props: MainNavItemProps) => {
   const SubLink = (
     <span
-      className={`animate-scaleExpandIn hover:animate-scaleExpandOut px-1 cursor-pointer whitespace-nowrap text-pink hover:text-blue ${
+      className={`px-1 cursor-pointer whitespace-nowrap text-pink hover:text-blue ${
         props.primary ? "text-2xl font-bold" : ""
       } ${props.active ? "text-blue italic" : ""}`}
     >
@@ -16,14 +17,17 @@ const SiteLink = (props: MainNavItemProps) => {
   return (
     <Link href={props.url ?? ""} passHref>
       {props.filter ? (
-        <button
-          className="animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none"
+        <motion.button
+          className="focus:outline-none"
           onClick={props.onClick}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.05 }}
         >
           {SubLink}
-        </button>
+        </motion.button>
       ) : (
-        <a
+        <motion.a
           {...(props.external && {
             target: "_blank",
             rel: "noopener noreferrer",
@@ -31,13 +35,15 @@ const SiteLink = (props: MainNavItemProps) => {
           {...(props.onClick && {
             onClick: props.onClick,
           })}
-          className="animate-scaleExpandIn hover:animate-scaleExpandOut"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.05 }}
         >
           {SubLink}
           {props.external && (
             <span className="sr-only">Opens in new window</span>
           )}
-        </a>
+        </motion.a>
       )}
     </Link>
   )

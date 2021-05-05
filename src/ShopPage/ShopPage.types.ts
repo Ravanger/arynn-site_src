@@ -9,4 +9,5 @@ export interface ShopPageType {
   shopMenuRef: MutableRefObject<null>
   setShopFilter: (update: SetStateAction<string>) => void | Promise<void>
   setIsShopMenuOpen: Dispatch<SetStateAction<boolean>>
+  isMobile: boolean
 }

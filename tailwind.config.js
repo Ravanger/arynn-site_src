@@ -69,31 +69,6 @@ module.exports = {
       backgroundImage: (theme) => ({
         clouds: "url('/images/clouds.png')",
       }),
-      keyframes: {
-        growDown: {
-          "0%": { maxHeight: 0, opacity: 0 },
-          "100%": { maxHeight: "100vh", opacity: 1 },
-        },
-        scaleExpandOut: {
-          from: { transform: "scale(1)" },
-          to: { transform: "scale(1.1)" },
-        },
-        scaleExpandIn: {
-          to: { transform: "scale(1)" },
-          from: { transform: "scale(1.1)" },
-        },
-        floating: {
-          "0%": { transform: "translate(0, 0)" },
-          "50%": { transform: "translate(0, -0.3rem)" },
-          "100%": { transform: "translate(0, 0)" },
-        },
-      },
-      animation: {
-        growDown: "growDown 300ms ease-in-out forwards",
-        scaleExpandIn: "scaleExpandIn 60ms ease-in-out forwards",
-        scaleExpandOut: "scaleExpandOut 60ms ease-in-out forwards",
-        floating: "floating 3s ease-in-out infinite",
-      },
     },
   },
   variants: {
@@ -102,7 +77,6 @@ module.exports = {
       textColor: ["active"],
       gridRow: ["children-first"],
       inset: ["even"],
-      animation: ["hover", "group-hover", "motion-safe"],
     },
   },
   plugins: [require("tailwindcss-children")],

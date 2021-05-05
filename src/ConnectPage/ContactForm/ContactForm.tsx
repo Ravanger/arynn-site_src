@@ -79,7 +79,7 @@ const ContactForm = () => {
       />
       <Button
         type="submit"
-        className="flex justify-center animate-scaleExpandIn hover:animate-scaleExpandOut focus:outline-none md:col-start-4"
+        className="flex justify-center focus:outline-none md:col-start-4"
         disabled={isSending}
       >
         {isSending ? <Spinner /> : <span>Send!</span>}
