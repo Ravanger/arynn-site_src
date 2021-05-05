@@ -1,11 +1,12 @@
 import PDescriptionText from "src/common/DescriptionText"
 import HeaderBar from "src/common/HeaderBar"
-import SiteLink from "src/common/SiteLink"
 import Spacer from "src/common/Spacer"
 import { SplitAndCapitalizeFirstWord } from "util/text"
 import { ArtPiecePageProps } from "./ArtPiecePage.types"
 import PrevNextButton from "./PrevNextButton"
 import DynamicImage from "src/common/DynamicImage"
+import Button from "src/common/Button"
+import Link from "next/link"
 
 const ArtPiecePage = (props: ArtPiecePageProps) => {
   return (
@@ -43,12 +44,16 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
       </main>
 
       {props.item.shopItemUrl && (
-        <>
+        <div>
           <Spacer size="2rem" />
-          <div className="inline-block text-center text-5xl">
-            <SiteLink text="Buy" url={props.item.shopItemUrl} />
-          </div>
-        </>
+          <HeaderBar>Available to buy!</HeaderBar>
+          <Spacer size="2rem" />
+          <Link href={props.item.shopItemUrl} passHref>
+            <Button isLink className="block md:inline ">
+              See in shop
+            </Button>
+          </Link>
+        </div>
       )}
     </>
   )

@@ -7,17 +7,33 @@ const defaultProps: ButtonProps = {
 }
 
 const Button = (props: ButtonProps) => {
-  return (
+  const className = `font-bold rounded-lg p-4 w-full self-end bg-pink hover:bg-blue active:bg-blue-light text-white text-xl select-none cursor-pointer ${
+    props.className ? props.className : ""
+  }`
+
+  const hover = { scale: 1.05 }
+  const tap = { scale: 0.95 }
+  const transition = { duration: 0.05 }
+
+  return props.isLink ? (
+    <motion.a
+      onClick={props.onClick}
+      className={className}
+      whileHover={hover}
+      whileTap={tap}
+      transition={transition}
+    >
+      {props.children}
+    </motion.a>
+  ) : (
     <motion.button
       type={props.type}
       onClick={props.onClick}
       disabled={props.disabled}
-      className={`font-bold rounded-lg p-4 w-full self-end bg-pink hover:bg-blue active:bg-blue-light text-white text-xl ${
-        props.className ? props.className : ""
-      }`}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ duration: 0.05 }}
+      className={className}
+      whileHover={hover}
+      whileTap={tap}
+      transition={transition}
     >
       {props.children}
     </motion.button>
