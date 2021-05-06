@@ -17,7 +17,9 @@ const ShopBanner = () => (
             Are you looking for a signature custom portrait?
           </p>
           <Spacer />
-          <HeaderBar>Look no further.</HeaderBar>
+          <span className="text-2xl font-bold italic sm:text-3xl">
+            Look no further.
+          </span>
           <Spacer />
           <p className="text-pink italic">Click here to get started!</p>
         </div>
