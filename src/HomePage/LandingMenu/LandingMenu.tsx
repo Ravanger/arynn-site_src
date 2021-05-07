@@ -40,7 +40,7 @@ const LandingMenu = (props: LandingMenuPropsType) => {
   })
 
   return (
-    <nav className="max-w-6xl mx-auto flex flex-nowrap justify-around items-center w-full flex-col lg:min-h-screen lg:flex-row lg:items-baseline">
+    <nav className="max-w-6xl mx-auto flex flex-nowrap justify-around items-center w-full flex-col lg:min-h-screen lg:h-screen lg:flex-row lg:items-baseline">
       {menu}
     </nav>
   )
