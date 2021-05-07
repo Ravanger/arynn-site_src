@@ -57,7 +57,7 @@ const CartItem = (props: CartItemType) => {
           </div>
         </a>
       </Link>
-      <div className="flex flex-col items-end gap-4 md:col-start-3">
+      <div className="flex flex-col items-center md:col-start-3 lg:items-end">
         <select
           value={props.quantityInCart}
           onChange={(event) => {
@@ -66,6 +66,7 @@ const CartItem = (props: CartItemType) => {
         >
           {quantityOptions}
         </select>
+        <Spacer />
         <div className="flex flex-row w-full items-center gap-4 justify-center">
           <HeaderBar hrClassName="hidden flex-grow flex-shrink bg-blue h-0.5 border-none lg:block" />
           <span className="text-3xl lg:pl-2">
