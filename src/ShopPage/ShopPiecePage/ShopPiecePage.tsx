@@ -40,7 +40,7 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
         <HeaderBar />
         <Spacer size="2rem" />
         <div className="w-full grid gap-4 grid-cols-4 items-center">
-          <PDescriptionText className="col-span-3">
+          <PDescriptionText className="col-span-4">
             {props.item.description}
           </PDescriptionText>
           <div className="flex flex-row items-center col-span-4 sm:col-start-3 sm:col-span-2 md:text-right">
