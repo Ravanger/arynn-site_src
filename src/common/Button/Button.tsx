@@ -15,17 +15,7 @@ const Button = (props: ButtonProps) => {
   const tap = { scale: 0.95 }
   const transition = { duration: 0.05 }
 
-  return props.isLink ? (
-    <motion.a
-      onClick={props.onClick}
-      className={className}
-      whileHover={hover}
-      whileTap={tap}
-      transition={transition}
-    >
-      {props.children}
-    </motion.a>
-  ) : (
+  return (
     <motion.button
       type={props.type}
       onClick={props.onClick}
