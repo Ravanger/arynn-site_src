@@ -57,7 +57,7 @@ const CartItem = (props: CartItemType) => {
           </div>
         </a>
       </Link>
-      <div className="flex flex-col items-center md:col-start-3 lg:items-end">
+      <div className="flex flex-col items-center md:col-start-3 md:items-end">
         <select
           value={props.quantityInCart}
           onChange={(event) => {
@@ -67,9 +67,9 @@ const CartItem = (props: CartItemType) => {
           {quantityOptions}
         </select>
         <Spacer />
-        <div className="flex flex-row w-full items-center gap-4 justify-center">
+        <div className="flex flex-row items-center justify-center lg:w-full">
           <HeaderBar hrClassName="hidden flex-grow flex-shrink bg-blue h-0.5 border-none lg:block" />
-          <span className="text-3xl lg:pl-2">
+          <span className="text-3xl lg:pl-4">
             {formatCurrencyString({
               value: props.item.price * props.quantityInCart,
               currency: CURRENCY,
