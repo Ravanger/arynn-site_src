@@ -53,7 +53,7 @@ const SEO = (props: SEOProps) => {
           description: props.description,
           images: [
             {
-              url: "/images/new_self_portrait.svg",
+              url: "/images/new_self_portrait.png",
               width: 600,
               height: 480,
               alt: SITE_NAME,

@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-const src = "/images/new_self_portrait.svg"
+const src = "/images/new_self_portrait.png"
 
 const MainImage = () => (
   <Image

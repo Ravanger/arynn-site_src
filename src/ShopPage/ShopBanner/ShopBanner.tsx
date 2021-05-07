@@ -25,7 +25,7 @@ const ShopBanner = () => (
         </div>
         <div className="w-1/2 mx-auto max-h-48 lg:max-h-4">
           <DynamicImage
-            src="/images/new_self_portrait.svg"
+            src="/images/new_self_portrait.png"
             alt="Click here for a custom portrait!"
             className="rounded-none"
           />
