@@ -65,6 +65,7 @@ const Carousel = (props: CarouselPropsType) => {
                 width={600}
                 height={600}
                 objectFit="cover"
+                className="!bg-blue-light !bg-opacity-20"
               />
             </EmblaSlide>
           ))}
