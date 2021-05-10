@@ -28,6 +28,7 @@ const ShopBanner = () => (
             src="/images/new_self_portrait.png"
             alt="Click here for a custom portrait!"
             className="rounded-none"
+            isLocalImage
           />
         </div>
       </motion.div>

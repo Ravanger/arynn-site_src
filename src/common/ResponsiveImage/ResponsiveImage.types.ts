@@ -4,4 +4,5 @@ export interface BigImageTypes {
   width?: number
   height?: number
   className?: string
+  isLocalImage?: boolean
 }

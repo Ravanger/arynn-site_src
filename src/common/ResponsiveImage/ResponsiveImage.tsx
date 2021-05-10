@@ -7,6 +7,10 @@ const ResponsiveImage = (props: BigImageTypes) => {
       src={props.src}
       alt={props.alt}
       layout="responsive"
+      {...(props.isLocalImage && {
+        loader: ({ src, width, quality }) =>
+          `${src}?w=${width}&q=${quality || 90}`,
+      })}
       width={props.width || 800}
       height={props.height || 800}
       objectFit="cover"

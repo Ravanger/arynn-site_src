@@ -7,7 +7,11 @@ const DynamicImage = (props: DynamicImageTypes) => {
       <Image
         src={props.src}
         alt={props.alt}
-        quality={props.quality || 60}
+        quality={props.quality || 90}
+        {...(props.isLocalImage && {
+          loader: ({ src, width, quality }) =>
+            `${src}?w=${width}&q=${quality || 90}`,
+        })}
         layout="fill"
         objectFit="contain"
         className={`!w-full !relative !h-auto !max-h-8/10-screen ${

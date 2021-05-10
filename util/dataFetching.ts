@@ -37,7 +37,7 @@ export const getArtItems = async () => {
       id: item.id.toString(),
       title: item.title,
       description: item.description,
-      image: item.image.url,
+      image: item.image.url.split("/").pop() || "",
       type: item.type,
       ...(item.shop_item &&
         item.shop_item.id && {
@@ -64,7 +64,7 @@ export const getShopItems = async () => {
       name: item.title,
       currency: CURRENCY,
       description: item.description,
-      image: item.images[0].url,
+      image: item.images[0].url.split("/").pop() || "",
       price: item.price,
       product_data: {
         metadata: {

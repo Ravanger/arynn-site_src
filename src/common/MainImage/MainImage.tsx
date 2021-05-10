@@ -6,7 +6,8 @@ const MainImage = () => (
   <Image
     src={src}
     alt="Arynn self portrait"
-    quality={60}
+    quality={90}
+    loader={({ src, width, quality }) => `${src}?w=${width}&q=${quality || 90}`}
     layout="intrinsic"
     height={600}
     width={480}

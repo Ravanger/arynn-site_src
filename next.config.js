@@ -4,7 +4,8 @@ module.exports = {
     defaultLocale: "en-CA",
   },
   images: {
-    domains: ["localhost", "res.cloudinary.com"],
+    loader: "cloudinary",
+    path: "https://res.cloudinary.com/arynn/image/upload/",
   },
   future: {
     webpack5: true,

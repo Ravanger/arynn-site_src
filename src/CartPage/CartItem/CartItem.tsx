@@ -36,7 +36,9 @@ const CartItem = (props: CartItemType) => {
         <a className="group">
           <div className="w-full self-center">
             <Image
-              src={props.item.image!}
+              src={
+                props.item.image ? props.item.image.split("/").pop() || "" : ""
+              }
               alt={props.item.name}
               layout="responsive"
               width={600}

@@ -59,7 +59,7 @@ const Carousel = (props: CarouselPropsType) => {
           {props.images.map((image) => (
             <EmblaSlide key={image.name + image.id}>
               <Image
-                src={image.url}
+                src={image.url.split("/").pop() || ""}
                 alt={image.name + image.id}
                 layout="responsive"
                 width={600}
