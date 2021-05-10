@@ -84,12 +84,5 @@
   .dynamicimage > div {
     position: relative !important;
   }
-
-  .dynamicimage img {
-    width: 100% !important;
-    position: relative !important;
-    height: auto !important;
-    max-height: 80vh !important;
-  }
   /* 🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩 Custom 🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩🡩 */
 }

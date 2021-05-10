@@ -1,4 +1,5 @@
 module.exports = {
+  mode: "jit",
   purge: ["./pages/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -48,6 +49,7 @@ module.exports = {
         "1/3": "33.333333%",
         "6/10": "60%",
         "6/10-screen": "60vh",
+        "8/10-screen": "80vh",
       },
       maxWidth: {
         24: "6rem",
@@ -70,14 +72,6 @@ module.exports = {
       backgroundImage: (theme) => ({
         clouds: "url('/images/clouds.png')",
       }),
-    },
-  },
-  variants: {
-    extend: {
-      backgroundColor: ["active"],
-      textColor: ["active"],
-      gridRow: ["children-first"],
-      inset: ["even"],
     },
   },
   plugins: [require("tailwindcss-children")],

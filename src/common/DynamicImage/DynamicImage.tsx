@@ -10,7 +10,9 @@ const DynamicImage = (props: DynamicImageTypes) => {
         quality={props.quality || 60}
         layout="fill"
         objectFit="contain"
-        className={`${props.className ? props.className : ""}`}
+        className={`!w-full !relative !h-auto !max-h-8/10-screen ${
+          props.className ? props.className : ""
+        }`}
       />
     </div>
   )
