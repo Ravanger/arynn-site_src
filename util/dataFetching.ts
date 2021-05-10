@@ -32,16 +32,19 @@ export const getArtItems = async () => {
   )
   if (!rawData) throw new Error("Error fetching data")
 
-  const artItems: ArtItemType[] = rawData.map((item) => ({
-    id: item.id.toString(),
-    title: item.title,
-    description: item.description,
-    image: item.image.url,
-    type: item.type,
-    ...(item.shop_item && {
-      shopItemUrl: `/shop/${item.shop_item.id.toString()}`,
-    }),
-  }))
+  const artItems: ArtItemType[] = rawData.map((item) => {
+    return {
+      id: item.id.toString(),
+      title: item.title,
+      description: item.description,
+      image: item.image.url,
+      type: item.type,
+      ...(item.shop_item &&
+        item.shop_item.id && {
+          shopItemUrl: `/shop/${item.shop_item.id.toString()}`,
+        }),
+    }
+  })
 
   return artItems
 }
