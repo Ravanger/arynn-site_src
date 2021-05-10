@@ -27,7 +27,7 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   useEffect(() => {
     setQuantityInCart(cartDetails[shopItem.sku]?.quantity)
-  }, [])
+  }, [cartDetails[shopItem.sku]])
 
   return isCustomType ? (
     <></>
