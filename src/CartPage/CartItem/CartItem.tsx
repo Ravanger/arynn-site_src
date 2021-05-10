@@ -19,7 +19,7 @@ const CartItem = (props: CartItemType) => {
   ))
 
   return (
-    <div className="rounded-xl p-10 relative grid gap-8 md:gap-16 md:grid-cols-3 md:items-center sm:border-15 sm:border-blue">
+    <div className="rounded-xl p-10 relative grid gap-8 lg:gap-16 lg:grid-cols-3 lg:items-center sm:border-15 sm:border-blue">
       <motion.button
         onClick={props.removeCartItem}
         className="absolute right-4 top-4 focus:outline-none"
@@ -43,14 +43,14 @@ const CartItem = (props: CartItemType) => {
               layout="responsive"
               width={600}
               height={600}
-              objectFit="cover"
+              className="!bg-blue-light !bg-opacity-20"
             />
           </div>
         </a>
       </Link>
       <Link href={`/shop/${props.item.sku}`}>
         <a className="group">
-          <div className="italic md:text-left">
+          <div className="italic lg:text-left">
             <h3 className="font-bold group-hover:text-pink sm:text-2xl">
               {props.item.name}
             </h3>
@@ -59,7 +59,7 @@ const CartItem = (props: CartItemType) => {
           </div>
         </a>
       </Link>
-      <div className="flex flex-col items-center md:col-start-3 md:items-end">
+      <div className="flex flex-col items-center lg:col-start-3 lg:items-end">
         <select
           value={props.quantityInCart}
           onChange={(event) => {
