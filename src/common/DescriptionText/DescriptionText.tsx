@@ -8,7 +8,7 @@ const defaultProps: PDescriptionTextType = {
 const PDescriptionText = (props: PDescriptionTextType) => {
   return (
     <p
-      className={`font-bold text-left px-4 sm:p-0 sm:text-xl ${
+      className={`font-bold text-left px-4 whitespace-pre-wrap sm:p-0 sm:text-xl ${
         props.className ? props.className : ""
       }`}
     >
