@@ -54,6 +54,7 @@ const DropdownQuestion = (props: DropdownSliderPropsType) => {
 const Questions = () => (
   <div className="text-left">
     <HeaderBar>questions n' answers</HeaderBar>
+    <Spacer size="2rem" />
     <DropdownQuestion
       question="can i return this?"
       answer="i cannot accommodate returns or exchanges, but if there's an issue with your order please let know! i'm a reasonable human being i swear."
