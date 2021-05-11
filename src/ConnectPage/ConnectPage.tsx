@@ -3,6 +3,7 @@ import Spacer from "src/common/Spacer"
 import AboutBlurb from "./AboutBlurb"
 import { ConnectPageType } from "./ConnectPage.types"
 import ContactForm from "./ContactForm"
+import Questions from "./Questions"
 
 const ConnectPage = (props: ConnectPageType) => {
   return (
@@ -14,6 +15,8 @@ const ConnectPage = (props: ConnectPageType) => {
       <HeaderBar>Email Me</HeaderBar>
       <Spacer size="2rem" />
       <ContactForm />
+      <Spacer size="2rem" />
+      <Questions />
     </>
   )
 }
