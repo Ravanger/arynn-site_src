@@ -73,6 +73,7 @@ export const getShopItems = async () => {
         },
       },
       images: item.images,
+      isSold: item.is_sold,
     }
 
     return stripeProduct

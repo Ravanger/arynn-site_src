@@ -22,6 +22,8 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
     </option>
   ))
 
+  const isItemInCart = props.quantityInCart || props.item.isSold
+
   return (
     <>
       <HeaderBar>{props.item.name}</HeaderBar>
@@ -64,11 +66,13 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
             <Spacer axis="HORIZONTAL" />
             <Button
               className={`focus:outline-none ${
-                props.quantityInCart ? "opacity-50" : ""
+                isItemInCart ? "opacity-50" : ""
               }`}
               onClick={props.addToCartFunc}
             >
-              {props.quantityInCart
+              {props.item.isSold
+                ? "Sold!"
+                : props.quantityInCart
                 ? `${props.quantityInCart} in Cart`
                 : "Add to Cart"}
             </Button>

@@ -51,6 +51,7 @@ export interface StrapiFetchShopDataType {
   created_at: Date
   updated_at: Date
   images: StrapiImageType[]
+  is_sold?: boolean
 }
 
 export interface ErrorResponseType {

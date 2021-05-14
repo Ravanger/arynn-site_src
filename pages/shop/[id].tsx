@@ -29,6 +29,9 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     setQuantityInCart(cartDetails[shopItem.sku]?.quantity)
   }, [cartDetails[shopItem.sku]])
 
+  const canAddToCart =
+    !itemIdExistsInCart(cartDetails, shopItem.sku) && !shopItem.isSold
+
   return isCustomType ? (
     <></>
   ) : (
@@ -40,10 +43,7 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       />
       <ShopPiecePage
         item={shopItem}
-        addToCartFunc={() =>
-          !itemIdExistsInCart(cartDetails, shopItem.sku) &&
-          addItem(shopItem, wantedQuantity)
-        }
+        addToCartFunc={() => canAddToCart && addItem(shopItem, wantedQuantity)}
         quantityInCart={quantityInCart}
         setWantedQuantity={setWantedQuantity}
         wantedQuantity={wantedQuantity}
