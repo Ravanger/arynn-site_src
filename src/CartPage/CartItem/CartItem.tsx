@@ -41,6 +41,7 @@ const CartItem = (props: CartItemType) => {
               }
               alt={props.item.name}
               layout="responsive"
+              objectFit="cover"
               width={600}
               height={600}
               className="!bg-blue-light !bg-opacity-20"
