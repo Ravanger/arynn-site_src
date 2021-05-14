@@ -33,7 +33,7 @@ const ShopPiecePage = (props: ShopPiecePageTypes) => {
           <DynamicImage
             src={props.item.image!}
             alt={props.item.name}
-            quality={90}
+            quality={100}
           />
         )}
         <Spacer size="2rem" />

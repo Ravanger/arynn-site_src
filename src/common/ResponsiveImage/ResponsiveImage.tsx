@@ -9,7 +9,7 @@ const ResponsiveImage = (props: BigImageTypes) => {
       layout="responsive"
       {...(props.isLocalImage && {
         loader: ({ src, width, quality }) =>
-          `${src}?w=${width}&q=${quality || 90}`,
+          `${src}?w=${width}&q=${quality || 100}`,
       })}
       width={props.width || 800}
       height={props.height || 800}

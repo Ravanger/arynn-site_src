@@ -26,7 +26,7 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
           <DynamicImage
             src={props.item.image}
             alt={props.item.title}
-            quality={90}
+            quality={100}
           />
           <Spacer axis="HORIZONTAL" size="1rem" />
           <PrevNextButton
