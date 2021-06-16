@@ -4,7 +4,7 @@ import { BigImageTypes } from "./ResponsiveImage.types"
 const ResponsiveImage = (props: BigImageTypes) => {
   return (
     <Image
-      src={props.src}
+      src={props.src || ".png"}
       alt={props.alt}
       layout="responsive"
       {...(props.isLocalImage && {

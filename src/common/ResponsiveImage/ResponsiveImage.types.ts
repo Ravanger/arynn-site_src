@@ -1,5 +1,5 @@
 export interface BigImageTypes {
-  src: string
+  src?: string
   alt: string
   width?: number
   height?: number

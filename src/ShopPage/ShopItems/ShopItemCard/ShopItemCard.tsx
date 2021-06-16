@@ -8,7 +8,7 @@ import { ShopItemCardProps } from "./ShopItemCard.types"
 
 const ShopItemCard = (props: ShopItemCardProps) => {
   const isCustomType =
-    props.item.product_data.metadata.type.toUpperCase() === "CUSTOM"
+    props.item.product_data?.metadata.type.toUpperCase() === "CUSTOM"
 
   return (
     <Link href={`/shop/${isCustomType ? "custom" : props.item.sku}`}>
@@ -19,7 +19,7 @@ const ShopItemCard = (props: ShopItemCardProps) => {
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.05 }}
         >
-          <ResponsiveImage src={props.item.image!} alt={props.item.name} />
+          <ResponsiveImage src={props.item.image} alt={props.item.name} />
           <Spacer size="1rem" />
           <h2 className="group-hover:text-pink">{props.item.name}</h2>
           <Spacer size="1rem" />

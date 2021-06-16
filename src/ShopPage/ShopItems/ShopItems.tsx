@@ -8,7 +8,7 @@ const ShopItems = (props: ShopItemProps) => {
   const currentShopItems = props.shopFilter
     ? props.shopItems.filter(
         (item) =>
-          item.product_data.metadata.type.toUpperCase() ===
+          item.product_data?.metadata.type.toUpperCase() ===
           props.shopFilter.toUpperCase()
       )
     : props.shopItems

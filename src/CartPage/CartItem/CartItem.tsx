@@ -10,7 +10,7 @@ import { motion } from "framer-motion"
 
 const CartItem = (props: CartItemType) => {
   const maxSelectedQuantity: number =
-    props.item.product_data.metadata.maxQuantity || 23
+    props.item.product_data?.metadata.maxQuantity || 23
 
   const quantityOptions = [...Array(maxSelectedQuantity)].map((item, i) => (
     <option value={i + 1} key={i + 1}>
