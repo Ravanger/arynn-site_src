@@ -8,7 +8,7 @@ import Questions from "./Questions"
 const ConnectPage = (props: ConnectPageType) => {
   return (
     <>
-      <HeaderBar>Let's Talk!</HeaderBar>
+      <HeaderBar>{"Let's Talk!"}</HeaderBar>
       <Spacer size="2rem" />
       <AboutBlurb socialLinks={props.socialLinks} />
       <Spacer size="2rem" />
