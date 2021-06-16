@@ -10,24 +10,26 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
 const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-  if (props.errors || !props.item) return <></>
-  const shopItem: Product = props.item
-
   const router = useRouter()
-  const isCustomType =
-    shopItem.product_data.metadata.type.toUpperCase() === "CUSTOM"
-
-  useEffect(() => {
-    if (isCustomType) router.replace("/shop/custom")
-  }, [])
 
   const { addItem, cartDetails } = useShoppingCart()
   const [wantedQuantity, setWantedQuantity] = useState(1)
   const [quantityInCart, setQuantityInCart] = useState(0)
 
   useEffect(() => {
-    setQuantityInCart(cartDetails[shopItem.sku]?.quantity)
-  }, [cartDetails[shopItem.sku]])
+    if (props.item.product_data?.metadata.type.toUpperCase() === "CUSTOM")
+      router.replace("/shop/custom")
+  }, [props.item, router])
+
+  useEffect(() => {
+    setQuantityInCart(cartDetails[props.item.sku]?.quantity)
+  }, [cartDetails, props.item])
+
+  if (props.errors || !props.item) return <></>
+  const shopItem: Product = props.item
+
+  const isCustomType =
+    shopItem.product_data?.metadata.type.toUpperCase() === "CUSTOM"
 
   const canAddToCart =
     !itemIdExistsInCart(cartDetails, shopItem.sku) && !shopItem.isSold

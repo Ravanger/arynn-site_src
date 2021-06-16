@@ -9,7 +9,7 @@ const Success = () => {
       <h2 className="text-4xl font-bold text-pink">Error 404</h2>
       <Spacer size="2rem" />
       <p className="font-bold italic">What are you doing?</p>
-      <p className="italic">There's nothing to see here.</p>
+      <p className="italic">{"There's nothing to see here."}</p>
     </>
   )
 }

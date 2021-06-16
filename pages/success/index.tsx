@@ -4,6 +4,8 @@ import SuccessPage from "src/SuccessPage"
 import { useShoppingCart } from "use-shopping-cart"
 
 const Success = () => {
+  const { clearCart } = useShoppingCart()
+
   return (
     <>
       <SEO
@@ -11,7 +13,7 @@ const Success = () => {
         description="Thank you for your order"
         url="/success"
       />
-      <SuccessPage clearCart={() => useShoppingCart().clearCart()} />
+      <SuccessPage clearCart={() => clearCart()} />
     </>
   )
 }
