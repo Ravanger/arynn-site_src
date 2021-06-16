@@ -17,12 +17,12 @@
   },
   "dependencies": {
     "@stripe/stripe-js": "^1.13.2",
-    "emailjs-com": "^2.6.4",
+    "emailjs-com": "^3.1.0",
     "embla-carousel": "^4.4.0",
     "framer-motion": "^4.1.11",
     "fs": "^0.0.1-security",
-    "jotai": "^0.16.2",
-    "next": "^10.0.5",
+    "jotai": "^1.0.0",
+    "next": "^11.0.0",
     "next-seo": "^4.19.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -31,7 +31,7 @@
     "use-shopping-cart": "^2.4.3"
   },
   "devDependencies": {
-    "@types/node": "^14.14.21",
+    "@types/node": "^15.12.2",
     "@types/react": "^17.0.0",
     "autoprefixer": "^10.2.5",
     "postcss": "^8.2.7",

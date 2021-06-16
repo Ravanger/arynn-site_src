@@ -7,8 +7,5 @@ module.exports = {
     loader: "cloudinary",
     path: "https://res.cloudinary.com/arynn/image/upload/",
   },
-  future: {
-    webpack5: true,
-  },
   target: "serverless",
 }
