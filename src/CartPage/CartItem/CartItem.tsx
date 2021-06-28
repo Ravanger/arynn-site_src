@@ -35,17 +35,19 @@ const CartItem = (props: CartItemType) => {
       <Link href={`/shop/${props.item.sku}`}>
         <a className="group">
           <div className="w-full self-center">
-            <Image
-              src={
-                props.item.image ? props.item.image.split("/").pop() || "" : ""
-              }
-              alt={props.item.name}
-              layout="responsive"
-              objectFit="cover"
-              width={600}
-              height={600}
-              className="!bg-blue-light !bg-opacity-20"
-            />
+            {props.item.image ? (
+              <Image
+                src={props.item.image.split("/").pop() || ""}
+                alt={props.item.name}
+                layout="responsive"
+                objectFit="cover"
+                width={600}
+                height={600}
+                className="!bg-blue-light !bg-opacity-20"
+              />
+            ) : (
+              <></>
+            )}
           </div>
         </a>
       </Link>

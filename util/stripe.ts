@@ -22,7 +22,3 @@ export const itemIdExistsInCart = (
   const objKeysArray = Object.keys(searchArray)
   return objKeysArray.indexOf(id) !== -1
 }
-
-export const getProductBySku = (sku: string, products: Product[]) => {
-  return products.find((product) => product.sku === sku)
-}

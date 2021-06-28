@@ -15,17 +15,24 @@ const CartPage = (props: CartPageType) => {
       <Spacer size="2rem" />
       {props.cartCount ? (
         <>
-          {props.cartItems.map((cartItem) => (
-            <Fragment key={cartItem.sku}>
-              <CartItem
-                item={cartItem}
-                removeCartItem={() => props.removeItem(cartItem.sku)}
-                setWantedQuantity={props.setWantedQuantity}
-                quantityInCart={props.cartDetails[cartItem.sku].quantity}
-              />
-              <Spacer size="2rem" />
-            </Fragment>
-          ))}
+          {props.cartItems.map((cartItem) => {
+            const isCustomProduct = !!cartItem.customId
+            console.log(isCustomProduct, cartItem)
+
+            return (
+              <Fragment key={cartItem.sku}>
+                <CartItem
+                  item={cartItem}
+                  removeCartItem={() => props.removeItem(cartItem.sku)}
+                  setWantedQuantity={props.setWantedQuantity}
+                  quantityInCart={
+                    props.cartDetails[cartItem.sku]?.quantity || 0
+                  }
+                />
+                <Spacer size="2rem" />
+              </Fragment>
+            )
+          })}
           <div className="w-full md:flex md:flex-row md:justify-end">
             <div className="md:w-1/3">
               <div className="flex flex-row items-center gap-4 justify-center">
