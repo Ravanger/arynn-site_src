@@ -1,8 +1,13 @@
 export const readFromLocalStorage = (name: string) => {
-  return typeof window !== "undefined" && localStorage.getItem(name)
+  if (typeof window !== "undefined") return null
+
+  const localStorageItem = localStorage.getItem(name)
+  if (!localStorageItem) return null
+
+  return JSON.parse(localStorageItem)
 }
 
-export const saveToLocalStorage = (name: string, value: {} | []) => {
+export const writeToLocalStorage = (name: string, value: {} | []) => {
   typeof window !== "undefined" &&
     localStorage.setItem(name, JSON.stringify(value))
 }

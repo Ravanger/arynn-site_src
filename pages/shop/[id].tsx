@@ -5,7 +5,7 @@ import ShopPiecePage from "src/ShopPage/ShopPiecePage"
 import { getShopItems } from "util/dataFetching"
 import { readFile, writeFile } from "util/cache"
 import { Product, useShoppingCart } from "use-shopping-cart"
-import { itemIdExistsInCart } from "util/stripe"
+import { itemIdExistsInCart } from "util/cart"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 

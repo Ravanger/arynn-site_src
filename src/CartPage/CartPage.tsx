@@ -16,8 +16,9 @@ const CartPage = (props: CartPageType) => {
       {props.cartCount ? (
         <>
           {props.cartItems.map((cartItem) => {
+            console.log(cartItem)
+
             const isCustomProduct = !!cartItem.customId
-            console.log(isCustomProduct, cartItem)
 
             return (
               <Fragment key={cartItem.sku}>

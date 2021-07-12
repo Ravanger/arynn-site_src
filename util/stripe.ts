@@ -14,11 +14,3 @@ export const getStripe = () => {
 
   return stripePromise
 }
-
-export const itemIdExistsInCart = (
-  searchArray: CartDetails,
-  id: string
-): boolean => {
-  const objKeysArray = Object.keys(searchArray)
-  return objKeysArray.indexOf(id) !== -1
-}
