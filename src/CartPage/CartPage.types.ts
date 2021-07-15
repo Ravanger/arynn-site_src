@@ -1,4 +1,4 @@
-import { CartDetails, Product } from "use-shopping-cart"
+import { Product } from "use-shopping-cart"
 
 export interface CartPageType {
   cartItems: Product[]

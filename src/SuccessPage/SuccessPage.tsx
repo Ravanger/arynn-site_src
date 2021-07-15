@@ -1,10 +1,7 @@
 import Link from "next/link"
 import Spacer from "src/common/Spacer"
-import { SuccessPageType } from "./SuccessPage.types"
 
-const SuccessPage = (props: SuccessPageType) => {
-  props.clearCart()
-
+const SuccessPage = () => {
   return (
     <>
       <h2>Thank you for your order!</h2>
