@@ -4,17 +4,23 @@ import SEO from "src/common/SEO"
 import ShopPiecePage from "src/ShopPage/ShopPiecePage"
 import { getShopItems } from "util/dataFetching"
 import { readFile, writeFile } from "util/cache"
-import { Product, useShoppingCart } from "use-shopping-cart"
-import { itemIdExistsInCart } from "util/cart"
+import { Product } from "use-shopping-cart"
+import {
+  addProductToCart,
+  getProductQuantityInCart,
+  itemExistsInCart,
+} from "util/cart"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import { cartAtom } from "atoms/store"
+import { useAtom } from "jotai"
 
 const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter()
 
-  const { addItem, cartDetails } = useShoppingCart()
   const [wantedQuantity, setWantedQuantity] = useState(1)
   const [quantityInCart, setQuantityInCart] = useState(0)
+  const [cartInfo, setCartInfo] = useAtom(cartAtom)
 
   useEffect(() => {
     if (props.item.product_data?.metadata.type.toUpperCase() === "CUSTOM")
@@ -22,8 +28,8 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   }, [props.item, router])
 
   useEffect(() => {
-    setQuantityInCart(cartDetails[props.item.sku]?.quantity)
-  }, [cartDetails, props.item])
+    setQuantityInCart(getProductQuantityInCart(cartInfo.products, props.item))
+  }, [cartInfo.products, props.item])
 
   if (props.errors || !props.item) return <></>
   const shopItem: Product = props.item
@@ -32,7 +38,7 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     shopItem.product_data?.metadata.type.toUpperCase() === "CUSTOM"
 
   const canAddToCart =
-    !itemIdExistsInCart(cartDetails, shopItem.sku) && !shopItem.isSold
+    !itemExistsInCart(cartInfo.products, shopItem.sku) && !shopItem.isSold
 
   return isCustomType ? (
     <></>
@@ -45,7 +51,17 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       />
       <ShopPiecePage
         item={shopItem}
-        addToCartFunc={() => canAddToCart && addItem(shopItem, wantedQuantity)}
+        addToCartFunc={() => {
+          canAddToCart &&
+            setCartInfo({
+              products: addProductToCart(
+                cartInfo.products,
+                shopItem,
+                wantedQuantity
+              ),
+              totalPrice: cartInfo.totalPrice + shopItem.price * wantedQuantity,
+            })
+        }}
         quantityInCart={quantityInCart}
         setWantedQuantity={setWantedQuantity}
         wantedQuantity={wantedQuantity}

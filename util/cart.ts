@@ -1,32 +1,34 @@
-import { CartDetails, Product } from "use-shopping-cart"
-import { CartType } from "./cart.types"
-import { readFromLocalStorage, writeToLocalStorage } from "./localStorage"
+import { Product } from "use-shopping-cart"
 
-export const addCartItem = (product: Product, quantity: number) => {
-  product.quantity = quantity
-
-  let cartProducts: CartType | null = readFromLocalStorage("cartProducts")
-  if (!cartProducts) {
-    cartProducts = { products: [], totalPrice: 0 }
-  }
-
-  cartProducts.products.push(product)
-  cartProducts.totalPrice += product.price
-
-  writeToLocalStorage("cartProducts", cartProducts)
-}
-
-export const removeCartItem = (sku: string) => {
-  const cartProducts: CartType | null = readFromLocalStorage("cartProducts")
-  if (!cartProducts) return
-
-  cartProducts.products.indexOf()
-}
-
-export const itemIdExistsInCart = (
-  searchArray: CartDetails,
-  id: string
+export const itemExistsInCart = (
+  productArray: Product[],
+  sku: string
 ): boolean => {
-  const objKeysArray = Object.keys(searchArray)
-  return objKeysArray.indexOf(id) !== -1
+  return productArray.findIndex((item) => item.sku === sku) !== -1
+}
+
+export const addProductToCart = (
+  productArray: Product[],
+  product: Product,
+  quantity: number
+) => {
+  product.quantity = quantity
+  return [...productArray, product]
+}
+
+export const removeProductFromCart = (
+  productArray: Product[],
+  product: Product
+) => {
+  return productArray.filter((item) => item.sku !== product.sku)
+}
+
+export const getProductQuantityInCart = (
+  productArray: Product[],
+  product: Product
+) => {
+  const cartItem = productArray.find((item) => item.sku === product.sku)
+  if (cartItem) return cartItem.quantity || 0
+
+  return 0
 }
