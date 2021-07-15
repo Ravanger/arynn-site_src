@@ -8,7 +8,6 @@ import { fetchData } from "util/dataFetching"
 import { useState } from "react"
 import { cartAtom } from "atoms/store"
 import { useAtom } from "jotai"
-import { removeProductFromCart } from "util/cart"
 
 const Cart = () => {
   const [stripeLoading, setStripeLoading] = useState(false)
@@ -45,14 +44,9 @@ const Cart = () => {
       <SEO title="Cart" description="Arynn's Shop - Cart" url="/shop/cart" />
       <CartPage
         cartItems={cartItems}
-        cartDetails={cartDetails}
         totalPrice={totalPrice}
         handleStripeCheckout={handleStripeCheckout}
-        removeItem={removeProductFromCart}
-        setCartInfo={setCartItems}
-        setWantedQuantity={() => {
-          return
-        }}
+        setCartItems={setCartItems}
         stripeLoading={stripeLoading}
       />
     </>

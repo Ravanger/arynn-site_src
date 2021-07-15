@@ -7,7 +7,11 @@ import { Fragment } from "react"
 import Button from "src/common/Button"
 import { CartPageType } from "./CartPage.types"
 import Spinner from "src/common/Spinner"
-import { getProductQuantityInCart } from "util/cart"
+import {
+  getProductQuantityInCart,
+  removeProductFromCart,
+  setProductQuantityInCart,
+} from "util/cart"
 
 const CartPage = (props: CartPageType) => {
   return (
@@ -17,18 +21,18 @@ const CartPage = (props: CartPageType) => {
       {props.cartItems.length > 0 ? (
         <>
           {props.cartItems.map((cartItem) => {
-            console.log(cartItem)
-
             return (
               <Fragment key={cartItem.sku}>
                 <CartItem
                   item={cartItem}
+                  cartItems={props.cartItems}
+                  setCartItems={props.setCartItems}
                   removeCartItem={() =>
-                    props.setCartInfo(
-                      props.removeItem(props.cartItems, cartItem)
+                    props.setCartItems(
+                      removeProductFromCart(props.cartItems, cartItem)
                     )
                   }
-                  setWantedQuantity={props.setWantedQuantity}
+                  setWantedQuantity={setProductQuantityInCart}
                   quantityInCart={getProductQuantityInCart(
                     props.cartItems,
                     cartItem

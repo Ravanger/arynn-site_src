@@ -3,7 +3,13 @@ import { Product } from "use-shopping-cart"
 
 export interface CartItemType {
   item: Product
+  cartItems: Product[]
+  setCartItems: (update: React.SetStateAction<Product[]>) => void
   removeCartItem: MouseEventHandler<HTMLButtonElement>
   quantityInCart: number
-  setWantedQuantity: (sku: string, quantity: number) => void
+  setWantedQuantity: (
+    productArray: Product[],
+    product: Product,
+    quantity: number
+  ) => Product[]
 }

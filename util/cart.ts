@@ -38,6 +38,6 @@ export const setProductQuantityInCart = (
   product: Product,
   quantity: number
 ) => {
-  const cartItem = productArray.find((item) => item.sku === product.sku)
-  if (cartItem) cartItem.quantity = quantity
+  product.quantity = quantity
+  return productArray.map((item) => (item.sku === product.sku ? product : item))
 }

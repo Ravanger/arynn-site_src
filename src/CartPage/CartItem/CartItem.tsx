@@ -66,7 +66,13 @@ const CartItem = (props: CartItemType) => {
         <select
           value={props.quantityInCart}
           onChange={(event) => {
-            props.setWantedQuantity(props.item.sku, ~~event.target.value)
+            props.setCartItems(
+              props.setWantedQuantity(
+                props.cartItems,
+                props.item,
+                ~~event.target.value
+              )
+            )
           }}
         >
           {quantityOptions}
