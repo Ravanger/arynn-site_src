@@ -12,12 +12,12 @@ import { removeProductFromCart } from "util/cart"
 
 const Cart = () => {
   const [stripeLoading, setStripeLoading] = useState(false)
-  const [cartInfo, setCartInfo] = useAtom(cartAtom)
+  const [cartItems, setCartItems] = useAtom(cartAtom)
 
   const { redirectToCheckout, cartDetails } = useShoppingCart()
 
   const handleStripeCheckout = async () => {
-    if (cartInfo.products.length <= 0 || stripeLoading) return
+    if (cartItems.length <= 0 || stripeLoading) return
     setStripeLoading(true)
 
     const response: Stripe.Checkout.Session & ErrorResponseType =
@@ -34,16 +34,22 @@ const Cart = () => {
     setStripeLoading(false)
   }
 
+  let totalPrice = 0
+  cartItems &&
+    cartItems.forEach(
+      (item) => (totalPrice += item.price * (item.quantity || 1))
+    )
+
   return (
     <>
       <SEO title="Cart" description="Arynn's Shop - Cart" url="/shop/cart" />
       <CartPage
-        cartItems={cartInfo.products}
+        cartItems={cartItems}
         cartDetails={cartDetails}
-        totalPrice={cartInfo.totalPrice}
+        totalPrice={totalPrice}
         handleStripeCheckout={handleStripeCheckout}
         removeItem={removeProductFromCart}
-        setCartInfo={setCartInfo}
+        setCartInfo={setCartItems}
         setWantedQuantity={() => {
           return
         }}

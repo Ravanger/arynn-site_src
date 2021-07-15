@@ -84,9 +84,7 @@ const MainLayout = (props: LayoutProps) => {
     {
       text: "Shop",
       url: "/shop",
-      sublinks: [
-        { text: `Cart (${cartInfo.products.length})`, url: "/shop/cart" },
-      ],
+      sublinks: [{ text: `Cart (${cartInfo.length || 0})`, url: "/shop/cart" }],
     },
   ]
 

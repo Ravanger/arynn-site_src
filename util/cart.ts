@@ -1,12 +1,5 @@
 import { Product } from "use-shopping-cart"
 
-export const itemExistsInCart = (
-  productArray: Product[],
-  sku: string
-): boolean => {
-  return productArray.findIndex((item) => item.sku === sku) !== -1
-}
-
 export const addProductToCart = (
   productArray: Product[],
   product: Product,
@@ -23,6 +16,13 @@ export const removeProductFromCart = (
   return productArray.filter((item) => item.sku !== product.sku)
 }
 
+export const isProductInCart = (
+  productArray: Product[],
+  product: Product
+): boolean => {
+  return productArray.findIndex((item) => item.sku === product.sku) !== -1
+}
+
 export const getProductQuantityInCart = (
   productArray: Product[],
   product: Product
@@ -31,4 +31,13 @@ export const getProductQuantityInCart = (
   if (cartItem) return cartItem.quantity || 0
 
   return 0
+}
+
+export const setProductQuantityInCart = (
+  productArray: Product[],
+  product: Product,
+  quantity: number
+) => {
+  const cartItem = productArray.find((item) => item.sku === product.sku)
+  if (cartItem) cartItem.quantity = quantity
 }

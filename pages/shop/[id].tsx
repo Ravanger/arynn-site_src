@@ -8,7 +8,7 @@ import { Product } from "use-shopping-cart"
 import {
   addProductToCart,
   getProductQuantityInCart,
-  itemExistsInCart,
+  isProductInCart,
 } from "util/cart"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
@@ -20,7 +20,7 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   const [wantedQuantity, setWantedQuantity] = useState(1)
   const [quantityInCart, setQuantityInCart] = useState(0)
-  const [cartInfo, setCartInfo] = useAtom(cartAtom)
+  const [cartItems, setCartItems] = useAtom(cartAtom)
 
   useEffect(() => {
     if (props.item.product_data?.metadata.type.toUpperCase() === "CUSTOM")
@@ -28,8 +28,8 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   }, [props.item, router])
 
   useEffect(() => {
-    setQuantityInCart(getProductQuantityInCart(cartInfo.products, props.item))
-  }, [cartInfo.products, props.item])
+    setQuantityInCart(getProductQuantityInCart(cartItems, props.item))
+  }, [cartItems, props.item])
 
   if (props.errors || !props.item) return <></>
   const shopItem: Product = props.item
@@ -37,8 +37,7 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const isCustomType =
     shopItem.product_data?.metadata.type.toUpperCase() === "CUSTOM"
 
-  const canAddToCart =
-    !itemExistsInCart(cartInfo.products, shopItem.sku) && !shopItem.isSold
+  const canAddToCart = !isProductInCart(cartItems, shopItem) && !shopItem.isSold
 
   return isCustomType ? (
     <></>
@@ -53,14 +52,7 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         item={shopItem}
         addToCartFunc={() => {
           canAddToCart &&
-            setCartInfo({
-              products: addProductToCart(
-                cartInfo.products,
-                shopItem,
-                wantedQuantity
-              ),
-              totalPrice: cartInfo.totalPrice + shopItem.price * wantedQuantity,
-            })
+            setCartItems(addProductToCart(cartItems, shopItem, wantedQuantity))
         }}
         quantityInCart={quantityInCart}
         setWantedQuantity={setWantedQuantity}

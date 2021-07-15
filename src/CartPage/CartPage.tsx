@@ -7,6 +7,7 @@ import { Fragment } from "react"
 import Button from "src/common/Button"
 import { CartPageType } from "./CartPage.types"
 import Spinner from "src/common/Spinner"
+import { getProductQuantityInCart } from "util/cart"
 
 const CartPage = (props: CartPageType) => {
   return (
@@ -23,15 +24,15 @@ const CartPage = (props: CartPageType) => {
                 <CartItem
                   item={cartItem}
                   removeCartItem={() =>
-                    props.setCartInfo({
-                      products: props.removeItem(props.cartItems, cartItem),
-                      totalPrice: props.totalPrice,
-                    })
+                    props.setCartInfo(
+                      props.removeItem(props.cartItems, cartItem)
+                    )
                   }
                   setWantedQuantity={props.setWantedQuantity}
-                  quantityInCart={
-                    props.cartDetails[cartItem.sku]?.quantity || 0
-                  }
+                  quantityInCart={getProductQuantityInCart(
+                    props.cartItems,
+                    cartItem
+                  )}
                 />
                 <Spacer size="2rem" />
               </Fragment>
