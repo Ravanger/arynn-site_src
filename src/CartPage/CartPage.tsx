@@ -13,18 +13,21 @@ const CartPage = (props: CartPageType) => {
     <>
       <HeaderBar>Your Cart</HeaderBar>
       <Spacer size="2rem" />
-      {props.cartCount ? (
+      {props.cartItems.length > 0 ? (
         <>
           {props.cartItems.map((cartItem) => {
             console.log(cartItem)
-
-            const isCustomProduct = !!cartItem.customId
 
             return (
               <Fragment key={cartItem.sku}>
                 <CartItem
                   item={cartItem}
-                  removeCartItem={() => props.removeItem(cartItem.sku)}
+                  removeCartItem={() =>
+                    props.setCartInfo({
+                      products: props.removeItem(props.cartItems, cartItem),
+                      totalPrice: props.totalPrice,
+                    })
+                  }
                   setWantedQuantity={props.setWantedQuantity}
                   quantityInCart={
                     props.cartDetails[cartItem.sku]?.quantity || 0
@@ -55,7 +58,7 @@ const CartPage = (props: CartPageType) => {
                   <Spinner />
                 ) : (
                   <span className="text-base lg:text-xl">
-                    Checkout {props.cartCount} item(s)
+                    Checkout {props.cartItems.length} item(s)
                   </span>
                 )}
               </Button>
