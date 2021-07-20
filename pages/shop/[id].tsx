@@ -4,7 +4,6 @@ import SEO from "src/common/SEO"
 import ShopPiecePage from "src/ShopPage/ShopPiecePage"
 import { getShopItems } from "util/dataFetching"
 import { readFile, writeFile } from "util/cache"
-import { Product } from "use-shopping-cart"
 import {
   addProductToCart,
   getProductQuantityInCart,
@@ -14,6 +13,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { cartAtom } from "atoms/store"
 import { useAtom } from "jotai"
+import { CustomProductType } from "util/data.types"
 
 const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter()
@@ -32,7 +32,7 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   }, [cartItems, props.item])
 
   if (props.errors || !props.item) return <></>
-  const shopItem: Product = props.item
+  const shopItem: CustomProductType = props.item
 
   const isCustomType =
     shopItem.product_data?.metadata.type.toUpperCase() === "CUSTOM"
@@ -64,7 +64,7 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    let shopItems: Product[] = await readFile(".shopCache")
+    let shopItems: CustomProductType[] = await readFile(".shopCache")
     if (shopItems.length <= 0) {
       shopItems = await getShopItems()
       await writeFile(shopItems, ".shopCache")
@@ -83,7 +83,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    let shopItems: Product[] = await readFile(".shopCache")
+    let shopItems: CustomProductType[] = await readFile(".shopCache")
     if (shopItems.length <= 0) {
       shopItems = await getShopItems()
       await writeFile(shopItems, ".shopCache")

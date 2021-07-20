@@ -8,7 +8,7 @@ import { screenWidthAtom, shopFilterAtom } from "atoms/store"
 import { useClickOutside } from "util/clickHandlers"
 import { useRef, useState } from "react"
 import { readFile, writeFile } from "util/cache"
-import { Product } from "use-shopping-cart"
+import { CustomProductType } from "util/data.types"
 
 const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [screenWidth] = useAtom(screenWidthAtom)
@@ -20,12 +20,12 @@ const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   if (props.errors || !props.shopItems) return <></>
 
-  let shopItems: Product[] = props.shopItems
+  let shopItems: CustomProductType[] = props.shopItems
 
   if (shopItems.length <= 0) return <></>
 
   // Filter out all addon items (no product_data)
-  shopItems = shopItems.filter((item: Product) => item.product_data)
+  shopItems = shopItems.filter((item: CustomProductType) => item.product_data)
 
   const SHOP_FILTERS = [
     "",
@@ -55,7 +55,7 @@ const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    let shopItems: Product[] = await readFile(".shopCache")
+    let shopItems: CustomProductType[] = await readFile(".shopCache")
     if (!shopItems || shopItems.length < 1) {
       shopItems = await getShopItems()
       await writeFile(shopItems, ".shopCache")

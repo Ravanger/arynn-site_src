@@ -3,7 +3,7 @@ import { Product } from "use-shopping-cart"
 export const addProductToCart = (
   productArray: Product[],
   product: Product,
-  quantity: number
+  quantity = 1
 ) => {
   product.quantity = quantity
   return [...productArray, product]
@@ -41,3 +41,26 @@ export const setProductQuantityInCart = (
   product.quantity = quantity
   return productArray.map((item) => (item.sku === product.sku ? product : item))
 }
+
+// const confirmCustomProduct = (customId: string) => {
+//   const baseItemWithId = { ...props.customShopInfo }
+//   baseItemWithId.customId = customId
+
+//   const typesWithId = { ...selectedCustomAddons.type }
+//   typesWithId.customId = customId
+
+//   const numberOfPeopleWithId = { ...selectedCustomAddons.numberOfPeople }
+//   numberOfPeopleWithId.customId = customId
+
+//   const addonsWithId = [...selectedCustomAddons.addons]
+//   addonsWithId.forEach((addonItem) => {
+//     addonItem.customId = customId
+//   })
+
+//   addItem(baseItemWithId)
+//   addItem(typesWithId)
+//   addItem(numberOfPeopleWithId)
+//   addonsWithId.forEach((addonItem) => {
+//     addItem(addonItem)
+//   })
+// }

@@ -3,17 +3,21 @@ import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import CustomShopPage from "src/ShopPage/CustomShopPage"
 import { GetStaticProps, InferGetStaticPropsType } from "next"
 import { getShopItems } from "util/dataFetching"
-import { Product, useShoppingCart } from "use-shopping-cart"
 import { readFile, writeFile } from "util/cache"
 import { useState, useEffect } from "react"
 import { SelectedCustomAddons } from "src/ShopPage/CustomShopPage/CustomShopPage.types"
 import { v4 as uuidv4 } from "uuid"
+import { useAtom } from "jotai"
+import { cartAtom } from "atoms/store"
+import { addProductToCart } from "util/cart"
+import { CustomProductType } from "util/data.types"
 
 const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { addItem } = useShoppingCart()
+  const [cartItems, setCartItems] = useAtom(cartAtom)
   const [totalPrice, setTotalPrice] = useState<number>(
     props.customShopInfo.price
   )
+  const [quantityInCart, setQuantityInCart] = useState(0)
   const [selectedCustomAddons, setSelectedCustomAddons] =
     useState<SelectedCustomAddons>({
       type: props.customShopInfo.customAddons.types[0],
@@ -21,6 +25,7 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       addons: [],
     })
 
+  // Update total price whenever addons change
   useEffect(() => {
     const addonTotalPrice =
       selectedCustomAddons.type.price +
@@ -34,27 +39,19 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   if (props.errors || !props.customShopInfo) return <></>
 
-  const addItemsWithCustomIds = (customId: string) => {
-    const baseItemWithId = { ...props.customShopInfo }
+  const addItemsWithCustomIds = () => {
+    const customId = uuidv4()
+
+    const baseItemWithId: CustomProductType = { ...props.customShopInfo }
     baseItemWithId.customId = customId
 
-    const typesWithId = { ...selectedCustomAddons.type }
-    typesWithId.customId = customId
+    baseItemWithId.selectedAddons = {
+      type: selectedCustomAddons.type,
+      numberOfPeople: selectedCustomAddons.numberOfPeople,
+      addons: selectedCustomAddons.addons,
+    }
 
-    const numberOfPeopleWithId = { ...selectedCustomAddons.numberOfPeople }
-    numberOfPeopleWithId.customId = customId
-
-    const addonsWithId = [...selectedCustomAddons.addons]
-    addonsWithId.forEach((addonItem) => {
-      addonItem.customId = customId
-    })
-
-    addItem(baseItemWithId)
-    addItem(typesWithId)
-    addItem(numberOfPeopleWithId)
-    addonsWithId.forEach((addonItem) => {
-      addItem(addonItem)
-    })
+    setCartItems(addProductToCart(cartItems, baseItemWithId))
   }
 
   return (
@@ -67,10 +64,10 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       <CustomShopPage
         customShopInfo={props.customShopInfo}
         addToCartFunc={() => {
-          const customId = uuidv4()
-          addItemsWithCustomIds(customId)
+          addItemsWithCustomIds()
         }}
         totalPrice={totalPrice}
+        quantityInCart={quantityInCart}
         setSelectedCustomAddons={setSelectedCustomAddons}
         selectedCustomAddons={selectedCustomAddons}
       />
@@ -80,7 +77,7 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    let shopItems: Product[] = await readFile(".shopCache")
+    let shopItems: CustomProductType[] = await readFile(".shopCache")
     if (shopItems.length <= 0) {
       shopItems = await getShopItems()
       await writeFile(shopItems, ".shopCache")

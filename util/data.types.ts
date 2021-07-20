@@ -1,3 +1,5 @@
+import { Product } from "use-shopping-cart"
+
 export interface StrapiImageType {
   id: number
   name: string
@@ -82,4 +84,28 @@ export interface ErrorResponseType {
 export interface MenuItemType {
   text: string
   url: string
+}
+
+export interface CustomProductType extends Product {
+  images?: StrapiImageType[]
+  isSold?: boolean
+  product_data?: {
+    metadata: {
+      type: string
+      maxQuantity: number
+    }
+  }
+  customData?: {
+    availableAddons: {
+      types: Product[]
+      addons: Product[]
+      numberOfPeople: Product[]
+    }
+    selectedAddons?: {
+      customId: string
+      types: Product
+      addons: Product
+      numberOfPeople: Product[]
+    }
+  }
 }
