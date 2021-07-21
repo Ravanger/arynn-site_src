@@ -1,7 +1,8 @@
 import { Product } from "use-shopping-cart"
+import { CustomProductType } from "util/data.types";
 
 export interface CustomShopPropsType {
-  customShopInfo: Product
+  customShopInfo: CustomProductType
   addToCartFunc: () => void
   setSelectedCustomAddons: React.Dispatch<
     React.SetStateAction<SelectedCustomAddons>

@@ -20,8 +20,8 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [quantityInCart, setQuantityInCart] = useState(0)
   const [selectedCustomAddons, setSelectedCustomAddons] =
     useState<SelectedCustomAddons>({
-      type: props.customShopInfo.customAddons.types[0],
-      numberOfPeople: props.customShopInfo.customAddons.numberOfPeople[0],
+      type: props.customShopInfo.customData.availableAddons.types[0],
+      numberOfPeople: props.customShopInfo.customData.availableAddons.numberOfPeople[0],
       addons: [],
     })
 

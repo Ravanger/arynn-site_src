@@ -87,7 +87,7 @@ export interface MenuItemType {
 }
 
 export interface CustomProductType extends Product {
-  images?: StrapiImageType[]
+  images: StrapiImageType[]
   isSold?: boolean
   product_data?: {
     metadata: {
