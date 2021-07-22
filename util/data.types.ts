@@ -87,8 +87,10 @@ export interface MenuItemType {
 }
 
 export interface CustomProductType extends Product {
-  images: StrapiImageType[]
+  images?: StrapiImageType[]
   isSold?: boolean
+  quantity?: number
+  id: string
   product_data?: {
     metadata: {
       type: string
@@ -101,11 +103,10 @@ export interface CustomProductType extends Product {
       addons: Product[]
       numberOfPeople: Product[]
     }
-    selectedAddons?: {
-      customId: string
-      types: Product
-      addons: Product
-      numberOfPeople: Product[]
+    selectedAddons: {
+      type: Product
+      numberOfPeople: Product
+      addons: Product[]
     }
   }
 }

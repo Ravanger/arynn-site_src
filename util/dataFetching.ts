@@ -109,6 +109,7 @@ export const getShopItems = async () => {
 
     const stripeProduct: CustomProductType = {
       sku: item.id.toString(),
+      id: "",
       name: item.title,
       currency: CURRENCY,
       description: item.description || "",
@@ -127,8 +128,13 @@ export const getShopItems = async () => {
         customData: {
           availableAddons: {
             types: customTypesProducts,
-            addons: customAddonsProducts,
             numberOfPeople: customNumberOfPeopleProducts,
+            addons: customAddonsProducts,
+          },
+          selectedAddons: {
+            type: customTypesProducts[0],
+            numberOfPeople: customNumberOfPeopleProducts[0],
+            addons: [],
           },
         },
       }),

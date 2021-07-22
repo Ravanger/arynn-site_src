@@ -6,10 +6,9 @@ import { getShopItems } from "util/dataFetching"
 import { readFile, writeFile } from "util/cache"
 import { useState, useEffect } from "react"
 import { SelectedCustomAddons } from "src/ShopPage/CustomShopPage/CustomShopPage.types"
-import { v4 as uuidv4 } from "uuid"
 import { useAtom } from "jotai"
 import { cartAtom } from "atoms/store"
-import { addProductToCart } from "util/cart"
+import { addProductToCart, getCustomProductQuantityInCart } from "util/cart"
 import { CustomProductType } from "util/data.types"
 
 const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -20,9 +19,7 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [quantityInCart, setQuantityInCart] = useState(0)
   const [selectedCustomAddons, setSelectedCustomAddons] =
     useState<SelectedCustomAddons>({
-      type: props.customShopInfo.customData.availableAddons.types[0],
-      numberOfPeople: props.customShopInfo.customData.availableAddons.numberOfPeople[0],
-      addons: [],
+      ...props.customShopInfo.customData.selectedAddons,
     })
 
   // Update total price whenever addons change
@@ -37,22 +34,14 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     setTotalPrice(props.customShopInfo.price + addonTotalPrice)
   }, [props.customShopInfo, selectedCustomAddons])
 
+  // Update quantity in cart
+  useEffect(() => {
+    setQuantityInCart(
+      getCustomProductQuantityInCart(cartItems, props.customShopInfo)
+    )
+  }, [cartItems, props.customShopInfo])
+
   if (props.errors || !props.customShopInfo) return <></>
-
-  const addItemsWithCustomIds = () => {
-    const customId = uuidv4()
-
-    const baseItemWithId: CustomProductType = { ...props.customShopInfo }
-    baseItemWithId.customId = customId
-
-    baseItemWithId.selectedAddons = {
-      type: selectedCustomAddons.type,
-      numberOfPeople: selectedCustomAddons.numberOfPeople,
-      addons: selectedCustomAddons.addons,
-    }
-
-    setCartItems(addProductToCart(cartItems, baseItemWithId))
-  }
 
   return (
     <>
@@ -64,7 +53,17 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       <CustomShopPage
         customShopInfo={props.customShopInfo}
         addToCartFunc={() => {
-          addItemsWithCustomIds()
+          const customProduct: CustomProductType = { ...props.customShopInfo }
+          customProduct.customData!.selectedAddons = selectedCustomAddons
+          const updatedArray = addProductToCart(cartItems, customProduct)
+          setCartItems(updatedArray)
+          setSelectedCustomAddons({
+            type: props.customShopInfo.customData!.availableAddons.types[0],
+            numberOfPeople:
+              props.customShopInfo.customData!.availableAddons
+                .numberOfPeople[0],
+            addons: [],
+          })
         }}
         totalPrice={totalPrice}
         quantityInCart={quantityInCart}

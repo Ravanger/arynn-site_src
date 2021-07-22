@@ -1,5 +1,5 @@
 import { Product } from "use-shopping-cart"
-import { CustomProductType } from "util/data.types";
+import { CustomProductType } from "util/data.types"
 
 export interface CustomShopPropsType {
   customShopInfo: CustomProductType
@@ -9,6 +9,7 @@ export interface CustomShopPropsType {
   >
   selectedCustomAddons: SelectedCustomAddons
   totalPrice: number
+  quantityInCart: number
 }
 
 export interface SelectedCustomAddons {
