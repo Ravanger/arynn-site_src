@@ -53,8 +53,14 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       <CustomShopPage
         customShopInfo={props.customShopInfo}
         addToCartFunc={() => {
-          const customProduct: CustomProductType = { ...props.customShopInfo }
-          customProduct.customData!.selectedAddons = selectedCustomAddons
+          const customProduct: CustomProductType = {
+            ...props.customShopInfo,
+            customData: {
+              ...props.customShopInfo.customData,
+              selectedAddons: selectedCustomAddons,
+            },
+          }
+
           const updatedArray = addProductToCart(cartItems, customProduct)
           setCartItems(updatedArray)
           setSelectedCustomAddons({
