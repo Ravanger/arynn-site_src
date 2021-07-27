@@ -31,7 +31,7 @@ export const getProductQuantityInCart = (
   productArray: CustomProductType[],
   product: CustomProductType
 ) => {
-  const cartItem = productArray.find((item) => item.sku === product.sku)
+  const cartItem = productArray.find((item) => item.id === product.id)
   if (cartItem) return cartItem.quantity || 0
 
   return 0
@@ -43,7 +43,7 @@ export const setProductQuantityInCart = (
   quantity: number
 ) => {
   product.quantity = quantity
-  return productArray.map((item) => (item.sku === product.sku ? product : item))
+  return productArray.map((item) => (item.id === product.id ? product : item))
 }
 
 export const getCustomProductQuantityInCart = (
