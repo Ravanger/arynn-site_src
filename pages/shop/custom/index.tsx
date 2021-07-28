@@ -23,6 +23,8 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         : null
     )
 
+  const [customProductDetails, setCustomProductDetails] = useState("")
+
   // Update quantity in cart
   useEffect(() => {
     if (!props.customShopInfo) return
@@ -49,6 +51,8 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   if (props.errors || !props.customShopInfo || !selectedCustomAddons)
     return <></>
 
+  console.log(customProductDetails)
+
   return (
     <>
       <SEO
@@ -71,11 +75,14 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
             customData: {
               ...props.customShopInfo.customData,
               selectedAddons: selectedCustomAddons,
+              customMessage: customProductDetails,
             },
           }
 
           const updatedArray = addProductToCart(cartItems, customProduct)
           setCartItems(updatedArray)
+
+          //Reset inputs
           setSelectedCustomAddons({
             type: props.customShopInfo.customData!.availableAddons.types[0],
             numberOfPeople:
@@ -83,11 +90,14 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
                 .numberOfPeople[0],
             addons: [],
           })
+          setCustomProductDetails("")
         }}
         totalPrice={totalPrice}
         quantityInCart={quantityInCart}
         setSelectedCustomAddons={setSelectedCustomAddons}
         selectedCustomAddons={selectedCustomAddons}
+        customProductDetails={customProductDetails}
+        setCustomProductDetails={setCustomProductDetails}
       />
     </>
   )

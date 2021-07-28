@@ -70,6 +70,10 @@ const CartItemCustom = (props: CartItemCustomType) => {
               0
             )}
           />
+          <CustomProperty
+            title="Message"
+            description={props.item.customData!.customMessage || "None"}
+          />
         </div>
         <Spacer />
         <div className="flex flex-row items-center justify-center lg:w-full">

@@ -10,6 +10,8 @@ export interface CustomShopPropsType {
   selectedCustomAddons: SelectedCustomAddons
   totalPrice: number
   quantityInCart: number
+  customProductDetails: string
+  setCustomProductDetails: React.Dispatch<React.SetStateAction<string>>
 }
 
 export interface SelectedCustomAddons {

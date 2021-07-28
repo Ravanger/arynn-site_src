@@ -108,5 +108,6 @@ export interface CustomProductType extends Product {
       numberOfPeople: Product
       addons: Product[]
     }
+    customMessage?: string
   }
 }

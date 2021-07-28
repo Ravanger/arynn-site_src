@@ -150,6 +150,17 @@ const CustomShopPage = (props: CustomShopPropsType) => {
       <Spacer size="2rem" />
       <PDescriptionText>{customDescription}</PDescriptionText>
       <Spacer size="2rem" />
+      <textarea
+        placeholder="Enter any further details here..."
+        name="custom_product_details"
+        id="custom_product_details"
+        className="focus:border-pink w-full"
+        value={props.customProductDetails}
+        onChange={(event) => {
+          props.setCustomProductDetails(event.target.value)
+        }}
+      />
+      <Spacer size="2rem" />
       <span className="text-3xl font-bold md:text-right">
         {formatCurrencyString({
           value: props.totalPrice,
