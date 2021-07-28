@@ -5,10 +5,9 @@ import { LayoutProps, NavItemsType } from "../Layout.types"
 import MainImage from "src/common/MainImage"
 import { IoTriangle } from "react-icons/io5"
 import { useAtom } from "jotai"
-import { screenWidthAtom, artFilterAtom } from "atoms/store"
+import { screenWidthAtom, artFilterAtom, cartAtom } from "atoms/store"
 import { useRouter } from "next/router"
 import { useClickOutside } from "util/clickHandlers"
-import { useShoppingCart } from "use-shopping-cart"
 import { socialLinks } from "src/common/socials"
 import React, { Fragment, useEffect, useRef, useState } from "react"
 import SiteLink from "src/common/SiteLink"
@@ -19,7 +18,7 @@ const MainLayout = (props: LayoutProps) => {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false)
   const [artFilter, setArtFilter] = useAtom(artFilterAtom)
   const [screenWidth, setScreenWidth] = useAtom(screenWidthAtom)
-  const { cartCount } = useShoppingCart()
+  const [cartInfo] = useAtom(cartAtom)
 
   useEffect(() => {
     const handleResize = debounce(() => {
@@ -31,7 +30,7 @@ const MainLayout = (props: LayoutProps) => {
     return () => {
       window.removeEventListener("resize", handleResize)
     }
-  }, [screenWidth])
+  }, [screenWidth, setScreenWidth])
 
   const router = useRouter()
   const mainMenuRef = useRef(null)
@@ -85,7 +84,7 @@ const MainLayout = (props: LayoutProps) => {
     {
       text: "Shop",
       url: "/shop",
-      sublinks: [{ text: `Cart (${cartCount})`, url: "/shop/cart" }],
+      sublinks: [{ text: `Cart (${cartInfo.length || 0})`, url: "/shop/cart" }],
     },
   ]
 

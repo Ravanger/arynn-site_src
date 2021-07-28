@@ -4,17 +4,23 @@ import SEO from "src/common/SEO"
 import ShopPiecePage from "src/ShopPage/ShopPiecePage"
 import { getShopItems } from "util/dataFetching"
 import { readFile, writeFile } from "util/cache"
-import { Product, useShoppingCart } from "use-shopping-cart"
-import { itemIdExistsInCart } from "util/stripe"
+import {
+  addProductToCart,
+  getProductQuantityInCart,
+  isProductInCart,
+} from "util/cart"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import { cartAtom } from "atoms/store"
+import { useAtom } from "jotai"
+import { CustomProductType } from "util/data.types"
 
 const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter()
 
-  const { addItem, cartDetails } = useShoppingCart()
   const [wantedQuantity, setWantedQuantity] = useState(1)
   const [quantityInCart, setQuantityInCart] = useState(0)
+  const [cartItems, setCartItems] = useAtom(cartAtom)
 
   useEffect(() => {
     if (props.item.product_data?.metadata.type.toUpperCase() === "CUSTOM")
@@ -22,17 +28,16 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   }, [props.item, router])
 
   useEffect(() => {
-    setQuantityInCart(cartDetails[props.item.sku]?.quantity)
-  }, [cartDetails, props.item])
+    setQuantityInCart(getProductQuantityInCart(cartItems, props.item))
+  }, [cartItems, props.item])
 
   if (props.errors || !props.item) return <></>
-  const shopItem: Product = props.item
+  const shopItem: CustomProductType = props.item
 
   const isCustomType =
     shopItem.product_data?.metadata.type.toUpperCase() === "CUSTOM"
 
-  const canAddToCart =
-    !itemIdExistsInCart(cartDetails, shopItem.sku) && !shopItem.isSold
+  const canAddToCart = !isProductInCart(cartItems, shopItem) && !shopItem.isSold
 
   return isCustomType ? (
     <></>
@@ -45,7 +50,10 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       />
       <ShopPiecePage
         item={shopItem}
-        addToCartFunc={() => canAddToCart && addItem(shopItem, wantedQuantity)}
+        addToCartFunc={() => {
+          canAddToCart &&
+            setCartItems(addProductToCart(cartItems, shopItem, wantedQuantity))
+        }}
         quantityInCart={quantityInCart}
         setWantedQuantity={setWantedQuantity}
         wantedQuantity={wantedQuantity}
@@ -56,7 +64,7 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    let shopItems: Product[] = await readFile(".shopCache")
+    let shopItems: CustomProductType[] = await readFile(".shopCache")
     if (shopItems.length <= 0) {
       shopItems = await getShopItems()
       await writeFile(shopItems, ".shopCache")
@@ -75,7 +83,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    let shopItems: Product[] = await readFile(".shopCache")
+    let shopItems: CustomProductType[] = await readFile(".shopCache")
     if (shopItems.length <= 0) {
       shopItems = await getShopItems()
       await writeFile(shopItems, ".shopCache")

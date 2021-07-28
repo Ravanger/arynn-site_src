@@ -1,12 +1,19 @@
-import { Dispatch, SetStateAction } from "react"
 import { Product } from "use-shopping-cart"
+import { CustomProductType } from "util/data.types"
 
 export interface CustomShopPropsType {
-  customShopPieces: Product[]
-  selectedPiece: Product
-  setSelectedPieceSku: Dispatch<SetStateAction<string>>
+  customShopInfo: CustomProductType
   addToCartFunc: () => void
+  setSelectedCustomAddons: React.Dispatch<
+    React.SetStateAction<SelectedCustomAddons>
+  >
+  selectedCustomAddons: SelectedCustomAddons
+  totalPrice: number
   quantityInCart: number
-  setWantedQuantity: Dispatch<SetStateAction<number>>
-  wantedQuantity: number
+}
+
+export interface SelectedCustomAddons {
+  type: Product
+  numberOfPeople: Product
+  addons: Product[]
 }

@@ -1,3 +1,5 @@
+import { Product } from "use-shopping-cart"
+
 export interface StrapiImageType {
   id: number
   name: string
@@ -41,10 +43,27 @@ export interface StrapiFetchArtDataType {
   image: StrapiImageType
 }
 
+export interface StrapiFetchShopDataCustomType {
+  id: number
+  custom_types_name: string
+  custom_types_price: number
+}
+
+export interface StrapiFetchShopDataAddonsType {
+  id: number
+  custom_addons_name: string
+  custom_addons_price: number
+}
+
+export interface StrapiFetchShopDataNumberOfPeopleType {
+  id: number
+  custom_numberofpeople_name: string
+  custom_numberofpeople_price: number
+}
 export interface StrapiFetchShopDataType {
   id: number
   title: string
-  description: string
+  description?: string
   price: number
   type: string
   maxquantity?: number
@@ -52,6 +71,9 @@ export interface StrapiFetchShopDataType {
   updated_at: Date
   images: StrapiImageType[]
   is_sold?: boolean
+  custom_types?: StrapiFetchShopDataCustomType[]
+  custom_addons?: StrapiFetchShopDataAddonsType[]
+  custom_numberofpeople?: StrapiFetchShopDataNumberOfPeopleType[]
 }
 
 export interface ErrorResponseType {
@@ -62,4 +84,29 @@ export interface ErrorResponseType {
 export interface MenuItemType {
   text: string
   url: string
+}
+
+export interface CustomProductType extends Product {
+  images?: StrapiImageType[]
+  isSold?: boolean
+  quantity?: number
+  id?: string
+  product_data?: {
+    metadata: {
+      type: string
+      maxQuantity: number
+    }
+  }
+  customData?: {
+    availableAddons: {
+      types: Product[]
+      addons: Product[]
+      numberOfPeople: Product[]
+    }
+    selectedAddons: {
+      type: Product
+      numberOfPeople: Product
+      addons: Product[]
+    }
+  }
 }

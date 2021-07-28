@@ -12,7 +12,7 @@ const DropdownQuestion = (props: DropdownSliderPropsType) => {
   return (
     <>
       <span
-        className="flex flex-row items-baseline cursor-pointer text-pink font-bold text-sm sm:text-xl md:text-2xl"
+        className="flex flex-row items-baseline cursor-pointer text-pink group hover:text-blue font-bold text-sm sm:text-xl md:text-2xl"
         onClick={() => setOpen(!isOpen)}
       >
         <motion.span
@@ -26,7 +26,7 @@ const DropdownQuestion = (props: DropdownSliderPropsType) => {
         <span className="flex flex-row flex-nowrap items-center">
           <span>{props.question}</span>
           <Spacer axis="HORIZONTAL" size="0.5rem" />
-          <hr className="w-4 sm:w-12 h-0.5 bg-pink border-none" />
+          <hr className="w-4 sm:w-12 h-0.5 bg-pink group-hover:bg-blue border-none" />
         </span>
       </span>
       <AnimatePresence initial={false}>
@@ -53,11 +53,11 @@ const DropdownQuestion = (props: DropdownSliderPropsType) => {
 
 const Questions = () => (
   <div className="text-left">
-    <HeaderBar>questions n' answers</HeaderBar>
+    <HeaderBar>{"questions n' answers"}</HeaderBar>
     <Spacer size="2rem" />
     <DropdownQuestion
       question="can i return this?"
-      answer="i cannot accommodate returns or exchanges, but if there's an issue with your order please let know! i'm a reasonable human being i swear."
+      answer="i cannot accommodate returns or exchanges, but if there's an issue with your order please let me know! i'm a reasonable human being i swear."
     />
     <Spacer />
     <DropdownQuestion

@@ -1,12 +1,9 @@
-import { CartDetails, Product } from "use-shopping-cart"
+import { CustomProductType } from "util/data.types"
 
 export interface CartPageType {
-  cartItems: Product[]
-  cartDetails: CartDetails
-  cartCount: number
+  cartItems: CustomProductType[]
   totalPrice: number
   handleStripeCheckout: () => Promise<void>
-  removeItem: (sku: string) => void
-  setWantedQuantity: (sku: string, quantity: number) => void
+  setCartItems: (update: React.SetStateAction<CustomProductType[]>) => void
   stripeLoading: boolean
 }

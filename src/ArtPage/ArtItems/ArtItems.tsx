@@ -21,6 +21,7 @@ const ArtItems = (props: ArtItemsType) => {
             ...(!props.artFilter && { query: { display: "all" } }),
           }}
           key={artItem.title + index}
+          passHref
         >
           <motion.a
             whileHover={{ scale: 1.1 }}

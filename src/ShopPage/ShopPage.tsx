@@ -5,6 +5,7 @@ import ShopItems from "./ShopItems"
 import Menu from "src/common/Menu"
 import ShopBanner from "./ShopBanner"
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 const ShopPage = (props: ShopPageType) => {
   return (
@@ -58,9 +59,11 @@ const ShopPage = (props: ShopPageType) => {
       <Spacer size="2rem" />
       <ShopItems shopFilter={props.shopFilter} shopItems={props.shopItems} />
       <Spacer size="3rem" />
-      <p className="text-pink text-sm">
-        Can't find what you're looking for? Send me an email!
-      </p>
+      <Link href="/connect">
+        <a className="text-pink hover:text-blue active:text-blue-light text-sm">
+          {"Can't find what you're looking for? Send me an email!"}
+        </a>
+      </Link>
     </>
   )
 }

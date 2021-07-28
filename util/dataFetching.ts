@@ -1,6 +1,10 @@
 import { ArtItemType } from "src/ArtPage/ArtPage.types"
 import { Product } from "use-shopping-cart"
-import { StrapiFetchArtDataType, StrapiFetchShopDataType } from "./data.types"
+import {
+  CustomProductType,
+  StrapiFetchArtDataType,
+  StrapiFetchShopDataType,
+} from "./data.types"
 import { CURRENCY } from "./stripe"
 
 export const fetchData = async (url: string, data?: any, method?: string) => {
@@ -30,7 +34,7 @@ export const getArtItems = async () => {
     null,
     "GET"
   )
-  if (!rawData) throw new Error("Error fetching data")
+  if (!rawData || rawData.length < 1) throw new Error("Error fetching art data")
 
   const artItems: ArtItemType[] = rawData.map((item) => {
     return {
@@ -56,15 +60,61 @@ export const getShopItems = async () => {
     null,
     "GET"
   )
-  if (!rawData) throw new Error("Error fetching data")
 
-  const shopItems: Product[] = rawData.map((item) => {
-    const stripeProduct = {
+  if (!rawData || rawData.length < 1)
+    throw new Error("Error fetching shop data")
+
+  let customTypesProducts: Product[] = []
+  let customNumberOfPeopleProducts: Product[] = []
+  let customAddonsProducts: Product[] = []
+
+  let shopItems: CustomProductType[] = rawData.map((item) => {
+    if (item.type.toUpperCase() === "CUSTOM") {
+      customTypesProducts = customTypesProducts.concat(
+        item.custom_types!.map(
+          (addonItem) =>
+            <Product>{
+              sku: `custom-types-${addonItem.custom_types_name}`,
+              name: addonItem.custom_types_name,
+              price: addonItem.custom_types_price,
+              currency: CURRENCY,
+            }
+        )
+      )
+
+      customNumberOfPeopleProducts = customNumberOfPeopleProducts.concat(
+        item.custom_numberofpeople!.map(
+          (addonItem) =>
+            <Product>{
+              sku: `custom-numofpeople-${addonItem.custom_numberofpeople_name}`,
+              name: addonItem.custom_numberofpeople_name,
+              price: addonItem.custom_numberofpeople_price,
+              currency: CURRENCY,
+            }
+        )
+      )
+
+      customAddonsProducts = customAddonsProducts.concat(
+        item.custom_addons!.map(
+          (addonItem) =>
+            <Product>{
+              sku: `custom-addons-${addonItem.custom_addons_name}`,
+              name: addonItem.custom_addons_name,
+              price: addonItem.custom_addons_price,
+              currency: CURRENCY,
+            }
+        )
+      )
+    }
+
+    const stripeProduct: CustomProductType = {
       sku: item.id.toString(),
+      id: "",
       name: item.title,
       currency: CURRENCY,
-      description: item.description,
-      image: item.images[0].url.split("/").pop() || "",
+      description: item.description || "",
+      image:
+        (item.images.length > 0 && item.images[0].url.split("/").pop()) || "",
       price: item.price,
       product_data: {
         metadata: {
@@ -74,10 +124,30 @@ export const getShopItems = async () => {
       },
       images: item.images,
       isSold: item.is_sold,
+      ...(item.type.toUpperCase() === "CUSTOM" && {
+        customData: {
+          availableAddons: {
+            types: customTypesProducts,
+            numberOfPeople: customNumberOfPeopleProducts,
+            addons: customAddonsProducts,
+          },
+          selectedAddons: {
+            type: customTypesProducts[0],
+            numberOfPeople: customNumberOfPeopleProducts[0],
+            addons: [],
+          },
+        },
+      }),
     }
 
     return stripeProduct
   })
+
+  shopItems = shopItems.concat(
+    customTypesProducts,
+    customAddonsProducts,
+    customNumberOfPeopleProducts
+  )
 
   return shopItems
 }
