@@ -1,6 +1,6 @@
 import HeaderBar from "src/common/HeaderBar"
 import Spacer from "src/common/Spacer"
-import CartItem from "./CartItem"
+import CartItem, { CartItemCustom } from "./CartItem"
 import { formatCurrencyString } from "use-shopping-cart"
 import { CURRENCY } from "util/stripe"
 import { Fragment } from "react"
@@ -22,22 +22,35 @@ const CartPage = (props: CartPageType) => {
         <>
           {props.cartItems.map((cartItem) => {
             return (
-              <Fragment key={cartItem.sku}>
-                <CartItem
-                  item={cartItem}
-                  cartItems={props.cartItems}
-                  setCartItems={props.setCartItems}
-                  removeCartItem={() =>
-                    props.setCartItems(
-                      removeProductFromCart(props.cartItems, cartItem)
-                    )
-                  }
-                  setWantedQuantity={setProductQuantityInCart}
-                  quantityInCart={getProductQuantityInCart(
-                    props.cartItems,
-                    cartItem
-                  )}
-                />
+              <Fragment key={cartItem.id || cartItem.sku}>
+                {cartItem.customData ? (
+                  <CartItemCustom
+                    item={cartItem}
+                    cartItems={props.cartItems}
+                    setCartItems={props.setCartItems}
+                    removeCartItem={() =>
+                      props.setCartItems(
+                        removeProductFromCart(props.cartItems, cartItem)
+                      )
+                    }
+                  />
+                ) : (
+                  <CartItem
+                    item={cartItem}
+                    cartItems={props.cartItems}
+                    setCartItems={props.setCartItems}
+                    removeCartItem={() =>
+                      props.setCartItems(
+                        removeProductFromCart(props.cartItems, cartItem)
+                      )
+                    }
+                    setWantedQuantity={setProductQuantityInCart}
+                    quantityInCart={getProductQuantityInCart(
+                      props.cartItems,
+                      cartItem
+                    )}
+                  />
+                )}
                 <Spacer size="2rem" />
               </Fragment>
             )

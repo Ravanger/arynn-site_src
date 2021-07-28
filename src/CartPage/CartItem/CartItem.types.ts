@@ -1,15 +1,31 @@
-import { MouseEventHandler } from "react"
-import { Product } from "use-shopping-cart"
+import React, { MouseEventHandler } from "react"
+import { CustomProductType } from "util/data.types"
 
-export interface CartItemType {
-  item: Product
-  cartItems: Product[]
-  setCartItems: (update: React.SetStateAction<Product[]>) => void
+export interface CartItemBaseType {
+  item: CustomProductType
+  cartItems: CustomProductType[]
+  setCartItems: (update: React.SetStateAction<CustomProductType[]>) => void
   removeCartItem: MouseEventHandler<HTMLButtonElement>
+  isCustom?: boolean
+}
+
+export interface CartItemType extends CartItemBaseType {
   quantityInCart: number
   setWantedQuantity: (
-    productArray: Product[],
-    product: Product,
+    productArray: CustomProductType[],
+    product: CustomProductType,
     quantity: number
-  ) => Product[]
+  ) => CustomProductType[]
+}
+
+export interface CartItemCustomType extends CartItemBaseType {}
+
+export interface CustomPropertyType {
+  title: string
+  description: string | string[]
+  price: number
+}
+
+export interface CartItemFrameType {
+  children: React.ReactNode
 }
