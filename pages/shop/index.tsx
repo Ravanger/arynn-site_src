@@ -1,7 +1,7 @@
 import ShopPage from "src/ShopPage"
 import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import SEO from "src/common/SEO"
-import { GetStaticProps, InferGetStaticPropsType } from "next"
+import { InferGetStaticPropsType } from "next"
 import { getShopItems } from "util/dataFetching"
 import { useAtom } from "jotai"
 import { screenWidthAtom, shopFilterAtom } from "atoms/store"
@@ -20,12 +20,12 @@ const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   if (props.errors || !props.shopItems) return <></>
 
-  let shopItems: CustomProductType[] = props.shopItems
-
-  if (shopItems.length <= 0) return <></>
+  if (props.shopItems.length <= 0) return <></>
 
   // Filter out all addon items (no product_data)
-  shopItems = shopItems.filter((item: CustomProductType) => item.product_data)
+  const filteredShopItems = props.shopItems.filter(
+    (item: CustomProductType) => item.product_data
+  )
 
   const SHOP_FILTERS = [
     "",
@@ -40,7 +40,7 @@ const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     <>
       <SEO title="Shop" description="Arynn's Shop" url="/shop" />
       <ShopPage
-        shopItems={shopItems}
+        shopItems={filteredShopItems}
         shopFilter={shopFilter}
         isShopMenuOpen={isShopMenuOpen}
         shopMenuRef={shopMenuRef}
@@ -53,7 +53,7 @@ const Shop = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = async () => {
   try {
     let shopItems: CustomProductType[] = await readFile(".shopCache")
     if (!shopItems || shopItems.length < 1) {
@@ -65,7 +65,8 @@ export const getStaticProps: GetStaticProps = async () => {
       props: { shopItems },
     }
   } catch (err) {
-    return { props: { errors: err.message } }
+    console.error("Error in Shop.getStaticProps: ", err)
+    return { props: { errors: err } }
   }
 }
 

@@ -5,7 +5,7 @@ export interface CustomShopPropsType {
   customShopInfo: CustomProductType
   addToCartFunc: () => void
   setSelectedCustomAddons: React.Dispatch<
-    React.SetStateAction<SelectedCustomAddons>
+    React.SetStateAction<SelectedCustomAddons | null>
   >
   selectedCustomAddons: SelectedCustomAddons
   totalPrice: number

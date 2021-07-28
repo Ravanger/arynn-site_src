@@ -1,7 +1,7 @@
 import SEO from "src/common/SEO"
 import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import CustomShopPage from "src/ShopPage/CustomShopPage"
-import { GetStaticProps, InferGetStaticPropsType } from "next"
+import { InferGetStaticPropsType } from "next"
 import { getShopItems } from "util/dataFetching"
 import { readFile, writeFile } from "util/cache"
 import { useState, useEffect, useMemo } from "react"
@@ -15,12 +15,18 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [cartItems, setCartItems] = useAtom(cartAtom)
   const [quantityInCart, setQuantityInCart] = useState(0)
   const [selectedCustomAddons, setSelectedCustomAddons] =
-    useState<SelectedCustomAddons>({
-      ...props.customShopInfo.customData.selectedAddons,
-    })
+    useState<SelectedCustomAddons | null>(
+      props.customShopInfo
+        ? {
+            ...props.customShopInfo.customData!.selectedAddons,
+          }
+        : null
+    )
 
   // Update quantity in cart
   useEffect(() => {
+    if (!props.customShopInfo) return
+
     setQuantityInCart(
       getCustomProductQuantityInCart(cartItems, props.customShopInfo)
     )
@@ -28,6 +34,8 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   // Update total price whenever addons change
   const totalPrice = useMemo(() => {
+    if (!props.customShopInfo || !selectedCustomAddons) return 0
+
     const addonTotalPrice =
       selectedCustomAddons.type.price +
       selectedCustomAddons.numberOfPeople.price +
@@ -38,7 +46,8 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     return props.customShopInfo.price + addonTotalPrice
   }, [props.customShopInfo, selectedCustomAddons])
 
-  if (props.errors || !props.customShopInfo) return <></>
+  if (props.errors || !props.customShopInfo || !selectedCustomAddons)
+    return <></>
 
   return (
     <>
@@ -50,6 +59,13 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       <CustomShopPage
         customShopInfo={props.customShopInfo}
         addToCartFunc={() => {
+          if (
+            !props.customShopInfo ||
+            !props.customShopInfo.customData ||
+            !selectedCustomAddons
+          )
+            return
+
           const customProduct: CustomProductType = {
             ...props.customShopInfo,
             customData: {
@@ -77,7 +93,7 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = async () => {
   try {
     let shopItems: CustomProductType[] = await readFile(".shopCache")
     if (shopItems.length <= 0) {
@@ -93,7 +109,8 @@ export const getStaticProps: GetStaticProps = async () => {
       props: { customShopInfo: customShopInfo },
     }
   } catch (err) {
-    return { props: { errors: err.message } }
+    console.error("Error in Custom.getStaticProps: ", err)
+    return { props: { errors: err } }
   }
 }
 

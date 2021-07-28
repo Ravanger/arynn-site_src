@@ -1,4 +1,8 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next"
+import {
+  GetStaticPaths,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from "next"
 import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import SEO from "src/common/SEO"
 import ShopPiecePage from "src/ShopPage/ShopPiecePage"
@@ -14,6 +18,7 @@ import { useRouter } from "next/router"
 import { cartAtom } from "atoms/store"
 import { useAtom } from "jotai"
 import { CustomProductType } from "util/data.types"
+import { ParsedUrlQuery } from "querystring"
 
 const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter()
@@ -23,36 +28,42 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [cartItems, setCartItems] = useAtom(cartAtom)
 
   useEffect(() => {
+    if (!props.item) return
+
     if (props.item.product_data?.metadata.type.toUpperCase() === "CUSTOM")
       router.replace("/shop/custom")
   }, [props.item, router])
 
   useEffect(() => {
+    if (!props.item) return
+
     setQuantityInCart(getProductQuantityInCart(cartItems, props.item))
   }, [cartItems, props.item])
 
   if (props.errors || !props.item) return <></>
-  const shopItem: CustomProductType = props.item
 
   const isCustomType =
-    shopItem.product_data?.metadata.type.toUpperCase() === "CUSTOM"
+    props.item.product_data?.metadata.type.toUpperCase() === "CUSTOM"
 
-  const canAddToCart = !isProductInCart(cartItems, shopItem) && !shopItem.isSold
+  const canAddToCart =
+    !isProductInCart(cartItems, props.item) && !props.item.isSold
 
   return isCustomType ? (
     <></>
   ) : (
     <>
       <SEO
-        title={"Shop: " + shopItem.name}
-        description={`Arynn's Shop - ${shopItem.name}: ${shopItem.description}`}
-        url={"/shop/" + shopItem.sku}
+        title={"Shop: " + props.item.name}
+        description={`Arynn's Shop - ${props.item.name}: ${props.item.description}`}
+        url={"/shop/" + props.item.sku}
       />
       <ShopPiecePage
-        item={shopItem}
+        item={props.item}
         addToCartFunc={() => {
           canAddToCart &&
-            setCartItems(addProductToCart(cartItems, shopItem, wantedQuantity))
+            setCartItems(
+              addProductToCart(cartItems, props.item, wantedQuantity)
+            )
         }}
         quantityInCart={quantityInCart}
         setWantedQuantity={setWantedQuantity}
@@ -81,7 +92,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps = async (
+  context: GetStaticPropsContext<ParsedUrlQuery>
+) => {
   try {
     let shopItems: CustomProductType[] = await readFile(".shopCache")
     if (shopItems.length <= 0) {
@@ -89,14 +102,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       await writeFile(shopItems, ".shopCache")
     }
 
-    const id = params?.id
+    const id = context.params?.id
     const item = id && shopItems.find((item) => item.sku === id)
 
     return id && item
       ? { props: { item } }
       : { props: { errors: "No item found" } }
   } catch (err) {
-    return { props: { errors: err.message } }
+    console.error("Error in ShopPiece.getStaticProps: ", err)
+    return { props: { errors: err } }
   }
 }
 
