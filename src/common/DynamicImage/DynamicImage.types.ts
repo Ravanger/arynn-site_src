@@ -4,4 +4,5 @@ export interface DynamicImageTypes {
   className?: string
   quality?: number
   isLocalImage?: boolean
+  priority?: boolean
 }

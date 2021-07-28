@@ -5,4 +5,5 @@ export interface BigImageTypes {
   height?: number
   className?: string
   isLocalImage?: boolean
+  priority?: boolean
 }

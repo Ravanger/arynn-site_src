@@ -17,6 +17,7 @@ const ResponsiveImage = (props: BigImageTypes) => {
       className={`!bg-blue-light !bg-opacity-20 ${
         props.className ? props.className : ""
       }`}
+      priority={props.priority}
     />
   )
 }

@@ -27,6 +27,7 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
             src={props.item.image}
             alt={props.item.title}
             quality={100}
+            priority={true}
           />
           <Spacer axis="HORIZONTAL" size="1rem" />
           <PrevNextButton
