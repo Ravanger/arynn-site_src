@@ -28,6 +28,7 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
             alt={props.item.title}
             quality={100}
             priority={true}
+            loading="eager"
           />
           <Spacer axis="HORIZONTAL" size="1rem" />
           <PrevNextButton

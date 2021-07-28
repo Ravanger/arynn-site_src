@@ -5,4 +5,5 @@ export interface DynamicImageTypes {
   quality?: number
   isLocalImage?: boolean
   priority?: boolean
+  loading?: "lazy" | "eager"
 }

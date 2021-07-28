@@ -17,7 +17,8 @@ const DynamicImage = (props: DynamicImageTypes) => {
         className={`!w-full !relative !h-auto !max-h-8/10-screen ${
           props.className ? props.className : ""
         }`}
-        priority={props.priority}
+        priority={props.priority || false}
+        loading={props.loading || "lazy"}
       />
     </div>
   )
