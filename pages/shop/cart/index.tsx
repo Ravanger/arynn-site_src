@@ -5,7 +5,7 @@ import { useShoppingCart } from "use-shopping-cart"
 import Stripe from "stripe"
 import { ErrorResponseType } from "util/data.types"
 import { fetchData } from "util/dataFetching"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { cartAtom } from "atoms/store"
 import { useAtom } from "jotai"
 
@@ -33,11 +33,26 @@ const Cart = () => {
     setStripeLoading(false)
   }
 
-  let totalPrice = 0
-  cartItems &&
-    cartItems.forEach(
-      (item) => (totalPrice += item.price * (item.quantity || 1))
-    )
+  const totalPrice = useMemo(
+    () =>
+      cartItems.reduce(
+        (total, item) =>
+          (total +=
+            item.price * (item.quantity || 1) +
+            (item.customData
+              ? item.customData.selectedAddons.numberOfPeople.price +
+                item.customData.selectedAddons.type.price +
+                item.customData.selectedAddons.addons.reduce(
+                  (addonTotal, addonItem) => {
+                    return (addonTotal += addonItem.price)
+                  },
+                  0
+                )
+              : 0)),
+        0
+      ),
+    [cartItems]
+  )
 
   return (
     <>
