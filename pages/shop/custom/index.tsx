@@ -3,72 +3,94 @@ import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import CustomShopPage from "src/ShopPage/CustomShopPage"
 import { GetStaticProps, InferGetStaticPropsType } from "next"
 import { getShopItems } from "util/dataFetching"
-import { Product, useShoppingCart } from "use-shopping-cart"
 import { readFile, writeFile } from "util/cache"
-import { useEffect, useState } from "react"
-import { getProductBySku, itemIdExistsInCart } from "util/stripe"
+import { useState, useEffect, useMemo } from "react"
+import { SelectedCustomAddons } from "src/ShopPage/CustomShopPage/CustomShopPage.types"
+import { useAtom } from "jotai"
+import { cartAtom } from "atoms/store"
+import { addProductToCart, getCustomProductQuantityInCart } from "util/cart"
+import { CustomProductType } from "util/data.types"
 
 const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-  if (props.errors || !props.customShopPieces) return <></>
-
-  const customShopPieces: Product[] = props.customShopPieces
-  if (customShopPieces.length <= 0) return <></>
-
-  const [selectedPieceSku, setSelectedPieceSku] = useState(
-    customShopPieces[0].sku
-  )
-  const [wantedQuantity, setWantedQuantity] = useState(1)
+  const [cartItems, setCartItems] = useAtom(cartAtom)
   const [quantityInCart, setQuantityInCart] = useState(0)
-  const { addItem, cartDetails } = useShoppingCart()
+  const [selectedCustomAddons, setSelectedCustomAddons] =
+    useState<SelectedCustomAddons>({
+      ...props.customShopInfo.customData.selectedAddons,
+    })
 
+  // Update quantity in cart
   useEffect(() => {
-    setQuantityInCart(cartDetails[selectedPieceSku]?.quantity)
-  }, [cartDetails[selectedPieceSku]])
+    setQuantityInCart(
+      getCustomProductQuantityInCart(cartItems, props.customShopInfo)
+    )
+  }, [cartItems, props.customShopInfo])
 
-  const selectedPiece = getProductBySku(
-    selectedPieceSku,
-    props.customShopPieces
-  )
+  // Update total price whenever addons change
+  const totalPrice = useMemo(() => {
+    const addonTotalPrice =
+      selectedCustomAddons.type.price +
+      selectedCustomAddons.numberOfPeople.price +
+      selectedCustomAddons.addons.reduce(
+        (total, addonItem) => total + addonItem.price,
+        0
+      )
+    return props.customShopInfo.price + addonTotalPrice
+  }, [props.customShopInfo, selectedCustomAddons])
 
-  return selectedPiece ? (
+  if (props.errors || !props.customShopInfo) return <></>
+
+  return (
     <>
       <SEO
-        title="Get a custom piece!"
+        title="Custom Commission"
         description="Got something special in mind? Let me know and I'll make it for you!"
         url="/shop/custom"
       />
       <CustomShopPage
-        customShopPieces={customShopPieces}
-        selectedPiece={selectedPiece}
-        setSelectedPieceSku={setSelectedPieceSku}
-        addToCartFunc={() =>
-          !itemIdExistsInCart(cartDetails, selectedPieceSku) &&
-          addItem(selectedPiece, wantedQuantity)
-        }
+        customShopInfo={props.customShopInfo}
+        addToCartFunc={() => {
+          const customProduct: CustomProductType = {
+            ...props.customShopInfo,
+            customData: {
+              ...props.customShopInfo.customData,
+              selectedAddons: selectedCustomAddons,
+            },
+          }
+
+          const updatedArray = addProductToCart(cartItems, customProduct)
+          setCartItems(updatedArray)
+          setSelectedCustomAddons({
+            type: props.customShopInfo.customData!.availableAddons.types[0],
+            numberOfPeople:
+              props.customShopInfo.customData!.availableAddons
+                .numberOfPeople[0],
+            addons: [],
+          })
+        }}
+        totalPrice={totalPrice}
         quantityInCart={quantityInCart}
-        setWantedQuantity={setWantedQuantity}
-        wantedQuantity={wantedQuantity}
+        setSelectedCustomAddons={setSelectedCustomAddons}
+        selectedCustomAddons={selectedCustomAddons}
       />
     </>
-  ) : (
-    <></>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    let shopItems: Product[] = await readFile(".shopCache")
+    let shopItems: CustomProductType[] = await readFile(".shopCache")
     if (shopItems.length <= 0) {
       shopItems = await getShopItems()
       await writeFile(shopItems, ".shopCache")
     }
 
-    const customShopPieces = shopItems.filter((item) => {
-      return item.product_data.metadata.type.toUpperCase() === "CUSTOM"
+    const customShopInfo = shopItems.find((item) => {
+      return item.product_data?.metadata.type.toUpperCase() === "CUSTOM"
     })
 
     return {
-      props: { customShopPieces },
+      props: { customShopInfo: customShopInfo },
     }
   } catch (err) {
     return { props: { errors: err.message } }

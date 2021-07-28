@@ -5,7 +5,7 @@ import { BsFillTriangleFill } from "react-icons/bs"
 const PrevNextButton = (props: PrevNextButtonProps) => {
   return (
     <Link href={props.href} scroll={false} passHref>
-      <a className="text-pink hover:text-blue flex items-center">
+      <a className="text-pink hover:text-blue active:text-blue-light flex items-center">
         <BsFillTriangleFill
           size="2rem"
           className={`transform ${

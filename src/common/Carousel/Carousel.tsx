@@ -14,7 +14,7 @@ const PrevNextButton = ({
 }) => (
   <button
     onClick={onClick}
-    className="text-pink hover:text-blue focus:outline-none"
+    className="text-pink hover:text-blue active:text-blue-light focus:outline-none"
   >
     <BsFillTriangleFill
       className={`text-3xl transform ${

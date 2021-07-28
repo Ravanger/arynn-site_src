@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 
 const MenuButton = (props: MenuItemType) => (
   <Link href={props.url} passHref>
-    <a className="bg-white text-pink hover:text-blue flex justify-center items-center rounded-xl4 shadow-md text-2xl w-48 h-24 sm:w-64 sm:h-32 sm:text-4xl">
+    <a className="bg-white text-pink hover:text-blue active:text-blue-light flex justify-center items-center rounded-xl4 shadow-md text-2xl w-48 h-24 sm:w-64 sm:h-32 sm:text-4xl">
       {props.text}
     </a>
   </Link>
