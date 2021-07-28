@@ -24,7 +24,7 @@ const CartItem = (props: CartItemType) => {
           value={props.quantityInCart}
           onChange={(event) => {
             props.setCartItems(
-              props.setWantedQuantity!(
+              props.setWantedQuantity(
                 props.cartItems,
                 props.item,
                 ~~event.target.value
