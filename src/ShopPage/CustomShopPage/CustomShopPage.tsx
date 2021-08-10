@@ -88,7 +88,7 @@ const CustomShopPage = (props: CustomShopPropsType) => {
   )
 
   const customAddonCheckboxes = (
-    <fieldset className="w-full">
+    <fieldset className="w-full flex justify-around">
       {customAddonProducts.map((item) => (
         <label key={item.sku}>
           <input
@@ -124,7 +124,7 @@ const CustomShopPage = (props: CustomShopPropsType) => {
               })
             }}
           />
-          {`${item.name} (+${formatCurrencyString({
+          {` ${item.name} (+${formatCurrencyString({
             value: item.price,
             currency: CURRENCY,
           })})`}
@@ -139,42 +139,56 @@ const CustomShopPage = (props: CustomShopPropsType) => {
     <>
       <HeaderBar>Custom Commission</HeaderBar>
       <Spacer size="2rem" />
-      <main className="w-full"></main>
       <Carousel images={props.customShopInfo.images!} />
       <Spacer size="2rem" />
       <HeaderBar>{"Let's Get Started!"}</HeaderBar>
       <Spacer size="2rem" />
-      {customTypesSelect}
-      {customNumberOfPeopleSelect}
-      {customAddonCheckboxes}
-      <Spacer size="2rem" />
-      <PDescriptionText>{customDescription}</PDescriptionText>
-      <Spacer size="2rem" />
-      <textarea
-        placeholder="Enter any further details here..."
-        name="custom_product_details"
-        id="custom_product_details"
-        className="focus:border-pink w-full"
-        value={props.customProductDetails}
-        onChange={(event) => {
-          props.setCustomProductDetails(event.target.value)
-        }}
-      />
-      <Spacer size="2rem" />
-      <span className="text-3xl font-bold md:text-right">
-        {formatCurrencyString({
-          value: props.totalPrice,
-          currency: CURRENCY,
-        })}
-      </span>
-      <Spacer size="2rem" />
-      <div className="flex flex-row">
-        <Spacer axis="HORIZONTAL" />
-        <Button className="focus:outline-none" onClick={props.addToCartFunc}>
-          {props.quantityInCart
-            ? `${props.quantityInCart} in Cart`
-            : "Add to Cart"}
-        </Button>
+      <div className="w-full grid gap-4 grid-cols-7 items-center">
+        <PDescriptionText className="col-span-7 text-center row-span-1">
+          {customDescription}
+          <Spacer />
+        </PDescriptionText>
+
+        {/* Form */}
+        <div className="col-span-5 col-start-2 row-span-1">
+          {customTypesSelect}
+          <Spacer />
+          {customNumberOfPeopleSelect}
+          <Spacer />
+          {customAddonCheckboxes}
+          <Spacer />
+          <textarea
+            placeholder="Describe your vision!"
+            name="custom_product_details"
+            id="custom_product_details"
+            className="focus:border-pink w-full"
+            rows={4}
+            value={props.customProductDetails}
+            onChange={(event) => {
+              props.setCustomProductDetails(event.target.value)
+            }}
+          />
+        </div>
+
+        {/* Price */}
+        <div className="flex flex-row items-center col-span-3 col-start-5 row-span-1">
+          <HeaderBar />
+          <span className="text-3xl font-bold pl-2">
+            {formatCurrencyString({
+              value: props.totalPrice,
+              currency: CURRENCY,
+            })}
+          </span>
+        </div>
+
+        {/* Button */}
+        <div className="col-span-3 col-start-5 row-span-1">
+          <Button className="focus:outline-none" onClick={props.addToCartFunc}>
+            {props.quantityInCart
+              ? `${props.quantityInCart} in Cart`
+              : "Add to Cart"}
+          </Button>
+        </div>
       </div>
     </>
   )
