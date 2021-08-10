@@ -19,6 +19,7 @@ const MainLayout = (props: LayoutProps) => {
   const [artFilter, setArtFilter] = useAtom(artFilterAtom)
   const [screenWidth, setScreenWidth] = useAtom(screenWidthAtom)
   const [cartInfo] = useAtom(cartAtom)
+  const [numCartItems, setNumCartItems] = useState(0)
 
   useEffect(() => {
     const handleResize = debounce(() => {
@@ -31,6 +32,10 @@ const MainLayout = (props: LayoutProps) => {
       window.removeEventListener("resize", handleResize)
     }
   }, [screenWidth, setScreenWidth])
+
+  useEffect(() => {
+    setNumCartItems(cartInfo.length)
+  }, [cartInfo])
 
   const router = useRouter()
   const mainMenuRef = useRef(null)
@@ -84,7 +89,7 @@ const MainLayout = (props: LayoutProps) => {
     {
       text: "Shop",
       url: "/shop",
-      sublinks: [{ text: `Cart (${cartInfo.length || 0})`, url: "/shop/cart" }],
+      sublinks: [{ text: `Cart (${numCartItems})`, url: "/shop/cart" }],
     },
   ]
 
