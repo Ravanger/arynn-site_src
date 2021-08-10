@@ -51,8 +51,6 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   if (props.errors || !props.customShopInfo || !selectedCustomAddons)
     return <></>
 
-  console.log(customProductDetails)
-
   return (
     <>
       <SEO
