@@ -1,7 +1,7 @@
 import SEO from "src/common/SEO"
 import ConnectPage from "src/ConnectPage"
 import { getLayout } from "src/layouts/MainLayout/MainLayout"
-import { socialLinks } from "src/common/socials"
+import { socialLinks } from "data/socials"
 
 const Connect = () => {
   return (
