@@ -24,7 +24,6 @@ const ShopPage = (props: ShopPageType) => {
         >
           <HeaderBar
             isMenu
-            noHr
             hrClassName="hidden lg:block lg:flex-grow lg:flex-shrink lg:bg-blue lg:h-0.5 lg:border-none"
             contentClassName="lg:space-x-4"
           >
