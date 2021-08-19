@@ -4,7 +4,7 @@ import { CURRENCY } from "util/stripe"
 import { formatCurrencyString } from "use-shopping-cart"
 import HeaderBar from "src/common/HeaderBar"
 import Spacer from "src/common/Spacer"
-import CartItemFrame from "./CartItemFrame"
+import ProductFrame from "src/common/ProductFrame"
 
 const CartItem = (props: CartItemType) => {
   const maxSelectedQuantity: number =
@@ -17,7 +17,7 @@ const CartItem = (props: CartItemType) => {
   ))
 
   return (
-    <CartItemFrame>
+    <ProductFrame>
       <CartItemBase {...props} />
       <div className="flex flex-col items-center lg:col-start-3 lg:items-end">
         <select
@@ -45,7 +45,7 @@ const CartItem = (props: CartItemType) => {
           </span>
         </div>
       </div>
-    </CartItemFrame>
+    </ProductFrame>
   )
 }
 

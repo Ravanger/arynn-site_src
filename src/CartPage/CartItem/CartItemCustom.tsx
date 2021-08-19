@@ -1,8 +1,8 @@
 import CartItemBase from "./CartItemBase"
 import { CartItemCustomType, CustomPropertyType } from "./CartItem.types"
-import CartItemFrame from "./CartItemFrame"
 import Spacer from "src/common/Spacer"
 import HeaderBar from "src/common/HeaderBar"
+import ProductFrame from "src/common/ProductFrame"
 import { formatCurrencyString } from "use-shopping-cart"
 import { CURRENCY } from "util/stripe"
 import { useMemo } from "react"
@@ -42,7 +42,7 @@ const CartItemCustom = (props: CartItemCustomType) => {
   )
 
   return (
-    <CartItemFrame>
+    <ProductFrame>
       <CartItemBase {...props} isCustom={true} />
       <div className="flex flex-col items-center lg:col-start-3 lg:items-end">
         <div className="text-left">
@@ -86,7 +86,7 @@ const CartItemCustom = (props: CartItemCustomType) => {
           </span>
         </div>
       </div>
-    </CartItemFrame>
+    </ProductFrame>
   )
 }
 
