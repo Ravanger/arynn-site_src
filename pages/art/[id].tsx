@@ -1,4 +1,8 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next"
+import {
+  GetStaticPaths,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from "next"
 import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import SEO from "src/common/SEO"
 import ArtPiecePage from "src/ArtPage/ArtPiecePage"
@@ -6,19 +10,17 @@ import { ArtItemType } from "src/ArtPage/ArtPage.types"
 import { readFile, writeFile } from "util/cache"
 import { useRouter } from "next/router"
 import { getArtItems } from "util/dataFetching"
+import { ParsedUrlQuery } from "querystring"
 
 const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter()
+
+  if (props.errors || !props.itemsArray || !props.id) return <></>
+
   const displayAll = router.query.display === "all"
-  const itemsArray: ArtItemType[] = props.itemsArray
 
-  if (props.errors) return <></>
-
-  const getArtItemIndexById = (
-    id: string | string[],
-    itemsArray: ArtItemType[]
-  ) => {
-    return itemsArray.findIndex((item) => item.id === id)
+  const getArtItemIndexById = (id: string | string[], array: ArtItemType[]) => {
+    return array.findIndex((item) => item.id === id)
   }
 
   const getPrevandNextArtItemId = (
@@ -45,12 +47,12 @@ const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   }
 
   const item: ArtItemType =
-    props.id && itemsArray[getArtItemIndexById(props.id, itemsArray)]
+    props.itemsArray[getArtItemIndexById(props.id, props.itemsArray)]
   if (!item || !item.title) throw new Error("Item not found")
 
   const { prevItemId, nextItemId } = getPrevandNextArtItemId(
     item,
-    itemsArray,
+    props.itemsArray,
     displayAll
   )
 
@@ -90,7 +92,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps = async (
+  context: GetStaticPropsContext<ParsedUrlQuery>
+) => {
   try {
     let itemsArray: ArtItemType[] = await readFile(".artcache")
     if (itemsArray.length <= 0) {
@@ -107,7 +111,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
     }
   } catch (err) {
-    return { props: { errors: err.message } }
+    console.error("Error in ArtPiece.getStaticProps: ", err)
+    return { props: { errors: err } }
   }
 }
 

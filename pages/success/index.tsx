@@ -1,6 +1,6 @@
 import { cartAtom } from "atoms/store"
 import { useAtom } from "jotai"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import SEO from "src/common/SEO"
 import { getLayout } from "src/layouts/MainLayout/MainLayout"
 import SuccessPage from "src/SuccessPage"
@@ -9,6 +9,7 @@ import { useShoppingCart } from "use-shopping-cart"
 const Success = () => {
   const { clearCart } = useShoppingCart()
   const [cartItems, setCartItems] = useAtom(cartAtom)
+  const [orderedItems] = useState([...cartItems])
 
   useEffect(() => {
     const emptyCart = cartItems
@@ -24,7 +25,7 @@ const Success = () => {
         description="Thank you for your order"
         url="/success"
       />
-      <SuccessPage />
+      <SuccessPage orderedItems={orderedItems} />
     </>
   )
 }

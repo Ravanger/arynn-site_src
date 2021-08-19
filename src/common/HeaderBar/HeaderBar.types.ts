@@ -4,5 +4,4 @@ export interface HeaderBarProps {
   className?: string
   hrClassName?: string
   contentClassName?: string
-  noHr?: boolean
 }

@@ -34,6 +34,17 @@ const ContactForm = () => {
           })
       }}
     >
+      <label htmlFor="contact_email" className="sr-only">
+        Email
+      </label>
+      <input
+        type="email"
+        placeholder="Email Address"
+        name="contact_email"
+        id="contact_email"
+        className="focus:border-pink md:col-span-2"
+        required
+      />
       <label htmlFor="contact_name" className="sr-only">
         Name
       </label>
@@ -42,17 +53,6 @@ const ContactForm = () => {
         placeholder="Name"
         name="contact_name"
         id="contact_name"
-        className="focus:border-pink md:col-span-2"
-        required
-      />
-      <label htmlFor="contact_email" className="sr-only">
-        Email
-      </label>
-      <input
-        type="email"
-        placeholder="Email"
-        name="contact_email"
-        id="contact_email"
         className="focus:border-pink md:col-span-2"
         required
       />
@@ -70,7 +70,7 @@ const ContactForm = () => {
         Describe your vision!
       </label>
       <textarea
-        placeholder="Hey Arynn..."
+        placeholder="Hellloooooooo..."
         name="contact_message"
         id="contact_message"
         className="focus:border-pink md:col-span-4"

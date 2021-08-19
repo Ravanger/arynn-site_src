@@ -8,7 +8,7 @@ import { useAtom } from "jotai"
 import { screenWidthAtom, artFilterAtom, cartAtom } from "atoms/store"
 import { useRouter } from "next/router"
 import { useClickOutside } from "util/clickHandlers"
-import { socialLinks } from "src/common/socials"
+import { socialLinks } from "data/socials"
 import React, { Fragment, useEffect, useRef, useState } from "react"
 import SiteLink from "src/common/SiteLink"
 import BackgroundClouds from "../BackgroundClouds"
@@ -19,6 +19,7 @@ const MainLayout = (props: LayoutProps) => {
   const [artFilter, setArtFilter] = useAtom(artFilterAtom)
   const [screenWidth, setScreenWidth] = useAtom(screenWidthAtom)
   const [cartInfo] = useAtom(cartAtom)
+  const [numCartItems, setNumCartItems] = useState(0)
 
   useEffect(() => {
     const handleResize = debounce(() => {
@@ -31,6 +32,10 @@ const MainLayout = (props: LayoutProps) => {
       window.removeEventListener("resize", handleResize)
     }
   }, [screenWidth, setScreenWidth])
+
+  useEffect(() => {
+    setNumCartItems(cartInfo.length)
+  }, [cartInfo])
 
   const router = useRouter()
   const mainMenuRef = useRef(null)
@@ -84,7 +89,7 @@ const MainLayout = (props: LayoutProps) => {
     {
       text: "Shop",
       url: "/shop",
-      sublinks: [{ text: `Cart (${cartInfo.length || 0})`, url: "/shop/cart" }],
+      sublinks: [{ text: `Cart (${numCartItems})`, url: "/shop/cart" }],
     },
   ]
 

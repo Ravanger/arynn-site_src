@@ -4,7 +4,7 @@ import HeaderBar from "src/common/HeaderBar"
 import { DropdownSliderPropsType } from "./Questions.types"
 import { BsFillTriangleFill } from "react-icons/bs"
 import Spacer from "src/common/Spacer"
-import { socialLinks } from "src/common/socials"
+import { questionsAndAnswers } from "data/strings"
 
 const DropdownQuestion = (props: DropdownSliderPropsType) => {
   const [isOpen, setOpen] = useState(false)
@@ -14,6 +14,7 @@ const DropdownQuestion = (props: DropdownSliderPropsType) => {
       <span
         className="flex flex-row items-baseline cursor-pointer text-pink group hover:text-blue font-bold text-sm sm:text-xl md:text-2xl"
         onClick={() => setOpen(!isOpen)}
+        key={props.key}
       >
         <motion.span
           className="transform rotate-90"
@@ -55,25 +56,16 @@ const Questions = () => (
   <div className="text-left">
     <HeaderBar>{"questions n' answers"}</HeaderBar>
     <Spacer size="2rem" />
-    <DropdownQuestion
-      question="can i return this?"
-      answer="i cannot accommodate returns or exchanges, but if there's an issue with your order please let me know! i'm a reasonable human being i swear."
-    />
-    <Spacer />
-    <DropdownQuestion
-      question="how long will my order take?"
-      answer="custom items require different amounts of time. regular pre-made items will usually ship within a couple of days, but please allow me a week just in case!"
-    />
-    <Spacer />
-    <DropdownQuestion
-      question="package liability"
-      answer="once a package leaves my hands it's out of my hands, girl."
-    />
-    <Spacer />
-    <DropdownQuestion
-      question="still have unanswered questions?"
-      answer={`feel free to email me at ${socialLinks.email} or contact me through my social media pages. i'll be around.`}
-    />
+    {questionsAndAnswers.map((qna) => (
+      <>
+        <DropdownQuestion
+          question={qna.question}
+          answer={qna.answer}
+          key={qna.question}
+        />
+        <Spacer />
+      </>
+    ))}
   </div>
 )
 

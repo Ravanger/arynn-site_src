@@ -25,7 +25,3 @@ export interface CustomPropertyType {
   description: string | string[]
   price: number
 }
-
-export interface CartItemFrameType {
-  children: React.ReactNode
-}
