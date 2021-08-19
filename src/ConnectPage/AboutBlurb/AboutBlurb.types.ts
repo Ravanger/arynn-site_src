@@ -1,4 +1,4 @@
-import { SocialsType } from "src/common/socials.types"
+import { SocialsType } from "data/socials.types"
 
 export interface AboutBlurbType {
   socialLinks: SocialsType
