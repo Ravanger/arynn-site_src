@@ -31,7 +31,9 @@ export const getProductQuantityInCart = (
   productArray: CustomProductType[],
   product: CustomProductType
 ) => {
-  const cartItem = productArray.find((item) => item.id === product.id)
+  console.log(productArray, product)
+
+  const cartItem = productArray.find((item) => item.sku === product.sku)
   if (cartItem) return cartItem.quantity || 0
 
   return 0
