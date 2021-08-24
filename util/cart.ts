@@ -31,8 +31,6 @@ export const getProductQuantityInCart = (
   productArray: CustomProductType[],
   product: CustomProductType
 ) => {
-  console.log(productArray, product)
-
   const cartItem = productArray.find((item) => item.sku === product.sku)
   if (cartItem) return cartItem.quantity || 0
 
@@ -54,26 +52,3 @@ export const getCustomProductQuantityInCart = (
 ) => {
   return [...productArray.filter((item) => item.sku === product.sku)].length
 }
-
-// const confirmCustomProduct = (customId: string) => {
-//   const baseItemWithId = { ...props.customShopInfo }
-//   baseItemWithId.customId = customId
-
-//   const typesWithId = { ...selectedCustomAddons.type }
-//   typesWithId.customId = customId
-
-//   const numberOfPeopleWithId = { ...selectedCustomAddons.numberOfPeople }
-//   numberOfPeopleWithId.customId = customId
-
-//   const addonsWithId = [...selectedCustomAddons.addons]
-//   addonsWithId.forEach((addonItem) => {
-//     addonItem.customId = customId
-//   })
-
-//   addItem(baseItemWithId)
-//   addItem(typesWithId)
-//   addItem(numberOfPeopleWithId)
-//   addonsWithId.forEach((addonItem) => {
-//     addItem(addonItem)
-//   })
-// }
