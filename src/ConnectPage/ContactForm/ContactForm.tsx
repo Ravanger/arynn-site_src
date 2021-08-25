@@ -7,7 +7,6 @@ import toast from "react-hot-toast"
 const ContactForm = () => {
   const [isSending, setIsSending] = useState(false)
   const [response, setResponse] = useState({ status: 0, text: "" })
-  emailjs.init(process.env.NEXT_PUBLIC_EMAIL_USER_ID!)
 
   useEffect(() => {
     response.text && response.status === 400
@@ -21,7 +20,7 @@ const ContactForm = () => {
     <form
       className="grid w-full gap-4 grid-cols-1 text-xs px-4 md:grid-cols-4 sm:-0"
       id="contact_form"
-      onSubmit={async (event) => {
+      onSubmit={(event) => {
         if (isSending) return
 
         event.preventDefault()
@@ -29,7 +28,7 @@ const ContactForm = () => {
         emailjs
           .sendForm(
             process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID!,
-            process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID!,
+            process.env.NEXT_PUBLIC_EMAIL_CONTACT_TEMPLATE_ID!,
             "#contact_form"
           )
           .then((response) => {

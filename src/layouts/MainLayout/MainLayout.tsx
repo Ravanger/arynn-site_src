@@ -14,6 +14,7 @@ import SiteLink from "src/common/SiteLink"
 import BackgroundClouds from "../BackgroundClouds"
 import { debounce } from "util/dataFetching"
 import { Toaster } from "react-hot-toast"
+import emailjs from "emailjs-com"
 
 const MainLayout = (props: LayoutProps) => {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false)
@@ -41,6 +42,8 @@ const MainLayout = (props: LayoutProps) => {
   const router = useRouter()
   const mainMenuRef = useRef(null)
   useClickOutside(mainMenuRef, () => setIsMainMenuOpen(false))
+
+  emailjs.init(process.env.NEXT_PUBLIC_EMAIL_USER_ID!)
 
   const navItems: NavItemsType[] = [
     {
