@@ -20,9 +20,9 @@ const CartPage = (props: CartPageType) => {
       <Spacer size="2rem" />
       {props.cartItems.length > 0 ? (
         <>
-          {props.cartItems.map((cartItem) => {
+          {props.cartItems.map((cartItem, index) => {
             return (
-              <Fragment key={cartItem.id || cartItem.sku}>
+              <Fragment key={cartItem.customId || cartItem.sku + index}>
                 {cartItem.customData ? (
                   <CartItemCustom
                     item={cartItem}
@@ -76,7 +76,7 @@ const CartPage = (props: CartPageType) => {
                   <Spinner />
                 ) : (
                   <span className="text-base lg:text-xl">
-                    Checkout {props.cartItems.length} item(s)
+                    {`Checkout ${props.cartItems.length} item(s)`}
                   </span>
                 )}
               </Button>

@@ -109,7 +109,7 @@ export const getShopItems = async () => {
 
     const stripeProduct: CustomProductType = {
       sku: item.id.toString(),
-      id: "",
+      customId: "",
       name: item.title,
       currency: CURRENCY,
       description: item.description || "",
