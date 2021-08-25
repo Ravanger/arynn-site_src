@@ -19,6 +19,7 @@ import { cartAtom } from "atoms/store"
 import { useAtom } from "jotai"
 import { CustomProductType } from "util/data.types"
 import { ParsedUrlQuery } from "querystring"
+import toast from "react-hot-toast"
 
 const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter()
@@ -37,7 +38,8 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   useEffect(() => {
     if (!props.item) return
 
-    setQuantityInCart(getProductQuantityInCart(cartItems, props.item))
+    const numInCart = getProductQuantityInCart(cartItems, props.item)
+    setQuantityInCart(numInCart)
   }, [cartItems, props.item])
 
   if (props.errors || !props.item) return <></>
@@ -60,10 +62,10 @@ const ShopPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       <ShopPiecePage
         item={props.item}
         addToCartFunc={() => {
-          canAddToCart &&
-            setCartItems(
-              addProductToCart(cartItems, props.item, wantedQuantity)
-            )
+          if (!canAddToCart) return
+
+          setCartItems(addProductToCart(cartItems, props.item, wantedQuantity))
+          toast.success(`${wantedQuantity} added to cart!`)
         }}
         quantityInCart={quantityInCart}
         setWantedQuantity={setWantedQuantity}

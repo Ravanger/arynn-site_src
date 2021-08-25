@@ -26,7 +26,7 @@ const SuccessPage = (props: SuccessPagePropType) => {
           </div>
           <Spacer size="2rem" />
           {props.orderedItems.map((item) => (
-            <div key={item.id} className="max-w-2xl mx-auto">
+            <div key={item.customId} className="max-w-2xl mx-auto">
               <SuccessPageItem item={item} />
               <Spacer />
             </div>

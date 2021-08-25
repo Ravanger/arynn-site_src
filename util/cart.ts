@@ -7,7 +7,7 @@ export const addProductToCart = (
   quantity = 1
 ) => {
   const generatedId = uuidv4()
-  product.id = generatedId
+  product.customId = generatedId
   product.quantity = quantity
 
   return [...productArray, product]
@@ -17,7 +17,7 @@ export const removeProductFromCart = (
   productArray: CustomProductType[],
   product: CustomProductType
 ) => {
-  return productArray.filter((item) => item.id !== product.id)
+  return productArray.filter((item) => item.customId !== product.customId)
 }
 
 export const isProductInCart = (
@@ -31,7 +31,7 @@ export const getProductQuantityInCart = (
   productArray: CustomProductType[],
   product: CustomProductType
 ) => {
-  const cartItem = productArray.find((item) => item.id === product.id)
+  const cartItem = productArray.find((item) => item.sku === product.sku)
   if (cartItem) return cartItem.quantity || 0
 
   return 0
@@ -43,7 +43,9 @@ export const setProductQuantityInCart = (
   quantity: number
 ) => {
   product.quantity = quantity
-  return productArray.map((item) => (item.id === product.id ? product : item))
+  return productArray.map((item) =>
+    item.customId === product.customId ? product : item
+  )
 }
 
 export const getCustomProductQuantityInCart = (
@@ -53,25 +55,36 @@ export const getCustomProductQuantityInCart = (
   return [...productArray.filter((item) => item.sku === product.sku)].length
 }
 
-// const confirmCustomProduct = (customId: string) => {
-//   const baseItemWithId = { ...props.customShopInfo }
-//   baseItemWithId.customId = customId
+export const getProductBySku = (
+  sku: string,
+  cartItems: CustomProductType[]
+): CustomProductType | null => {
+  let foundItem: CustomProductType | null = null
 
-//   const typesWithId = { ...selectedCustomAddons.type }
-//   typesWithId.customId = customId
+  cartItems.forEach((item) => {
+    const selectedCustomAddons = item.customData?.selectedAddons
 
-//   const numberOfPeopleWithId = { ...selectedCustomAddons.numberOfPeople }
-//   numberOfPeopleWithId.customId = customId
+    switch (sku) {
+      case item.sku: {
+        foundItem = item
+        break
+      }
+      case selectedCustomAddons?.type.sku: {
+        foundItem = selectedCustomAddons!.type
+        break
+      }
+      case selectedCustomAddons?.numberOfPeople.sku: {
+        foundItem = selectedCustomAddons!.numberOfPeople
+        break
+      }
+      default:
+        break
+    }
 
-//   const addonsWithId = [...selectedCustomAddons.addons]
-//   addonsWithId.forEach((addonItem) => {
-//     addonItem.customId = customId
-//   })
+    selectedCustomAddons?.addons.forEach((addon) => {
+      if (addon.sku === sku) foundItem = addon
+    })
+  })
 
-//   addItem(baseItemWithId)
-//   addItem(typesWithId)
-//   addItem(numberOfPeopleWithId)
-//   addonsWithId.forEach((addonItem) => {
-//     addItem(addonItem)
-//   })
-// }
+  return foundItem
+}

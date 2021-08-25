@@ -1,18 +1,26 @@
 import Button from "src/common/Button"
 import emailjs from "emailjs-com"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Spinner from "src/common/Spinner"
+import toast from "react-hot-toast"
 
 const ContactForm = () => {
   const [isSending, setIsSending] = useState(false)
   const [response, setResponse] = useState({ status: 0, text: "" })
-  emailjs.init(process.env.NEXT_PUBLIC_EMAIL_USER_ID!)
+
+  useEffect(() => {
+    response.text && response.status === 400
+      ? toast.error("Error. Please try again.")
+      : response.status === 200
+      ? toast.success("Thank you!")
+      : null
+  }, [response])
 
   return (
     <form
       className="grid w-full gap-4 grid-cols-1 text-xs px-4 md:grid-cols-4 sm:-0"
       id="contact_form"
-      onSubmit={async (event) => {
+      onSubmit={(event) => {
         if (isSending) return
 
         event.preventDefault()
@@ -20,7 +28,7 @@ const ContactForm = () => {
         emailjs
           .sendForm(
             process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID!,
-            process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID!,
+            process.env.NEXT_PUBLIC_EMAIL_CONTACT_TEMPLATE_ID!,
             "#contact_form"
           )
           .then((response) => {
@@ -65,6 +73,7 @@ const ContactForm = () => {
         name="contact_subject"
         id="contact_subject"
         className="focus:border-pink md:col-span-4"
+        required
       />
       <label htmlFor="contact_message" className="sr-only">
         Describe your vision!
@@ -84,15 +93,6 @@ const ContactForm = () => {
       >
         {isSending ? <Spinner /> : <span>Send!</span>}
       </Button>
-      {response.text && (
-        <p className="text-pink text-xl italic md:col-span-4">
-          {response.status === 400
-            ? "Error. Try again."
-            : response.status === 200
-            ? "Thank you!"
-            : ""}
-        </p>
-      )}
     </form>
   )
 }

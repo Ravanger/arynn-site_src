@@ -32,9 +32,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         cancel_url: `${req.headers.origin}/shop/cart`,
       }
 
-      const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.create(
-        sessionParams
-      )
+      const checkoutSession: Stripe.Checkout.Session =
+        await stripe.checkout.sessions.create(sessionParams)
 
       res.status(200).json(checkoutSession)
     } catch (error) {

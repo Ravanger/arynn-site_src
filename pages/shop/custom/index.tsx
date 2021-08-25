@@ -10,6 +10,7 @@ import { useAtom } from "jotai"
 import { cartAtom } from "atoms/store"
 import { addProductToCart, getCustomProductQuantityInCart } from "util/cart"
 import { CustomProductType } from "util/data.types"
+import toast from "react-hot-toast"
 
 const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [cartItems, setCartItems] = useAtom(cartAtom)
@@ -79,6 +80,7 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
           const updatedArray = addProductToCart(cartItems, customProduct)
           setCartItems(updatedArray)
+          toast.success("Added to cart!")
 
           //Reset inputs
           setSelectedCustomAddons({

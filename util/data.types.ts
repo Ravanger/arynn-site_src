@@ -90,7 +90,7 @@ export interface CustomProductType extends Product {
   images?: StrapiImageType[]
   isSold?: boolean
   quantity?: number
-  id?: string
+  customId?: string
   product_data?: {
     metadata: {
       type: string
