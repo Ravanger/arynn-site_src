@@ -2,10 +2,14 @@ import Link from "next/link"
 import { PrevNextButtonProps } from "./PrevNextButton.types"
 import { BsFillTriangleFill } from "react-icons/bs"
 
-const PrevNextButton = (props: PrevNextButtonProps) => {
+const ArtPrevNextButton = (props: PrevNextButtonProps) => {
   return (
     <Link href={props.href} scroll={false} passHref>
-      <a className="text-pink hover:text-blue active:text-blue-light flex items-center">
+      <a
+        className={`text-pink hover:text-blue active:text-blue-light flex items-center ${
+          props.className || ""
+        }`}
+      >
         <BsFillTriangleFill
           size="2rem"
           className={`transform ${
@@ -20,4 +24,4 @@ const PrevNextButton = (props: PrevNextButtonProps) => {
   )
 }
 
-export default PrevNextButton
+export default ArtPrevNextButton
