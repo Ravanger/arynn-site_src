@@ -6,13 +6,13 @@ const ArtPrevNextButton = (props: PrevNextButtonProps) => {
   return (
     <Link href={props.href} scroll={false} passHref>
       <a
-        className={`text-pink hover:text-blue active:text-blue-light flex items-center absolute z-40 ${
+        className={`text-pink hover:text-blue active:text-blue-light flex items-center ${
           props.className || ""
         }`}
       >
         <BsFillTriangleFill
           size="2rem"
-          className={`transform m-8 ${
+          className={`transform ${
             props.type === "PREV" ? "-rotate-90" : "rotate-90"
           }`}
         />
