@@ -1,2 +1,2 @@
-import ArtPrevNextButton from "./PrevNextButton"
-export default ArtPrevNextButton
+import PrevNextButton from "./PrevNextButton"
+export default PrevNextButton
