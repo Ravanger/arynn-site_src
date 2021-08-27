@@ -36,11 +36,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         await stripe.checkout.sessions.create(sessionParams)
 
       res.status(200).json(checkoutSession)
-    } catch (error) {
-      console.error(error)
-      res
-        .status(500)
-        .json({ statusCode: 500, message: error.message } as ErrorResponseType)
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error(error)
+        res.status(500).json({
+          statusCode: 500,
+          message: error.message,
+        } as ErrorResponseType)
+      } else console.error("Unknown error")
     }
   } else {
     res.setHeader("Allow", "POST")
