@@ -10,6 +10,10 @@ const ShopItemCard = (props: ShopItemCardProps) => {
   const isCustomType =
     props.item.product_data?.metadata.type.toUpperCase() === "CUSTOM"
 
+  const displayPrice = isCustomType
+    ? props.item.customData!.availableAddons.types[0].price
+    : props.item.price
+
   return (
     <Link href={`/shop/${isCustomType ? "custom" : props.item.sku}`}>
       <a>
@@ -24,10 +28,10 @@ const ShopItemCard = (props: ShopItemCardProps) => {
           <h2 className="group-hover:text-pink">{props.item.name}</h2>
           <Spacer size="1rem" />
           <h3 className="text-pink">
-            {formatCurrencyString({
-              value: props.item.price,
+            {`${formatCurrencyString({
+              value: displayPrice,
               currency: CURRENCY,
-            })}
+            })}${isCustomType ? "+" : ""}`}
           </h3>
         </motion.div>
       </a>

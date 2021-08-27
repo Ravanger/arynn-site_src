@@ -1,5 +1,5 @@
-import { Product } from "use-shopping-cart"
+import { CustomProductType } from "util/data.types"
 
 export interface ShopItemCardProps {
-  item: Product
+  item: CustomProductType
 }
