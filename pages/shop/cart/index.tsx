@@ -33,7 +33,7 @@ const Cart = () => {
       if (isCustomProduct) {
         flattenedProductsArray.push(item.customData!.selectedAddons.type)
         flattenedProductsArray.push(
-          item.customData!.selectedAddons.numberOfPeople
+          item.customData!.selectedAddons.extended_option
         )
         item.customData!.selectedAddons.addons.forEach((addon) => {
           flattenedProductsArray.push(addon)
@@ -94,7 +94,7 @@ const Cart = () => {
           (total +=
             item.price * (item.quantity || 1) +
             (item.customData
-              ? item.customData.selectedAddons.numberOfPeople.price +
+              ? item.customData.selectedAddons.extended_option.price +
                 item.customData.selectedAddons.type.price +
                 item.customData.selectedAddons.addons.reduce(
                   (addonTotal, addonItem) => {

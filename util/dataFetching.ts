@@ -2,6 +2,7 @@ import { ArtItemType } from "src/ArtPage/ArtPage.types"
 import { Product } from "use-shopping-cart"
 import {
   CustomProductType,
+  ExtendedOptionsProductType,
   StrapiFetchArtDataType,
   StrapiFetchShopDataType,
 } from "./data.types"
@@ -64,47 +65,45 @@ export const getShopItems = async () => {
   if (!rawData || rawData.length < 1)
     throw new Error("Error fetching shop data")
 
-  let customTypesProducts: Product[] = []
-  let customNumberOfPeopleProducts: Product[] = []
+  let customTypesProducts: ExtendedOptionsProductType[] = []
+  let customTypesExtendedOptionsProducts: Product[] = []
   let customAddonsProducts: Product[] = []
 
   let shopItems: CustomProductType[] = rawData.map((item) => {
     if (item.type.toUpperCase() === "CUSTOM") {
-      customTypesProducts = customTypesProducts.concat(
-        item.custom_types!.map(
-          (addonItem) =>
-            <Product>{
-              sku: `custom-types-${addonItem.custom_types_name}`,
-              name: addonItem.custom_types_name,
-              price: addonItem.custom_types_price,
-              currency: CURRENCY,
-            }
-        )
-      )
+      item.custom_types &&
+        item.custom_types.forEach((customType) => {
+          const currentCustomTypeExtendedOptions: Product[] = []
 
-      customNumberOfPeopleProducts = customNumberOfPeopleProducts.concat(
-        item.custom_numberofpeople!.map(
-          (addonItem) =>
-            <Product>{
-              sku: `custom-numofpeople-${addonItem.custom_numberofpeople_name}`,
-              name: addonItem.custom_numberofpeople_name,
-              price: addonItem.custom_numberofpeople_price,
+          customType.extended_options.forEach((customTypeExtendedOption) => {
+            const extendedOption = {
+              sku: `custom-type-extended-${customType.custom_types_name}-${customTypeExtendedOption.extended_option_name}`,
+              name: customTypeExtendedOption.extended_option_name,
+              price: customTypeExtendedOption.extended_option_price,
               currency: CURRENCY,
             }
-        )
-      )
+            customTypesExtendedOptionsProducts.push(extendedOption)
+            currentCustomTypeExtendedOptions.push(extendedOption)
+          })
 
-      customAddonsProducts = customAddonsProducts.concat(
-        item.custom_addons!.map(
-          (addonItem) =>
-            <Product>{
-              sku: `custom-addons-${addonItem.custom_addons_name}`,
-              name: addonItem.custom_addons_name,
-              price: addonItem.custom_addons_price,
-              currency: CURRENCY,
-            }
-        )
-      )
+          customTypesProducts.push({
+            sku: `custom-type-${customType.custom_types_name}`,
+            name: customType.custom_types_name,
+            price: customType.custom_types_price,
+            currency: CURRENCY,
+            extended_options: currentCustomTypeExtendedOptions,
+          })
+        })
+
+      item.custom_addons &&
+        item.custom_addons.forEach((customAddon) => {
+          customAddonsProducts.push({
+            sku: `custom-addon-${customAddon.custom_addons_name}`,
+            name: customAddon.custom_addons_name,
+            price: customAddon.custom_addons_price,
+            currency: CURRENCY,
+          })
+        })
     }
 
     const stripeProduct: CustomProductType = {
@@ -128,12 +127,11 @@ export const getShopItems = async () => {
         customData: {
           availableAddons: {
             types: customTypesProducts,
-            numberOfPeople: customNumberOfPeopleProducts,
             addons: customAddonsProducts,
           },
           selectedAddons: {
             type: customTypesProducts[0],
-            numberOfPeople: customNumberOfPeopleProducts[0],
+            extended_option: customTypesProducts[0].extended_options[0],
             addons: [],
           },
         },
@@ -146,7 +144,7 @@ export const getShopItems = async () => {
   shopItems = shopItems.concat(
     customTypesProducts,
     customAddonsProducts,
-    customNumberOfPeopleProducts
+    customTypesExtendedOptionsProducts
   )
 
   return shopItems

@@ -42,10 +42,11 @@ const Success = () => {
         productsString += `<br />`
         productsString += `<p><b>Custom addons: </b></p>`
         productsString += `<p>Type: <i>${selectedCustomAddons.type.name}</i></p>`
-        productsString += `<p>Number of people: <i>${selectedCustomAddons.numberOfPeople.name}</i></p>`
+        productsString += `<p>Extended option: <i>${selectedCustomAddons.extended_option.name}</i></p>`
         selectedCustomAddons.addons.forEach((addon) => {
           productsString += `<p>Addon: <i>${addon.name}</i></p>`
         })
+        productsString += `<p>Custom message: <i>${item.customData?.customMessage}</i></p>`
       }
 
       productsString += `<br />`

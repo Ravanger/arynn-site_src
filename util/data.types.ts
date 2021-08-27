@@ -43,10 +43,17 @@ export interface StrapiFetchArtDataType {
   image: StrapiImageType
 }
 
+interface StrapiFetchShopDataCustomExtendedOptionType {
+  id: number
+  extended_option_name: string
+  extended_option_price: number
+}
+
 export interface StrapiFetchShopDataCustomType {
   id: number
   custom_types_name: string
   custom_types_price: number
+  extended_options: StrapiFetchShopDataCustomExtendedOptionType[]
 }
 
 export interface StrapiFetchShopDataAddonsType {
@@ -73,7 +80,6 @@ export interface StrapiFetchShopDataType {
   is_sold?: boolean
   custom_types?: StrapiFetchShopDataCustomType[]
   custom_addons?: StrapiFetchShopDataAddonsType[]
-  custom_numberofpeople?: StrapiFetchShopDataNumberOfPeopleType[]
 }
 
 export interface ErrorResponseType {
@@ -84,6 +90,10 @@ export interface ErrorResponseType {
 export interface MenuItemType {
   text: string
   url: string
+}
+
+export interface ExtendedOptionsProductType extends Product {
+  extended_options: Product[]
 }
 
 export interface CustomProductType extends Product {
@@ -99,13 +109,12 @@ export interface CustomProductType extends Product {
   }
   customData?: {
     availableAddons: {
-      types: Product[]
+      types: ExtendedOptionsProductType[]
       addons: Product[]
-      numberOfPeople: Product[]
     }
     selectedAddons: {
-      type: Product
-      numberOfPeople: Product
+      type: ExtendedOptionsProductType
+      extended_option: Product
       addons: Product[]
     }
     customMessage?: string

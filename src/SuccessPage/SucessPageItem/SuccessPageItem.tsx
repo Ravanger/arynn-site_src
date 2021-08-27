@@ -29,8 +29,8 @@ export const SuccessPageItem = (props: SuccessPageItemType) => (
           {props.item.customData.selectedAddons.type.name && (
             <p>{props.item.customData?.selectedAddons.type.name}</p>
           )}
-          {props.item.customData.selectedAddons.numberOfPeople.name && (
-            <p>{props.item.customData?.selectedAddons.numberOfPeople.name}</p>
+          {props.item.customData.selectedAddons.extended_option.name && (
+            <p>{props.item.customData?.selectedAddons.extended_option.name}</p>
           )}
           {props.item.customData.selectedAddons.addons.length > 0 && (
             <p>
