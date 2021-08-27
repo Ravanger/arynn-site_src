@@ -3,7 +3,7 @@ import { socialLinks } from "data/socials"
 export const aboutStrings = {
   blurbTitle: "Hi! I'm Arynn!",
   blurbDescription:
-    "Writing about yourself is very difficult. My friend Florence offered to help, here's what we came up with, together:",
+    "i’m a little bit weird but that’s just part of my charm!! i like to draw, paint and design with bright colours and fun shapes but I’m also a versatile artist who’s done a little bit of everything. I grew up painting and creating alongside my late father, owen fitzsimmons, who sparked me to become the artist i am today. if i don’t answer the phone you can probably find me eating cucumber and hummus sandwiches in the park. :-)",
   socialsShoutout: "@artsyarynn across all platforms!",
 }
 

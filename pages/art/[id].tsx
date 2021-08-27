@@ -11,50 +11,122 @@ import { readFile, writeFile } from "util/cache"
 import { useRouter } from "next/router"
 import { getArtItems } from "util/dataFetching"
 import { ParsedUrlQuery } from "querystring"
+import { useEffect, useState } from "react"
 
 const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter()
+  const [prevAndNextItemHref, setPrevAndNextItemHref] = useState({
+    prevPage: {
+      id: "-1",
+      pathname: `/art/-1`,
+      ...(router.query.display === "all" && { query: { display: "all" } }),
+    },
+    nextPage: {
+      id: "-1",
+      pathname: `/art/-1`,
+      ...(router.query.display === "all" && { query: { display: "all" } }),
+    },
+  })
 
-  if (props.errors || !props.itemsArray || !props.id) return <></>
+  const [item, setItem] = useState<ArtItemType>()
 
-  const displayAll = router.query.display === "all"
+  useEffect(() => {
+    if (!props.itemsArray || !props.id) return
 
-  const getArtItemIndexById = (id: string | string[], array: ArtItemType[]) => {
-    return array.findIndex((item) => item.id === id)
-  }
-
-  const getPrevandNextArtItemId = (
-    artItem: ArtItemType,
-    itemsArray: ArtItemType[],
-    displayAll: boolean
-  ) => {
-    let prevItemId = "-1"
-    let nextItemId = "-1"
-
-    const filteredArray = displayAll
-      ? itemsArray
-      : itemsArray.filter((item) => item.type === artItem.type)
-
-    const arrLength = filteredArray.length
-    const itemIndex = filteredArray.findIndex((item) => item.id === artItem.id)
-
-    if (itemIndex !== -1) {
-      prevItemId = filteredArray[(itemIndex + arrLength - 1) % arrLength].id
-      nextItemId = filteredArray[(itemIndex + 1) % arrLength].id
+    const getArtItemIndexById = (
+      id: string | string[],
+      array: ArtItemType[]
+    ) => {
+      return array.findIndex((item) => item.id === id)
     }
 
-    return { prevItemId, nextItemId }
-  }
+    setItem(props.itemsArray[getArtItemIndexById(props.id, props.itemsArray)])
+  }, [props.id, props.itemsArray])
 
-  const item: ArtItemType =
-    props.itemsArray[getArtItemIndexById(props.id, props.itemsArray)]
-  if (!item || !item.title) throw new Error("Item not found")
+  useEffect(() => {
+    if (!props.itemsArray || !item) return
 
-  const { prevItemId, nextItemId } = getPrevandNextArtItemId(
-    item,
-    props.itemsArray,
-    displayAll
-  )
+    const getPrevandNextArtItemHref = (
+      artItem: ArtItemType,
+      itemsArray: ArtItemType[],
+      displayAll: boolean
+    ) => {
+      if (!item) return
+
+      let prevItemId = "-1"
+      let nextItemId = "-1"
+
+      const filteredArray = displayAll
+        ? itemsArray
+        : itemsArray.filter((item) => item.type === artItem.type)
+
+      const arrLength = filteredArray.length
+      const itemIndex = filteredArray.findIndex(
+        (item) => item.id === artItem.id
+      )
+
+      if (itemIndex !== -1) {
+        prevItemId = filteredArray[(itemIndex + arrLength - 1) % arrLength].id
+        nextItemId = filteredArray[(itemIndex + 1) % arrLength].id
+      }
+
+      const prevNextHref = {
+        prevPage: {
+          id: prevItemId,
+          pathname: `/art/${prevItemId}`,
+          ...(router.query.display === "all" && { query: { display: "all" } }),
+        },
+        nextPage: {
+          id: nextItemId,
+          pathname: `/art/${nextItemId}`,
+          ...(router.query.display === "all" && { query: { display: "all" } }),
+        },
+      }
+
+      return prevNextHref
+    }
+
+    const nextPrev = getPrevandNextArtItemHref(
+      item,
+      props.itemsArray,
+      router.query.display === "all"
+    )
+    nextPrev && setPrevAndNextItemHref(nextPrev)
+  }, [item, props.itemsArray, router.query])
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case "ArrowRight":
+        case "l": {
+          router.push({
+            pathname: prevAndNextItemHref.nextPage.pathname,
+            query: prevAndNextItemHref.nextPage.query,
+          })
+          break
+        }
+        case "ArrowLeft":
+        case "j": {
+          router.push({
+            pathname: prevAndNextItemHref.prevPage.pathname,
+            query: prevAndNextItemHref.prevPage.query,
+          })
+          break
+        }
+        default: {
+          return
+        }
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [prevAndNextItemHref, router])
+
+  if (!item || props.errors || !props.itemsArray || !props.id) return <></>
 
   return (
     <>
@@ -65,9 +137,15 @@ const ArtPiece = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       />
       <ArtPiecePage
         item={item}
-        prevItemId={prevItemId}
-        nextItemId={nextItemId}
-        displayAll={displayAll}
+        prevPage={{
+          pathname: prevAndNextItemHref.prevPage.pathname,
+          query: prevAndNextItemHref.prevPage.query,
+        }}
+        nextPage={{
+          pathname: prevAndNextItemHref.nextPage.pathname,
+          query: prevAndNextItemHref.nextPage.query,
+        }}
+        displayAll={router.query.display === "all"}
       />
     </>
   )

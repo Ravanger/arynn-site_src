@@ -73,8 +73,8 @@ export const getProductBySku = (
         foundItem = selectedCustomAddons!.type
         break
       }
-      case selectedCustomAddons?.numberOfPeople.sku: {
-        foundItem = selectedCustomAddons!.numberOfPeople
+      case selectedCustomAddons?.extended_option.sku: {
+        foundItem = selectedCustomAddons!.extended_option
         break
       }
       default:

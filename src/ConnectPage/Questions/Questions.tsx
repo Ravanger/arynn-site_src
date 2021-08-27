@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion"
-import { useState } from "react"
+import { Fragment, useState } from "react"
 import HeaderBar from "src/common/HeaderBar"
 import { DropdownSliderPropsType } from "./Questions.types"
 import { BsFillTriangleFill } from "react-icons/bs"
@@ -14,7 +14,6 @@ const DropdownQuestion = (props: DropdownSliderPropsType) => {
       <span
         className="flex flex-row items-baseline cursor-pointer text-pink group hover:text-blue font-bold text-sm sm:text-xl md:text-2xl"
         onClick={() => setOpen(!isOpen)}
-        key={props.key}
       >
         <motion.span
           className="transform rotate-90"
@@ -57,14 +56,10 @@ const Questions = () => (
     <HeaderBar>{"questions n' answers"}</HeaderBar>
     <Spacer size="2rem" />
     {questionsAndAnswers.map((qna) => (
-      <>
-        <DropdownQuestion
-          question={qna.question}
-          answer={qna.answer}
-          key={qna.question}
-        />
+      <Fragment key={qna.question}>
+        <DropdownQuestion question={qna.question} answer={qna.answer} />
         <Spacer />
-      </>
+      </Fragment>
     ))}
   </div>
 )

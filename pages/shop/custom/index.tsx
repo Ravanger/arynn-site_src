@@ -5,24 +5,20 @@ import { InferGetStaticPropsType } from "next"
 import { getShopItems } from "util/dataFetching"
 import { readFile, writeFile } from "util/cache"
 import { useState, useEffect, useMemo } from "react"
-import { SelectedCustomAddons } from "src/ShopPage/CustomShopPage/CustomShopPage.types"
 import { useAtom } from "jotai"
 import { cartAtom } from "atoms/store"
 import { addProductToCart, getCustomProductQuantityInCart } from "util/cart"
 import { CustomProductType } from "util/data.types"
 import toast from "react-hot-toast"
+import { SelectedCustomAddons } from "src/ShopPage/CustomShopPage/CustomShopPage.types"
 
 const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [cartItems, setCartItems] = useAtom(cartAtom)
   const [quantityInCart, setQuantityInCart] = useState(0)
   const [selectedCustomAddons, setSelectedCustomAddons] =
-    useState<SelectedCustomAddons | null>(
-      props.customShopInfo
-        ? {
-            ...props.customShopInfo.customData!.selectedAddons,
-          }
-        : null
-    )
+    useState<SelectedCustomAddons>({
+      ...props.customShopInfo?.customData!.selectedAddons,
+    })
 
   const [customProductDetails, setCustomProductDetails] = useState("")
 
@@ -37,11 +33,18 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   // Update total price whenever addons change
   const totalPrice = useMemo(() => {
-    if (!props.customShopInfo || !selectedCustomAddons) return 0
+    if (
+      !props.customShopInfo ||
+      !selectedCustomAddons ||
+      !selectedCustomAddons.type ||
+      !selectedCustomAddons.extended_option ||
+      !selectedCustomAddons.addons
+    )
+      return 0
 
     const addonTotalPrice =
       selectedCustomAddons.type.price +
-      selectedCustomAddons.numberOfPeople.price +
+      selectedCustomAddons.extended_option.price +
       selectedCustomAddons.addons.reduce(
         (total, addonItem) => total + addonItem.price,
         0
@@ -65,7 +68,10 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           if (
             !props.customShopInfo ||
             !props.customShopInfo.customData ||
-            !selectedCustomAddons
+            !selectedCustomAddons ||
+            !selectedCustomAddons.type ||
+            !selectedCustomAddons.extended_option ||
+            !selectedCustomAddons.addons
           )
             return
 
@@ -73,7 +79,11 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
             ...props.customShopInfo,
             customData: {
               ...props.customShopInfo.customData,
-              selectedAddons: selectedCustomAddons,
+              selectedAddons: {
+                type: selectedCustomAddons.type,
+                extended_option: selectedCustomAddons.extended_option,
+                addons: selectedCustomAddons.addons,
+              },
               customMessage: customProductDetails,
             },
           }
@@ -85,9 +95,9 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           //Reset inputs
           setSelectedCustomAddons({
             type: props.customShopInfo.customData!.availableAddons.types[0],
-            numberOfPeople:
-              props.customShopInfo.customData!.availableAddons
-                .numberOfPeople[0],
+            extended_option:
+              props.customShopInfo.customData!.availableAddons.types[0]
+                .extended_options[0],
             addons: [],
           })
           setCustomProductDetails("")

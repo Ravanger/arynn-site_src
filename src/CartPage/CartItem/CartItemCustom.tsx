@@ -30,7 +30,7 @@ const CartItemCustom = (props: CartItemCustomType) => {
   const totalPrice = useMemo(
     () =>
       props.item.price +
-      props.item.customData!.selectedAddons.numberOfPeople.price +
+      props.item.customData!.selectedAddons.extended_option.price +
       props.item.customData!.selectedAddons.type.price +
       props.item.customData!.selectedAddons.addons.reduce(
         (addonTotal, addonItem) => {
@@ -52,11 +52,11 @@ const CartItemCustom = (props: CartItemCustomType) => {
             price={props.item.customData!.selectedAddons.type.price}
           />
           <CustomProperty
-            title="Number of people"
+            title="Selected option"
             description={
-              props.item.customData!.selectedAddons.numberOfPeople.name
+              props.item.customData!.selectedAddons.extended_option.name
             }
-            price={props.item.customData!.selectedAddons.numberOfPeople.price}
+            price={props.item.customData!.selectedAddons.extended_option.price}
           />
           <CustomProperty
             title="Selected addons"

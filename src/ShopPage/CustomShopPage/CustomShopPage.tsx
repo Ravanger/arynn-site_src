@@ -6,18 +6,19 @@ import PDescriptionText from "src/common/DescriptionText"
 import { formatCurrencyString, Product } from "use-shopping-cart"
 import { CURRENCY } from "util/stripe"
 import Button from "src/common/Button"
+import { ExtendedOptionsProductType } from "util/data.types"
 
 const CustomShopPage = (props: CustomShopPropsType) => {
-  let customTypeProducts: Product[] = []
-  let customNumofPeopleProducts: Product[] = []
+  let customTypeProducts: ExtendedOptionsProductType[] = []
+  let customTypeExtendedOptionsProducts: Product[] = []
   let customAddonProducts: Product[] = []
 
   if (props.customShopInfo.customData) {
     customTypeProducts = [
       ...props.customShopInfo.customData.availableAddons.types,
     ]
-    customNumofPeopleProducts = [
-      ...props.customShopInfo.customData.availableAddons.numberOfPeople,
+    customTypeExtendedOptionsProducts = [
+      ...props.selectedCustomAddons.type!.extended_options,
     ]
     customAddonProducts = [
       ...props.customShopInfo.customData.availableAddons.addons,
@@ -35,44 +36,41 @@ const CustomShopPage = (props: CustomShopPropsType) => {
           props.setSelectedCustomAddons({
             ...props.selectedCustomAddons,
             type: wantedType,
+            extended_option: wantedType.extended_options[0],
           })
       }}
-      value={props.selectedCustomAddons.type.sku}
+      value={props.selectedCustomAddons.type!.sku}
       className="w-full"
     >
       {customTypeProducts.map((item) => (
         <option value={item.sku} key={item.sku}>
-          {`${item.name} ${
-            item.price
-              ? `(+${formatCurrencyString({
-                  value: item.price,
-                  currency: CURRENCY,
-                })})`
-              : ""
-          }`}
+          {`${item.name} ${`(${formatCurrencyString({
+            value: item.price + props.customShopInfo.price,
+            currency: CURRENCY,
+          })})`}`}
         </option>
       ))}
     </select>
   )
 
-  const customNumberOfPeopleSelect = (
+  const customExtendedOptionsSelect = (
     <select
       onChange={(event) => {
         const itemSku = event.target.value
-        const wantedNumberOfPeople = customNumofPeopleProducts.find(
-          (typeItem) => typeItem.sku === itemSku
+        const wantedExtendedOption = customTypeExtendedOptionsProducts.find(
+          (extendedOption) => extendedOption.sku === itemSku
         )
 
-        wantedNumberOfPeople &&
+        wantedExtendedOption &&
           props.setSelectedCustomAddons({
             ...props.selectedCustomAddons,
-            numberOfPeople: wantedNumberOfPeople,
+            extended_option: wantedExtendedOption,
           })
       }}
-      value={props.selectedCustomAddons.numberOfPeople.sku}
+      value={props.selectedCustomAddons.extended_option!.sku}
       className="w-full"
     >
-      {customNumofPeopleProducts.map((item) => (
+      {customTypeExtendedOptionsProducts.map((item) => (
         <option value={item.sku} key={item.sku}>
           {`${item.name} ${
             item.price
@@ -95,8 +93,10 @@ const CustomShopPage = (props: CustomShopPropsType) => {
             type="checkbox"
             name="custom-addons"
             value={item.sku}
-            checked={props.selectedCustomAddons.addons.includes(item)}
+            checked={props.selectedCustomAddons.addons?.includes(item)}
             onChange={(event) => {
+              if (!props.selectedCustomAddons.addons) return
+
               const isChecked = event.target.checked
               const itemSku = event.target.value
               const selectedAddons = [...props.selectedCustomAddons.addons]
@@ -153,7 +153,7 @@ const CustomShopPage = (props: CustomShopPropsType) => {
         <div className="col-span-5 col-start-2 row-span-1">
           {customTypesSelect}
           <Spacer />
-          {customNumberOfPeopleSelect}
+          {customExtendedOptionsSelect}
           <Spacer />
           {customAddonCheckboxes}
           <Spacer />

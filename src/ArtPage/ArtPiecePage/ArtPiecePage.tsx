@@ -15,13 +15,7 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
       <main className="w-full">
         <Spacer size="2rem" />
         <div className="flex flex-row flex-nowrap items-stretch justify-between">
-          <PrevNextButton
-            type="PREV"
-            href={{
-              pathname: `/art/${props.prevItemId}`,
-              ...(props.displayAll && { query: { display: "all" } }),
-            }}
-          />
+          <PrevNextButton type="PREV" href={props.prevPage} />
           <Spacer axis="HORIZONTAL" size="1rem" />
           <DynamicImage
             src={props.item.image}
@@ -31,13 +25,7 @@ const ArtPiecePage = (props: ArtPiecePageProps) => {
             loading="eager"
           />
           <Spacer axis="HORIZONTAL" size="1rem" />
-          <PrevNextButton
-            type="NEXT"
-            href={{
-              pathname: `/art/${props.nextItemId}`,
-              ...(props.displayAll && { query: { display: "all" } }),
-            }}
-          />
+          <PrevNextButton type="NEXT" href={props.nextPage} />
         </div>
         <Spacer size="2rem" />
         <HeaderBar>{props.item.title}</HeaderBar>
