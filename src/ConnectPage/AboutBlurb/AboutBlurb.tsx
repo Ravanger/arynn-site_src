@@ -5,6 +5,7 @@ import {
   FaEnvelope,
   FaPatreon,
 } from "react-icons/fa"
+import { SiTiktok } from "react-icons/si"
 import Spacer from "src/common/Spacer"
 import ResponsiveImage from "src/common/ResponsiveImage"
 import { AboutBlurbType } from "./AboutBlurb.types"
@@ -100,6 +101,19 @@ const AboutBlurb = (props: AboutBlurbType) => {
               transition={{ duration: 0.05 }}
             >
               {styledContactButton(<FaPatreon />)}
+              <span className="sr-only">Opens in new window</span>
+            </motion.a>
+          )}
+          {props.socialLinks.tiktok && (
+            <motion.a
+              href={props.socialLinks.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.05 }}
+            >
+              {styledContactButton(<SiTiktok />)}
               <span className="sr-only">Opens in new window</span>
             </motion.a>
           )}

@@ -74,10 +74,10 @@ const MainLayout = (props: LayoutProps) => {
               external: true,
             }
           : undefined,
-        socialLinks.twitter
+        socialLinks.tiktok
           ? {
-              text: "Twitter",
-              url: socialLinks.twitter,
+              text: "Tiktok",
+              url: socialLinks.tiktok,
               external: true,
             }
           : undefined,
