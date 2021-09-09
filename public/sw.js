@@ -1,14 +1,15 @@
-self.addEventListener("install", function (e) {
+self.addEventListener("install", (e) => {
   self.skipWaiting()
 })
 
-self.addEventListener("activate", function (e) {
+self.addEventListener("activate", (e) => {
+  // Remove previous service workers and cache
   self.registration
     .unregister()
-    .then(function () {
+    .then(() => {
       return self.clients.matchAll()
     })
-    .then(function (clients) {
+    .then((clients) => {
       clients.forEach((client) => client.navigate(client.url))
     })
 })
