@@ -37,7 +37,7 @@ const MainLayout = (props: LayoutProps) => {
 
   useEffect(() => {
     setNumCartItems(cartInfo.length)
-  }, [cartInfo])
+  }, [cartInfo.length])
 
   const router = useRouter()
   const mainMenuRef = useRef(null)

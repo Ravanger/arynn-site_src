@@ -33,23 +33,20 @@ const Custom = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   // Update total price whenever addons change
   const totalPrice = useMemo(() => {
-    if (
-      !props.customShopInfo ||
-      !selectedCustomAddons ||
-      !selectedCustomAddons.type ||
-      !selectedCustomAddons.extended_option ||
-      !selectedCustomAddons.addons
-    )
-      return 0
+    try {
+      const addonTotalPrice =
+        selectedCustomAddons.type!.price +
+        selectedCustomAddons.extended_option!.price +
+        selectedCustomAddons.addons!.reduce(
+          (total, addonItem) => total + addonItem.price,
+          0
+        )
 
-    const addonTotalPrice =
-      selectedCustomAddons.type.price +
-      selectedCustomAddons.extended_option.price +
-      selectedCustomAddons.addons.reduce(
-        (total, addonItem) => total + addonItem.price,
-        0
-      )
-    return props.customShopInfo.price + addonTotalPrice
+      return props.customShopInfo!.price + addonTotalPrice
+    } catch (error) {
+      console.error(error)
+      return 0
+    }
   }, [props.customShopInfo, selectedCustomAddons])
 
   if (props.errors || !props.customShopInfo || !selectedCustomAddons)
