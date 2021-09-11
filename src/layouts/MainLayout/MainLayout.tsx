@@ -50,7 +50,7 @@ const MainLayout = (props: LayoutProps) => {
       text: "Art",
       url: "/art",
       filters: [
-        { text: "Paintings", type: "paintings" },
+        { text: "Traditional", type: "traditional" },
         { text: "Comics", type: "comics" },
         { text: "Digital Art", type: "digital_art" },
         { text: "Design", type: "design" },

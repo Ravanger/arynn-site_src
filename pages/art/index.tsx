@@ -5,6 +5,8 @@ import { InferGetStaticPropsType } from "next"
 import { getArtItems } from "util/dataFetching"
 import { artFilterAtom } from "atoms/store"
 import { useAtom } from "jotai"
+import { ArtItemType } from "src/ArtPage/ArtPage.types"
+import { readFile, writeFile } from "util/cache"
 
 const Art = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [artFilter] = useAtom(artFilterAtom)
@@ -21,7 +23,11 @@ const Art = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export const getStaticProps = async () => {
   try {
-    const artItems = await getArtItems()
+    let artItems: ArtItemType[] = await readFile(".artcache")
+    if (artItems.length <= 0) {
+      artItems = await getArtItems()
+      await writeFile(artItems, ".artcache")
+    }
 
     return {
       props: { artItems },
